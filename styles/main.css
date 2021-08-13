@@ -1,0 +1,47 @@
+/* Not necessary whith bootstrap*/
+/* @import url('reset.css'); */
+
+@import url('colors.css');
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+.body-content {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.panel {
+    background-color: var(--foreground-color);
+    padding: 25px 40px;
+    border-radius: 5px;
+}
+
+.panel-small {
+    height: 400px;
+    width: 400px;
+}
+
+.panel-big {
+    height: 95%;
+    width: 90%;
+}
+
+.panel-header {
+    background-color: var(--header-background-color);
+    color: var(--header-color);
+    display: block;
+    margin: -25px -40px 0px;
+    border-radius: 5px 5px 0px 0px;
+    height: 50px;
+}

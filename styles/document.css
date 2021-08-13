@@ -1,0 +1,57 @@
+@import url('colors.css');
+
+@import url('custom_forms.css');
+
+.document-item {
+    background-color: white;
+    height: 85%;
+    width: 70%;
+    overflow-y: auto;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px var(--shadow-color);
+
+    float: left;
+}
+
+.hidden-item {
+    display: none;
+}
+
+.note {
+    text-align: justify;
+    font-weight: 600;
+    color: teal;
+    margin: 1% 5% 0 10%;
+    padding: 5px;
+    line-height: 120%;
+    background-color: rgb(178, 209, 209);
+    border-radius: 10px;
+    border-style: dotted;
+    border-width: 2px;
+}
+
+.warning-note {
+    text-align: justify;
+    font-weight: 600;
+    color: darkorange;
+    margin: 1% 5% 0 10%;
+    line-height: 120%;
+}
+
+.input-radio h3 {
+    margin-left: 5%;
+    font-size: 24px;
+}
+
+.input-radio h4 {
+    margin-left: 7%;
+    font-size: 20px;
+}
+
+h3 + .radio-group {
+    margin-left: 7%;
+}
+
+h4 + .radio-group {
+    margin-left: 9%;
+}
