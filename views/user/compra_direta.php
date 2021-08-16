@@ -17,8 +17,14 @@
         <h1>Termo de Referência - Compra Direta</h1>
       </div>
 
+      <h3 class="mt-1 ms-4">Servidor: João Maria | Código xxx-xxxx-xxx | Status: Preenchimento</h3>
+
       <div class="document-item hidden-item m-3" id="document-item-1">
         <?php require __DIR__ . '/compra_direta/objeto.php'; ?>
+
+        <hr>
+        <button class="btn btn-primary m-3" style="float: left;">Anterior</button>
+        <button class="btn btn-primary m-3" style="float: right;">Próximo</button>
       </div>
 
       <div class="document-item hidden-item m-3" id="document-item-2">
@@ -86,13 +92,16 @@
         <hr>
       </div>
 
-      <div class="comments mt-3">
+      <div class="comments mt-4">
         <p class="m-2">
           Aqui vão os comentários de correção
         </p>
       </div>
 
-      <span id="items-selector" class="ms-3" style="clear: both; float: left;"></span>
+      <span id="items-selector" class="ms-3" style="float: left;"></span>
+      <button class="btn btn-primary ms-5" style="float: left;">Voltar</button>
+      <button class="btn btn-primary ms-2" style="float: left;">Salvar</button>
+      <button class="btn btn-primary ms-2" style="float: left;">Concluir</button>
 
     </div>
   </div>

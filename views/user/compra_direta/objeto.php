@@ -3,11 +3,11 @@
 
 <div class="input-text">
   <h3>Descrição do objeto:</h3>
-  <textarea class="input-text" cols="80" rows="3"></textarea>
+  <textarea class="input-text" cols="80" rows="1"></textarea>
   <p class="note">Deve ser de forma precisa, suficiente e clara, vedadas as especificações que, por excessivas, irrelevantes ou desnecessárias, limitem ou frustrem a competição, além de configurar a prática de ato antieconômico. Art. 40, I, Lei n. 8.666/93; / Art. 3º, II, Lei n. 10.520/02;</p>
 </div>
 
-<div class="input-radio">
+<div class="input-radio mt-3">
   <h3>Tipo de contratação:</h3>
   <h4>Fornecimento de bens/materiais:</h4>
   <div class="radio-group">
@@ -29,21 +29,21 @@
   </div>
   <h4>Se prestação de serviço, é de natureza de execução continuada?</h4>
   <div class="radio-group">
-    <input type="radio" disabled name="Objeto-TipoContratacaoPrestacaoServico">
+    <input type="radio" name="Objeto-TipoContratacaoPrestacaoServico">
     <label for="">Sim.</label>
-    <div class="justify input-text">
-      <h3>Justificar:</h3>
-      <textarea class="input-text" cols="30" rows="1"></textarea>
-      <p class="warning-note">Justificativa de serviço de execução continuada</p>
-    </div>
     <br>
 
-    <input type="radio" disabled name="Objeto-TipoContratacaoPrestacaoServico">
+    <input type="radio" name="Objeto-TipoContratacaoPrestacaoServico">
     <label for="">Não.</label>
+  </div>
+  <div class="justify input-text">
+    <h4>Justificar:</h4>
+    <textarea class="input-text" cols="80" rows="1"></textarea>
+    <p class="warning-note">Justificativa de serviço de execução continuada.</p>
   </div>
 </div>
 
-<div class="input-radio">
+<div class="input-radio mt-3">
   <h3>Caracterização do objeto:</h3>
   <div class="radio-group">
     <input type="radio" name="Objeto-CaracterizacaoObjeto">
@@ -59,7 +59,7 @@
   <p class="note">Este modelo de termo de referência não deve ser utilizado para contratação de obras, ou de bens e serviços especiais nem de locações imobiliárias e alienações, porquanto estes tipos de contratação não poderão ser licitados através da modalidade de pregão (Art. 4º do Decreto nº 9.666/2020).</p>
 </div>
 
-<div class="input-radio">
+<div class="input-radio mt-3">
   <h3>Forma de adjudicação:</h3>
   <div class="radio-group">
     <input type="radio" name="Objeto-FormaAjudicacao">
@@ -69,10 +69,15 @@
     <input type="radio" name="Objeto-FormaAjudicacao">
     <label for="">Por Lote.</label>
   </div>
+  <div class="justify input-text">
+    <h4>Justificar:</h4>
+    <textarea class="input-text" cols="80" rows="1"></textarea>
+    <p class="warning-note">Justificar tecnicamente a opção por contratação em lote(s) e o(s) critério(s) adotado(s) para a formação de cada lote.</p>
+  </div>
   <p class="note">A Lei nº 8.666/93 e a jurisprudência do TCU estabelecem que a adjudicação por item é a regra a ser adotada nas licitações. Na adjudicação por item, cada item do objeto é licitado separadamente com possibilidade de ser adjudicado a licitantes distintos, e permite maior competitividade. A adjudicação por lote é considerada exceção e somente pode ser utilizada por razões técnicas e econômicas devidamente justificadas. Na adjudicação por lote a fase de lances se processa com ofertas para o valor total do lote e a adjudicação é realizada aos vencedores dos lotes, ainda que estes não tenham apresentado o melhor lance para cada item individualmente.</p>
 </div>
 
-<div class="input-radio">
+<div class="input-radio mt-3">
   <h3>Critério de julgamento das propostas:</h3>
   <div class="radio-group">
     <input type="radio" name="Objeto-CriterioJulgamentoProposta">

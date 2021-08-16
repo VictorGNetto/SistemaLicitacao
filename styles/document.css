@@ -28,6 +28,7 @@
     border-radius: 10px;
     border-style: dotted;
     border-width: 2px;
+    width: fit-content;
 }
 
 .warning-note {
@@ -35,7 +36,13 @@
     font-weight: 600;
     color: darkorange;
     margin: 1% 5% 0 10%;
+    padding: 5px;
     line-height: 120%;
+    background-color: rgb(240, 208, 149);
+    border-radius: 10px;
+    border-style: dotted;
+    border-width: 2px;
+    width: fit-content;
 }
 
 .input-radio h3 {

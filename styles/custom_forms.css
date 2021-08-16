@@ -5,6 +5,12 @@
     vertical-align: top;
 }
 
+.input-text h4 {
+    display: inline;
+    margin-left: 5%;
+    vertical-align: top;
+}
+
 textarea.input-text {
     resize: none;
     overflow: hidden;
