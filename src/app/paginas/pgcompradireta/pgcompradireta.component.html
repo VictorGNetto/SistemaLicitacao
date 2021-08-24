@@ -1,0 +1,59 @@
+<app-metadadosdocumento></app-metadadosdocumento>
+
+<app-info>
+  <p>De acordo com Art. 8º, inciso I, do Decreto Estadual nº 9.666/2020, elaboração do ETP é exigida para as contratações operadas na modalidade Pregão. A princípio, não há exigência legal expressa para elaboração de ETP em contratações por outras modalidades ou para contratações diretas.</p>
+</app-info>
+
+<mat-tab-group animationDuration="0ms">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: darkorange; margin-right: 8px;">warning</mat-icon>
+      OBJETO
+    </ng-template>
+
+    <div class="conteudo-item">
+      <div>
+        <h4>Descrição do objeto:</h4>
+        <textarea cols="80" rows="2"></textarea>
+      </div>
+      <div>
+        <h4>Tipo de contratação:</h4>
+        <mat-radio-group aria-label="Selecione uma opção" [(ngModel)]="tipoContratacao" (change)=(onTipoContratacaoChange())>
+          <h5>Fornecimento de bens/materiais:</h5>
+          <mat-radio-button value="1">Fornecimento em parcela única.</mat-radio-button>
+          <mat-radio-button value="2">Fornecimento em mais de uma parcela (apresentar cronograma no item 10).</mat-radio-button>
+          <h5>Prestação de serviços:</h5>
+          <mat-radio-button value="3">Prestação de serviços em regime de "empreitada" por preço global.</mat-radio-button>
+          <mat-radio-button value="4">Prestação de serviços em regime de "empreitada" por preço unitário (sob demanda).</mat-radio-button>
+        </mat-radio-group>
+        <mat-radio-group *ngIf="prestacaoServico" [(ngModel)]="prestacaoServicoContinuada">
+          <h5>Se prestação de serviço, é de natureza de execução continuada?</h5>
+          <mat-radio-button value="1">Sim.</mat-radio-button>
+          <mat-radio-button value="2">Não.</mat-radio-button>
+          <div class="justificativa" *ngIf="prestacaoServicoContinuada==1;">
+            <h5>Justificativa de serviço de execução continuada:</h5>
+            <textarea cols="80" rows="2"></textarea>
+          </div>
+        </mat-radio-group>
+
+      </div>
+      
+      <h4>Caracterização do objeto:</h4>
+      <!-- <app-inputopcao></app-inputopcao> -->
+      <h4>Forma de adjudicação:</h4>
+      <!-- <app-inputopcao></app-inputopcao> -->
+      <h4>Critério de julgamento das propostas:</h4>
+      <!-- <app-inputopcao></app-inputopcao> -->
+    </div>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: darkgreen; margin-right: 8px;">check_circle</mat-icon>
+      OBJETO
+    </ng-template>
+
+    <h1>Olá</h1>
+    <p>Eu sou o conteúdo 2</p>
+  </mat-tab>
+</mat-tab-group>

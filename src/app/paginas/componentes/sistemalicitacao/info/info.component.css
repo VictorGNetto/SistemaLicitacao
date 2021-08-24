@@ -1,0 +1,13 @@
+.info {
+  text-align: justify;
+  font-weight: 500;
+  color: teal;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  background-color: rgb(178, 209, 209);
+  border-radius: 10px;
+  border-style: dotted;
+  border-width: 2px;
+  width: fit-content;
+  max-width: 90%;
+}

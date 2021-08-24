@@ -1,0 +1,71 @@
+.mainapp-conteudo {
+    position: absolute;
+    top: 100px;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+}
+
+.mainapp-menulateral {
+    display: flex;
+    width: 200px;
+}
+
+.mainapp-topo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-image: url('../assets/intranet-background-2.png');
+}
+
+.texto-sistemas {
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: bolder;
+    position: absolute;
+    top: 0px;
+    left: 183px
+}
+
+.texto-brasilcentral {
+    color: #FFFFFF;
+    font-size: 80px;
+    font-weight: bolder;
+    position: absolute;
+    top: 49px;
+    left: 180px;
+}
+
+.mainapp-rodape {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.abc-logo {
+    background-image: url('http://informatica.tvbrasilcentral.com.br/images/profile.png');
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+}
+
+.user-profile {
+    background-image: url('../assets/user-profile.jpg');
+    background-size: cover;
+    width: 128px;
+    height: 128px;
+    margin-left: 24px;
+    margin-bottom: 6px;
+}
+
+.divmenunome a {
+    cursor: pointer;
+
+}
+
+.mainapp-router {
+    padding-left: 200px;
+}
