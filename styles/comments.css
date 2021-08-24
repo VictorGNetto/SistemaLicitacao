@@ -1,8 +1,0 @@
-.comments {
-    background-color: white;
-    height: 85%;
-    width: 27%;
-    overflow-y: auto;
-    border-radius: 3px;
-    box-shadow: 5px 5px 5px var(--shadow-color);
-}
