@@ -1,8 +1,14 @@
+<!-- TODO: modificar as Notas de Informação e Alerta de modo que elas possam
+  ser apresentadas aos usuários de maneira mais adequada, sem influenciar
+  muito na aparência da página -->
+
 <app-metadadosdocumento></app-metadadosdocumento>
 
-<app-info>
-  <p>De acordo com Art. 8º, inciso I, do Decreto Estadual nº 9.666/2020, elaboração do ETP é exigida para as contratações operadas na modalidade Pregão. A princípio, não há exigência legal expressa para elaboração de ETP em contratações por outras modalidades ou para contratações diretas.</p>
-</app-info>
+<div style="width: 90%;">
+  <app-info>
+    <p>De acordo com Art. 8º, inciso I, do Decreto Estadual nº 9.666/2020, elaboração do ETP é exigida para as contratações operadas na modalidade Pregão. A princípio, não há exigência legal expressa para elaboração de ETP em contratações por outras modalidades ou para contratações diretas.</p>
+  </app-info>
+</div>
 
 <mat-tab-group animationDuration="0ms">
   <mat-tab>
@@ -11,46 +17,105 @@
       OBJETO
     </ng-template>
 
-    <div class="conteudo-item">
-      <div>
+    <div class="conteudo-item-documento">
+      <div class="subitem-documento">
         <h4>Descrição do objeto:</h4>
         <textarea cols="80" rows="2"></textarea>
+        <app-info>
+          <p>Deve ser de forma precisa, suficiente e clara, vedadas as especificações que, por excessivas, irrelevantes ou desnecessárias, limitem ou frustrem a competição, além de configurar a prática de ato antieconômico. Art. 40, I, Lei n. 8.666/93; / Art. 3º, II, Lei n. 10.520/02;</p>
+        </app-info>
       </div>
-      <div>
+
+      <div class="subitem-documento">
         <h4>Tipo de contratação:</h4>
         <mat-radio-group aria-label="Selecione uma opção" [(ngModel)]="tipoContratacao" (change)=(onTipoContratacaoChange())>
           <h5>Fornecimento de bens/materiais:</h5>
-          <mat-radio-button value="1">Fornecimento em parcela única.</mat-radio-button>
+          <mat-radio-button value="1">Fornecimento em parcela única.</mat-radio-button> <br>
           <mat-radio-button value="2">Fornecimento em mais de uma parcela (apresentar cronograma no item 10).</mat-radio-button>
           <h5>Prestação de serviços:</h5>
-          <mat-radio-button value="3">Prestação de serviços em regime de "empreitada" por preço global.</mat-radio-button>
+          <mat-radio-button value="3">Prestação de serviços em regime de "empreitada" por preço global.</mat-radio-button> <br>
           <mat-radio-button value="4">Prestação de serviços em regime de "empreitada" por preço unitário (sob demanda).</mat-radio-button>
         </mat-radio-group>
-        <mat-radio-group *ngIf="prestacaoServico" [(ngModel)]="prestacaoServicoContinuada">
+        <mat-radio-group *ngIf="prestacaoServico" aria-label="Selecione uma opção" [(ngModel)]="prestacaoServicoContinuada">
           <h5>Se prestação de serviço, é de natureza de execução continuada?</h5>
-          <mat-radio-button value="1">Sim.</mat-radio-button>
-          <mat-radio-button value="2">Não.</mat-radio-button>
-          <div class="justificativa" *ngIf="prestacaoServicoContinuada==1;">
+          <mat-radio-button value="Sim">Sim.</mat-radio-button>
+          <mat-radio-button value="Nao">Não.</mat-radio-button>
+          <div class="justificativa" *ngIf="prestacaoServicoContinuada=='Sim';">
             <h5>Justificativa de serviço de execução continuada:</h5>
             <textarea cols="80" rows="2"></textarea>
           </div>
         </mat-radio-group>
-
       </div>
-      
-      <h4>Caracterização do objeto:</h4>
-      <!-- <app-inputopcao></app-inputopcao> -->
-      <h4>Forma de adjudicação:</h4>
-      <!-- <app-inputopcao></app-inputopcao> -->
-      <h4>Critério de julgamento das propostas:</h4>
-      <!-- <app-inputopcao></app-inputopcao> -->
+
+      <div class="subitem-documento">
+        <h4>Caracterização do objeto:</h4>
+        <mat-radio-group aria-label="Selecione uma opção">
+          <mat-radio-button value="1">Bem ou serviço comum.</mat-radio-button> <br>
+          <div style="margin-left: 2.5rem; margin-top: -0.5rem;">
+            <app-info>
+              <p>Segundo o Art. 3º, II, do Decreto nº 9.666/2020, são "bens cujos padrões de desempenho e qualidade possam ser objetivamente definidos pelo edital, por meio de especificações reconhecidas e usuais do mercado".</p>
+            </app-info>
+          </div>
+          <mat-radio-button value="2">Serviço comum de engenharia.</mat-radio-button>
+          <div style="margin-left: 2.5rem; margin-top: -0.5rem;">
+            <app-info>
+              <p>Serviços comuns de engenharia são aqueles serviços que necessitam da participação e do acompanhamento de profissional engenheiro habilitado, nos termos do disposto na Lei nº 5.194, de 24 de dezembro de 1966, e que são padronizados no mercado de forma que os serviços prestados pelas diversas empresas do ramo são passíveis de ser objetivamente comparados entre si em termos de desempenho e qualidade.</p>
+            </app-info>
+          </div>
+          <div style="margin-left: 1rem;">
+            <app-info>
+              <p>Para melhor compreensão do que sejam "serviços de engenharia", observar a definição e exemplos dados pela Orientação Técnica OT-IBR 002/2009-IBRAOP.</p>
+            </app-info>
+            <app-info>
+              <p>Este modelo de termo de referência não deve ser utilizado para contratação de obras, ou de bens e serviços especiais nem de locações imobiliárias e alienações, porquanto estes tipos de contratação não poderão ser licitados através da modalidade de pregão (Art. 4º do Decreto nº 9.666/2020).</p>
+            </app-info>
+          </div>
+        </mat-radio-group>
+      </div>
+
+      <div class="subitem-documento">
+        <h4>Forma de adjudicação:</h4>
+        <mat-radio-group aria-label="Selecione uma opção" [(ngModel)]="adjudicacao">
+          <mat-radio-button value="porItem">Por Item.</mat-radio-button>
+          <mat-radio-button value="porLote">Por Lote.</mat-radio-button>
+          <div class="justificativa" *ngIf="adjudicacao=='porLote'">
+            <h5>Justificativa para a formação de Lote(s):</h5>
+            <textarea cols="80" rows="2"></textarea>
+            <div style="margin-left: 2.5rem; margin-top: -0.5rem;">
+              <app-info>
+                <p>Justificar tecnicamente a opção por contratação em lote(s) e o(s) critério(s) adotado(s) para a formação de cada lote.</p>
+              </app-info>
+            </div>
+          </div>
+        </mat-radio-group>
+        <div style="margin-left: 1rem;">
+          <app-info>
+            <p>A Lei nº 8.666/93 e a jurisprudência do TCU estabelecem que a adjudicação por item é a regra a ser adotada nas licitações. Na adjudicação por item, cada item do objeto é licitado separadamente com possibilidade de ser adjudicado a licitantes distintos, e permite maior competitividade. A adjudicação por lote é considerada exceção e somente pode ser utilizada por razões técnicas e econômicas devidamente justificadas. Na adjudicação por lote a fase de lances se processa com ofertas para o valor total do lote e a adjudicação é realizada aos vencedores dos lotes, ainda que estes não tenham apresentado o melhor lance para cada item individualmente.</p>
+          </app-info>
+        </div>
+      </div>
+
+      <div class="subitem-documento">
+        <h4>Critério de julgamento das propostas:</h4>
+        <mat-radio-group aria-label="Selecione uma opção">
+          <mat-radio-button value="menorPreco">Menor Preço.</mat-radio-button> <br>
+          <div style="margin-left: 2.5rem; margin-top: -0.5rem;">
+            <app-info>
+              <p>É o critério padrão. As demais opções podem ser utilizadas conforme a especificidade do caso concreto e de acordo com as características de mercado.</p>
+            </app-info>
+          </div>
+          <mat-radio-button value="maiorDesconto">Maior Desconto.</mat-radio-button> <br>
+          <mat-radio-button value="menorTaxa">Menor Taxa.</mat-radio-button> <br>
+          <mat-radio-button value="maiorOferta">Maior Oferta.</mat-radio-button>
+        </mat-radio-group>
+      </div>
     </div>
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon style="color: darkgreen; margin-right: 8px;">check_circle</mat-icon>
-      OBJETO
+      JUSTIFICATIVA
     </ng-template>
 
     <h1>Olá</h1>

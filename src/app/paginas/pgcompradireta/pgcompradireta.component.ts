@@ -6,9 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pgcompradireta.component.css']
 })
 export class PgcompradiretaComponent implements OnInit {
-  tipoContratacao: string = "";
+  tipoContratacao: number = 0;
   prestacaoServico: boolean = false;
-  prestacaoServicoContinuada: number = 0;
+  prestacaoServicoContinuada: string = "";
+  adjudicacao: string = 'porItem';
 
   constructor() { }
 
@@ -16,11 +17,10 @@ export class PgcompradiretaComponent implements OnInit {
   }
 
   onTipoContratacaoChange() {
-    if (this.tipoContratacao == "3" || this.tipoContratacao == "4") {
+    if (this.tipoContratacao == 3 || this.tipoContratacao == 4) {
       this.prestacaoServico = true;
     } else {
       this.prestacaoServico = false;
     }
   }
-
 }
