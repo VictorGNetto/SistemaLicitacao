@@ -20,7 +20,7 @@
     <div class="conteudo-item-documento">
       <div class="subitem-documento">
         <h4>Descrição do objeto:</h4>
-        <textarea cols="80" rows="2"></textarea>
+        <textarea cols="80" rows="2" [(ngModel)]="descricaoObjeto"></textarea>
         <app-info>
           <p>Deve ser de forma precisa, suficiente e clara, vedadas as especificações que, por excessivas, irrelevantes ou desnecessárias, limitem ou frustrem a competição, além de configurar a prática de ato antieconômico. Art. 40, I, Lei n. 8.666/93; / Art. 3º, II, Lei n. 10.520/02;</p>
         </app-info>
@@ -30,11 +30,11 @@
         <h4>Tipo de contratação:</h4>
         <mat-radio-group aria-label="Selecione uma opção" [(ngModel)]="tipoContratacao" (change)=(onTipoContratacaoChange())>
           <h5>Fornecimento de bens/materiais:</h5>
-          <mat-radio-button value="1">Fornecimento em parcela única.</mat-radio-button> <br>
-          <mat-radio-button value="2">Fornecimento em mais de uma parcela (apresentar cronograma no item 10).</mat-radio-button>
+          <mat-radio-button value="fornecimentoParcelaUnica">Fornecimento em parcela única.</mat-radio-button> <br>
+          <mat-radio-button value="fornecimentoParcelaMultipla">Fornecimento em mais de uma parcela (apresentar cronograma no item 10).</mat-radio-button>
           <h5>Prestação de serviços:</h5>
-          <mat-radio-button value="3">Prestação de serviços em regime de "empreitada" por preço global.</mat-radio-button> <br>
-          <mat-radio-button value="4">Prestação de serviços em regime de "empreitada" por preço unitário (sob demanda).</mat-radio-button>
+          <mat-radio-button value="servicoPrecoGlobal">Prestação de serviços em regime de "empreitada" por preço global.</mat-radio-button> <br>
+          <mat-radio-button value="servicoPrecoUnitario">Prestação de serviços em regime de "empreitada" por preço unitário (sob demanda).</mat-radio-button>
         </mat-radio-group>
         <mat-radio-group *ngIf="prestacaoServico" aria-label="Selecione uma opção" [(ngModel)]="prestacaoServicoContinuada">
           <h5>Se prestação de serviço, é de natureza de execução continuada?</h5>
@@ -42,21 +42,21 @@
           <mat-radio-button value="Nao">Não.</mat-radio-button>
           <div class="justificativa" *ngIf="prestacaoServicoContinuada=='Sim';">
             <h5>Justificativa de serviço de execução continuada:</h5>
-            <textarea cols="80" rows="2"></textarea>
+            <textarea cols="80" rows="2" [(ngModel)]="justificativaServicoExecucaoContinuada"></textarea>
           </div>
         </mat-radio-group>
       </div>
 
       <div class="subitem-documento">
         <h4>Caracterização do objeto:</h4>
-        <mat-radio-group aria-label="Selecione uma opção">
-          <mat-radio-button value="1">Bem ou serviço comum.</mat-radio-button> <br>
+        <mat-radio-group aria-label="Selecione uma opção" [(ngModel)]="caracterizacaoObjeto">
+          <mat-radio-button value="bemServicoComum">Bem ou serviço comum.</mat-radio-button> <br>
           <div style="margin-left: 2.5rem; margin-top: -0.5rem;">
             <app-info>
               <p>Segundo o Art. 3º, II, do Decreto nº 9.666/2020, são "bens cujos padrões de desempenho e qualidade possam ser objetivamente definidos pelo edital, por meio de especificações reconhecidas e usuais do mercado".</p>
             </app-info>
           </div>
-          <mat-radio-button value="2">Serviço comum de engenharia.</mat-radio-button>
+          <mat-radio-button value="servicoComumEngenharia">Serviço comum de engenharia.</mat-radio-button>
           <div style="margin-left: 2.5rem; margin-top: -0.5rem;">
             <app-info>
               <p>Serviços comuns de engenharia são aqueles serviços que necessitam da participação e do acompanhamento de profissional engenheiro habilitado, nos termos do disposto na Lei nº 5.194, de 24 de dezembro de 1966, e que são padronizados no mercado de forma que os serviços prestados pelas diversas empresas do ramo são passíveis de ser objetivamente comparados entre si em termos de desempenho e qualidade.</p>
@@ -80,7 +80,7 @@
           <mat-radio-button value="porLote">Por Lote.</mat-radio-button>
           <div class="justificativa" *ngIf="adjudicacao=='porLote'">
             <h5>Justificativa para a formação de Lote(s):</h5>
-            <textarea cols="80" rows="2"></textarea>
+            <textarea cols="80" rows="2" [(ngModel)]="justificativaAdjudicacaoLote"></textarea>
             <div style="margin-left: 2.5rem; margin-top: -0.5rem;">
               <app-info>
                 <p>Justificar tecnicamente a opção por contratação em lote(s) e o(s) critério(s) adotado(s) para a formação de cada lote.</p>
@@ -97,7 +97,7 @@
 
       <div class="subitem-documento">
         <h4>Critério de julgamento das propostas:</h4>
-        <mat-radio-group aria-label="Selecione uma opção">
+        <mat-radio-group aria-label="Selecione uma opção" [(ngModel)]="criterioJulgamentoPropostas">
           <mat-radio-button value="menorPreco">Menor Preço.</mat-radio-button> <br>
           <div style="margin-left: 2.5rem; margin-top: -0.5rem;">
             <app-info>
@@ -118,7 +118,14 @@
       JUSTIFICATIVA
     </ng-template>
 
-    <h1>Olá</h1>
-    <p>Eu sou o conteúdo 2</p>
+    <h2>{{ tipoContratacao }}</h2>
+    <h2>{{ prestacaoServicoContinuada }}</h2>
+    <h2>{{ caracterizacaoObjeto }}</h2>
+    <h2>{{ adjudicacao }}</h2>
+    <h2>{{ criterioJulgamentoPropostas }}</h2>
+
+    <h3>{{ descricaoObjeto }}</h3>
+    <h3>{{ justificativaServicoExecucaoContinuada }}</h3>
+    <h3>{{ justificativaAdjudicacaoLote }}</h3>
   </mat-tab>
 </mat-tab-group>
