@@ -4,6 +4,8 @@
 
 <app-metadadosdocumento></app-metadadosdocumento>
 
+<button (click)="salvarDocumento()">Salvar</button>
+
 <div style="width: 90%;">
   <app-info>
     <p>De acordo com Art. 8º, inciso I, do Decreto Estadual nº 9.666/2020, elaboração do ETP é exigida para as contratações operadas na modalidade Pregão. A princípio, não há exigência legal expressa para elaboração de ETP em contratações por outras modalidades ou para contratações diretas.</p>
@@ -13,7 +15,7 @@
 <mat-tab-group animationDuration="0ms">
   <mat-tab>
     <ng-template mat-tab-label>
-      <mat-icon style="color: darkorange; margin-right: 8px;">warning</mat-icon>
+      <mat-icon style="color: darkorange; margin-right: 8px;" *ngIf="false">warning</mat-icon>
       OBJETO
     </ng-template>
 
