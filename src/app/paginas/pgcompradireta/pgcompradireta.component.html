@@ -12,10 +12,10 @@
   </app-info>
 </div>
 
-<mat-tab-group animationDuration="0ms">
+<mat-tab-group animationDuration="0ms" #tabgroup>
   <mat-tab>
     <ng-template mat-tab-label>
-      <mat-icon style="color: darkorange; margin-right: 8px;" *ngIf="false">warning</mat-icon>
+      <mat-icon style="color: darkorange; margin-right: 8px;" *ngIf="true">warning</mat-icon>
       OBJETO
     </ng-template>
 
@@ -112,6 +112,9 @@
         </mat-radio-group>
       </div>
     </div>
+
+    <button disabled>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=1'>Próximo</button>
   </mat-tab>
 
   <mat-tab>
@@ -129,5 +132,150 @@
     <h3>{{ descricaoObjeto }}</h3>
     <h3>{{ justificativaServicoExecucaoContinuada }}</h3>
     <h3>{{ justificativaAdjudicacaoLote }}</h3>
+
+    <button (click)='tabgroup.selectedIndex=0'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=2'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      ESPECIFICAÇÕES TÉCNICAS
+    </ng-template>
+
+    <h1>Elemento 3</h1>
+
+    <button (click)='tabgroup.selectedIndex=1'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=3'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      QUALIFICAÇÃO TÉCNICA
+    </ng-template>
+
+    <h1>Elemento 4</h1>
+
+    <button (click)='tabgroup.selectedIndex=2'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=4'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      PRAZOS, LOCAIS, FORMA DE EXECUÇÃO E RECEBIMENTO
+    </ng-template>
+
+    <h1>Elemento 5</h1>
+
+    <button (click)='tabgroup.selectedIndex=3'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=5'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      DOTAÇÃO ORÇAMENTÁRIA
+    </ng-template>
+
+    <h1>Elemento 6</h1>
+
+    <button (click)='tabgroup.selectedIndex=4'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=6'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      OBRIGAÇÕES DA CONTRATADA
+    </ng-template>
+
+    <h1>Elemento 7</h1>
+    <button (click)='tabgroup.selectedIndex=5'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=7'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      OBRIGAÇÕES DA CONTRATANTE:
+    </ng-template>
+
+    <h1>Elemento 8</h1>
+
+    <button (click)='tabgroup.selectedIndex=6'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=8'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      GARANTIA DO PRODUTO
+    </ng-template>
+
+    <h1>Elemento 9</h1>
+
+    <button (click)='tabgroup.selectedIndex=7'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=9'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      INSTRUMENTO CONTRATUAL
+    </ng-template>
+
+    <h1>Elemento 10</h1>
+
+    <button (click)='tabgroup.selectedIndex=8'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=10'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      ACOMPANHAMENTO E FISCALIZAÇÃO
+    </ng-template>
+
+    <h1>Elemento 11</h1>
+
+    <button (click)='tabgroup.selectedIndex=9'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=11'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      PAGAMENTO
+    </ng-template>
+
+    <h1>Elemento 12</h1>
+
+    <button (click)='tabgroup.selectedIndex=10'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=12'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      SANÇÕES
+    </ng-template>
+
+    <h1>Elemento 13</h1>
+
+    <button (click)='tabgroup.selectedIndex=11'>Anterior</button>
+    <button (click)='tabgroup.selectedIndex=13'>Próximo</button>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style="color: red; margin-right: 8px;" *ngIf="false">error_outline</mat-icon>
+      DISPOSIÇÕES FINAIS
+    </ng-template>
+
+    <h1>Elemento 14</h1>
+    <button (click)='tabgroup.selectedIndex=12'>Anterior</button>
+    <button disabled>Próximo</button>
   </mat-tab>
 </mat-tab-group>

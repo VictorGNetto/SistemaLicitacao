@@ -70,4 +70,8 @@ export class PgcompradiretaComponent implements OnInit {
     };
     this.provider.salvarDocumento(documento);
   }
+
+  log(msg: any) {
+    alert(msg);
+  }
 }

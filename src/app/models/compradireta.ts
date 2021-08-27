@@ -16,5 +16,5 @@ export interface Compradireta {
   i1_caracterizacaoObjeto: string;
   i1_adjudicacao: string;
   i1_criterioJulgamentoPropostas: string;
-
+  
 }
