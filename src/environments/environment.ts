@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlBase: "http://localhost/SL-backend/",
+  urlBase: "/api",
 };
 
 /*
