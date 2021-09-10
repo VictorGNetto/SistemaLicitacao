@@ -1,0 +1,65 @@
+<mat-toolbar>
+  <h1>Criação de Documento Base</h1>
+</mat-toolbar>
+
+<div class="content">
+  <h2>Identificação</h2>
+  <input
+    class="identificacao"
+    type="text"
+    [(ngModel)]="nomeDocumentoBase"
+    placeholder="Identificação do Documento Base"
+  />
+
+  <div>
+    <button>Adicionar Seção</button>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        {{ secoes[0] }}
+      </ng-template>
+
+      <mat-toolbar class="secaoToolbar">
+        <div class="divSecaoToolbar">
+          <button mat-icon-button title="Ir para a seção anterior">
+            <mat-icon>keyboard_double_arrow_left</mat-icon>
+          </button>
+          <button mat-button title="Adicionar seção">
+            <mat-icon>add_circle</mat-icon> Nova Seção Antes Desta
+          </button>
+        </div>
+        <div class="divSecaoToolbar">
+          <input
+            class="nomeSecao"
+            type="text"
+            [(ngModel)]="secoes[0]"
+            placeholder="Nome da Seção"
+          />
+        </div>
+        <div class="divSecaoToolbar">
+          <button mat-button title="Adicionar seção">
+            <mat-icon>add_circle</mat-icon> <div style="margin-top: -0.75rem;">Nova Seção Depois Desta</div>
+          </button>
+          <button mat-icon-button style="vertical-align: bottom;">
+            <mat-icon>keyboard_double_arrow_right</mat-icon>
+          </button>
+        </div>
+      </mat-toolbar>
+
+      <hr />
+      <p>
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+    </mat-tab>
+
+    <mat-tab label="DEF"></mat-tab>
+  </mat-tab-group>
+</div>

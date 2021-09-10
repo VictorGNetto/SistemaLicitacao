@@ -10,25 +10,31 @@ import { AppComponent } from './app.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatIconModule} from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
-import { PgcompradiretaComponent } from './paginas/pgcompradireta/pgcompradireta.component';
-import { MetadadosdocumentoComponent } from './paginas/componentes/sistemalicitacao/metadadosdocumento/metadadosdocumento.component';
-import { InfoComponent } from './paginas/componentes/sistemalicitacao/info/info.component';
+import { PgCriacaoDocumentoBaseComponent } from './paginas/sistema-licitacao/pg-criacao-documento-base/pg-criacao-documento-base.component';
+import { PgPreenchimentoDocumentoComponent } from './paginas/sistema-licitacao/pg-preenchimento-documento/pg-preenchimento-documento.component';
 
-const appRoutes: Routes  = [
-  { path: '', redirectTo: '/compraDireta', pathMatch: 'full' },
-  { path: 'compraDireta', component: PgcompradiretaComponent },
+const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: '/sistemaLicitacao/criacaoDocumentoBase',
+    pathMatch: 'full',
+  },
+  {
+    path: 'sistemaLicitacao/criacaoDocumentoBase',
+    component: PgCriacaoDocumentoBaseComponent,
+  },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PgcompradiretaComponent,
-    MetadadosdocumentoComponent,
-    InfoComponent
+    PgCriacaoDocumentoBaseComponent,
+    PgPreenchimentoDocumentoComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,12 +47,10 @@ const appRoutes: Routes  = [
     MatTabsModule,
     MatRadioModule,
     MatIconModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true }
-    )
+    MatButtonModule,
+    RouterModule.forRoot(appRoutes, { enableTracing: true }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,50 @@
+.content {
+  padding: 0 1rem;
+  margin-right: 5rem;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  margin: 1rem 0 0;
+}
+
+.identificacao {
+  outline: none;
+  background-color: #eee;
+  border-radius: 5px;
+  width: 400px;
+  height: 35px;
+  font-size: 26px;
+  padding: 0.5rem 1rem;
+}
+
+input:placeholder-shown.identificacao {
+  font-size: 20px;
+}
+
+.nomeSecao {
+  outline: none;
+  background-color: #eee;
+  border-radius: 5px;
+  width: 250px;
+  height: 20px;
+  font-size: 26px;
+  padding: 0.5rem 1rem;
+}
+
+input:placeholder-shown.nomeSecao {
+    font-size: 20px;
+  }
+
+.secaoToolbar {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+}
+
+.divSecaoToolbar {
+    display: flex;
+    justify-content: space-around;
+}
