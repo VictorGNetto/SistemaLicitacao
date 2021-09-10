@@ -18,6 +18,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { PgCriacaoDocumentoBaseComponent } from './paginas/sistema-licitacao/pg-criacao-documento-base/pg-criacao-documento-base.component';
 import { PgPreenchimentoDocumentoComponent } from './paginas/sistema-licitacao/pg-preenchimento-documento/pg-preenchimento-documento.component';
 
+import { PgTesteComponenteMensagemComponent } from './paginas/sistema-licitacao/pg-teste-componente-mensagem/pg-teste-componente-mensagem.component';
+import { MensagemComponent } from './paginas/sistema-licitacao/componentes/mensagem/mensagem.component';
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -28,6 +31,10 @@ const appRoutes: Routes = [
     path: 'sistemaLicitacao/criacaoDocumentoBase',
     component: PgCriacaoDocumentoBaseComponent,
   },
+  {
+    path: 'testeMensagens',
+    component: PgTesteComponenteMensagemComponent,
+  }
 ];
 
 @NgModule({
@@ -35,6 +42,8 @@ const appRoutes: Routes = [
     AppComponent,
     PgCriacaoDocumentoBaseComponent,
     PgPreenchimentoDocumentoComponent,
+    PgTesteComponenteMensagemComponent,
+    MensagemComponent
   ],
   imports: [
     BrowserModule,
