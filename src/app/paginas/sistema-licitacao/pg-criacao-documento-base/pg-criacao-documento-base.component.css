@@ -31,6 +31,11 @@ input:placeholder-shown.identificacao {
   margin-top: 1rem;
 }
 
+.remover-secao {
+  margin-top: 1rem;
+  margin-left: 0.75rem; 
+}
+
 .tab-nome-secao {
   font-weight: bold;
 }
