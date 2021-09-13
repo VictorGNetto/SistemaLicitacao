@@ -9,7 +9,7 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
 
   nomeDocumentoBase: string = "";
   secoes: string[] = [
-    "ABC"
+    ""
   ];
 
   constructor() { }

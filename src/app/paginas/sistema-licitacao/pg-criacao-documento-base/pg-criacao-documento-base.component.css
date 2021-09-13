@@ -18,33 +18,45 @@ h2 {
   width: 400px;
   height: 35px;
   font-size: 26px;
+  font-weight: bold;
   padding: 0.5rem 1rem;
 }
 
 input:placeholder-shown.identificacao {
   font-size: 20px;
+  font-weight: normal;
 }
 
-.nomeSecao {
+.adicionar-secao {
+  margin-top: 1rem;
+}
+
+.tab-nome-secao {
+  font-weight: bold;
+}
+
+.nome-secao {
   outline: none;
   background-color: #eee;
   border-radius: 5px;
   width: 250px;
   height: 20px;
   font-size: 26px;
+  font-weight: bold;
   padding: 0.5rem 1rem;
 }
 
-input:placeholder-shown.nomeSecao {
+input:placeholder-shown.nome-secao {
     font-size: 20px;
+    font-weight: normal;
   }
 
-.secaoToolbar {
+.secao-toolbar {
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
 }
 
-.divSecaoToolbar {
+.div-secao-toolbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }

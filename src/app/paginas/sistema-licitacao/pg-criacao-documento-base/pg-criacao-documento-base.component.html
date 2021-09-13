@@ -11,44 +11,42 @@
     placeholder="Identificação do Documento Base"
   />
 
-  <div>
-    <button>Adicionar Seção</button>
-  </div>
+  <br>
+
+  <button mat-stroked-button title="Adicionar seção" class="adicionar-secao">
+    <mat-icon>add_circle</mat-icon>
+    <div>Adicionar Seção</div>
+  </button>
 
   <mat-tab-group>
     <mat-tab>
       <ng-template mat-tab-label>
-        {{ secoes[0] }}
+        <span class="tab-nome-secao">{{ secoes[0] }}</span>
       </ng-template>
 
-      <mat-toolbar class="secaoToolbar">
-        <div class="divSecaoToolbar">
-          <button mat-icon-button title="Ir para a seção anterior">
+      <mat-toolbar class="secao-toolbar">
+        <div class="div-secao-toolbar">
+          <button mat-stroked-button disabled title="Ir para a seção anterior">
             <mat-icon>keyboard_double_arrow_left</mat-icon>
-          </button>
-          <button mat-button title="Adicionar seção">
-            <mat-icon>add_circle</mat-icon> Nova Seção Antes Desta
+            Seção Anterior
           </button>
         </div>
-        <div class="divSecaoToolbar">
+        <div class="div-secao-toolbar">
           <input
-            class="nomeSecao"
+            class="nome-secao"
             type="text"
             [(ngModel)]="secoes[0]"
             placeholder="Nome da Seção"
           />
         </div>
-        <div class="divSecaoToolbar">
-          <button mat-button title="Adicionar seção">
-            <mat-icon>add_circle</mat-icon> <div style="margin-top: -0.75rem;">Nova Seção Depois Desta</div>
-          </button>
-          <button mat-icon-button style="vertical-align: bottom;">
+        <div class="div-secao-toolbar">
+          <button mat-stroked-button title="Ir para a próxima seção">
+            Próxima Seção
             <mat-icon>keyboard_double_arrow_right</mat-icon>
           </button>
         </div>
       </mat-toolbar>
 
-      <hr />
       <p>
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -59,7 +57,5 @@
         mollit anim id est laborum.
       </p>
     </mat-tab>
-
-    <mat-tab label="DEF"></mat-tab>
   </mat-tab-group>
 </div>
