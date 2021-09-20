@@ -11,27 +11,48 @@
     placeholder="Identificação do Documento Base"
   />
 
-  <br>
+  <br />
 
-  <button mat-stroked-button title="Adicionar seção" class="adicionar-secao">
+  <button
+    mat-stroked-button
+    title="Adicionar seção"
+    class="adicionar-secao"
+    (click)="adicionarSecao()"
+  >
     <mat-icon>add_circle</mat-icon>
     <div>Adicionar Seção</div>
   </button>
 
-  <button mat-stroked-button title="Adicionar seção" class="remover-secao">
+  <button
+    mat-stroked-button
+    title="Adicionar seção"
+    class="remover-secao"
+    (click)="removerSecao()"
+    [disabled]="secoes.length === 1"
+  >
     <mat-icon>remove_circle</mat-icon>
     <div>Remover Seção</div>
   </button>
 
-  <mat-tab-group>
-    <mat-tab>
+  <mat-tab-group
+    animationDuration="0ms"
+    #tabgroup
+    (selectedIndexChange)="onMudancaSecao($event)"
+  >
+    <mat-tab
+      *ngFor="let secao of secoes; index as i; first as isFirst; last as isLast"
+    >
       <ng-template mat-tab-label>
-        <span class="tab-nome-secao">{{ secoes[0] }}</span>
+        <span class="tab-nome-secao">{{ secao }}</span>
       </ng-template>
-
       <mat-toolbar class="secao-toolbar">
         <div class="div-secao-toolbar">
-          <button mat-stroked-button disabled title="Ir para a seção anterior">
+          <button
+            mat-stroked-button
+            title="Ir para a seção anterior"
+            [disabled]="isFirst"
+            (click)="tabgroup.selectedIndex = i - 1"
+          >
             <mat-icon>keyboard_double_arrow_left</mat-icon>
             Seção Anterior
           </button>
@@ -40,27 +61,23 @@
           <input
             class="nome-secao"
             type="text"
-            [(ngModel)]="secoes[0]"
+            (blur)="salvaNomeSecao(i, $event)"
+            [value]="secoes[i]"
             placeholder="Nome da Seção"
           />
         </div>
         <div class="div-secao-toolbar">
-          <button mat-stroked-button title="Ir para a próxima seção">
+          <button
+            mat-stroked-button
+            title="Ir para a próxima seção"
+            [disabled]="isLast"
+            (click)="tabgroup.selectedIndex = i + 1"
+          >
             Próxima Seção
             <mat-icon>keyboard_double_arrow_right</mat-icon>
           </button>
         </div>
       </mat-toolbar>
-
-      <p>
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
     </mat-tab>
   </mat-tab-group>
 </div>
