@@ -43,7 +43,7 @@
       *ngFor="let secao of secoes; index as i; first as isFirst; last as isLast"
     >
       <ng-template mat-tab-label>
-        <span class="tab-nome-secao">{{ secao }}</span>
+        <span class="tab-nome-secao">{{ secao.nome }}</span>
       </ng-template>
       <mat-toolbar class="secao-toolbar">
         <div class="div-secao-toolbar">
@@ -62,7 +62,7 @@
             class="nome-secao"
             type="text"
             (blur)="salvaNomeSecao(i, $event)"
-            [value]="secoes[i]"
+            [value]="secoes[i].nome"
             placeholder="Nome da Seção"
           />
         </div>
@@ -78,6 +78,32 @@
           </button>
         </div>
       </mat-toolbar>
+
+      <div *ngFor="let item of secoes[i].itens">
+        <hr />
+        {{ item }}
+      </div>
+
+      <hr />
+
+      <div class="botoesAdicionarItens">
+        <button mat-stroked-button>
+          <mat-icon>add_circle</mat-icon>
+          <div>Nota</div>
+        </button>
+        <button mat-stroked-button>
+          <mat-icon>add_circle</mat-icon>
+          <div>Texto</div>
+        </button>
+        <button mat-stroked-button>
+          <mat-icon>add_circle</mat-icon>
+          <div>Opções</div>
+        </button>
+        <button mat-stroked-button>
+          <mat-icon>add_circle</mat-icon>
+          <div>Tabela</div>
+        </button>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+interface Item {
+  nome: string,
+  itens: string[]
+}
+
 @Component({
   selector: 'app-pg-criacao-documento-base',
   templateUrl: './pg-criacao-documento-base.component.html',
@@ -8,8 +13,15 @@ import { Component, OnInit } from '@angular/core';
 export class PgCriacaoDocumentoBaseComponent implements OnInit {
 
   nomeDocumentoBase: string = "";
-  secoes: string[] = [
-    "1ª Seção"
+  secoes: Item[] = [
+    {
+      nome: '1ª Seção',
+      itens: [
+        'item 1',
+        'item 2',
+        'item 3',
+      ]
+    }
   ];
   secaoSelecionada = 0;
 
@@ -20,8 +32,11 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
 
   adicionarSecao() {
     let qtdSecoes = this.secoes.length;
-    this.secoes.push(`${qtdSecoes + 1}ª Seção`);
-    console.log(this.secoes);
+    let novaSecao: Item = {
+      nome: `${qtdSecoes + 1}ª Seção`,
+      itens: []
+    };
+    this.secoes.push(novaSecao);
   }
 
   removerSecao() {
@@ -30,11 +45,10 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
 
   salvaNomeSecao(index: number, event: FocusEvent) {
     let target = event.target as HTMLInputElement;
-    this.secoes[index] = target.value;
+    this.secoes[index].nome = target.value;
   }
 
   onMudancaSecao(selectedIndex: number) {
     this.secaoSelecionada = selectedIndex;
   }
-
 }

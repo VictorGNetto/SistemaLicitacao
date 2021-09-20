@@ -65,3 +65,13 @@ input:placeholder-shown.nome-secao {
     display: flex;
     justify-content: center;
 }
+
+.botoesAdicionarItens {
+  float: left;
+}
+
+.botoesAdicionarItens button {
+  margin-left: 0.5rem;
+  width: 100px;
+  height: 100px;
+}
