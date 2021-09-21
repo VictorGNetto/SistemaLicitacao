@@ -1,0 +1,23 @@
+.container {
+    display: grid;
+    grid-template-columns: 5fr 95fr;
+}
+
+textarea {
+  resize: none;
+  cursor: pointer;
+  
+  width: 99%;
+  padding: 0.5rem;
+
+  outline: none;
+  border: 3px dotted rgb(9, 107, 107);
+  border-radius: 10px;
+
+  background-color: rgb(178, 209, 209);
+  color: rgb(9, 107, 107);
+
+  text-align: justify;
+  font-size: 15px;
+  font-weight: 900;
+}

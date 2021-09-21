@@ -20,6 +20,9 @@ import { PgPreenchimentoDocumentoComponent } from './paginas/sistema-licitacao/p
 
 import { PgTesteComponenteMensagemComponent } from './paginas/sistema-licitacao/pg-teste-componente-mensagem/pg-teste-componente-mensagem.component';
 import { MensagemComponent } from './paginas/sistema-licitacao/componentes/mensagem/mensagem.component';
+import { ItemNotaComponent } from './paginas/sistema-licitacao/componentes/item-nota/item-nota.component';
+import { ItemTextoComponent } from './paginas/sistema-licitacao/componentes/item-texto/item-texto.component';
+import { ItemOpcoesComponent } from './paginas/sistema-licitacao/componentes/item-opcoes/item-opcoes.component';
 
 const appRoutes: Routes = [
   {
@@ -43,7 +46,10 @@ const appRoutes: Routes = [
     PgCriacaoDocumentoBaseComponent,
     PgPreenchimentoDocumentoComponent,
     PgTesteComponenteMensagemComponent,
-    MensagemComponent
+    MensagemComponent,
+    ItemNotaComponent,
+    ItemTextoComponent,
+    ItemOpcoesComponent
   ],
   imports: [
     BrowserModule,

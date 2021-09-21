@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 interface Item {
+  tipo: string,
+  id: string,
+}
+
+interface Secao {
   nome: string,
-  itens: string[]
+  itens: Item[]
 }
 
 @Component({
@@ -13,17 +18,19 @@ interface Item {
 export class PgCriacaoDocumentoBaseComponent implements OnInit {
 
   nomeDocumentoBase: string = "";
-  secoes: Item[] = [
+  secoes: Secao[] = [
     {
       nome: '1ª Seção',
       itens: [
-        'item 1',
-        'item 2',
-        'item 3',
+        // { tipo: 'nota', id: 'unset 0' }
+        // 'item 1',
+        // 'item 2',
+        // 'item 3',
       ]
     }
   ];
   secaoSelecionada = 0;
+  itensCriados = 0;
 
   constructor() { }
 
@@ -32,7 +39,7 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
 
   adicionarSecao() {
     let qtdSecoes = this.secoes.length;
-    let novaSecao: Item = {
+    let novaSecao: Secao = {
       nome: `${qtdSecoes + 1}ª Seção`,
       itens: []
     };
@@ -50,5 +57,21 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
 
   onMudancaSecao(selectedIndex: number) {
     this.secaoSelecionada = selectedIndex;
+  }
+
+  
+  adicionarItem(tipo: string) {
+    let index = this.secaoSelecionada;
+    this.secoes[index].itens.push({
+      tipo: tipo, id: `item novo ${this.itensCriados}`
+    });
+    this.itensCriados++;
+  }
+
+  deletaItem(id: string) {
+    const item = document.getElementById(id);
+    let indexSecao = this.secaoSelecionada;
+    let indexItem = this.secoes[indexSecao].itens.findIndex(elem => elem.id === id);
+    this.secoes[indexSecao].itens.splice(indexItem, 1);
   }
 }
