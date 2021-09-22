@@ -22,10 +22,9 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     {
       nome: '1ª Seção',
       itens: [
-        // { tipo: 'nota', id: 'unset 0' }
-        // 'item 1',
-        // 'item 2',
-        // 'item 3',
+        // { tipo: 'nota', id: 'item novo 255' },
+        // { tipo: 'texto', id: 'item novo 256' },
+        // { tipo: 'opcoes', id: 'item novo 257' },
       ]
     }
   ];

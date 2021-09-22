@@ -79,14 +79,24 @@
         </div>
       </mat-toolbar>
 
+      <!-- <container-element [ngSwitch]="switch_expression">
+        <some-element *ngSwitchCase="match_expression_1">...</some-element>
+        <some-element *ngSwitchCase="match_expression_2">...</some-element>
+        <some-other-element *ngSwitchCase="match_expression_3">...</some-other-element>
+        <some-element *ngSwitchDefault>...</some-element>
+      </container-element> -->
+
       <div *ngFor="let item of secoes[i].itens">
         <div class="item" [id]="item.id">
           <div>
             <!-- if item.tipo === nota -->
-            <item-nota [itemID]="item.id"></item-nota>
+            <item-nota *ngIf="item.tipo === 'nota'" [itemID]="item.id"></item-nota>
 
             <!-- se item.tipo === texto -->
-            <!-- ... -->
+            <item-texto *ngIf="item.tipo === 'texto'" [itemID]="item.id"></item-texto>
+
+            <!-- se item.tipo === opcoes -->
+            <item-opcoes *ngIf="item.tipo === 'opcoes'" [itemID]="item.id"></item-opcoes>
           </div>
           <aside class="apagar">
             <button
@@ -107,11 +117,11 @@
           <mat-icon>add_circle</mat-icon>
           <div>Nota</div>
         </button>
-        <button mat-stroked-button>
+        <button mat-stroked-button (click)="adicionarItem('texto')">
           <mat-icon>add_circle</mat-icon>
           <div>Texto</div>
         </button>
-        <button mat-stroked-button>
+        <button mat-stroked-button (click)="adicionarItem('opcoes')">
           <mat-icon>add_circle</mat-icon>
           <div>Opções</div>
         </button>
