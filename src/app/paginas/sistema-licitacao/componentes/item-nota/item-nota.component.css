@@ -1,14 +1,35 @@
-.container {
-    display: grid;
-    grid-template-columns: 5fr 95fr;
+.container-0 {
+  display: grid;
+  grid-template-columns: 5fr 1fr 94fr;
+}
+
+.container-1 {
+  display: grid;
+  grid-template-columns: 5fr 6fr 89fr;
+}
+
+.container-2 {
+  display: grid;
+  grid-template-columns: 5fr 11fr 84fr;
+}
+
+.menu {
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+
+.botaoMenu {
+  margin-top: 0.5rem;
 }
 
 textarea {
   resize: none;
   cursor: pointer;
-  
-  width: 99%;
+
+  /* width: 95%; */
   padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
 
   outline: none;
   border: 3px dotted rgb(9, 107, 107);

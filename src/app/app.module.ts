@@ -14,6 +14,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { PgCriacaoDocumentoBaseComponent } from './paginas/sistema-licitacao/pg-criacao-documento-base/pg-criacao-documento-base.component';
 import { PgPreenchimentoDocumentoComponent } from './paginas/sistema-licitacao/pg-preenchimento-documento/pg-preenchimento-documento.component';
@@ -63,6 +64,7 @@ const appRoutes: Routes = [
     MatRadioModule,
     MatIconModule,
     MatButtonModule,
+    MatMenuModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
   ],
   providers: [],

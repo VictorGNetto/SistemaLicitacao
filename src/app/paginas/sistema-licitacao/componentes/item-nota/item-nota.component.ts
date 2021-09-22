@@ -10,6 +10,8 @@ export class ItemNotaComponent implements OnInit {
 
   @Input() itemID = "";
   conteudo = "";
+  nivelIndentacao = 0;  // 0, 1 ou 2
+  nivelIndentacaoClass = "container-0"
 
   constructor() { }
 
@@ -23,6 +25,11 @@ export class ItemNotaComponent implements OnInit {
   // TODO: implementar essa funcionalidade como um serviço
   carregaConteudoPorID(id: string) {
     this.conteudo = "Nota: "
+  }
+
+  mudarNivelIndentacao(novoNivelIndentacao: number) {
+    this.nivelIndentacao = novoNivelIndentacao;
+    this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
   }
 
 }

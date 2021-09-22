@@ -80,9 +80,7 @@
       </mat-toolbar>
 
       <div *ngFor="let item of secoes[i].itens">
-        <hr />
-        
-        <div class="item" style="display: grid; grid-template-columns: 19fr 1fr;" [id]="item.id">
+        <div class="item" [id]="item.id">
           <div>
             <!-- if item.tipo === nota -->
             <item-nota [itemID]="item.id"></item-nota>
@@ -90,20 +88,20 @@
             <!-- se item.tipo === texto -->
             <!-- ... -->
           </div>
-          <div style="margin-top: -0.5rem;">
-            <button mat-icon-button style="width: 50px; height: 50px; margin-left: 1rem;"
-            (click)="deletaItem(item.id)"
-            ><mat-icon>clear</mat-icon></button>
-            <button mat-icon-button style="width: 50px; height: 50px; margin-left: 1rem;"><mat-icon>more_horiz</mat-icon></button>
-            <!-- <button mat-icon-button style="width: 50px; height: 50px; margin-left: 1rem;"><mat-icon>format_indent_increase</mat-icon></button>
-            <button mat-icon-button style="width: 50px; height: 50px; margin-left: 1rem;" disabled><mat-icon>format_indent_decrease</mat-icon></button> -->
-          </div>
+          <aside class="apagar">
+            <button
+              mat-icon-button
+              (click)="deletaItem(item.id)"
+              class="botaoApagar"
+            >
+              <mat-icon>clear</mat-icon>
+            </button>
+          </aside>
         </div>
-
       </div>
 
       <hr />
-      
+
       <div class="botoesAdicionarItens">
         <button mat-stroked-button (click)="adicionarItem('nota')">
           <mat-icon>add_circle</mat-icon>

@@ -33,7 +33,7 @@ input:placeholder-shown.identificacao {
 
 .remover-secao {
   margin-top: 1rem;
-  margin-left: 0.75rem; 
+  margin-left: 0.75rem;
 }
 
 .tab-nome-secao {
@@ -52,18 +52,18 @@ input:placeholder-shown.identificacao {
 }
 
 input:placeholder-shown.nome-secao {
-    font-size: 20px;
-    font-weight: normal;
-  }
+  font-size: 20px;
+  font-weight: normal;
+}
 
 .secao-toolbar {
-    display: grid;
-    grid-template-columns: 1fr 8fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
 }
 
 .div-secao-toolbar {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .botoesAdicionarItens {
@@ -74,4 +74,25 @@ input:placeholder-shown.nome-secao {
   margin-left: 0.5rem;
   width: 100px;
   height: 100px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 95fr 5fr;
+
+  border-top: 1px dashed #ccc;
+  padding-bottom: 0.5rem;
+}
+
+.item:hover {
+  background-color: #eee;
+}
+
+.apagar {
+  border-left: 1px solid #ccc;
+  text-align: center;
+}
+
+.botaoApagar {
+  margin-top: 0.5rem;
 }

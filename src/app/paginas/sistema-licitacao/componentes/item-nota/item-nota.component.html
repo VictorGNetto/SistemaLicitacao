@@ -1,4 +1,31 @@
-<div class="container">
+<div [class]="nivelIndentacaoClass">
+  <aside class="menu">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      class="botaoMenu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu>
+      <button
+        mat-menu-item
+        [disabled]="nivelIndentacao === 2"
+        (click)="mudarNivelIndentacao(nivelIndentacao + 1)"
+      >
+        <mat-icon>format_indent_increase</mat-icon>
+        <span>Aumentar Indentação</span>
+      </button>
+      <button
+        mat-menu-item
+        [disabled]="nivelIndentacao === 0"
+        (click)="mudarNivelIndentacao(nivelIndentacao - 1)"
+      >
+        <mat-icon>format_indent_decrease</mat-icon>
+        <span>Diminuir Indentação</span>
+      </button>
+    </mat-menu>
+  </aside>
   <span></span>
   <textarea
     cols="30"
@@ -9,3 +36,4 @@
     {{ conteudo }}</textarea
   >
 </div>
+
