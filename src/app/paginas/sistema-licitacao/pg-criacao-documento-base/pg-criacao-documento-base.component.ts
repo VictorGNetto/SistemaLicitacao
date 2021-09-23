@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 interface Item {
   tipo: string,
@@ -18,6 +19,7 @@ interface Secao {
 export class PgCriacaoDocumentoBaseComponent implements OnInit {
 
   nomeDocumentoBase: string = "";
+  documentoBaseID: string | null = "";
   secoes: Secao[] = [
     {
       nome: '1ª Seção',
@@ -31,9 +33,10 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
   secaoSelecionada = 0;
   itensCriados = 0;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.documentoBaseID = this.route.snapshot.paramMap.get('documentoBaseID');
   }
 
   adicionarSecao() {

@@ -1,0 +1,15 @@
+<h1>Documento Base</h1>
+
+<ul>
+  <li *ngFor="let docb of documentosBase">
+    {{ docb.nome }}
+  </li>
+</ul>
+
+<a
+  mat-stroked-button
+  (click)="criarDocumentoBase()"
+>
+  <mat-icon>add</mat-icon>
+  <div>Criar Documento Base</div>
+</a>

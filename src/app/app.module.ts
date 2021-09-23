@@ -16,23 +16,41 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 
+// Páginas do sistema
+import { PgSistemaLicitacaoComponent } from './paginas/sistema-licitacao/pg-sistema-licitacao/pg-sistema-licitacao.component';
+import { PgDocumentoBaseComponent } from './paginas/sistema-licitacao/pg-documento-base/pg-documento-base.component';
 import { PgCriacaoDocumentoBaseComponent } from './paginas/sistema-licitacao/pg-criacao-documento-base/pg-criacao-documento-base.component';
 import { PgPreenchimentoDocumentoComponent } from './paginas/sistema-licitacao/pg-preenchimento-documento/pg-preenchimento-documento.component';
 
+// Páginas para testes
 import { PgTesteComponenteMensagemComponent } from './paginas/sistema-licitacao/pg-teste-componente-mensagem/pg-teste-componente-mensagem.component';
+
 import { MensagemComponent } from './paginas/sistema-licitacao/componentes/mensagem/mensagem.component';
 import { ItemNotaComponent } from './paginas/sistema-licitacao/componentes/item-nota/item-nota.component';
 import { ItemTextoComponent } from './paginas/sistema-licitacao/componentes/item-texto/item-texto.component';
 import { ItemOpcoesComponent } from './paginas/sistema-licitacao/componentes/item-opcoes/item-opcoes.component';
 
 const appRoutes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: '/sistemaLicitacao/criacaoDocumentoBase',
+  //   pathMatch: 'full',
+  // },
   {
     path: '',
-    redirectTo: '/sistemaLicitacao/criacaoDocumentoBase',
+    redirectTo: '/sistemaLicitacao',
     pathMatch: 'full',
   },
   {
-    path: 'sistemaLicitacao/criacaoDocumentoBase',
+    path: 'sistemaLicitacao',
+    component: PgSistemaLicitacaoComponent,
+  },
+  {
+    path: 'sistemaLicitacao/documentoBase',
+    component: PgDocumentoBaseComponent,
+  },
+  {
+    path: 'sistemaLicitacao/criacaoDocumentoBase/:documentoBaseID',
     component: PgCriacaoDocumentoBaseComponent,
   },
   {
@@ -50,7 +68,9 @@ const appRoutes: Routes = [
     MensagemComponent,
     ItemNotaComponent,
     ItemTextoComponent,
-    ItemOpcoesComponent
+    ItemOpcoesComponent,
+    PgSistemaLicitacaoComponent,
+    PgDocumentoBaseComponent
   ],
   imports: [
     BrowserModule,
