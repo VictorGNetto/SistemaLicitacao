@@ -5,6 +5,21 @@ import { map } from 'rxjs/operators'
 
 import { environment } from 'src/environments/environment';
 
+interface Item {
+  tipo: string;
+  id: string;
+}
+
+interface Secao {
+  nome: string;
+  itens: Item[];
+}
+
+interface DocumentoBase {
+  nomeDocumentoBase: string,
+  secoes: Secao[]
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,12 +33,24 @@ export class DocumentoBaseService {
     let url = environment.urlBase + `criar-documento-base.php`;
 
     // Formato da resposta que vem do servidor
-    interface respostaCriacaoDocumento {
-      baseDocumentoID: string
+    interface respostaCriacaoDocumentoBase {
+      documentoBaseID: string
     }
 
-    return this.http.get<respostaCriacaoDocumento>(url).pipe(
-      map(res => res["baseDocumentoID"] )
-    )
+    return this.http.get<respostaCriacaoDocumentoBase>(url).pipe(
+      map(res => res["documentoBaseID"] )
+    );
+  }
+
+  carregarDocumentoBase(documentoBaseID: string): Observable<DocumentoBase> {
+    let url = environment.urlBase + 'carregar-documento-base.php';
+
+    interface respostaCarregamentoDocumentoBase {
+        documentoBase: DocumentoBase
+    }
+
+    return this.http.get<respostaCarregamentoDocumentoBase>(url).pipe(
+      map(res => res["documentoBase"])
+    );
   }
 }
