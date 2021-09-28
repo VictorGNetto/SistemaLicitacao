@@ -15,6 +15,8 @@ export class PgDocumentoBaseComponent implements OnInit {
     { nome: 'Estudo Técnico Preliminar - Licitação', id: 'zxc-vbnm-zxc' },
   ];
 
+  criandoDocumento = false;
+
   constructor(
     private documentoBaseProvider: DocumentoBaseService,
     private route: Router
@@ -25,8 +27,16 @@ export class PgDocumentoBaseComponent implements OnInit {
   // - Pede ao DocumentoBaseService que seja criado um Documento Base
   // - Acessa a página de criação de Documento Base utilizando o ID devolvido pelo DocumentoBaseService
   criarDocumentoBase() {
-    let documentoBaseID = this.documentoBaseProvider.criaDocumentoBase();
+    this.documentoBaseProvider.criarDocumentoBase().subscribe(
+      {
+        next: (documentoBaseID: string) => {
+          this.route.navigate([`/sistemaLicitacao/criacaoDocumentoBase/${documentoBaseID}`]);
+        },
+        // error: (err: Error) => {},
+        // complete: () => {}
+      }
+    )
 
-    this.route.navigate([`/sistemaLicitacao/criacaoDocumentoBase/${documentoBaseID}`]);
+    this.criandoDocumento = true;
   }
 }
