@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 
 interface Item {
   tipo: string;
-  id: string;
+  itemID: string;
 }
 
 interface Secao {
@@ -39,7 +39,7 @@ export class DocumentoBaseService {
 
     return this.http
       .get<respostaListagemDocumentosBase>(url)
-      .pipe(map((res) => res["listaDocumentosBase"]));
+      .pipe(map(res => res["listaDocumentosBase"]));
   }
 
   // - Requisita ao backend que seja criado um Documento Base
@@ -55,7 +55,7 @@ export class DocumentoBaseService {
 
     return this.http
       .get<respostaCriacaoDocumentoBase>(url)
-      .pipe(map((res) => res["documentoBaseID"]));
+      .pipe(map(res => res["documentoBaseID"]));
   }
 
   // - Requisita ao servidor um Documento Base pelo seu ID
@@ -69,6 +69,6 @@ export class DocumentoBaseService {
 
     return this.http
       .get<respostaCarregamentoDocumentoBase>(url)
-      .pipe(map((res) => res["documentoBase"]));
+      .pipe(map(res => res["documentoBase"]));
   }
 }

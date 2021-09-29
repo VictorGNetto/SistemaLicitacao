@@ -93,21 +93,21 @@
       </container-element> -->
 
       <div *ngFor="let item of secoes[i].itens">
-        <div class="item" [id]="item.id">
+        <div class="item" [id]="item.itemID">
           <div>
             <!-- if item.tipo === nota -->
-            <item-nota *ngIf="item.tipo === 'nota'" [itemID]="item.id"></item-nota>
+            <item-nota *ngIf="item.tipo === 'nota'" [itemID]="item.itemID"></item-nota>
 
             <!-- se item.tipo === texto -->
-            <item-texto *ngIf="item.tipo === 'texto'" [itemID]="item.id"></item-texto>
+            <item-texto *ngIf="item.tipo === 'texto'" [itemID]="item.itemID"></item-texto>
 
             <!-- se item.tipo === opcoes -->
-            <item-opcoes *ngIf="item.tipo === 'opcoes'" [itemID]="item.id"></item-opcoes>
+            <item-opcoes *ngIf="item.tipo === 'opcoes'" [itemID]="item.itemID"></item-opcoes>
           </div>
           <aside class="apagar">
             <button
               mat-icon-button
-              (click)="deletaItem(item.id)"
+              (click)="deletaItem(item.itemID)"
               class="botaoApagar"
             >
               <mat-icon>clear</mat-icon>

@@ -5,7 +5,7 @@ import { DocumentoBaseService } from 'src/app/providers/sistema-licitacao/docume
 
 interface Item {
   tipo: string;
-  id: string;
+  itemID: string;
 }
 
 interface Secao {
@@ -30,9 +30,9 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     {
       nome: '1ª Seção',
       itens: [
-        // { tipo: 'nota', id: 'item novo 255' },
-        // { tipo: 'texto', id: 'item novo 256' },
-        // { tipo: 'opcoes', id: 'item novo 257' },
+        // { tipo: 'nota', itemID: 'item novo 255' },
+        // { tipo: 'texto', itemID: 'item novo 256' },
+        // { tipo: 'opcoes', itemID: 'item novo 257' },
       ],
     },
   ];
@@ -81,7 +81,7 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     let index = this.secaoSelecionada;
     this.secoes[index].itens.push({
       tipo: tipo,
-      id: `item novo ${this.itensCriados}`,
+      itemID: `item novo ${this.itensCriados}`,
     });
     this.itensCriados++;
   }
@@ -90,7 +90,7 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     const item = document.getElementById(id);
     let indexSecao = this.secaoSelecionada;
     let indexItem = this.secoes[indexSecao].itens.findIndex(
-      (elem) => elem.id === id
+      (elem) => elem.itemID === id
     );
     this.secoes[indexSecao].itens.splice(indexItem, 1);
   }
