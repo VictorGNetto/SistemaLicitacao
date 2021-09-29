@@ -1,8 +1,8 @@
 <h1>Documento Base</h1>
 
 <ul>
-  <li *ngFor="let docb of documentosBase">
-    {{ docb.nome }}
+  <li *ngFor="let docb of listaDocumentosBase">
+    <a [href]="'./sistemaLicitacao/criacaoDocumentoBase/' + docb.documentoBaseID">{{ docb.nomeDocumentoBase }}</a>
   </li>
 </ul>
 

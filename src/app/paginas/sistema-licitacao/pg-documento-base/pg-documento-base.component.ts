@@ -9,11 +9,7 @@ import { DocumentoBaseService } from 'src/app/providers/sistema-licitacao/docume
   styleUrls: ['./pg-documento-base.component.css'],
 })
 export class PgDocumentoBaseComponent implements OnInit {
-  documentosBase = [
-    { nome: 'Termo de Referência - Compra Direta', id: 'qwe-rtyu-iop' },
-    { nome: 'Termo de Referência - Licitação', id: 'asd-fghj-klc' },
-    { nome: 'Estudo Técnico Preliminar - Licitação', id: 'zxc-vbnm-zxc' },
-  ];
+  listaDocumentosBase: { documentoBaseID: string; nomeDocumentoBase: string }[] = [];
 
   criandoDocumento = false;
 
@@ -22,7 +18,13 @@ export class PgDocumentoBaseComponent implements OnInit {
     private route: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.documentoBaseProvider.listaDocumentosBase().subscribe({
+      next: (lista: { documentoBaseID: string; nomeDocumentoBase: string }[]) => {
+        this.listaDocumentosBase = lista;
+      }
+    });
+  }
 
   // - Pede ao DocumentoBaseService que seja criado um Documento Base
   // - Acessa a página de criação de Documento Base utilizando o ID devolvido pelo DocumentoBaseService
@@ -35,7 +37,7 @@ export class PgDocumentoBaseComponent implements OnInit {
         // error: (err: Error) => {},
         // complete: () => {}
       }
-    )
+    );
 
     this.criandoDocumento = true;
   }
