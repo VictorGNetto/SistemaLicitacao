@@ -16,6 +16,7 @@ interface Secao {
 }
 
 interface DocumentoBase {
+  documentoBaseID: string,
   nomeDocumentoBase: string;
   secoes: Secao[];
 }
@@ -28,13 +29,11 @@ export class DocumentoBaseService {
 
   // - Requisita ao backend a lista de Documentos Bases disponíveis
   // - Retorna essa lista
-  listaDocumentosBase(): Observable<
-    { documentoBaseID: string; nomeDocumentoBase: string }[]
-  > {
+  listaDocumentosBase(): Observable<DocumentoBase[]> {
     let url = environment.urlBase + "lista-documentos-base.php";
 
     interface respostaListagemDocumentosBase {
-      listaDocumentosBase: { documentoBaseID: string; nomeDocumentoBase: string }[]
+      listaDocumentosBase: DocumentoBase[]
     }
 
     return this.http

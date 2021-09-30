@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 
 import { DocumentoBaseService } from 'src/app/providers/sistema-licitacao/documento-base.service';
 
+interface DocumentoBase {
+  documentoBaseID: string,
+  nomeDocumentoBase: string
+}
+
 @Component({
   selector: 'app-pg-documento-base',
   templateUrl: './pg-documento-base.component.html',
@@ -20,7 +25,7 @@ export class PgDocumentoBaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.documentoBaseProvider.listaDocumentosBase().subscribe({
-      next: (lista: { documentoBaseID: string; nomeDocumentoBase: string }[]) => {
+      next: (lista: DocumentoBase[]) => {
         this.listaDocumentosBase = lista;
       }
     });

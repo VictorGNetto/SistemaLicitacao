@@ -18,21 +18,12 @@ export class ItemNotaComponent implements OnInit {
   ngOnInit(): void {
     this.itemProvider.carregarItem(this.itemID).subscribe({
       next: x => {
-        const dados = JSON.parse(x.dados);
+        const dados = JSON.parse(x);
         this.conteudo = dados["conteudo"];
         this.nivelIndentacao = dados["nivelIndentacao"];
         this.nivelIndentacaoClass = `container-${this.nivelIndentacao}`;
       }
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.carregaConteudoPorID(changes.itemID.currentValue);
-  }
-
-  // TODO: implementar essa funcionalidade como um serviço
-  carregaConteudoPorID(id: string) {
-    this.conteudo = 'Nota: ';
   }
 
   mudarNivelIndentacao(novoNivelIndentacao: number) {

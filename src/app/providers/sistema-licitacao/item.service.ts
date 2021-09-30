@@ -5,10 +5,6 @@ import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 
-interface DadosItem {
-  dados: string;
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -27,13 +23,13 @@ export class ItemService {
   //             dados. Como este serviço é compartilhado por todos os
   //             Itens, é necessário que o tipo de retorno dessa função
   //             seja agnóstico.
-  carregarItem(itemID: string): Observable<DadosItem> {
-    if (itemID.startsWith("item novo")) {
-      return of({
-        dados: JSON.stringify({
+  carregarItem(itemID: string): Observable<string> {
+    if (itemID.startsWith('item novo')) {
+      return of(
+        JSON.stringify({
           nivelIndentacao: 0,
-        }),
-      });
+        })
+      );
     }
 
     let url = environment.urlBase + `carregar-item.php?itemID=${itemID}`;
@@ -42,11 +38,8 @@ export class ItemService {
       item: JSON;
     }
 
-    return this.http.get<respostaCarregamentoItem>(url).pipe(
-      map(res => {
-        console.log(res);
-        return { dados: JSON.stringify(res["item"]) };
-      })
-    );
+    return this.http
+      .get<respostaCarregamentoItem>(url)
+      .pipe(map(res => JSON.stringify(res['item'])));
   }
 }
