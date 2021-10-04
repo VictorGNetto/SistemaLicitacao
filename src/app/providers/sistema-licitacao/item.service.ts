@@ -38,4 +38,8 @@ export class ItemService {
       .get<respostaCarregamentoItem>(url)
       .pipe(map(res => JSON.stringify(res['item'])));
   }
+
+  salvarItem(itemID: string, dados: string): Observable<void>{
+    return of(void 0);
+  }
 }

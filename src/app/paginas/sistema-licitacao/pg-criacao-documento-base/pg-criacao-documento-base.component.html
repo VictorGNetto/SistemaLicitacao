@@ -1,12 +1,20 @@
 <mat-toolbar>
   <h1>Criação de Documento Base</h1>
-  <span style="width: 100px;"></span>
+  <span style="width: 100px"></span>
   <h2>ID: {{ documentoBaseID }}</h2>
-  <span style="width: 100px;"></span>
+  <span style="width: 100px"></span>
   <button mat-stroked-button>Visualizar</button>
-  <button mat-stroked-button style="margin-left: 0.5rem;">Salvar</button>
-  <button mat-stroked-button style="margin-left: 0.5rem;" routerLink="/sistemaLicitacao/documentoBase">Voltar</button>
+  <button mat-stroked-button style="margin-left: 0.5rem">Salvar</button>
+  <button
+    mat-stroked-button
+    style="margin-left: 0.5rem"
+    routerLink="/sistemaLicitacao/documentoBase"
+  >
+    Voltar
+  </button>
 </mat-toolbar>
+
+<div *ngIf="salvandoItens">Salvando Itens</div>
 
 <div class="content">
   <h2>Identificação</h2>
@@ -31,13 +39,18 @@
 
   <button
     mat-stroked-button
-    title="Adicionar seção"
+    title="Remover seção"
     class="remover-secao"
     (click)="removerSecao()"
     [disabled]="secoes.length === 1"
   >
     <mat-icon>remove_circle</mat-icon>
     <div>Remover Seção</div>
+  </button>
+
+  <button mat-stroked-button class="remover-secao" (click)="debug()">
+    <mat-icon>remove_circle</mat-icon>
+    <div>Click Me!!! {{ salvandoItens }}</div>
   </button>
 
   <mat-tab-group
@@ -85,24 +98,32 @@
         </div>
       </mat-toolbar>
 
-      <!-- <container-element [ngSwitch]="switch_expression">
-        <some-element *ngSwitchCase="match_expression_1">...</some-element>
-        <some-element *ngSwitchCase="match_expression_2">...</some-element>
-        <some-other-element *ngSwitchCase="match_expression_3">...</some-other-element>
-        <some-element *ngSwitchDefault>...</some-element>
-      </container-element> -->
-
       <div *ngFor="let item of secoes[i].itens">
         <div class="item" [id]="item.itemID">
           <div>
             <!-- if item.tipo === nota -->
-            <item-nota *ngIf="item.tipo === 'nota'" [itemID]="item.itemID"></item-nota>
+            <item-nota
+              *ngIf="item.tipo === 'nota'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              (salvado)="itenFoiSalvo()"
+            ></item-nota>
 
             <!-- se item.tipo === texto -->
-            <item-texto *ngIf="item.tipo === 'texto'" [itemID]="item.itemID"></item-texto>
+            <item-texto
+              *ngIf="item.tipo === 'texto'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              (salvado)="itenFoiSalvo()"
+            ></item-texto>
 
             <!-- se item.tipo === opcoes -->
-            <item-opcoes *ngIf="item.tipo === 'opcoes'" [itemID]="item.itemID"></item-opcoes>
+            <item-opcoes
+              *ngIf="item.tipo === 'opcoes'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              (salvado)="itenFoiSalvo()"
+            ></item-opcoes>
           </div>
           <aside class="apagar">
             <button
@@ -138,4 +159,16 @@
       </div>
     </mat-tab>
   </mat-tab-group>
+
+  <!-- <div *ngIf="salvandoItens" [style.display]="'none'">
+    <div *ngFor="let secao of secoes">
+      <div *ngFor="let item of secao.itens">
+        <item-nota *ngIf="item.tipo === 'nota'" [itemID]="item.itemID" [salvarItem]="true"></item-nota>
+
+        <item-texto *ngIf="item.tipo === 'texto'" [itemID]="item.itemID" [salvarItem]="true"></item-texto>
+
+        <item-opcoes *ngIf="item.tipo === 'opcoes'" [itemID]="item.itemID" [salvarItem]="true"></item-opcoes>
+      </div>
+    </div>
+  </div> -->
 </div>

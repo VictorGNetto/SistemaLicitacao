@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { timeout } from 'rxjs/operators';
 
 import { DocumentoBaseService } from 'src/app/providers/sistema-licitacao/documento-base.service';
 
@@ -38,6 +39,10 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
   ];
   secaoSelecionada = 0;
   itensCriados = 0;
+
+  // variáveis usadas durante o processo de salvamento
+  salvandoItens = false;
+  totalItens = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -93,5 +98,32 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
       (elem) => elem.itemID === id
     );
     this.secoes[indexSecao].itens.splice(indexItem, 1);
+  }
+
+  obterTotalItens() {
+    let contador = 0;
+
+    for (const secao of this.secoes) {
+      contador += secao.itens.length;
+    }
+
+    return contador;
+  }
+
+  debug() {
+    this.salvandoItens = true;
+    this.totalItens = this.obterTotalItens();
+  }
+
+  itenFoiSalvo() {
+    this.totalItens--;
+
+    console.log(this.totalItens);
+
+    if (this.totalItens === 0) {
+      // this.salvandoItens = false; throws Angular ExpressionChangedAfterItHasBeenCheckedError
+      // Por isso é necessário usar o setTimeout
+      setTimeout(() => { this.salvandoItens = false; });
+    }
   }
 }

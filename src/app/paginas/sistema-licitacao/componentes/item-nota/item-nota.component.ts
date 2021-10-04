@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { Input } from '@angular/core';
+import { EventEmitter, Input, Output } from '@angular/core';
 import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
 
 @Component({
@@ -9,9 +9,12 @@ import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
 })
 export class ItemNotaComponent implements OnInit {
   @Input() itemID = '';
+  @Input() salvarItem = false;
   conteudo = '';
   nivelIndentacao = 0; // 0, 1 ou 2
   nivelIndentacaoClass = 'container-0';
+
+  @Output() salvado = new EventEmitter<void>();
 
   constructor(private itemProvider: ItemService) {}
 
@@ -24,6 +27,19 @@ export class ItemNotaComponent implements OnInit {
         this.mudarNivelIndentacao(itemNovo? 0 : dados["nivelIndentacao"]);
       }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.salvarItem) {
+      const dados = JSON.stringify({
+        "conteudo": this.conteudo,
+        "nivelIndentacao": this.nivelIndentacao
+      });
+
+      this.itemProvider.salvarItem(this.itemID, dados).subscribe({
+        next: () => this.salvado.emit()
+      });
+    }
   }
 
   mudarNivelIndentacao(novoNivelIndentacao: number) {
