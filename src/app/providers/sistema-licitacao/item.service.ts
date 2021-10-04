@@ -13,7 +13,7 @@ export class ItemService {
 
   // - Verifica se o item requisitado já existe ou se acabou de ser criado
   //   - Se acabou de ser criado
-  //      - Retorna um um dado padrão
+  //      - Retorna um dado padrão
   //   - Se já existe
   //      - Requisita ao servidor os dados de um item pelo seu ID
   //      - Retorna esses dados no formato de string
@@ -23,13 +23,9 @@ export class ItemService {
   //             dados. Como este serviço é compartilhado por todos os
   //             Itens, é necessário que o tipo de retorno dessa função
   //             seja agnóstico.
-  carregarItem(itemID: string): Observable<string> {
-    if (itemID.startsWith('item novo')) {
-      return of(
-        JSON.stringify({
-          nivelIndentacao: 0,
-        })
-      );
+  carregarItem(itemID: string, itemNovo = false): Observable<string> {
+    if (itemNovo) {
+      return of("{}"); // JSON.stringify({}) = "{}"
     }
 
     let url = environment.urlBase + `carregar-item.php?itemID=${itemID}`;

@@ -16,12 +16,12 @@ export class ItemNotaComponent implements OnInit {
   constructor(private itemProvider: ItemService) {}
 
   ngOnInit(): void {
-    this.itemProvider.carregarItem(this.itemID).subscribe({
+    const itemNovo = this.itemID.startsWith("item novo");
+    this.itemProvider.carregarItem(this.itemID, itemNovo).subscribe({
       next: x => {
         const dados = JSON.parse(x);
-        this.conteudo = dados["conteudo"];
-        this.nivelIndentacao = dados["nivelIndentacao"];
-        this.nivelIndentacaoClass = `container-${this.nivelIndentacao}`;
+        this.conteudo = itemNovo? "Nota: " : dados["conteudo"];
+        this.mudarNivelIndentacao(itemNovo? 0 : dados["nivelIndentacao"]);
       }
     });
   }
