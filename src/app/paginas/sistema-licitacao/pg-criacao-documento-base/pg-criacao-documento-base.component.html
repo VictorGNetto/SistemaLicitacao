@@ -4,7 +4,13 @@
   <h2>ID: {{ documentoBaseID }}</h2>
   <span style="width: 100px"></span>
   <button mat-stroked-button>Visualizar</button>
-  <button mat-stroked-button style="margin-left: 0.5rem">Salvar</button>
+  <button
+    mat-stroked-button
+    style="margin-left: 0.5rem"
+    (click)="salvarDocumentoBase()"
+  >
+    Salvar
+  </button>
   <button
     mat-stroked-button
     style="margin-left: 0.5rem"
@@ -48,11 +54,6 @@
     <div>Remover Seção</div>
   </button>
 
-  <button mat-stroked-button class="remover-secao" (click)="debug()">
-    <mat-icon>remove_circle</mat-icon>
-    <div>Click Me!!! {{ salvandoItens }}</div>
-  </button>
-
   <mat-tab-group
     animationDuration="0ms"
     #tabgroup
@@ -80,7 +81,7 @@
           <input
             class="nome-secao"
             type="text"
-            (blur)="salvaNomeSecao(i, $event)"
+            (blur)="salvarNomeSecao(i, $event)"
             [value]="secoes[i].nome"
             placeholder="Nome da Seção"
           />

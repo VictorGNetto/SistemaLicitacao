@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { timeout } from 'rxjs/operators';
 
 import { DocumentoBaseService } from 'src/app/providers/sistema-licitacao/documento-base.service';
+import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
 
 interface Item {
   tipo: string;
@@ -15,8 +15,9 @@ interface Secao {
 }
 
 interface DocumentoBase {
-  nomeDocumentoBase: string,
-  secoes: Secao[]
+  documentoBaseID: string;
+  nomeDocumentoBase: string;
+  secoes: Secao[];
 }
 
 @Component({
@@ -40,24 +41,24 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
   secaoSelecionada = 0;
   itensCriados = 0;
 
-  // variáveis usadas durante o processo de salvamento
-  salvandoItens = false;
-  totalItens = 0;
-
   constructor(
     private route: ActivatedRoute,
-    private documentoBaseProvider: DocumentoBaseService
+    private documentoBaseProvider: DocumentoBaseService,
+    private itemProvider: ItemService
   ) {}
 
   ngOnInit(): void {
-    this.documentoBaseID = this.route.snapshot.paramMap.get('documentoBaseID') ?? "";
+    this.documentoBaseID =
+      this.route.snapshot.paramMap.get('documentoBaseID') ?? '';
 
-    this.documentoBaseProvider.carregarDocumentoBase(this.documentoBaseID).subscribe({
-      next: (documentoBase: DocumentoBase) => {
-        this.nomeDocumentoBase = documentoBase.nomeDocumentoBase;
-        this.secoes = documentoBase.secoes; 
-      }
-    });
+    this.documentoBaseProvider
+      .carregarDocumentoBase(this.documentoBaseID)
+      .subscribe({
+        next: (documentoBase: DocumentoBase) => {
+          this.nomeDocumentoBase = documentoBase.nomeDocumentoBase;
+          this.secoes = documentoBase.secoes;
+        },
+      });
   }
 
   adicionarSecao() {
@@ -73,7 +74,7 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     this.secoes.splice(this.secaoSelecionada, 1);
   }
 
-  salvaNomeSecao(index: number, event: FocusEvent) {
+  salvarNomeSecao(index: number, event: FocusEvent) {
     let target = event.target as HTMLInputElement;
     this.secoes[index].nome = target.value;
   }
@@ -110,18 +111,71 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     return contador;
   }
 
-  debug() {
+  // --------------------------------------------------------------------------
+  // Funções e Variáveis usadas no processo de salvamento do Documento Base ---
+  // --------------------------------------------------------------------------
+  salvandoItens = false;
+  salvandoDocumentoBase = false;
+  itensNaoSalvados = 0;
+
+  // - Inicia o processo de salvamento fazendo this.salvandoItens = true; e
+  //   this.salvandoDocumentoBase = true;
+  // - A mudança nessas variáveis desabilita algumas funcionalidades
+  //   da página
+  // - Além disso, this.salvandoItens = true; sinaliza os itens que eles devem
+  //   ser salvados
+  // - Armazena o total de itens não salvados na variável this.itensNaoSalvados
+  // - Um evento emitido pelos itens, quando eles são salvados, faz com que a
+  //   função this.itensFoiSalvo() seja chamado. Essa função então atualiza o
+  //   total de itens não salvados
+  // - Quando this.itensNaoSalvados === 0 significa que todos os itens estão
+  //   salvados e então this.salvandoItens recebe o falor false
+  salvarDocumentoBase() {
     this.salvandoItens = true;
-    this.totalItens = this.obterTotalItens();
+    this.salvandoDocumentoBase = true;
+
+    this.itensNaoSalvados = this.obterTotalItens();
   }
 
   itenFoiSalvo() {
-    this.totalItens--;
+    this.itensNaoSalvados--;
 
-    if (this.totalItens === 0) {
-      // this.salvandoItens = false; throws Angular ExpressionChangedAfterItHasBeenCheckedError
-      // Por isso é necessário usar o setTimeout
-      setTimeout(() => { this.salvandoItens = false; });
+    if (this.itensNaoSalvados === 0) {
+      this.atualizarItemIDs();
     }
+  }
+
+  atualizarItemIDs() {
+    const atualizacoesItemID = this.itemProvider.obterAtualizacoesItemID();
+
+    // Percorre todos os Itens
+    for (const secao of this.secoes) {
+      for (const item of secao.itens) {
+        if (item.itemID.startsWith("item novo")) {
+          const index = atualizacoesItemID.findIndex(x => x.antigo === item.itemID);
+          item.itemID = atualizacoesItemID[index].novo;
+          this.itemProvider.removerAtualizacaoItemID(atualizacoesItemID[index].antigo, atualizacoesItemID[index].novo);
+        }
+      }
+    }
+
+    this.documentoBaseProvider
+      .salvarDocumentoBase({
+        documentoBaseID: this.documentoBaseID,
+        nomeDocumentoBase: this.nomeDocumentoBase,
+        secoes: this.secoes,
+      })
+      .subscribe({
+        next: () => {
+          this.salvandoDocumentoBase = false;
+        },
+      });
+
+    // this.salvandoItens = false; throws Angular ExpressionChangedAfterItHasBeenCheckedError
+    // Por isso é necessário usar o setTimeout
+    // setTimeout(() => {
+    //   this.salvandoItens = false;
+    // });
+    this.salvandoItens = false;
   }
 }

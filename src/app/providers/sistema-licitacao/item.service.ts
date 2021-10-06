@@ -11,6 +11,24 @@ import { environment } from 'src/environments/environment';
 export class ItemService {
   constructor(private http: HttpClient) {}
 
+  atualizacoesItemID: { antigo: string; novo: string }[] = [];
+
+  adicionarAtualizacaoItemID(antigo: string, novo: string) {
+    this.atualizacoesItemID.push({ antigo: antigo, novo: novo });
+  }
+
+  removerAtualizacaoItemID(antigo: string, _novo: string) {
+    const index = this.atualizacoesItemID.findIndex((x) => x.antigo === antigo);
+
+    if (index !== -1) {
+      this.atualizacoesItemID.splice(index, 1);
+    }
+  }
+
+  obterAtualizacoesItemID() {
+    return this.atualizacoesItemID;
+  }
+
   // - Verifica se o item requisitado já existe ou se acabou de ser criado
   //   - Se acabou de ser criado
   //      - Retorna um dado padrão
@@ -36,7 +54,7 @@ export class ItemService {
 
     return this.http
       .get<respostaCarregamentoItem>(url)
-      .pipe(map(res => res.dados));
+      .pipe(map((res) => res.dados));
   }
 
   // - Envia ao backend o ID e os dados de um item para que ele seja salvo
@@ -54,7 +72,11 @@ export class ItemService {
     }
 
     return this.http
-      .post<respostaSalvamentoItem>(url, { itemID: itemID, dados: dados }, opcoesHttp)
+      .post<respostaSalvamentoItem>(
+        url,
+        { itemID: itemID, dados: dados },
+        opcoesHttp
+      )
       .pipe(
         map((res) => {
           return { itemID: res.itemID };
