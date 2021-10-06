@@ -118,8 +118,6 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
   itenFoiSalvo() {
     this.totalItens--;
 
-    console.log(this.totalItens);
-
     if (this.totalItens === 0) {
       // this.salvandoItens = false; throws Angular ExpressionChangedAfterItHasBeenCheckedError
       // Por isso é necessário usar o setTimeout

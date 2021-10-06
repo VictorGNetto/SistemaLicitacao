@@ -37,7 +37,10 @@ export class ItemNotaComponent implements OnInit {
       });
 
       this.itemProvider.salvarItem(this.itemID, dados).subscribe({
-        next: () => this.salvado.emit()
+        next: res => { 
+          this.itemID = res.itemID;
+          this.salvado.emit();
+        }
       });
     }
   }

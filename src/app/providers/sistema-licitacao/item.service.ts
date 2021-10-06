@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -15,7 +15,7 @@ export class ItemService {
   //   - Se acabou de ser criado
   //      - Retorna um dado padrão
   //   - Se já existe
-  //      - Requisita ao servidor os dados de um item pelo seu ID
+  //      - Requisita ao servidor os dados do item pelo seu ID
   //      - Retorna esses dados no formato de string
   // Observação: é necessário retornar na forma de uma string já que
   //             existem diversos tipos de Itens (nota, texto, opções),
@@ -25,21 +25,40 @@ export class ItemService {
   //             seja agnóstico.
   carregarItem(itemID: string, itemNovo = false): Observable<string> {
     if (itemNovo) {
-      return of("{}"); // JSON.stringify({}) = "{}"
+      return of('{}'); // JSON.stringify({}) = "{}"
     }
 
-    let url = environment.urlBase + `carregar-item.php?itemID=${itemID}`;
+    const url = environment.urlBase + `carregar-item.php?itemID=${itemID}`;
 
     interface respostaCarregamentoItem {
-      item: JSON;
+      dados: string;
     }
 
     return this.http
       .get<respostaCarregamentoItem>(url)
-      .pipe(map(res => JSON.stringify(res['item'])));
+      .pipe(map(res => res.dados));
   }
 
-  salvarItem(itemID: string, dados: string): Observable<void>{
-    return of(void 0);
+  // - Envia ao backend o ID e os dados de um item para que ele seja salvo
+  // - O servidor cria um novo ID para os itens que ainda não tem e retorna esse ID
+  // - Retorna o ID devolvido pelo servidor
+  salvarItem(itemID: string, dados: string): Observable<{ itemID: string }> {
+    const url = environment.urlBase + `salvar-item.php`;
+
+    const opcoesHttp = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+
+    interface respostaSalvamentoItem {
+      itemID: string;
+    }
+
+    return this.http
+      .post<respostaSalvamentoItem>(url, { itemID: itemID, dados: dados }, opcoesHttp)
+      .pipe(
+        map((res) => {
+          return { itemID: res.itemID };
+        })
+      );
   }
 }
