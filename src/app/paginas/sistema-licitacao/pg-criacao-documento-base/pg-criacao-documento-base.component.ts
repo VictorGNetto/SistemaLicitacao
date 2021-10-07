@@ -118,25 +118,23 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
   salvandoDocumentoBase = false;
   itensNaoSalvados = 0;
 
-  // - Inicia o processo de salvamento fazendo this.salvandoItens = true; e
-  //   this.salvandoDocumentoBase = true;
-  // - A mudança nessas variáveis desabilita algumas funcionalidades
-  //   da página
-  // - Além disso, this.salvandoItens = true; sinaliza os itens que eles devem
-  //   ser salvados
-  // - Armazena o total de itens não salvados na variável this.itensNaoSalvados
-  // - Um evento emitido pelos itens, quando eles são salvados, faz com que a
-  //   função this.itensFoiSalvo() seja chamado. Essa função então atualiza o
-  //   total de itens não salvados
-  // - Quando this.itensNaoSalvados === 0 significa que todos os itens estão
-  //   salvados e então this.salvandoItens recebe o falor false
-  salvarDocumentoBase() {
-    this.salvandoItens = true;
-    this.salvandoDocumentoBase = true;
-
+  // - Aqui inicia o processo de salvamento do Documento Base + seus Itens
+  // - Este processo inicia com o salvamento dos Itens
+  // - Durante este processo, o itemID de alguns Itens podem ser atualizados
+  salvarItens() {
     this.itensNaoSalvados = this.obterTotalItens();
+
+    if (this.itensNaoSalvados !== 0) {
+      this.salvandoItens = true;
+    }
+
+    this.aguardarSalvamentoItens();
   }
 
+  // - Função chamada assincronamente sempre que um Item do Documento Base
+  //   é salvado. Quando todos os Itens são salvados, é chamada a função
+  //   this.atualizarItemIDs que, então, finaliza a etata de salvamento dos
+  //   Itens
   itenFoiSalvo() {
     this.itensNaoSalvados--;
 
@@ -145,6 +143,15 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     }
   }
 
+  // - Obtém a atulização de itemIDs do serviço de Itens e então as informações
+  //   contidas em this.secoes
+  // - Ao final, atribui o valor false para a variável this.salvandoItens,
+  //   indicando assim que os Itens foram salvados e que o processo de salvamento
+  //   do Documento Base pode iniciar
+  // - Por fim, a variável this.salvandoDocumentoBase recebe o valor true,
+  //   indicando que agora o Documento Base está sendo salvo e não permitindo
+  //   que as variável this.salvandoItens e this.salvandoDocumentoBase estejam,
+  //   ambas, com o valor false durante o processo de salvamento
   atualizarItemIDs() {
     const atualizacoesItemID = this.itemProvider.obterAtualizacoesItemID();
 
@@ -159,6 +166,27 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
       }
     }
 
+    this.salvandoItens = false;
+    this.salvandoDocumentoBase = true;
+  }
+
+  // - Para salvar o Documento Base, é preciso que o itemID de todos os Itens
+  //   estejam devidamente atualizados. Isso só ocorre quando this.salvandoItens
+  //   for false. Essa função serve então como uma sala de espera, e só chama
+  //   a rotina de salvamento de Documento Base quando todos os Itens já estão
+  //   salvados
+  aguardarSalvamentoItens() {
+    setTimeout(() => {
+      if (this.salvandoItens) {
+        this.aguardarSalvamentoItens();
+      } else {
+        this.salvarDocumentoBase();
+      }
+    }, 100);
+  }
+
+  // - Finaliza o processo de salvamento salvando o Documento Base
+  salvarDocumentoBase() {
     this.documentoBaseProvider
       .salvarDocumentoBase({
         documentoBaseID: this.documentoBaseID,
@@ -170,12 +198,5 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
           this.salvandoDocumentoBase = false;
         },
       });
-
-    // this.salvandoItens = false; throws Angular ExpressionChangedAfterItHasBeenCheckedError
-    // Por isso é necessário usar o setTimeout
-    // setTimeout(() => {
-    //   this.salvandoItens = false;
-    // });
-    this.salvandoItens = false;
   }
 }

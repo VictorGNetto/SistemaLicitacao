@@ -7,7 +7,7 @@
   <button
     mat-stroked-button
     style="margin-left: 0.5rem"
-    (click)="salvarDocumentoBase()"
+    (click)="salvarItens()"
   >
     Salvar
   </button>
@@ -160,16 +160,4 @@
       </div>
     </mat-tab>
   </mat-tab-group>
-
-  <!-- <div *ngIf="salvandoItens" [style.display]="'none'">
-    <div *ngFor="let secao of secoes">
-      <div *ngFor="let item of secao.itens">
-        <item-nota *ngIf="item.tipo === 'nota'" [itemID]="item.itemID" [salvarItem]="true"></item-nota>
-
-        <item-texto *ngIf="item.tipo === 'texto'" [itemID]="item.itemID" [salvarItem]="true"></item-texto>
-
-        <item-opcoes *ngIf="item.tipo === 'opcoes'" [itemID]="item.itemID" [salvarItem]="true"></item-opcoes>
-      </div>
-    </div>
-  </div> -->
 </div>
