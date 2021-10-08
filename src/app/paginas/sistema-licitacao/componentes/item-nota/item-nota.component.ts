@@ -8,11 +8,11 @@ import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
   styleUrls: ['./item-nota.component.css'],
 })
 export class ItemNotaComponent implements OnInit {
-  @Input() itemID = '';
+  @Input() itemID = "";
   @Input() salvarItem = false;
-  conteudo = '';
+  conteudo = "";
   nivelIndentacao = 0; // 0, 1 ou 2
-  nivelIndentacaoClass = 'container-0';
+  nivelIndentacaoClass = "container-0";
 
   @Output() salvado = new EventEmitter<void>();
 

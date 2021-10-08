@@ -1,0 +1,95 @@
+.container-0 {
+  display: grid;
+  grid-template-columns: 5fr 1fr 94fr;
+}
+
+.container-1 {
+  display: grid;
+  grid-template-columns: 5fr 6fr 89fr;
+}
+
+.container-2 {
+  display: grid;
+  grid-template-columns: 5fr 11fr 84fr;
+}
+
+.menu {
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+
+.subitens {
+  display: grid;
+  grid-template-columns: 97fr 3fr;
+}
+
+.subitens:hover {
+  background-color: #ddd;
+}
+
+textarea {
+  resize: none;
+  cursor: pointer;
+
+  outline: none;
+
+  padding: 0.5rem;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+
+  text-align: justify;
+  font-size: 15px;
+  font-weight: 900;
+
+  border: 1px dashed black;
+  border-radius: 5px;
+}
+
+textarea:focus {
+  border: 2px dashed black;
+}
+
+textarea.texto-fixo {
+  background-color: inherit;
+}
+
+textarea.texto-fixo:hover {
+  background-color: #ccc;
+}
+
+textarea.texto-fixo:focus {
+  background-color: #ccc;
+}
+
+textarea.entrada-texto {
+  color: #444;
+  background-color: rgb(180, 180, 0);
+}
+
+textarea.entrada-texto:hover {
+  background-color: rgb(150, 150, 0);
+}
+
+textarea.entrada-texto:focus {
+  background-color: rgb(150, 150, 0);
+}
+
+button.texto-fixo,
+button.entrada-texto {
+  margin-top: 0.1rem;
+  margin-right: 0.1rem;
+}
+
+.pre-visualizacao {
+  padding: 0.5rem;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+}
+
+.pre-visualizacao span.entrada-texto {
+  padding: 0.1rem 0.35rem;
+
+  border-radius: 3px;
+  border: 1px dashed black;
+
+  color: #444;
+  background-color: rgb(180, 180, 0);
+}
