@@ -1,1 +1,136 @@
-<p>item-opcoes works!</p>
+<div [class]="nivelIndentacaoClass">
+  <aside class="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu>
+      <button
+        mat-menu-item
+        [disabled]="nivelIndentacao === 2"
+        (click)="mudarNivelIndentacao(nivelIndentacao + 1)"
+      >
+        <mat-icon>format_indent_increase</mat-icon>
+        <span>Aumentar Indentação</span>
+      </button>
+      <button
+        mat-menu-item
+        [disabled]="nivelIndentacao === 0"
+        (click)="mudarNivelIndentacao(nivelIndentacao - 1)"
+      >
+        <mat-icon>format_indent_decrease</mat-icon>
+        <span>Diminuir Indentação</span>
+      </button>
+
+      <button mat-menu-item [disabled]="modoPrevisualizacao">
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Adicionar Subdescrição</span>
+      </button>
+
+      <button mat-menu-item [disabled]="modoPrevisualizacao">
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Adicionar Opção</span>
+      </button>
+
+      <button mat-menu-item [disabled]="modoPrevisualizacao">
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Adicionar Opção + Entrada Texto</span>
+      </button>
+
+      <button
+        mat-menu-item
+        (click)="tooglePrevisualizacao()"
+        [disabled]="subitens.length === 0"
+      >
+        <!-- Modo de Pré-visualização desativado -->
+        <mat-icon *ngIf="!modoPrevisualizacao">visibility</mat-icon>
+        <span *ngIf="!modoPrevisualizacao">Ativar Pré-visualização</span>
+
+        <!-- Modo de Pré-visualização ativado -->
+        <mat-icon *ngIf="modoPrevisualizacao">visibility_off</mat-icon>
+        <span *ngIf="modoPrevisualizacao">Desativar Pré-visualização</span>
+      </button>
+    </mat-menu>
+  </aside>
+  <span></span>
+  <div *ngIf="!modoPrevisualizacao">
+    <div
+      class="descricao"
+      style="display: grid; grid-template-columns: 97fr 3fr"
+    >
+      <textarea
+        rows="1"
+        [(ngModel)]="descricao"
+        style="padding: 0.5rem; margin: 0.25rem 0.5rem 0.25rem 0"
+        >{{ descricao }}</textarea
+      >
+    </div>
+
+    <div *ngIf="subitens.length === 0">
+      Adicione Opções ou Subdescrições usando o menu ao lado
+    </div>
+
+    <div class="subitens" *ngFor="let subitem of subitens; index as i">
+      <!-- se subitem.tipo === 'subdescricao' -->
+      <div *ngIf="subitem.tipo === 'subdescricao'" class="subdescricao" style="display: grid; grid-template-columns: 1fr 96fr 3fr">
+        <span></span>
+        <textarea
+          placeholder="Insira aqui a Subdescrição"
+          style="padding: 0.5rem; margin: 0.25rem 0.5rem 0.25rem 0"
+          >{{ subitem.subdescricao }}</textarea
+        >
+        <button mat-icon-button>
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+
+      <!-- se subitem.tipo === 'opcao' -->
+      <div *ngIf="subitem.tipo === 'opcao'" class="opcao" style="display: grid; grid-template-columns: 1fr 1fr 95fr 3fr">
+        <span></span>
+        <input type="radio" [name]="itemID" />
+        <textarea
+          placeholder="Insira aqui a descrição desta Opção"
+          style="padding: 0.5rem; margin: 0.25rem 0.5rem 0.25rem 0.5rem"
+        >{{ subitem.opcao }}</textarea>
+        <button mat-icon-button>
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+
+      <!-- se subitem.tipo === 'opcao-entrada-texto' -->
+      <div *ngIf="subitem.tipo === 'opcao-entrada-texto'" class="opcao-entrada-texto" style="display: grid; grid-template-columns: 1fr 1fr 95fr 3fr">
+        <span></span>
+        <input type="radio" [name]="itemID" id="" />
+        <textarea
+          placeholder="Insira aqui a descrição desta Opção"
+          style="padding: 0.5rem; margin: 0.25rem 0.5rem 0.25rem 0.5rem"
+        >{{ subitem.opcao }}</textarea>
+        <button mat-icon-button>
+          <mat-icon>clear</mat-icon>
+        </button>
+        <span></span>
+        <span></span>
+        <textarea
+          placeholder="Insira aqui o placeholder da Entrada de Texto"
+          style="
+            padding: 0.5rem;
+            margin: 0.25rem 0.5rem 0.25rem 0.5rem;
+            display: block;
+          "
+        >{{ subitem.placeholderEntradaTexto }}</textarea>
+      </div>
+    </div>
+  </div>
+  <div class="pre-visualizacao" *ngIf="modoPrevisualizacao">
+    <span *ngFor="let subitem of subitens">
+      <!-- se subitem.tipo === 'texto-fixo' -->
+      <span class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'"
+        >{{ subitem }}
+      </span>
+
+      <!-- se subitem.tipo === 'entrada-texto' -->
+      <span class="entrada-texto" *ngIf="subitem.tipo === 'entrada-texto'"
+        >{{ subitem }}
+      </span>
+    </span>
+  </div>
+</div>

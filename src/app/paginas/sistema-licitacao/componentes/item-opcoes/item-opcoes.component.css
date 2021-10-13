@@ -1,0 +1,42 @@
+.container-0 {
+  display: grid;
+  grid-template-columns: 5fr 1fr 94fr;
+}
+
+.container-1 {
+  display: grid;
+  grid-template-columns: 5fr 6fr 89fr;
+}
+
+.container-2 {
+  display: grid;
+  grid-template-columns: 5fr 11fr 84fr;
+}
+
+.menu {
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+
+.subitens:hover,
+.descricao:hover {
+  background-color: #ddd;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  margin-top: 1.25rem;
+}
+
+input[type="radio"]:checked {
+  border: 7px solid black;
+}
