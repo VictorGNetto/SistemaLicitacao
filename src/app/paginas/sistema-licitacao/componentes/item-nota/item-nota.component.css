@@ -32,7 +32,7 @@ textarea {
   margin-right: 0.5rem;
 
   outline: none;
-  border: 3px dotted rgb(9, 107, 107);
+  border: 1px dashed rgb(9, 107, 107);
   border-radius: 10px;
 
   background-color: rgb(178, 209, 209);
@@ -41,4 +41,13 @@ textarea {
   text-align: justify;
   font-size: 15px;
   font-weight: 900;
+}
+
+textarea:hover {
+  background-color: rgb(153, 184, 184);
+}
+
+textarea:focus {
+  background-color: rgb(153, 184, 184);
+  border: 2px dashed rgb(9, 107, 107);
 }

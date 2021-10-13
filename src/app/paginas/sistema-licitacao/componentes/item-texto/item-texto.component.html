@@ -39,7 +39,7 @@
         <span>Adicionar Entrada Texto</span>
       </button>
 
-      <button mat-menu-item (click)="tooglePrevisualizacao()">
+      <button mat-menu-item (click)="tooglePrevisualizacao()" [disabled]="subitens.length === 0">
         <!-- Modo de Pré-visualização desativado -->
         <mat-icon *ngIf="!modoPrevisualizacao">visibility</mat-icon>
         <span *ngIf="!modoPrevisualizacao">Ativar Pré-visualização</span>
@@ -59,7 +59,7 @@
       <!-- se subitem.tipo === 'texto-fixo' -->
       <textarea
         class="texto-fixo"
-        rows="3"
+        rows="1"
         *ngIf="subitem.tipo === 'texto-fixo'"
         placeholder="Coloque aqui o texto fixo"
         [(ngModel)]="subitens[i].conteudo"
