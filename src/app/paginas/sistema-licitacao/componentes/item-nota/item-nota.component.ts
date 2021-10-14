@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { EventEmitter, Input, Output } from '@angular/core';
+
 import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
 
 @Component({
@@ -21,10 +22,10 @@ export class ItemNotaComponent implements OnInit {
   ngOnInit(): void {
     const itemNovo = this.itemID.startsWith("item novo");
     this.itemProvider.carregarItem(this.itemID, itemNovo).subscribe({
-      next: x => {
-        const dados = JSON.parse(x);
-        this.conteudo = itemNovo? "Nota: " : dados["conteudo"];
-        this.mudarNivelIndentacao(itemNovo? 0 : dados["nivelIndentacao"]);
+      next: res => {
+        const dados = JSON.parse(res);
+        this.conteudo = itemNovo ? "Nota: " : dados["conteudo"];
+        this.mudarNivelIndentacao(itemNovo ? 0 : dados["nivelIndentacao"]);
       }
     });
   }

@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { EventEmitter, Input, Output } from '@angular/core';
 
+import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
+
 interface Subitem {
   tipo: string,                     // "subdescricao", "opcao" e "opcao-entrada-texto"
   subdescricao?: string             // aplicável somente quando tipo="subdescricao"
@@ -32,15 +34,37 @@ export class ItemOpcoesComponent implements OnInit {
 
   @Output() salvado = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private itemProvider: ItemService) {}
 
   ngOnInit(): void {
+    const itemNovo = this.itemID.startsWith("item novo");
+    this.itemProvider.carregarItem(this.itemID, itemNovo).subscribe({
+      next: res => {
+        const dados = JSON.parse(res);
+        this.descricao = itemNovo ? "" : dados["descricao"];
+        this.subitens = itemNovo ? [] : dados["subitens"];
+        this.mudarNivelIndentacao(itemNovo ? 0 : dados["nivelIndentacao"]);
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.salvarItem) {
-      console.log("Salvando item " + this.itemID);
-      this.salvado.emit();
+      const dados = JSON.stringify({
+        "descricao": this.descricao,
+        "subitens": this.subitens,
+        "nivelIndentacao": this.nivelIndentacao
+      });
+
+      this.itemProvider.salvarItem(this.itemID, dados).subscribe({
+        next: res => {
+          if (this.itemID !== res.itemID) {
+            this.itemProvider.adicionarAtualizacaoItemID(this.itemID, res.itemID);
+            this.itemID = res.itemID;
+          }
+          this.salvado.emit();
+        }
+      });
     }
   }
 
