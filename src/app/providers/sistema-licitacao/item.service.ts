@@ -54,7 +54,7 @@ export class ItemService {
 
     return this.http
       .get<respostaCarregamentoItem>(url)
-      .pipe(map((res) => res.dados));
+      .pipe(map(res => res.dados));
   }
 
   // - Envia ao backend o ID e os dados de um item para que ele seja salvo
@@ -78,9 +78,23 @@ export class ItemService {
         opcoesHttp
       )
       .pipe(
-        map((res) => {
+        map(res => {
           return { itemID: res.itemID };
         })
       );
+  }
+
+  excluirItem(itemID: string): Observable<{ itemID: string }> {
+    const url = environment.urlBase + `excluir-item.php?itemID=${itemID}`;
+
+    interface respostaExclusaoItem {
+      itemID: string;
+    }
+
+    return this.http
+      .get<respostaExclusaoItem>(url)
+      .pipe(map(res => {
+        return { itemID: res.itemID }
+      }));
   }
 }

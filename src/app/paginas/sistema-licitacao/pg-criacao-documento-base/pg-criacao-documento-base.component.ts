@@ -71,7 +71,13 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
   }
 
   removerSecao() {
-    this.secoes.splice(this.secaoSelecionada, 1);
+    const index = this.secaoSelecionada;
+
+    for (const item of this.secoes[index].itens) {
+      this.itensExcluidos.push(item.itemID);
+    }
+    
+    this.secoes.splice(index, 1);
   }
 
   salvarNomeSecao(index: number, event: FocusEvent) {
@@ -92,11 +98,12 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     this.itensCriados++;
   }
 
-  deletaItem(id: string) {
-    const item = document.getElementById(id);
+  removerItem(itemID: string) {
+    this.itensExcluidos.push(itemID);
+
     let indexSecao = this.secaoSelecionada;
     let indexItem = this.secoes[indexSecao].itens.findIndex(
-      (elem) => elem.itemID === id
+      (elem) => elem.itemID === itemID
     );
     this.secoes[indexSecao].itens.splice(indexItem, 1);
   }
@@ -117,6 +124,7 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
   salvandoItens = false;
   salvandoDocumentoBase = false;
   itensNaoSalvados = 0;
+  itensExcluidos: string[] = [];
 
   // - Aqui inicia o processo de salvamento do Documento Base + seus Itens
   // - Este processo inicia com o salvamento dos Itens
@@ -128,7 +136,22 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
       this.salvandoItens = true;
     }
 
+    this.excluirItensNaoUsados();
+
     this.aguardarSalvamentoItens();
+  }
+
+  // - Envia ao servidor um comando para deletar itens que não são mais usados
+  excluirItensNaoUsados() {
+    for (const itemID of this.itensExcluidos) {
+      if (!itemID.startsWith('item novo')) {
+        this.itemProvider.excluirItem(itemID).subscribe({
+          next: () => {},
+        });
+      }
+    }
+
+    this.itensExcluidos = [];
   }
 
   // - Função chamada assincronamente sempre que um Item do Documento Base
@@ -158,10 +181,15 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     // Percorre todos os Itens
     for (const secao of this.secoes) {
       for (const item of secao.itens) {
-        if (item.itemID.startsWith("item novo")) {
-          const index = atualizacoesItemID.findIndex(x => x.antigo === item.itemID);
+        if (item.itemID.startsWith('item novo')) {
+          const index = atualizacoesItemID.findIndex(
+            (x) => x.antigo === item.itemID
+          );
           item.itemID = atualizacoesItemID[index].novo;
-          this.itemProvider.removerAtualizacaoItemID(atualizacoesItemID[index].antigo, atualizacoesItemID[index].novo);
+          this.itemProvider.removerAtualizacaoItemID(
+            atualizacoesItemID[index].antigo,
+            atualizacoesItemID[index].novo
+          );
         }
       }
     }
