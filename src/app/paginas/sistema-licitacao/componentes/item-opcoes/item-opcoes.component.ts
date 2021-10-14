@@ -21,11 +21,11 @@ export class ItemOpcoesComponent implements OnInit {
   nivelIndentacao = 0; // 0, 1 ou 2
   nivelIndentacaoClass = "container-0";
 
-  descricao = "Descrição";
+  descricao = "";
   subitens: Subitem[] = [
-    { tipo: "subdescricao", subdescricao: "123" },
-    { tipo: "opcao", opcao: "456" },
-    { tipo: "opcao-entrada-texto", opcao: "789", placeholderEntradaTexto: "000" }
+    // { tipo: "subdescricao", subdescricao: "123" },
+    // { tipo: "opcao", opcao: "456" },
+    // { tipo: "opcao-entrada-texto", opcao: "789", placeholderEntradaTexto: "000" }
   ];
 
   modoPrevisualizacao = false;
@@ -47,6 +47,24 @@ export class ItemOpcoesComponent implements OnInit {
   mudarNivelIndentacao(novoNivelIndentacao: number) {
     this.nivelIndentacao = novoNivelIndentacao;
     this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
+  }
+
+  adicionarSubdescricao() {
+    this.subitens.push({
+      tipo: "subdescricao", subdescricao: ""
+    });
+  }
+
+  adicionarOpcao() {
+    this.subitens.push({
+      tipo: "opcao", opcao: ""
+    });
+  }
+
+  adicionarOpcaoComEntradaTexto() {
+    this.subitens.push({
+      tipo: "opcao-entrada-texto", opcao: "", placeholderEntradaTexto: ""
+    });
   }
 
   removerSubitem(index: number) {

@@ -73,8 +73,7 @@ textarea.entrada-texto:focus {
   background-color: rgb(150, 150, 0);
 }
 
-button.texto-fixo,
-button.entrada-texto {
+button {
   margin-top: 0.1rem;
   margin-right: 0.1rem;
 }

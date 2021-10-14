@@ -61,7 +61,7 @@
         class="texto-fixo"
         rows="1"
         *ngIf="subitem.tipo === 'texto-fixo'"
-        placeholder="Coloque aqui o texto fixo"
+        placeholder="Insira aqui o texto fixo"
         [(ngModel)]="subitens[i].conteudo"
         >{{ subitem.conteudo }}</textarea
       >
@@ -79,7 +79,7 @@
         class="entrada-texto"
         rows="1"
         *ngIf="subitem.tipo === 'entrada-texto'"
-        placeholder="Coloque aqui uma mensagem explicativa"
+        placeholder="Insira aqui uma mensagem explicativa"
         [(ngModel)]="subitens[i].placeholder"
         >{{ subitem.placeholder }}</textarea
       >

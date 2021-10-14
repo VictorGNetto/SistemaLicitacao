@@ -21,17 +21,29 @@
         <span>Diminuir Indentação</span>
       </button>
 
-      <button mat-menu-item [disabled]="modoPrevisualizacao">
+      <button
+        mat-menu-item
+        [disabled]="modoPrevisualizacao"
+        (click)="adicionarSubdescricao()"
+      >
         <mat-icon>add_circle_outline</mat-icon>
         <span>Adicionar Subdescrição</span>
       </button>
 
-      <button mat-menu-item [disabled]="modoPrevisualizacao">
+      <button
+        mat-menu-item
+        [disabled]="modoPrevisualizacao"
+        (click)="adicionarOpcao()"
+      >
         <mat-icon>add_circle_outline</mat-icon>
         <span>Adicionar Opção</span>
       </button>
 
-      <button mat-menu-item [disabled]="modoPrevisualizacao">
+      <button
+        mat-menu-item
+        [disabled]="modoPrevisualizacao"
+        (click)="adicionarOpcaoComEntradaTexto()"
+      >
         <mat-icon>add_circle_outline</mat-icon>
         <span>Adicionar Opção + Entrada Texto</span>
       </button>
@@ -53,14 +65,12 @@
   </aside>
   <span></span>
   <div *ngIf="!modoPrevisualizacao">
-    <div
-      class="descricao"
-      style="display: grid; grid-template-columns: 97fr 3fr"
-    >
+    <div class="descricao">
       <textarea
+        class="texto-fixo"
         rows="1"
+        placeholder="Insira aqui a descrição"
         [(ngModel)]="descricao"
-        style="padding: 0.5rem; margin: 0.25rem 0.5rem 0.25rem 0"
         >{{ descricao }}</textarea
       >
     </div>
@@ -71,52 +81,62 @@
 
     <div class="subitens" *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'subdescricao' -->
-      <div *ngIf="subitem.tipo === 'subdescricao'" class="subdescricao" style="display: grid; grid-template-columns: 1fr 96fr 3fr">
+      <div *ngIf="subitem.tipo === 'subdescricao'" class="subdescricao">
         <span></span>
         <textarea
-          placeholder="Insira aqui a Subdescrição"
-          style="padding: 0.5rem; margin: 0.25rem 0.5rem 0.25rem 0"
+          class="texto-fixo"
+          rows="1"
+          placeholder="Insira aqui a subdescrição"
+          [(ngModel)]="subitens[i].subdescricao"
           >{{ subitem.subdescricao }}</textarea
         >
-        <button mat-icon-button>
+        <button mat-icon-button (click)="removerSubitem(i)">
           <mat-icon>clear</mat-icon>
         </button>
       </div>
 
       <!-- se subitem.tipo === 'opcao' -->
-      <div *ngIf="subitem.tipo === 'opcao'" class="opcao" style="display: grid; grid-template-columns: 1fr 1fr 95fr 3fr">
+      <div *ngIf="subitem.tipo === 'opcao'" class="opcao">
         <span></span>
         <input type="radio" [name]="itemID" />
         <textarea
-          placeholder="Insira aqui a descrição desta Opção"
-          style="padding: 0.5rem; margin: 0.25rem 0.5rem 0.25rem 0.5rem"
-        >{{ subitem.opcao }}</textarea>
-        <button mat-icon-button>
+          class="texto-fixo"
+          rows="1"
+          placeholder="Insira aqui o texto desta opção"
+          [(ngModel)]="subitens[i].opcao"
+          >{{ subitem.opcao }}</textarea
+        >
+        <button mat-icon-button (click)="removerSubitem(i)">
           <mat-icon>clear</mat-icon>
         </button>
       </div>
 
       <!-- se subitem.tipo === 'opcao-entrada-texto' -->
-      <div *ngIf="subitem.tipo === 'opcao-entrada-texto'" class="opcao-entrada-texto" style="display: grid; grid-template-columns: 1fr 1fr 95fr 3fr">
+      <div
+        *ngIf="subitem.tipo === 'opcao-entrada-texto'"
+        class="opcao-entrada-texto"
+      >
         <span></span>
         <input type="radio" [name]="itemID" id="" />
         <textarea
-          placeholder="Insira aqui a descrição desta Opção"
-          style="padding: 0.5rem; margin: 0.25rem 0.5rem 0.25rem 0.5rem"
-        >{{ subitem.opcao }}</textarea>
-        <button mat-icon-button>
+          class="texto-fixo"
+          rows="1"
+          placeholder="Insira aqui o texto desta opção"
+          [(ngModel)]="subitens[i].opcao"
+          >{{ subitem.opcao }}</textarea
+        >
+        <button mat-icon-button (click)="removerSubitem(i)">
           <mat-icon>clear</mat-icon>
         </button>
         <span></span>
         <span></span>
         <textarea
-          placeholder="Insira aqui o placeholder da Entrada de Texto"
-          style="
-            padding: 0.5rem;
-            margin: 0.25rem 0.5rem 0.25rem 0.5rem;
-            display: block;
-          "
-        >{{ subitem.placeholderEntradaTexto }}</textarea>
+          class="entrada-texto"
+          rows="1"
+          placeholder="Insira aqui uma mensagem explicativa"
+          [(ngModel)]="subitens[i].placeholderEntradaTexto"
+          >{{ subitem.placeholderEntradaTexto }}</textarea
+        >
       </div>
     </div>
   </div>

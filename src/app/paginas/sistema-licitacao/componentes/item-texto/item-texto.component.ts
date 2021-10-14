@@ -21,8 +21,8 @@ export class ItemTextoComponent implements OnInit {
   nivelIndentacaoClass = "container-0";
 
   subitens: Subitem[] = [
-    { tipo: "texto-fixo", conteudo: "Aqui vai o conteúdo do texto fixo"},
-    { tipo: "entrada-texto", placeholder: "Aqui vai o placeholder da entrada de texto" }
+    // { tipo: "texto-fixo", conteudo: "Aqui vai o conteúdo do texto fixo"},
+    // { tipo: "entrada-texto", placeholder: "Aqui vai o placeholder da entrada de texto" }
   ];
 
   modoPrevisualizacao = false;
