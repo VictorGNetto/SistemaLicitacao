@@ -39,7 +39,11 @@
         <span>Adicionar Entrada Texto</span>
       </button>
 
-      <button mat-menu-item (click)="tooglePrevisualizacao()" [disabled]="subitens.length === 0">
+      <button
+        mat-menu-item
+        (click)="tooglePrevisualizacao()"
+        [disabled]="subitens.length === 0"
+      >
         <!-- Modo de Pré-visualização desativado -->
         <mat-icon *ngIf="!modoPrevisualizacao">visibility</mat-icon>
         <span *ngIf="!modoPrevisualizacao">Ativar Pré-visualização</span>
@@ -96,14 +100,14 @@
   <div class="pre-visualizacao" *ngIf="modoPrevisualizacao">
     <span *ngFor="let subitem of subitens">
       <!-- se subitem.tipo === 'texto-fixo' -->
-      <span class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'"
-        >{{ subitem.conteudo }}
-      </span>
+      <span class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'">{{
+        subitem.conteudo
+      }}</span>
 
       <!-- se subitem.tipo === 'entrada-texto' -->
-      <span class="entrada-texto" *ngIf="subitem.tipo === 'entrada-texto'"
-        >{{ subitem.placeholder }}
-      </span>
+      <span class="entrada-texto" *ngIf="subitem.tipo === 'entrada-texto'">{{
+        subitem.placeholder
+      }}</span>
     </span>
   </div>
 </div>

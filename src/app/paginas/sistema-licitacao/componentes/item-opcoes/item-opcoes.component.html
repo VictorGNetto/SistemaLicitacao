@@ -141,16 +141,32 @@
     </div>
   </div>
   <div class="pre-visualizacao" *ngIf="modoPrevisualizacao">
-    <span *ngFor="let subitem of subitens">
-      <!-- se subitem.tipo === 'texto-fixo' -->
-      <span class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'"
-        >{{ subitem }}
-      </span>
+    <!-- ------------------------------------------------------------------ -->
 
-      <!-- se subitem.tipo === 'entrada-texto' -->
-      <span class="entrada-texto" *ngIf="subitem.tipo === 'entrada-texto'"
-        >{{ subitem }}
-      </span>
-    </span>
+    <h1 class="pre-visualizacao-descricao">{{ descricao }}</h1>
+
+    <div class="subitens" *ngFor="let subitem of subitens">
+      <!-- se subitem.tipo === 'subdescricao' -->
+      <div *ngIf="subitem.tipo === 'subdescricao'">
+        <h2 class="pre-visualizacao-subdescricao">
+          {{ subitem.subdescricao }}
+        </h2>
+      </div>
+
+      <!-- se subitem.tipo === 'opcao' -->
+      <div *ngIf="subitem.tipo === 'opcao'">
+        <input type="radio" [name]="itemID" />
+        <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
+      </div>
+
+      <!-- se subitem.tipo === 'opcao-entrada-texto' -->
+      <div *ngIf="subitem.tipo === 'opcao-entrada-texto'">
+        <input type="radio" [name]="itemID" id="" />
+        <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
+        <span class="entrada-texto">{{ subitem.placeholderEntradaTexto }}</span>
+      </div>
+    </div>
+
+    <!-- ------------------------------------------------------------------ -->
   </div>
 </div>

@@ -112,3 +112,39 @@ input[type="radio"] {
 input[type="radio"]:checked {
   border: 7px solid black;
 }
+
+.pre-visualizacao {
+  padding: 0.5rem;
+  margin: 0.25rem 0.5rem 0 0;
+}
+
+.pre-visualizacao-descricao {
+  font-size: 18px;
+  margin: 0;
+}
+
+.pre-visualizacao-subdescricao {
+  font-size: 15px;
+  margin: 0 0 0 1.5rem;
+}
+
+.pre-visualizacao input[type="radio"] {
+  margin: 0.35rem 0 0.45rem 2rem;
+
+  vertical-align: middle;
+}
+
+.pre-visualizacao-opcao {
+  display: inline;
+  margin-left: 0.35rem;
+}
+
+.pre-visualizacao span.entrada-texto {
+  padding: 0.1rem 0.35rem;
+
+  border-radius: 3px;
+  border: 1px dashed black;
+
+  color: #444;
+  background-color: rgb(180, 180, 0);
+}

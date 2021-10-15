@@ -23,7 +23,7 @@
 }
 
 textarea {
-  resize: none;
+  resize: vertical;
   cursor: pointer;
 
   /* width: 95%; */
@@ -50,4 +50,20 @@ textarea:hover {
 textarea:focus {
   background-color: rgb(153, 184, 184);
   border: 2px dashed rgb(9, 107, 107);
+}
+
+p.pre-visualizacao {  
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+
+  border: 2px dashed rgb(9, 107, 107);
+  border-radius: 10px;
+
+  background-color: rgb(178, 209, 209);
+  color: rgb(9, 107, 107);
+
+  text-align: justify;
+  font-size: 15px;
+  font-weight: 600;
 }

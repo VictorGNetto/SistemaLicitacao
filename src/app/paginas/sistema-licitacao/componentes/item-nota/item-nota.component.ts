@@ -15,6 +15,8 @@ export class ItemNotaComponent implements OnInit {
   nivelIndentacao = 0; // 0, 1 ou 2
   nivelIndentacaoClass = "container-0";
 
+  modoPrevisualizacao = false;
+
   @Output() salvado = new EventEmitter<void>();
 
   constructor(private itemProvider: ItemService) {}
@@ -52,5 +54,9 @@ export class ItemNotaComponent implements OnInit {
   mudarNivelIndentacao(novoNivelIndentacao: number) {
     this.nivelIndentacao = novoNivelIndentacao;
     this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
+  }
+
+  tooglePrevisualizacao() {
+    this.modoPrevisualizacao = !this.modoPrevisualizacao;
   }
 }

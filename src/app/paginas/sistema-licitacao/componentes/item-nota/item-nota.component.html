@@ -24,10 +24,23 @@
         <mat-icon>format_indent_decrease</mat-icon>
         <span>Diminuir Indentação</span>
       </button>
+      <button
+        mat-menu-item
+        (click)="tooglePrevisualizacao()"
+        [disabled]="conteudo.length === 0"
+      >
+        <!-- Modo de Pré-visualização desativado -->
+        <mat-icon *ngIf="!modoPrevisualizacao">visibility</mat-icon>
+        <span *ngIf="!modoPrevisualizacao">Ativar Pré-visualização</span>
+
+        <!-- Modo de Pré-visualização ativado -->
+        <mat-icon *ngIf="modoPrevisualizacao">visibility_off</mat-icon>
+        <span *ngIf="modoPrevisualizacao">Desativar Pré-visualização</span>
+      </button>
     </mat-menu>
   </aside>
   <span></span>
-  <textarea
+  <textarea *ngIf="!modoPrevisualizacao"
     cols="30"
     rows="3"
     title="Insira aqui o conteúdo da Nota"
@@ -35,4 +48,6 @@
   >
     {{ conteudo }}</textarea
   >
+
+  <p *ngIf="modoPrevisualizacao" class="pre-visualizacao">{{ conteudo }}</p>
 </div>
