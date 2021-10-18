@@ -23,7 +23,7 @@
 }
 
 textarea {
-  resize: vertical;
+  resize: none;
   cursor: pointer;
 
   /* width: 95%; */

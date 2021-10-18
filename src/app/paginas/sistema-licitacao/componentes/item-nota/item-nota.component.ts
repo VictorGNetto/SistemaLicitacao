@@ -28,6 +28,7 @@ export class ItemNotaComponent implements OnInit {
         const dados = JSON.parse(res);
         this.conteudo = itemNovo ? "Nota: " : dados["conteudo"];
         this.mudarNivelIndentacao(itemNovo ? 0 : dados["nivelIndentacao"]);
+        this.modoPrevisualizacao = itemNovo ? false : true;
       }
     });
   }

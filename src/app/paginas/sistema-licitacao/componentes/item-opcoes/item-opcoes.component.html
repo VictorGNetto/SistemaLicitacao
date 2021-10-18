@@ -71,6 +71,7 @@
         rows="1"
         placeholder="Insira aqui a descrição"
         [(ngModel)]="descricao"
+        appTextareaAutoresize
         >{{ descricao }}</textarea
       >
     </div>
@@ -88,6 +89,7 @@
           rows="1"
           placeholder="Insira aqui a subdescrição"
           [(ngModel)]="subitens[i].subdescricao"
+          appTextareaAutoresize
           >{{ subitem.subdescricao }}</textarea
         >
         <button mat-icon-button (click)="removerSubitem(i)">
@@ -104,6 +106,7 @@
           rows="1"
           placeholder="Insira aqui o texto desta opção"
           [(ngModel)]="subitens[i].opcao"
+          appTextareaAutoresize
           >{{ subitem.opcao }}</textarea
         >
         <button mat-icon-button (click)="removerSubitem(i)">
@@ -123,6 +126,7 @@
           rows="1"
           placeholder="Insira aqui o texto desta opção"
           [(ngModel)]="subitens[i].opcao"
+          appTextareaAutoresize
           >{{ subitem.opcao }}</textarea
         >
         <button mat-icon-button (click)="removerSubitem(i)">
@@ -135,6 +139,7 @@
           rows="1"
           placeholder="Insira aqui uma mensagem explicativa"
           [(ngModel)]="subitens[i].placeholderEntradaTexto"
+          appTextareaAutoresize
           >{{ subitem.placeholderEntradaTexto }}</textarea
         >
       </div>

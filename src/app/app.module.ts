@@ -29,6 +29,7 @@ import { MensagemComponent } from './paginas/sistema-licitacao/componentes/mensa
 import { ItemNotaComponent } from './paginas/sistema-licitacao/componentes/item-nota/item-nota.component';
 import { ItemTextoComponent } from './paginas/sistema-licitacao/componentes/item-texto/item-texto.component';
 import { ItemOpcoesComponent } from './paginas/sistema-licitacao/componentes/item-opcoes/item-opcoes.component';
+import { TextareaAutoresizeDirective } from './diretivas/textarea-autoresize.directive';
 
 const appRoutes: Routes = [
   // {
@@ -70,7 +71,8 @@ const appRoutes: Routes = [
     ItemTextoComponent,
     ItemOpcoesComponent,
     PgSistemaLicitacaoComponent,
-    PgDocumentoBaseComponent
+    PgDocumentoBaseComponent,
+    TextareaAutoresizeDirective
   ],
   imports: [
     BrowserModule,

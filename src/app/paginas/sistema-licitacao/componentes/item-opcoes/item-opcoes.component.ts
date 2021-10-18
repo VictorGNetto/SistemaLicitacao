@@ -44,6 +44,7 @@ export class ItemOpcoesComponent implements OnInit {
         this.descricao = itemNovo ? "" : dados["descricao"];
         this.subitens = itemNovo ? [] : dados["subitens"];
         this.mudarNivelIndentacao(itemNovo ? 0 : dados["nivelIndentacao"]);
+        this.modoPrevisualizacao = itemNovo ? false : true;
       }
     });
   }

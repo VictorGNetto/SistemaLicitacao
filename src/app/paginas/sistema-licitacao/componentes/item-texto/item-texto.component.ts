@@ -40,6 +40,7 @@ export class ItemTextoComponent implements OnInit {
         const dados = JSON.parse(res);
         this.subitens = itemNovo ? [] : dados["subitens"];
         this.mudarNivelIndentacao(itemNovo ? 0 : dados["nivelIndentacao"]);
+        this.modoPrevisualizacao = itemNovo ? false : true;
       }
     });
   }
