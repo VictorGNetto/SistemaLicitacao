@@ -61,13 +61,14 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
       });
   }
 
-  adicionarSecao() {
+  // @offset === 0 -> insere à esquerda; @offset === 1 -> insere à direita;
+  adicionarSecao(offset: number) {
     let qtdSecoes = this.secoes.length;
     let novaSecao: Secao = {
       nome: `${qtdSecoes + 1}ª Seção`,
       itens: [],
     };
-    this.secoes.push(novaSecao);
+    this.secoes.splice(this.secaoSelecionada + offset, 0, novaSecao);
   }
 
   removerSecao() {
@@ -89,12 +90,29 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     this.secaoSelecionada = selectedIndex;
   }
 
+  adicionarPseudoitem(index: number) {
+    let indexSecao = this.secaoSelecionada;
+    this.secoes[indexSecao].itens.splice(index, 0, {
+      tipo: 'pseudoitem',
+      itemID: ''
+    });
+  }
+
   adicionarItem(tipo: string) {
     let index = this.secaoSelecionada;
     this.secoes[index].itens.push({
       tipo: tipo,
       itemID: `item novo ${this.itensCriados}`,
     });
+    this.itensCriados++;
+  }
+
+  transformarItem(tipo: string, index: number) {
+    let indexSecao = this.secaoSelecionada;
+    this.secoes[indexSecao].itens[index] = {
+      tipo: tipo,
+      itemID: `item novo ${this.itensCriados}`,
+    };
     this.itensCriados++;
   }
 
@@ -112,7 +130,7 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     let contador = 0;
 
     for (const secao of this.secoes) {
-      contador += secao.itens.length;
+      contador += secao.itens.filter(item => item.tipo !== "pseudoitem").length;
     }
 
     return contador;
@@ -215,11 +233,19 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
 
   // - Finaliza o processo de salvamento salvando o Documento Base
   salvarDocumentoBase() {
+    let secoes: Secao[] = [];
+    for (const secao of this.secoes) {
+      secoes.push({
+        nome: secao.nome,
+        itens: secao.itens.filter(item => item.tipo !== "pseudoitem")
+      });
+    }
+
     this.documentoBaseProvider
       .salvarDocumentoBase({
         documentoBaseID: this.documentoBaseID,
         nomeDocumentoBase: this.nomeDocumentoBase,
-        secoes: this.secoes,
+        secoes: secoes,
       })
       .subscribe({
         next: () => {

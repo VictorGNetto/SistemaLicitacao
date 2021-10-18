@@ -23,35 +23,45 @@
 <div *ngIf="salvandoItens">Salvando Itens</div>
 
 <div class="content">
-  <h2>Identificação</h2>
+  <h2>Nome do Documento Base</h2>
   <input
     class="identificacao"
     type="text"
     [(ngModel)]="nomeDocumentoBase"
-    placeholder="Identificação do Documento Base"
+    placeholder="Insira aqui o nome do Documento Base"
   />
 
   <br />
 
   <button
     mat-stroked-button
-    title="Adicionar seção"
-    class="adicionar-secao"
-    (click)="adicionarSecao()"
+    title="Adicionar seção à esquerda da seção atual"
+    class="adicionar-secao-antes"
+    (click)="adicionarSecao(0)"
   >
     <mat-icon>add_circle</mat-icon>
-    <div>Adicionar Seção</div>
+    <div>Adicionar Seção Antes</div>
   </button>
 
   <button
     mat-stroked-button
-    title="Remover seção"
+    title="Adicionar seção à direita da seção atual"
+    class="adicionar-secao-apos"
+    (click)="adicionarSecao(1)"
+  >
+    <mat-icon>add_circle</mat-icon>
+    <div>Adicionar Seção Após</div>
+  </button>
+
+  <button
+    mat-stroked-button
+    title="Remover seção atual"
     class="remover-secao"
     (click)="removerSecao()"
     [disabled]="secoes.length === 1"
   >
     <mat-icon>remove_circle</mat-icon>
-    <div>Remover Seção</div>
+    <div>Remover Seção Atual</div>
   </button>
 
   <mat-tab-group
@@ -99,9 +109,29 @@
         </div>
       </mat-toolbar>
 
-      <div *ngFor="let item of secoes[i].itens">
+      <div *ngFor="let item of secoes[i].itens; index as j">
         <div class="item" [id]="item.itemID">
           <div>
+            <!-- if item.tipo === pseudoitem -->
+            <div class="pseudoitem" *ngIf="item.tipo === 'pseudoitem'">
+              <button mat-stroked-button (click)="transformarItem('texto', j)">
+                <mat-icon>add_circle</mat-icon>
+                <div>Texto</div>
+              </button>
+              <button mat-stroked-button (click)="transformarItem('opcoes', j)">
+                <mat-icon>add_circle</mat-icon>
+                <div>Opções</div>
+              </button>
+              <button mat-stroked-button (click)="transformarItem('nota', j)">
+                <mat-icon>add_circle</mat-icon>
+                <div>Nota</div>
+              </button>
+              <button mat-stroked-button>
+                <mat-icon>add_circle</mat-icon>
+                <div>Tabela</div>
+              </button>
+            </div>
+
             <!-- if item.tipo === nota -->
             <item-nota
               *ngIf="item.tipo === 'nota'"
@@ -129,11 +159,27 @@
           <aside class="apagar">
             <button
               mat-icon-button
-              (click)="removerItem(item.itemID)"
-              class="botaoApagar"
+              [matMenuTriggerFor]="menu"
+              class="botaoMenu"
             >
-              <mat-icon>clear</mat-icon>
+              <mat-icon>more_vert</mat-icon>
             </button>
+            <mat-menu #menu>
+              <button mat-menu-item (click)="removerItem(item.itemID)">
+                <mat-icon>delete</mat-icon>
+                <span>Remover Item</span>
+              </button>
+
+              <button mat-menu-item (click)="adicionarPseudoitem(j)">
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Adicionar Item Acima</span>
+              </button>
+
+              <button mat-menu-item (click)="adicionarPseudoitem(j + 1)">
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Adicionar Item Abaixo</span>
+              </button>
+            </mat-menu>
           </aside>
         </div>
       </div>
@@ -141,10 +187,6 @@
       <hr />
 
       <div class="botoesAdicionarItens">
-        <button mat-stroked-button (click)="adicionarItem('nota')">
-          <mat-icon>add_circle</mat-icon>
-          <div>Nota</div>
-        </button>
         <button mat-stroked-button (click)="adicionarItem('texto')">
           <mat-icon>add_circle</mat-icon>
           <div>Texto</div>
@@ -152,6 +194,10 @@
         <button mat-stroked-button (click)="adicionarItem('opcoes')">
           <mat-icon>add_circle</mat-icon>
           <div>Opções</div>
+        </button>
+        <button mat-stroked-button (click)="adicionarItem('nota')">
+          <mat-icon>add_circle</mat-icon>
+          <div>Nota</div>
         </button>
         <button mat-stroked-button>
           <mat-icon>add_circle</mat-icon>
