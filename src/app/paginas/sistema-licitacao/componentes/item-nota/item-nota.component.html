@@ -45,5 +45,7 @@
     >{{ conteudo }}</textarea
   >
 
-  <p *ngIf="modoPrevisualizacao" class="pre-visualizacao">{{ conteudo }}</p>
+  <div *ngIf="modoPrevisualizacao" class="pre-visualizacao">
+    <p *ngFor="let paragrafo of paragrafos">{{ paragrafo }}</p>
+  </div>
 </div>

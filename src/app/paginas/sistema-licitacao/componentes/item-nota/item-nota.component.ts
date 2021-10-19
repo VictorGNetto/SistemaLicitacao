@@ -12,6 +12,7 @@ export class ItemNotaComponent implements OnInit {
   @Input() itemID = "";
   @Input() salvarItem = false;
   conteudo = "";
+  paragrafos: string[] = [];  // usado na previsualização
   nivelIndentacao = 0; // 0, 1 ou 2
   nivelIndentacaoClass = "container-0";
 
@@ -27,6 +28,7 @@ export class ItemNotaComponent implements OnInit {
       next: res => {
         const dados = JSON.parse(res);
         this.conteudo = itemNovo ? "Nota: " : dados["conteudo"];
+        this.atualizarConteudoPrevisualizacao();
         this.mudarNivelIndentacao(itemNovo ? 0 : dados["nivelIndentacao"]);
         this.modoPrevisualizacao = itemNovo ? false : true;
       }
@@ -59,5 +61,13 @@ export class ItemNotaComponent implements OnInit {
 
   tooglePrevisualizacao() {
     this.modoPrevisualizacao = !this.modoPrevisualizacao;
+
+    if (this.modoPrevisualizacao) {
+      this.atualizarConteudoPrevisualizacao();  
+    }
+  }
+
+  atualizarConteudoPrevisualizacao() {
+    this.paragrafos = this.conteudo.split("\n").filter(x => x !== "");
   }
 }

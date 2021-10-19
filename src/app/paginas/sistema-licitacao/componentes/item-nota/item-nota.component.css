@@ -52,7 +52,7 @@ textarea:focus {
   border: 2px dashed rgb(9, 107, 107);
 }
 
-p.pre-visualizacao {  
+.pre-visualizacao {  
   padding: 0.5rem;
   margin-top: 0.5rem;
   margin-right: 0.5rem;
@@ -66,4 +66,13 @@ p.pre-visualizacao {
   text-align: justify;
   font-size: 15px;
   font-weight: 600;
+}
+
+p {
+  text-indent: 2rem;
+  margin: 0;
+}
+
+p + p {
+  margin-top: 0.5rem;
 }
