@@ -1,16 +1,31 @@
-.container-0 {
+.container-edicao-0 {
   display: grid;
   grid-template-columns: 5fr 1fr 94fr;
 }
 
-.container-1 {
+.container-edicao-1 {
   display: grid;
   grid-template-columns: 5fr 6fr 89fr;
 }
 
-.container-2 {
+.container-edicao-2 {
   display: grid;
   grid-template-columns: 5fr 11fr 84fr;
+}
+
+.container-0 {
+  display: grid;
+  grid-template-columns: 6fr 94fr;
+}
+
+.container-1 {
+  display: grid;
+  grid-template-columns: 11fr 89fr;
+}
+
+.container-2 {
+  display: grid;
+  grid-template-columns: 16fr 84fr;
 }
 
 .menu {
@@ -140,11 +155,7 @@ input[type="radio"]:checked {
 }
 
 .pre-visualizacao span.entrada-texto {
-  padding: 0.1rem 0.35rem;
-
-  border-radius: 3px;
-  border: 1px dashed black;
-
-  color: #444;
-  background-color: rgb(180, 180, 0);
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-left: 3.5rem;
 }

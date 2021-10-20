@@ -138,6 +138,7 @@
               *ngIf="item.tipo === 'nota'"
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
+              [modoEdicao]="true"
               (salvado)="itenFoiSalvo()"
             ></item-nota>
 
@@ -146,6 +147,8 @@
               *ngIf="item.tipo === 'texto'"
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
+              [salvarEntradas]="false"
+              [modoEdicao]="true"
               (salvado)="itenFoiSalvo()"
             ></item-texto>
 
@@ -154,6 +157,8 @@
               *ngIf="item.tipo === 'opcoes'"
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
+              [salvarEntradas]="false"
+              [modoEdicao]="true"
               (salvado)="itenFoiSalvo()"
             ></item-opcoes>
           </div>

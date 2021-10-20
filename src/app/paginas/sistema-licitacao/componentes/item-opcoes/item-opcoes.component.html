@@ -1,5 +1,5 @@
 <div [class]="nivelIndentacaoClass">
-  <aside class="menu">
+  <aside class="menu" *ngIf="modoEdicao">
     <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
@@ -50,7 +50,7 @@
 
       <button
         mat-menu-item
-        (click)="tooglePrevisualizacao()"
+        (click)="togglePrevisualizacao()"
         [disabled]="subitens.length === 0"
       >
         <!-- Modo de Pré-visualização desativado -->
@@ -120,7 +120,7 @@
         class="opcao-entrada-texto"
       >
         <span></span>
-        <input type="radio" [name]="itemID" id="" />
+        <input type="radio" [name]="itemID" />
         <textarea
           class="texto-fixo"
           rows="1"
@@ -146,11 +146,8 @@
     </div>
   </div>
   <div class="pre-visualizacao" *ngIf="modoPrevisualizacao">
-    <!-- ------------------------------------------------------------------ -->
-
     <h1 class="pre-visualizacao-descricao">{{ descricao }}</h1>
-
-    <div class="subitens" *ngFor="let subitem of subitens">
+    <div class="subitens" *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'subdescricao' -->
       <div *ngIf="subitem.tipo === 'subdescricao'">
         <h2 class="pre-visualizacao-subdescricao">
@@ -160,18 +157,36 @@
 
       <!-- se subitem.tipo === 'opcao' -->
       <div *ngIf="subitem.tipo === 'opcao'">
-        <input type="radio" [name]="itemID" />
+        <input
+          type="radio"
+          [name]="itemID"
+          [value]="i"
+          (click)="atualizarOpcao(i)"
+          [checked]="i === opcao"
+        />
         <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
       </div>
 
       <!-- se subitem.tipo === 'opcao-entrada-texto' -->
       <div *ngIf="subitem.tipo === 'opcao-entrada-texto'">
-        <input type="radio" [name]="itemID" id="" />
+        <input
+          type="radio"
+          [name]="itemID"
+          [value]="i"
+          (click)="atualizarOpcao(i)"
+          [checked]="i === opcao"
+        />
         <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
-        <span class="entrada-texto">{{ subitem.placeholderEntradaTexto }}</span>
+        <span class="entrada-texto">
+          <textarea
+            class="entrada-texto"
+            rows="1"
+            [placeholder]="subitem.placeholderEntradaTexto"
+            [(ngModel)]="entradasTexto[i]"
+            appTextareaAutoresize
+          ></textarea>
+        </span>
       </div>
     </div>
-
-    <!-- ------------------------------------------------------------------ -->
   </div>
 </div>

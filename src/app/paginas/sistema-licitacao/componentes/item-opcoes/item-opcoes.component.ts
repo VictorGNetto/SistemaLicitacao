@@ -27,6 +27,9 @@ export class ItemOpcoesComponent implements OnInit {
 
   @Input() itemID = "";
   @Input() salvarItem = false;
+  // Se verdadeiro, quando o item é salvado o conteúdo das suas Entradas de Texto e a Opção
+  // escolhida também são salvados
+  @Input() salvarEntradas = true;
 
   nivelIndentacao = 0; // 0, 1 ou 2
   nivelIndentacaoClass = "container-0";
@@ -38,7 +41,12 @@ export class ItemOpcoesComponent implements OnInit {
     // { tipo: "opcao-entrada-texto", opcao: "789", placeholderEntradaTexto: "000" }
   ];
 
-  modoPrevisualizacao = false;
+  // array com o conteudo das entradas de texto
+  entradasTexto: string[] = [];
+  opcao: number = -1;
+
+  modoPrevisualizacao = true;
+  @Input() modoEdicao = true;
 
   @Output() salvado = new EventEmitter<void>();
 
@@ -51,6 +59,8 @@ export class ItemOpcoesComponent implements OnInit {
         const dados = JSON.parse(res);
         this.descricao = itemNovo ? "" : dados["descricao"];
         this.subitens = itemNovo ? [] : dados["subitens"];
+        this.entradasTexto = itemNovo ? [] : dados["entradasTexto"];
+        this.opcao = itemNovo ? -1 : dados["opcao"];
         this.mudarNivelIndentacao(itemNovo ? 0 : dados["nivelIndentacao"]);
         this.modoPrevisualizacao = itemNovo ? false : true;
       }
@@ -59,9 +69,16 @@ export class ItemOpcoesComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.salvarItem) {
+      if (!this.salvarEntradas) {
+        this.entradasTexto = this.entradasTexto.map(_ => "");
+        this.opcao = -1;
+      }
+
       const dados = JSON.stringify({
         "descricao": this.descricao,
         "subitens": this.subitens,
+        "opcao": this.opcao,
+        "entradasTexto": this.entradasTexto,
         "nivelIndentacao": this.nivelIndentacao
       });
 
@@ -79,32 +96,47 @@ export class ItemOpcoesComponent implements OnInit {
 
   mudarNivelIndentacao(novoNivelIndentacao: number) {
     this.nivelIndentacao = novoNivelIndentacao;
-    this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
+    if (this.modoEdicao) {
+      this.nivelIndentacaoClass = `container-edicao-${novoNivelIndentacao}`;
+    } else {
+      this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
+    }
   }
 
   adicionarSubdescricao() {
     this.subitens.push({
       tipo: "subdescricao", subdescricao: ""
     });
+
+    this.entradasTexto.push("");
   }
 
   adicionarOpcao() {
     this.subitens.push({
       tipo: "opcao", opcao: ""
     });
+
+    this.entradasTexto.push("");
   }
 
   adicionarOpcaoComEntradaTexto() {
     this.subitens.push({
       tipo: "opcao-entrada-texto", opcao: "", placeholderEntradaTexto: ""
     });
+
+    this.entradasTexto.push("");
   }
 
   removerSubitem(index: number) {
     this.subitens.splice(index, 1);
+    this.entradasTexto.splice(index, 1);
   }
 
-  tooglePrevisualizacao() {
+  atualizarOpcao(opcao: number) {
+    this.opcao = opcao;
+  }
+
+  togglePrevisualizacao() {
     this.modoPrevisualizacao = !this.modoPrevisualizacao;
   }
 

@@ -19,7 +19,8 @@ export class ItemNotaComponent implements OnInit {
   nivelIndentacao = 0; // 0, 1 ou 2
   nivelIndentacaoClass = "container-0";
 
-  modoPrevisualizacao = false;
+  modoPrevisualizacao = true;
+  @Input() modoEdicao = true;
 
   @Output() salvado = new EventEmitter<void>();
 
@@ -59,7 +60,11 @@ export class ItemNotaComponent implements OnInit {
 
   mudarNivelIndentacao(novoNivelIndentacao: number) {
     this.nivelIndentacao = novoNivelIndentacao;
-    this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
+    if (this.modoEdicao) {
+      this.nivelIndentacaoClass = `container-edicao-${novoNivelIndentacao}`;
+    } else {
+      this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
+    }
   }
 
   togglePrevisualizacao() {
