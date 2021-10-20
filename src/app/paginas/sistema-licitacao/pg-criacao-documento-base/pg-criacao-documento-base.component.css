@@ -3,6 +3,14 @@
   margin-right: 5rem;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
+.botao-toolbar {
+  margin-left: 0.5rem;
+}
+
 h1 {
   font-size: 28px;
 }
@@ -107,14 +115,23 @@ input:placeholder-shown.nome-secao {
 }
 
 .pseudoitem {
-  margin: 0.5rem 0 0 0.5rem;
-  float: left;
+  display: grid;
+  grid-template-columns: 5fr 1fr 94fr;
 }
 
-.pseudoitem button {
-  margin-left: 0.5rem;
-  width: 100px;
-  height: 100px;
+.menu {
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+
+div.botoes-pseudoitem {
+  display: flex;
+}
+
+.botoes-pseudoitem button {
+  margin: 0.25rem 0 0 0.25rem;
+  width: 75px;
+  height: 75px;
 }
 
 .item {

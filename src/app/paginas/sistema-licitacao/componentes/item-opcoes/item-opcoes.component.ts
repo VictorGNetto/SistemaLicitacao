@@ -3,6 +3,14 @@ import { EventEmitter, Input, Output } from '@angular/core';
 
 import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
 
+// Este aqui é o Item Opções, que permite a criação de um item com diversas
+// escolhas. Cada escolha corresponde à uma opção deste Item. Além das opções,
+// é possível adicionar subdescrições para um conjunto de opções. O Item como
+// um todo possui uma descrição. Todos esses elementos que acabamos de
+// descrever podem ser criados e editados por quem cria o Documento Base. Ao
+// usuário que preenche um Documento, é permitido somente a escolha de uma
+// das diversas opções criadas.
+
 interface Subitem {
   tipo: string,                     // "subdescricao", "opcao" e "opcao-entrada-texto"
   subdescricao?: string             // aplicável somente quando tipo="subdescricao"

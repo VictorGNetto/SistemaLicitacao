@@ -1,28 +1,21 @@
-<mat-toolbar>
-  <h1>Criação de Documento Base</h1>
-  <span style="width: 100px"></span>
-  <h2>ID: {{ documentoBaseID }}</h2>
-  <span style="width: 100px"></span>
-  <button mat-stroked-button>Visualizar</button>
-  <button
-    mat-stroked-button
-    style="margin-left: 0.5rem"
-    (click)="salvarItens()"
-  >
-    Salvar
-  </button>
-  <button
-    mat-stroked-button
-    style="margin-left: 0.5rem"
-    routerLink="/sistemaLicitacao/documentoBase"
-  >
-    Voltar
-  </button>
-</mat-toolbar>
-
-<div *ngIf="salvandoItens">Salvando Itens</div>
-
 <div class="content">
+  <mat-toolbar>
+    <h1>Criação de Documento Base</h1>
+    <span class="spacer"></span>
+    <button mat-stroked-button class="botao-toolbar" (click)="salvarItens()">
+      Salvar
+    </button>
+    <button
+      mat-stroked-button
+      class="botao-toolbar"
+      routerLink="/sistemaLicitacao/documentoBase"
+    >
+      Voltar
+    </button>
+  </mat-toolbar>
+
+  <div *ngIf="salvandoItens">Salvando Itens</div>
+
   <h2>Nome do Documento Base</h2>
   <input
     class="identificacao"
@@ -114,22 +107,30 @@
           <div>
             <!-- if item.tipo === pseudoitem -->
             <div class="pseudoitem" *ngIf="item.tipo === 'pseudoitem'">
-              <button mat-stroked-button (click)="transformarItem('texto', j)">
-                <mat-icon>add_circle</mat-icon>
-                <div>Texto</div>
-              </button>
-              <button mat-stroked-button (click)="transformarItem('opcoes', j)">
-                <mat-icon>add_circle</mat-icon>
-                <div>Opções</div>
-              </button>
-              <button mat-stroked-button (click)="transformarItem('nota', j)">
-                <mat-icon>add_circle</mat-icon>
-                <div>Nota</div>
-              </button>
-              <button mat-stroked-button>
-                <mat-icon>add_circle</mat-icon>
-                <div>Tabela</div>
-              </button>
+              <aside class="menu">
+                <button mat-icon-button disabled>
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+              </aside>
+              <span></span>
+              <div class="botoes-pseudoitem">
+                <button mat-stroked-button (click)="transformarItem('texto', j)">
+                  <mat-icon>add_circle</mat-icon>
+                  <div>Texto</div>
+                </button>
+                <button mat-stroked-button (click)="transformarItem('opcoes', j)">
+                  <mat-icon>add_circle</mat-icon>
+                  <div>Opções</div>
+                </button>
+                <button mat-stroked-button (click)="transformarItem('nota', j)">
+                  <mat-icon>add_circle</mat-icon>
+                  <div>Nota</div>
+                </button>
+                <button mat-stroked-button>
+                  <mat-icon>add_circle</mat-icon>
+                  <div>Tabela</div>
+                </button>
+              </div>
             </div>
 
             <!-- if item.tipo === nota -->

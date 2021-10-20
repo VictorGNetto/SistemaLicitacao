@@ -3,6 +3,10 @@ import { EventEmitter, Input, Output } from '@angular/core';
 
 import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
 
+// Este aqui é o Item Texto, que permite a criação de Textos Fixos
+// e Entradas de Texto por quem cria o Documento Base, e o preenchimento
+// das Entradas de Texto por quem preenche um Documento.
+
 interface Subitem {
   tipo: string,         // "texto-fixo" ou "entrada-texto"
   conteudo?: string     // aplicável somente quando tipo="texto-fixo"
@@ -27,7 +31,7 @@ export class ItemTextoComponent implements OnInit {
     // { tipo: "entrada-texto", placeholder: "Aqui vai o placeholder da entrada de texto" }
   ];
 
-  modoPrevisualizacao = false;
+  modoPrevisualizacao = true;
 
   @Output() salvado = new EventEmitter<void>();
 

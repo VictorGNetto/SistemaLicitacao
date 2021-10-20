@@ -3,6 +3,9 @@ import { EventEmitter, Input, Output } from '@angular/core';
 
 import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
 
+// Este aqui é o Item Nota, que permite ao criador do Documento Base passsar
+// informações gerais a quem for preencher o Documento.
+
 @Component({
   selector: 'item-nota',
   templateUrl: './item-nota.component.html',
@@ -28,7 +31,7 @@ export class ItemNotaComponent implements OnInit {
       next: res => {
         const dados = JSON.parse(res);
         this.conteudo = itemNovo ? "Nota: " : dados["conteudo"];
-        this.atualizarConteudoPrevisualizacao();
+        this.atualizarParagrafos();
         this.mudarNivelIndentacao(itemNovo ? 0 : dados["nivelIndentacao"]);
         this.modoPrevisualizacao = itemNovo ? false : true;
       }
@@ -59,15 +62,15 @@ export class ItemNotaComponent implements OnInit {
     this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
   }
 
-  tooglePrevisualizacao() {
+  togglePrevisualizacao() {
     this.modoPrevisualizacao = !this.modoPrevisualizacao;
 
     if (this.modoPrevisualizacao) {
-      this.atualizarConteudoPrevisualizacao();  
+      this.atualizarParagrafos();  
     }
   }
 
-  atualizarConteudoPrevisualizacao() {
+  atualizarParagrafos() {
     this.paragrafos = this.conteudo.split("\n").filter(x => x !== "");
   }
 }
