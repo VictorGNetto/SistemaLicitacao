@@ -20,7 +20,7 @@ export class PgDocumentoBaseComponent implements OnInit {
 
   constructor(
     private documentoBaseProvider: DocumentoBaseService,
-    private route: Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class PgDocumentoBaseComponent implements OnInit {
     this.documentoBaseProvider.criarDocumentoBase().subscribe(
       {
         next: (documentoBaseID: string) => {
-          this.route.navigate([`/sistemaLicitacao/criacaoDocumentoBase/${documentoBaseID}`]);
+          this.router.navigate([`/sistemaLicitacao/criacaoDocumentoBase/${documentoBaseID}`]);
         },
         // error: (err: Error) => {},
         // complete: () => {}

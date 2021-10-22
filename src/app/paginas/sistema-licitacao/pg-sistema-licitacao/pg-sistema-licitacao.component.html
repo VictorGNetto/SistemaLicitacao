@@ -1,5 +1,22 @@
-<a mat-stroked-button>Documentos</a>
+<div class="content">
+  <mat-toolbar>
+    <h1>Sistema de Licitação</h1>
+    <h2>{{ sessaoID }}</h2>
+    <span class="spacer"></span>
+    <button mat-stroked-button class="botao-toolbar" routerLink="#">
+      Voltar
+    </button>
+  </mat-toolbar>
 
-<a mat-stroked-button *ngIf="tipoUsuario === 'Analista'" routerLink="/sistemaLicitacao/documentoBase">
-  Documentos Base
-</a>
+  <div class="subsistemas">
+    <a mat-stroked-button><div class="container">Documentos</div></a>
+
+    <a
+      mat-stroked-button
+      *ngIf="possuiPermissaoDocBase"
+      (click)="irPaginaDocumentoBase()"
+    >
+      <div class="container">Documentos<br><br>Base</div>
+    </a>
+  </div>
+</div>
