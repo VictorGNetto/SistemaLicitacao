@@ -1,7 +1,6 @@
 <div class="content">
   <mat-toolbar>
     <h1>Sistema de Licitação</h1>
-    <h2>{{ sessaoID }}</h2>
     <span class="spacer"></span>
     <button mat-stroked-button class="botao-toolbar" routerLink="#">
       Voltar
@@ -9,7 +8,7 @@
   </mat-toolbar>
 
   <div class="subsistemas">
-    <a mat-stroked-button><div class="container">Documentos</div></a>
+    <a mat-stroked-button (click)="irPaginaDocumento()"><div class="container">Documentos</div></a>
 
     <a
       mat-stroked-button

@@ -1,19 +1,29 @@
-<h1>Documento Base</h1>
-
-<ul>
-  <li *ngFor="let docb of listaDocumentosBase">
-    <a [href]="'./sistemaLicitacao/criacaoDocumentoBase/' + docb.documentoBaseID">{{ docb.nomeDocumentoBase }}</a>
-  </li>
-</ul>
-
-<a
-  mat-stroked-button
-  (click)="criarDocumentoBase()"
->
-  <mat-icon>add</mat-icon>
-  <div>Criar Documento Base</div>
-</a>
-
-<div *ngIf="criandoDocumento">
-  Criando Documento. Em instantes você será redirecionado.
+<div class="content">
+  <mat-toolbar>
+    <div>
+      <h1>Sistema de Licitação - Documento Base</h1>
+      <span style="font-size: 12px;">{{ usuarioNome }} [{{ usuarioID }}]</span>
+    </div>
+    <span class="spacer"></span>
+    <button mat-stroked-button class="botao-toolbar" routerLink="/sistemaLicitacao">
+      Voltar
+    </button>
+  </mat-toolbar>
+  <ul>
+    <li *ngFor="let docb of listaDocumentosBase">
+      <a [href]="'./sistemaLicitacao/criacaoDocumentoBase/' + docb.documentoBaseID">{{ docb.nomeDocumentoBase }}</a>
+    </li>
+  </ul>
+  
+  <button
+    mat-stroked-button
+    (click)="criarDocumentoBase()"
+  >
+    <mat-icon>add</mat-icon>
+    <div>Criar Documento Base</div>
+  </button>
+  
+  <div *ngIf="criandoDocumento">
+    Criando Documento. Em instantes você será redirecionado.
+  </div>
 </div>

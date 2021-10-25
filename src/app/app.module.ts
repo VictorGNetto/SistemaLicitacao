@@ -31,6 +31,7 @@ import { ItemTextoComponent } from './paginas/sistema-licitacao/componentes/item
 import { ItemOpcoesComponent } from './paginas/sistema-licitacao/componentes/item-opcoes/item-opcoes.component';
 import { TextareaAutoresizeDirective } from './diretivas/textarea-autoresize.directive';
 import { PgEntradaSistemaLicitacaoComponent } from './paginas/sistema-licitacao/pg-entrada-sistema-licitacao/pg-entrada-sistema-licitacao.component';
+import { PgDocumentoComponent } from './paginas/sistema-licitacao/pg-documento/pg-documento.component';
 
 const appRoutes: Routes = [
   // {
@@ -50,6 +51,10 @@ const appRoutes: Routes = [
   {
     path: 'sistemaLicitacao',
     component: PgSistemaLicitacaoComponent,
+  },
+  {
+    path: 'sistemaLicitacao/documento',
+    component: PgDocumentoComponent,
   },
   {
     path: 'sistemaLicitacao/documentoBase',
@@ -78,7 +83,8 @@ const appRoutes: Routes = [
     PgSistemaLicitacaoComponent,
     PgDocumentoBaseComponent,
     TextareaAutoresizeDirective,
-    PgEntradaSistemaLicitacaoComponent
+    PgEntradaSistemaLicitacaoComponent,
+    PgDocumentoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+
 import { SessaoService } from 'src/app/providers/sistema-licitacao/sessao.service';
+import { SalvarDados } from 'src/app/classes/salvar-dados';
 
 @Component({
   selector: 'app-pg-sistema-licitacao',
@@ -8,37 +10,30 @@ import { SessaoService } from 'src/app/providers/sistema-licitacao/sessao.servic
   styleUrls: ['./pg-sistema-licitacao.component.css']
 })
 export class PgSistemaLicitacaoComponent implements OnInit {
-  sessaoID = "";
-  sessaoInfo: any;
-  usuarioID: number = -1;
   possuiPermissaoDocBase = true;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private sessaoProvider: SessaoService
-  ) {
-    const state = this.router.getCurrentNavigation()?.extras.state;
-    this.sessaoID = state ? state["sessaoID"] : "";
-  }
+    private sessaoProvider: SessaoService,
+    private salvarDados: SalvarDados
+  ) {}
 
   ngOnInit(): void {
+    const sessaoID = this.salvarDados.get("sessaoID");
+
     this.sessaoProvider
-      .obterInfoSessao(this.sessaoID)
+      .obterInfoSessao(sessaoID)
       .subscribe({
-        next: x => {
-          this.sessaoInfo = x;
-          this.usuarioID = x["id"];
-        }
+        next: res => this.salvarDados.set("infoSessao", res)
       });
   }
 
+  irPaginaDocumento() {
+    this.router.navigate(["/sistemaLicitacao/documento"]);
+  }
+
   irPaginaDocumentoBase() {
-    this.router.navigate(["/sistemaLicitacao/documentoBase"], {
-      state: {
-        dados: "Aqui vão os dados!!!"
-      }
-    });
+    this.router.navigate(["/sistemaLicitacao/documentoBase"]);
   }
 
 }

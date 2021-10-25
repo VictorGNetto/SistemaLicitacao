@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { SalvarDados } from 'src/app/classes/salvar-dados';
+
 @Component({
   selector: 'app-pg-entrada-sistema-licitacao',
   templateUrl: './pg-entrada-sistema-licitacao.component.html',
@@ -9,14 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PgEntradaSistemaLicitacaoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router,
+    private salvarDados: SalvarDados
+  ) {}
 
   ngOnInit(): void {
     const sessaoID = this.route.snapshot.queryParamMap.get('sessid') ?? '';
-    this.router.navigate(['/sistemaLicitacao'], {
-      state: {
-        sessaoID: sessaoID
-      }
-    });
+    this.salvarDados.set("sessaoID", sessaoID);
+
+    this.router.navigate(['/sistemaLicitacao']);
   }
 }
