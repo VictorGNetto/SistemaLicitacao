@@ -1,1 +1,103 @@
-<p>pg-preenchimento-documento works!</p>
+<div class="content">
+  <mat-toolbar>
+    <h1>Preenchimento de Documento</h1>
+    <span class="spacer"></span>
+    <button mat-stroked-button class="botao-toolbar" (click)="salvarItens()">
+      Salvar
+    </button>
+    <button
+      mat-stroked-button
+      class="botao-toolbar"
+      routerLink="/sistemaLicitacao/documento"
+    >
+      Voltar
+    </button>
+  </mat-toolbar>
+
+  <div *ngIf="salvandoItens">Salvando Itens</div>
+
+  <input
+    class="nome-documento"
+    type="text"
+    [(ngModel)]="nomeDocumento"
+    placeholder="Insira aqui o nome do Documento"
+  />
+
+  <mat-tab-group animationDuration="0ms" #tabgroup>
+    <mat-tab
+      *ngFor="let secao of secoes; index as i; first as isFirst; last as isLast"
+    >
+      <ng-template mat-tab-label>
+        <span class="tab-nome-secao">{{ secao.nome }}</span>
+      </ng-template>
+      <mat-toolbar class="secao-toolbar">
+        <div class="div-secao-toolbar">
+          <button
+            mat-stroked-button
+            title="Ir para a seção anterior"
+            [disabled]="isFirst"
+            (click)="tabgroup.selectedIndex = i - 1"
+          >
+            <mat-icon>keyboard_double_arrow_left</mat-icon>
+            Seção Anterior
+          </button>
+        </div>
+        <div class="div-secao-toolbar">
+          <input
+            class="nome-secao"
+            type="text"
+            [value]="secoes[i].nome"
+            placeholder="Nome da Seção"
+          />
+        </div>
+        <div class="div-secao-toolbar">
+          <button
+            mat-stroked-button
+            title="Ir para a próxima seção"
+            [disabled]="isLast"
+            (click)="tabgroup.selectedIndex = i + 1"
+          >
+            Próxima Seção
+            <mat-icon>keyboard_double_arrow_right</mat-icon>
+          </button>
+        </div>
+      </mat-toolbar>
+
+      <div *ngFor="let item of secoes[i].itens; index as j">
+        <div class="item" [id]="item.itemID">
+          <div>
+            <!-- if item.tipo === nota -->
+            <item-nota
+              *ngIf="item.tipo === 'nota'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              [modoEdicao]="false"
+              (salvado)="itenFoiSalvo()"
+            ></item-nota>
+
+            <!-- se item.tipo === texto -->
+            <item-texto
+              *ngIf="item.tipo === 'texto'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              [salvarEntradas]="false"
+              [modoEdicao]="false"
+              (salvado)="itenFoiSalvo()"
+            ></item-texto>
+
+            <!-- se item.tipo === opcoes -->
+            <item-opcoes
+              *ngIf="item.tipo === 'opcoes'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              [salvarEntradas]="false"
+              [modoEdicao]="false"
+              (salvado)="itenFoiSalvo()"
+            ></item-opcoes>
+          </div>
+          <span></span>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,0 +1,92 @@
+.content {
+  padding: 0 1rem;
+  margin-right: 5rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.botao-toolbar {
+  margin-left: 0.5rem;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+.nome-documento {
+  height: 35px;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+}
+
+input {
+  cursor: pointer;
+
+  outline: none;
+  border-width: 0;
+
+  background-color: inherit !important;
+}
+
+input:hover {
+  background-color: #ddd !important;
+}
+
+input:focus {
+  background-color: #ccc !important;
+  border: 2px dashed black;
+}
+
+input.nome-documento {
+  width: 97%;
+  text-align: center;
+}
+
+input.nome-secao {
+  width: 90%;
+  text-align: center;
+}
+
+input:placeholder-shown.identificacao {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.tab-nome-secao {
+  font-weight: bold;
+}
+
+.nome-secao {
+  outline: none;
+  background-color: #eee;
+  border-radius: 5px;
+  width: 250px;
+  height: 20px;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
+
+input:placeholder-shown.nome-secao {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.secao-toolbar {
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+}
+
+.div-secao-toolbar {
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 95fr 5fr;
+}
