@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Criar Novo Documento</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field>
+    <mat-label>Escolha um Documento</mat-label>
+    <mat-select [(ngModel)]="documentoBaseEscolhido" style="width: 350px">
+      <mat-option
+        *ngFor="let documentoBase of listaDocumentosBase; index as i"
+        [value]="documentoBase.documentoBaseID"
+        >{{ documentoBase.nomeDocumentoBase }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+{{ documentoBaseEscolhido }}
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [disabled]="documentoBaseEscolhido === ''" (click)="criarDocumento()">Criar</button>
+</mat-dialog-actions>

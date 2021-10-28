@@ -15,6 +15,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 // Páginas do sistema
 import { PgSistemaLicitacaoComponent } from './paginas/sistema-licitacao/pg-sistema-licitacao/pg-sistema-licitacao.component';
@@ -32,6 +34,7 @@ import { ItemOpcoesComponent } from './paginas/sistema-licitacao/componentes/ite
 import { TextareaAutoresizeDirective } from './diretivas/textarea-autoresize.directive';
 import { PgEntradaSistemaLicitacaoComponent } from './paginas/sistema-licitacao/pg-entrada-sistema-licitacao/pg-entrada-sistema-licitacao.component';
 import { PgDocumentoComponent } from './paginas/sistema-licitacao/pg-documento/pg-documento.component';
+import { ListaDocumentoBaseDialog } from './paginas/sistema-licitacao/pg-documento/pg-documento.component';
 
 const appRoutes: Routes = [
   // {
@@ -65,6 +68,10 @@ const appRoutes: Routes = [
     component: PgCriacaoDocumentoBaseComponent,
   },
   {
+    path: 'sistemaLicitacao/preenchimentoDocumento/:documentoID',
+    component: PgPreenchimentoDocumentoComponent,
+  },
+  {
     path: 'testeMensagens',
     component: PgTesteComponenteMensagemComponent,
   }
@@ -84,7 +91,8 @@ const appRoutes: Routes = [
     PgDocumentoBaseComponent,
     TextareaAutoresizeDirective,
     PgEntradaSistemaLicitacaoComponent,
-    PgDocumentoComponent
+    PgDocumentoComponent,
+    ListaDocumentoBaseDialog
   ],
   imports: [
     BrowserModule,
@@ -99,9 +107,11 @@ const appRoutes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
+    MatDialogModule,
+    MatSelectModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

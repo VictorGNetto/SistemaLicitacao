@@ -6,19 +6,19 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 interface Item {
-  tipo: string;
-  itemID: string;
+  tipo: string,
+  itemID: string,
 }
 
 interface Secao {
-  nome: string;
-  itens: Item[];
+  nome: string,
+  itens: Item[],
 }
 
 interface DocumentoBase {
-  documentoBaseID: string;
-  nomeDocumentoBase: string;
-  secoes: Secao[];
+  documentoBaseID: string,
+  nomeDocumentoBase: string,
+  secoes: Secao[],
 }
 
 @Injectable({
@@ -54,7 +54,7 @@ export class DocumentoBaseService {
 
     return this.http
       .get<respostaCriacaoDocumentoBase>(url)
-      .pipe(map((res) => res.documentoBaseID));
+      .pipe(map(res => res.documentoBaseID));
   }
 
   // - Requisita ao servidor um Documento Base pelo seu ID
@@ -65,7 +65,7 @@ export class DocumentoBaseService {
       `carregar-documento-base.php?documentoBaseID=${documentoBaseID}`;
 
     interface respostaCarregamentoDocumentoBase {
-      documentoBase: DocumentoBase;
+      documentoBase: DocumentoBase
     }
 
     return this.http

@@ -20,7 +20,7 @@ export class PgDocumentoBaseComponent implements OnInit {
     nomeDocumentoBase: string;
   }[] = [];
 
-  criandoDocumento = false;
+  criandoDocumentoBase = false;
 
   usuarioNome = 'Usuário ainda não identificado';
   usuarioID = -1;
@@ -47,13 +47,12 @@ export class PgDocumentoBaseComponent implements OnInit {
   // - Acessa a página de criação de Documento Base utilizando o ID devolvido pelo DocumentoBaseService
   criarDocumentoBase() {
     this.documentoBaseProvider.criarDocumentoBase().subscribe({
-      next: (documentoBaseID: string) => {
+      next: documentoBaseID =>
         this.router.navigate([
           `/sistemaLicitacao/criacaoDocumentoBase/${documentoBaseID}`,
-        ]);
-      },
+        ]),
     });
 
-    this.criandoDocumento = true;
+    this.criandoDocumentoBase = true;
   }
 }

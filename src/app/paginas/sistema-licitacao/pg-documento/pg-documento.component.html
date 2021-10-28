@@ -13,4 +13,27 @@
       Voltar
     </button>
   </mat-toolbar>
+
+  <button
+    style="margin-top: 1rem;"
+    mat-stroked-button
+    title="Criar novo documento"
+    (click)="openDialog()"
+  >
+    <mat-icon>add_circle</mat-icon>
+    <div>Criar Novo Documento</div>
+  </button>
+
+  <div class="documentos">
+    <ul>
+      <li><a href="#">Documento 1</a></li>
+      <li><a href="#">Documento 2</a></li>
+      <li><a href="#">Documento 3</a></li>
+    </ul>
+
+  </div>
+
+  <div *ngIf="criandoDocumento">
+    Criando Documento. Em instantes você será redirecionado.
+  </div>
 </div>
