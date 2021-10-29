@@ -54,6 +54,19 @@ export class DocumentoService {
 
     return this.http
       .get<respostaCriacaoDocumento>(url)
-      .pipe(map(res => res.documentoID));
+      .pipe(map((res) => res.documentoID));
+  }
+
+  carregarDocumento(documentoID: string): Observable<Documento> {
+    const url =
+      environment.urlBase + `carregar-documento.php?documentoID=${documentoID}`;
+
+    interface respostaCarregamentoDocumento {
+      documento: Documento;
+    }
+
+    return this.http
+      .get<respostaCarregamentoDocumento>(url)
+      .pipe(map((res) => res.documento));
   }
 }

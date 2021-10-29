@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DocumentoService } from 'src/app/providers/sistema-licitacao/documento.service';
 
 interface Item {
   tipo: string;
@@ -38,9 +40,19 @@ export class PgPreenchimentoDocumentoComponent implements OnInit {
   ];
   secaoSelecionada = 0;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private documentoProvider: DocumentoService) { }
 
   ngOnInit(): void {
+    this.documentoID = this.route.snapshot.paramMap.get('documentoID') ?? '';
+  
+    this.documentoProvider
+      .carregarDocumento(this.documentoID)
+      .subscribe({
+        next: documento => {
+          this.nomeDocumento = documento.nomeDocumento;
+          this.secoes = documento.secoes;
+        }
+      });
   }
 
   // --------------------------------------------------------------------------
