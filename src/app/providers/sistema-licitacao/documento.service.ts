@@ -32,6 +32,18 @@ interface Documento {
 export class DocumentoService {
   constructor(private http: HttpClient, private salvarDados: SalvarDados) {}
 
+  listaDocumentos(usuarioID: Number): Observable<Documento[]> {
+    const url = environment.urlBase + `lista-documentos.php?autorID=${usuarioID}`;
+
+    interface respostaListagemDocumentos {
+      listaDocumentos: Documento[];
+    }
+
+    return this.http
+      .get<respostaListagemDocumentos>(url)
+      .pipe(map((res) => res.listaDocumentos));
+  }
+
   /**
    * Cria um novo Documento a partir de um Documento base: o nome, as seções
    * e os itens dessas seções serão os mesmos. A diferença é que tudo isso

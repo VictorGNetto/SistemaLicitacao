@@ -26,9 +26,9 @@
 
   <div class="documentos">
     <ul>
-      <li><a href="#">Documento 1</a></li>
-      <li><a href="#">Documento 2</a></li>
-      <li><a href="#">Documento 3</a></li>
+      <li *ngFor="let doc of listaDocumentos">
+        <a [href]="'./sistemaLicitacao/preenchimentoDocumento/' + doc.documentoID">{{ doc.identificacao }}</a>
+      </li>
     </ul>
 
   </div>

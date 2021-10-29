@@ -15,10 +15,7 @@ interface DocumentoBase {
   styleUrls: ['./pg-documento-base.component.css'],
 })
 export class PgDocumentoBaseComponent implements OnInit {
-  listaDocumentosBase: {
-    documentoBaseID: string;
-    nomeDocumentoBase: string;
-  }[] = [];
+  listaDocumentosBase: DocumentoBase[] = [];
 
   criandoDocumentoBase = false;
 
@@ -37,9 +34,7 @@ export class PgDocumentoBaseComponent implements OnInit {
     this.usuarioNome = infoSessao['nome'];
 
     this.documentoBaseProvider.listaDocumentosBase().subscribe({
-      next: (lista: DocumentoBase[]) => {
-        this.listaDocumentosBase = lista;
-      },
+      next: (lista: DocumentoBase[]) => (this.listaDocumentosBase = lista),
     });
   }
 
@@ -47,7 +42,7 @@ export class PgDocumentoBaseComponent implements OnInit {
   // - Acessa a página de criação de Documento Base utilizando o ID devolvido pelo DocumentoBaseService
   criarDocumentoBase() {
     this.documentoBaseProvider.criarDocumentoBase().subscribe({
-      next: documentoBaseID =>
+      next: (documentoBaseID) =>
         this.router.navigate([
           `/sistemaLicitacao/criacaoDocumentoBase/${documentoBaseID}`,
         ]),

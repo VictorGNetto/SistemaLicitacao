@@ -1,10 +1,19 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { DocumentoBaseService } from 'src/app/providers/sistema-licitacao/documento-base.service';
 import { SalvarDados } from 'src/app/classes/salvar-dados';
 import { DocumentoService } from 'src/app/providers/sistema-licitacao/documento.service';
+
+interface Documento {
+  documentoID: string;
+  identificacao: string;
+}
 
 @Component({
   selector: 'app-pg-documento',
@@ -12,17 +21,32 @@ import { DocumentoService } from 'src/app/providers/sistema-licitacao/documento.
   styleUrls: ['./pg-documento.component.css'],
 })
 export class PgDocumentoComponent implements OnInit {
+  listaDocumentos: Documento[] = [
+    {
+      documentoID: 'taslj',
+      identificacao: 'Termo de Referência - Compra Direta [TASLJ]',
+    },
+  ];
+
   usuarioNome = 'Usuário ainda não identificado';
   usuarioID = -1;
 
   criandoDocumento = false;
 
-  constructor(private salvarDados: SalvarDados, public dialog: MatDialog) {}
+  constructor(
+    private salvarDados: SalvarDados,
+    public dialog: MatDialog,
+    private documentoProvider: DocumentoService
+  ) {}
 
   ngOnInit(): void {
     const infoSessao = this.salvarDados.get('infoSessao');
     this.usuarioID = infoSessao['id'];
     this.usuarioNome = infoSessao['nome'];
+
+    this.documentoProvider.listaDocumentos(this.usuarioID).subscribe({
+      next: (lista: Documento[]) => (this.listaDocumentos = lista),
+    });
   }
 
   openDialog() {
@@ -35,11 +59,11 @@ export class PgDocumentoComponent implements OnInit {
     const dialogRef = this.dialog.open(ListaDocumentoBaseDialog, dialogConfig);
 
     dialogRef.afterClosed().subscribe({
-      next: data => {
+      next: (data) => {
         if (data) {
           this.criandoDocumento = true;
         }
-      }
+      },
     });
   }
 }
@@ -77,7 +101,7 @@ export class ListaDocumentoBaseDialog implements OnInit {
             `/sistemaLicitacao/preenchimentoDocumento/${documentoID}`,
           ]),
       });
-    
+
     this.dialogRef.close({ criandoDocumento: true });
   }
 }
