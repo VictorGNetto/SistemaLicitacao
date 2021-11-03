@@ -103,4 +103,9 @@ export class DocumentoBaseService {
       .post<void>(url, documentoBase, opcoesHttp)
       .pipe(map((res) => void 0));
   }
+
+  excluirDocumentoBase(documentoBaseID: string): Observable<{ documentoBaseID: string }> {
+
+    return of({ documentoBaseID: documentoBaseID });
+  }
 }

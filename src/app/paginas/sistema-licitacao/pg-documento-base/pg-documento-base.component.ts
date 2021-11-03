@@ -50,4 +50,15 @@ export class PgDocumentoBaseComponent implements OnInit {
 
     this.criandoDocumentoBase = true;
   }
+
+  excluirDocumentoBase(documentoBaseID: string) {
+    this.documentoBaseProvider.excluirDocumentoBase(documentoBaseID).subscribe({
+      next: (res) => {
+        const index = this.listaDocumentosBase.findIndex(
+          (docb) => docb.documentoBaseID === res.documentoBaseID
+        );
+        this.listaDocumentosBase.splice(index, 1);
+      },
+    });
+  }
 }

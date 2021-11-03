@@ -2,27 +2,80 @@
   <mat-toolbar>
     <div>
       <h1>Sistema de Licitação - Documento Base</h1>
-      <span style="font-size: 12px;">{{ usuarioNome }} [{{ usuarioID }}]</span>
+      <span style="font-size: 12px">{{ usuarioNome }} [{{ usuarioID }}]</span>
     </div>
     <span class="spacer"></span>
-    <button mat-stroked-button class="botao-toolbar" routerLink="/sistemaLicitacao">
+    <button
+      mat-stroked-button
+      class="botao-toolbar"
+      routerLink="/sistemaLicitacao"
+    >
       Voltar
     </button>
   </mat-toolbar>
-  <ul>
-    <li *ngFor="let docb of listaDocumentosBase">
-      <a [href]="'./sistemaLicitacao/criacaoDocumentoBase/' + docb.documentoBaseID">{{ docb.nomeDocumentoBase }}</a>
-    </li>
-  </ul>
-  
-  <button
-    mat-stroked-button
-    (click)="criarDocumentoBase()"
-  >
-    <mat-icon>add</mat-icon>
-    <div>Criar Documento Base</div>
-  </button>
-  
+
+  <div *ngIf="listaDocumentosBase.length !== 0">
+    <div>
+      <h2 class="descricao">Lista de Documentos Base</h2>
+
+      <button class="btn-criar-documento-base" mat-stroked-button (click)="criarDocumentoBase()">
+        <mat-icon>add</mat-icon>
+        <div>Criar Documento Base</div>
+      </button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let docb of listaDocumentosBase">
+          <td>{{ docb.documentoBaseID | uppercase }}</td>
+          <td>
+            <a
+              [href]="
+                './sistemaLicitacao/criacaoDocumentoBase/' +
+                docb.documentoBaseID
+              "
+              >{{ docb.nomeDocumentoBase }}</a
+            >
+          </td>
+          <td>
+            <div class="acoes">
+              <button
+                mat-icon-button
+                title="Editar Documento Base"
+                [routerLink]="'/sistemaLicitacao/criacaoDocumentoBase/' + docb.documentoBaseID"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                title="Excluir Documento Base"
+                (click)="excluirDocumentoBase(docb.documentoBaseID)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="listaDocumentosBase.length === 0">
+    <div style="display: block; clear: both;">
+      <h2 class="descricao">Nenhum Documento Base criado</h2>
+
+      <button class="btn-criar-documento-base" mat-stroked-button (click)="criarDocumentoBase()">
+        <mat-icon>add</mat-icon>
+        <div>Criar Documento Base</div>
+      </button>
+    </div>
+  </div>
+
   <div *ngIf="criandoDocumentoBase">
     Criando Documento. Em instantes você será redirecionado.
   </div>
