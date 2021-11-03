@@ -96,9 +96,9 @@ export class ListaDocumentoBaseDialog implements OnInit {
     this.documentoProvider
       .criarDocumento(this.documentoBaseEscolhido)
       .subscribe({
-        next: (documentoID) =>
+        next: (res) =>
           this.router.navigate([
-            `/sistemaLicitacao/preenchimentoDocumento/${documentoID}`,
+            `/sistemaLicitacao/preenchimentoDocumento/${res.documentoID}`,
           ]),
       });
 

@@ -42,9 +42,9 @@ export class PgDocumentoBaseComponent implements OnInit {
   // - Acessa a página de criação de Documento Base utilizando o ID devolvido pelo DocumentoBaseService
   criarDocumentoBase() {
     this.documentoBaseProvider.criarDocumentoBase().subscribe({
-      next: (documentoBaseID) =>
+      next: (res) =>
         this.router.navigate([
-          `/sistemaLicitacao/criacaoDocumentoBase/${documentoBaseID}`,
+          `/sistemaLicitacao/criacaoDocumentoBase/${res.documentoBaseID}`,
         ]),
     });
 

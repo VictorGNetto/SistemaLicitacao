@@ -5,23 +5,30 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SessaoService {
-
   constructor(private http: HttpClient) {}
 
-  // - Recebe o ID de uma sessão e requisita ao backend
-  //   as informações dessa sessão
-  obterInfoSessao(sessaoID: string) {
-    const url = environment.urlBase + `obter-info-sessao.php?sessaoID=${sessaoID}`;
+  /**
+   * Recebe o ID de uma sessão, requisita ao backend as informações dessa
+   * sessão e então retorna essas informações
+   * 
+   * @param sessaoID é o ID da sessão
+   * @returns as informações da sessão
+   */
+  obterInfoSessao(sessaoID: string): Observable<{ infoSessao: any }> {
+    const url =
+      environment.urlBase + `obter-info-sessao.php?sessaoID=${sessaoID}`;
 
     interface respostaInfoSessao {
-      infoSessao: any
+      infoSessao: any;
     }
 
-    return this.http
-      .get<respostaInfoSessao>(url)
-      .pipe(map(res => res.infoSessao));
+    return this.http.get<respostaInfoSessao>(url).pipe(
+      map((res) => {
+        return { infoSessao: res.infoSessao };
+      })
+    );
   }
 }

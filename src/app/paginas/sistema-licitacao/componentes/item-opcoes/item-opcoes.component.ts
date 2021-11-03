@@ -56,7 +56,7 @@ export class ItemOpcoesComponent implements OnInit {
     const itemNovo = this.itemID.startsWith("item novo");
     this.itemProvider.carregarItem(this.itemID, itemNovo).subscribe({
       next: res => {
-        const dados = JSON.parse(res);
+        const dados = JSON.parse(res.dados);
         this.descricao = itemNovo ? "" : dados["descricao"];
         this.subitens = itemNovo ? [] : dados["subitens"];
         this.entradasTexto = itemNovo ? [] : dados["entradasTexto"];
@@ -82,7 +82,8 @@ export class ItemOpcoesComponent implements OnInit {
         "nivelIndentacao": this.nivelIndentacao
       });
 
-      this.itemProvider.salvarItem(this.itemID, dados).subscribe({
+      const itemNovo = this.itemID.startsWith("item novo");
+      this.itemProvider.salvarItem(this.itemID, dados, itemNovo).subscribe({
         next: res => {
           if (this.itemID !== res.itemID) {
             this.itemProvider.adicionarAtualizacaoItemID(this.itemID, res.itemID);

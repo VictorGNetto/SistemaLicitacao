@@ -32,8 +32,15 @@ interface Documento {
 export class DocumentoService {
   constructor(private http: HttpClient, private salvarDados: SalvarDados) {}
 
+  /**
+   * Obtém do backend a lista de Documentos pertencentes a um usuário.
+   * 
+   * @param usuarioID é o ID do usuário dono dos Documentos
+   * @returns a lista de Documentos pedida
+   */
   listaDocumentos(usuarioID: Number): Observable<Documento[]> {
-    const url = environment.urlBase + `lista-documentos.php?autorID=${usuarioID}`;
+    const url =
+      environment.urlBase + `lista-documentos.php?autorID=${usuarioID}`;
 
     interface respostaListagemDocumentos {
       listaDocumentos: Documento[];
@@ -50,9 +57,10 @@ export class DocumentoService {
    * é clonado no banco de dados, permitindo que o Documento criado seja
    * editado/preenchido sem alterar o conteúdo do Documento Base.
    *
-   * @param documentoBaseID - ID do Documento Base que está sendo clonado
+   * @param documentoBaseID é o ID do Documento Base que está sendo clonado
+   * @returns o ID do Documento criado
    */
-  criarDocumento(documentoBaseID: string): Observable<string> {
+  criarDocumento(documentoBaseID: string): Observable<{ documentoID: string }> {
     const infoSessao = this.salvarDados.get('infoSessao');
     const autorID = infoSessao['id'];
 
@@ -64,11 +72,19 @@ export class DocumentoService {
       documentoID: string;
     }
 
-    return this.http
-      .get<respostaCriacaoDocumento>(url)
-      .pipe(map((res) => res.documentoID));
+    return this.http.get<respostaCriacaoDocumento>(url).pipe(
+      map((res) => {
+        return { documentoID: res.documentoID };
+      })
+    );
   }
 
+  /**
+   * Carrega os dados de um Documento do backend usando o ID do Documento
+   * 
+   * @param documentoID é o ID do Documento a ser carregado
+   * @returns o Documento (documentoID, autorID, ..., secoes)
+   */
   carregarDocumento(documentoID: string): Observable<Documento> {
     const url =
       environment.urlBase + `carregar-documento.php?documentoID=${documentoID}`;

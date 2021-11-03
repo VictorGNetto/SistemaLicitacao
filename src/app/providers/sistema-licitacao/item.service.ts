@@ -29,21 +29,26 @@ export class ItemService {
     return this.atualizacoesItemID;
   }
 
-  // - Verifica se o item requisitado já existe ou se acabou de ser criado
-  //   - Se acabou de ser criado
-  //      - Retorna um dado padrão
-  //   - Se já existe
-  //      - Requisita ao servidor os dados do item pelo seu ID
-  //      - Retorna esses dados no formato de string
-  // Observação: é necessário retornar na forma de uma string já que
-  //             existem diversos tipos de Itens (nota, texto, opções),
-  //             cada um deles com um formato específico para os seus
-  //             dados. Como este serviço é compartilhado por todos os
-  //             Itens, é necessário que o tipo de retorno dessa função
-  //             seja agnóstico.
-  carregarItem(itemID: string, itemNovo = false): Observable<string> {
+  /**
+   * Carrega os dados de um Item do backend usando o seu ID. Se o Item for
+   * novo, é retornado uma resposta padrão.
+   * Obs.: é necessário retornar na forma de uma string já que existem
+   *       diversos tipos de Itens (Nota, Texto, Opções), cada um deles com
+   *       um formato específico para os seus dados. Como este serviço é
+   *       compartilhado por todos os Itens, é necessário que o tipo de
+   *       retorno dessa função seja agnóstico.
+   * 
+   * @param itemID é o ID do Item a ser carregado
+   * @param itemNovo indica se o Item é novo, simplificando a resposta
+   * @returns uma string com os dados do Item. Esses dados podem são acessados
+   *          usando JSON.parse(*)
+   */
+  carregarItem(
+    itemID: string,
+    itemNovo = false
+  ): Observable<{ dados: string }> {
     if (itemNovo) {
-      return of('{}'); // JSON.stringify({}) = "{}"
+      return of({ dados: '{}' }); // JSON.stringify({}) = "{}"
     }
 
     const url = environment.urlBase + `carregar-item.php?itemID=${itemID}`;
@@ -52,15 +57,27 @@ export class ItemService {
       dados: string;
     }
 
-    return this.http
-      .get<respostaCarregamentoItem>(url)
-      .pipe(map(res => res.dados));
+    return this.http.get<respostaCarregamentoItem>(url).pipe(
+      map((res) => {
+        return { dados: res.dados };
+      })
+    );
   }
 
-  // - Envia ao backend o ID e os dados de um item para que ele seja salvo
-  // - O servidor cria um novo ID para os itens que ainda não tem e retorna esse ID
-  // - Retorna o ID devolvido pelo servidor
-  salvarItem(itemID: string, dados: string): Observable<{ itemID: string }> {
+  /**
+   * Envia os dados de um Item para o backend para que eles sejam salvados
+   * no banco de dados.
+   * 
+   * @param itemID é o ID do item a ser salvado
+   * @param dados são os dados do Item, obtido via JSON.stringfy(*)
+   * @param itemNovo indica se o Item é novo (se ainda não possui um ID)
+   * @returns o ID do Item salvado
+   */
+  salvarItem(
+    itemID: string,
+    dados: string,
+    itemNovo = false
+  ): Observable<{ itemID: string }> {
     const url = environment.urlBase + `salvar-item.php`;
 
     const opcoesHttp = {
@@ -74,16 +91,23 @@ export class ItemService {
     return this.http
       .post<respostaSalvamentoItem>(
         url,
-        { itemID: itemID, dados: dados },
+        { itemID: itemID, dados: dados, novo: itemNovo },
         opcoesHttp
       )
       .pipe(
-        map(res => {
+        map((res) => {
           return { itemID: res.itemID };
         })
       );
   }
 
+  /**
+   * Recebe o ID de um Item e informa o backend que os dados desse Item devem
+   * ser excluídos do banco de dados.
+   * 
+   * @param itemID é o ID do Item a ser excluído
+   * @returns o ID do Item excluído
+   */
   excluirItem(itemID: string): Observable<{ itemID: string }> {
     const url = environment.urlBase + `excluir-item.php?itemID=${itemID}`;
 
@@ -91,10 +115,10 @@ export class ItemService {
       itemID: string;
     }
 
-    return this.http
-      .get<respostaExclusaoItem>(url)
-      .pipe(map(res => {
-        return { itemID: res.itemID }
-      }));
+    return this.http.get<respostaExclusaoItem>(url).pipe(
+      map((res) => {
+        return { itemID: res.itemID };
+      })
+    );
   }
 }

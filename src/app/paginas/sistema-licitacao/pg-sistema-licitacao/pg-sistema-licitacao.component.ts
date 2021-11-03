@@ -7,7 +7,7 @@ import { SalvarDados } from 'src/app/classes/salvar-dados';
 @Component({
   selector: 'app-pg-sistema-licitacao',
   templateUrl: './pg-sistema-licitacao.component.html',
-  styleUrls: ['./pg-sistema-licitacao.component.css']
+  styleUrls: ['./pg-sistema-licitacao.component.css'],
 })
 export class PgSistemaLicitacaoComponent implements OnInit {
   possuiPermissaoDocBase = true;
@@ -19,21 +19,19 @@ export class PgSistemaLicitacaoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const sessaoID = this.salvarDados.get("sessaoID");
+    const sessaoID = this.salvarDados.get('sessaoID');
 
-    this.sessaoProvider
-      .obterInfoSessao(sessaoID)
-      .subscribe({
-        next: res => this.salvarDados.set("infoSessao", res)
-      });
+    this.salvarDados.remove('infoSessao');
+    this.sessaoProvider.obterInfoSessao(sessaoID).subscribe({
+      next: (res) => this.salvarDados.set('infoSessao', res.infoSessao),
+    });
   }
 
   irPaginaDocumento() {
-    this.router.navigate(["/sistemaLicitacao/documento"]);
+    this.router.navigate(['/sistemaLicitacao/documento']);
   }
 
   irPaginaDocumentoBase() {
-    this.router.navigate(["/sistemaLicitacao/documentoBase"]);
+    this.router.navigate(['/sistemaLicitacao/documentoBase']);
   }
-
 }
