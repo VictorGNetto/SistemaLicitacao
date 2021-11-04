@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { SalvarDados } from 'src/app/classes/salvar-dados';
@@ -34,7 +34,7 @@ export class DocumentoService {
 
   /**
    * Obtém do backend a lista de Documentos pertencentes a um usuário.
-   * 
+   *
    * @param usuarioID é o ID do usuário dono dos Documentos
    * @returns a lista de Documentos pedida
    */
@@ -81,7 +81,7 @@ export class DocumentoService {
 
   /**
    * Carrega os dados de um Documento do backend usando o ID do Documento
-   * 
+   *
    * @param documentoID é o ID do Documento a ser carregado
    * @returns o Documento (documentoID, autorID, ..., secoes)
    */
@@ -96,5 +96,21 @@ export class DocumentoService {
     return this.http
       .get<respostaCarregamentoDocumento>(url)
       .pipe(map((res) => res.documento));
+  }
+
+  salvarDocumento(documento: {
+    documentoID: string;
+    nomeDocumento: string;
+    secoes: Secao[];
+  }): Observable<void> {
+    const url = environment.urlBase + 'salvar-documento.php';
+
+    const opcoesHttp = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+
+    return this.http
+      .post<void>(url, documento, opcoesHttp)
+      .pipe(map((res) => void 0));
   }
 }

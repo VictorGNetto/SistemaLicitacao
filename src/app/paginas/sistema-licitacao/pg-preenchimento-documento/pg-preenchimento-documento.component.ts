@@ -18,27 +18,9 @@ interface Secao {
   styleUrls: ['./pg-preenchimento-documento.component.css']
 })
 export class PgPreenchimentoDocumentoComponent implements OnInit {
-  nomeDocumento = "Termo de Referência - Compra Direta";
+  nomeDocumento = "";
   documentoID = "";
-  secoes: Secao[] = [
-    {
-      nome: '1ª Seção',
-      itens: [
-        {"tipo":"texto","itemID":"lrpraz"},
-        {"tipo":"nota","itemID":"qynupj"},
-        {"tipo":"opcoes","itemID":"mgnfyg"},
-      ],
-    },
-    {
-      nome: '2ª Seção',
-      itens: [
-        // { tipo: 'nota', itemID: 'item novo 255' },
-        // { tipo: 'texto', itemID: 'item novo 256' },
-        // { tipo: 'opcoes', itemID: 'item novo 257' },
-      ],
-    },
-  ];
-  secaoSelecionada = 0;
+  secoes: Secao[] = [];
 
   constructor(private route: ActivatedRoute, private documentoProvider: DocumentoService) { }
 
@@ -55,16 +37,66 @@ export class PgPreenchimentoDocumentoComponent implements OnInit {
       });
   }
 
+  obterTotalItens() {
+    let contador = 0;
+
+    for (const secao of this.secoes) {
+      contador += secao.itens.length;
+    }
+
+    return contador;
+  }
+
   // --------------------------------------------------------------------------
-  // Funções e Variáveis usadas no processo de salvamento do Documento Base ---
+  // Funções e Variáveis usadas no processo de salvamento do Documento --------
   // --------------------------------------------------------------------------
   salvandoItens = false;
+  salvandoDocumento = false;
+  itensNaoSalvados = 0;
 
   salvarItens() {
+    this.itensNaoSalvados = this.obterTotalItens();
+
+    if (this.itensNaoSalvados !== 0) {
+      this.salvandoItens = true;
+    } else {
+      this.salvandoDocumento = true;
+    }
+
+    this.aguardarSalvamentoItens();
   }
 
   itenFoiSalvo() {
+    this.itensNaoSalvados--;
 
+    if (this.itensNaoSalvados === 0) {
+      this.salvandoItens = false;
+      this.salvandoDocumento = true;
+    }
+  }
+
+  aguardarSalvamentoItens() {
+    setTimeout(() => {
+      if (this.salvandoItens) {
+        this.aguardarSalvamentoItens();
+      } else {
+        this.salvarDocumento();
+      }
+    }, 100);
+  }
+
+  salvarDocumento() {
+    this.documentoProvider
+      .salvarDocumento({
+        documentoID: this.documentoID,
+        nomeDocumento: this.nomeDocumento,
+        secoes: this.secoes
+      })
+      .subscribe({
+        next: () => {
+          this.salvandoDocumento = false;
+        }
+      });
   }
 
 }

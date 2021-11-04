@@ -80,7 +80,7 @@
               *ngIf="item.tipo === 'texto'"
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
-              [salvarEntradas]="false"
+              [salvarEntradas]="true"
               [modoEdicao]="false"
               (salvado)="itenFoiSalvo()"
             ></item-texto>
@@ -90,7 +90,7 @@
               *ngIf="item.tipo === 'opcoes'"
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
-              [salvarEntradas]="false"
+              [salvarEntradas]="true"
               [modoEdicao]="false"
               (salvado)="itenFoiSalvo()"
             ></item-opcoes>

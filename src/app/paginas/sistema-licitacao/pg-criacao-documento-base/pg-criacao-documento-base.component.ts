@@ -152,6 +152,8 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
 
     if (this.itensNaoSalvados !== 0) {
       this.salvandoItens = true;
+    } else {
+      this.salvandoDocumentoBase = true;
     }
 
     this.excluirItensNaoUsados();
