@@ -67,7 +67,7 @@ export class DocumentoBaseService {
 
   /**
    * Carregas os dados de um Documento Base do backend usando o seu ID.
-   * 
+   *
    * @param documentoBaseID é o ID do Documento Base a ser carregado
    * @returns os dados do Documento Base
    */
@@ -88,7 +88,7 @@ export class DocumentoBaseService {
   /**
    * Recebe os dados de um Documento Base (Nome e secoes) e então os envia
    * ao backend para que eles sejam salvados.
-   * 
+   *
    * @param documentoBase são os dados do Documento Base a serem salvados
    * @returns nada!
    */
@@ -104,8 +104,29 @@ export class DocumentoBaseService {
       .pipe(map((res) => void 0));
   }
 
-  excluirDocumentoBase(documentoBaseID: string): Observable<{ documentoBaseID: string }> {
+  /**
+   * Envia ao backend o ID de um Documento Base que deve ser excluído. O
+   * backend exclui então o Documento Base, assim como todos os itens que
+   * pertencem ao Documento Base.
+   *
+   * @param documentoBaseID é o ID do Documento Base a ser excluído
+   * @returns o ID do Documento Base excluído
+   */
+  excluirDocumentoBase(
+    documentoBaseID: string
+  ): Observable<{ documentoBaseID: string }> {
+    const url =
+      environment.urlBase +
+      `excluir-documento-base.php?documentoBaseID=${documentoBaseID}`;
 
-    return of({ documentoBaseID: documentoBaseID });
+    interface respostaExclusaoDocumentoBase {
+      documentoBaseID: string;
+    }
+
+    return this.http.get<respostaExclusaoDocumentoBase>(url).pipe(
+      map((res) => {
+        return { documentoBaseID: res.documentoBaseID };
+      })
+    );
   }
 }
