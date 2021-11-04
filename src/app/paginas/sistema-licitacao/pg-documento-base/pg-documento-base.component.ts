@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 
 import { DocumentoBaseService } from 'src/app/providers/sistema-licitacao/documento-base.service';
 import { SalvarDados } from 'src/app/classes/salvar-dados';
@@ -25,7 +31,8 @@ export class PgDocumentoBaseComponent implements OnInit {
   constructor(
     private documentoBaseProvider: DocumentoBaseService,
     private router: Router,
-    private salvarDados: SalvarDados
+    private salvarDados: SalvarDados,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +58,23 @@ export class PgDocumentoBaseComponent implements OnInit {
     this.criandoDocumentoBase = true;
   }
 
+  openDialog(documentoBaseID: string, nomeDocumentoBase: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      nomeDocumentoBase: nomeDocumentoBase,
+    };
+
+    const dialogRef = this.dialog.open(ConfirmacaoExclusaoDialog, dialogConfig);
+
+    dialogRef.afterClosed().subscribe({
+      next: (data) => {
+        if (data) {
+          this.excluirDocumentoBase(documentoBaseID);
+        }
+      },
+    });
+  }
+
   excluirDocumentoBase(documentoBaseID: string) {
     this.documentoBaseProvider.excluirDocumentoBase(documentoBaseID).subscribe({
       next: (res) => {
@@ -60,5 +84,22 @@ export class PgDocumentoBaseComponent implements OnInit {
         this.listaDocumentosBase.splice(index, 1);
       },
     });
+  }
+}
+
+@Component({
+  selector: 'confirmacao-exclusao-dialog',
+  templateUrl: './confirmacao-exclusao-dialog.html',
+})
+export class ConfirmacaoExclusaoDialog implements OnInit {
+  constructor(
+    private dialogRef: MatDialogRef<PgDocumentoBaseComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { nomeDocumentoBase: string }
+  ) {}
+
+  ngOnInit(): void {}
+
+  confirmarExclusao() {
+    this.dialogRef.close(true);
   }
 }

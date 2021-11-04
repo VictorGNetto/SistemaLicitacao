@@ -35,6 +35,7 @@ import { TextareaAutoresizeDirective } from './diretivas/textarea-autoresize.dir
 import { PgEntradaSistemaLicitacaoComponent } from './paginas/sistema-licitacao/pg-entrada-sistema-licitacao/pg-entrada-sistema-licitacao.component';
 import { PgDocumentoComponent } from './paginas/sistema-licitacao/pg-documento/pg-documento.component';
 import { ListaDocumentoBaseDialog } from './paginas/sistema-licitacao/pg-documento/pg-documento.component';
+import { ConfirmacaoExclusaoDialog } from './paginas/sistema-licitacao/pg-documento-base/pg-documento-base.component';
 
 const appRoutes: Routes = [
   // {
@@ -92,7 +93,8 @@ const appRoutes: Routes = [
     TextareaAutoresizeDirective,
     PgEntradaSistemaLicitacaoComponent,
     PgDocumentoComponent,
-    ListaDocumentoBaseDialog
+    ListaDocumentoBaseDialog,
+    ConfirmacaoExclusaoDialog
   ],
   imports: [
     BrowserModule,
