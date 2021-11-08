@@ -6,3 +6,61 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+.descricao {
+  float: left;
+  margin: 1.5rem 0.5rem 0;
+}
+
+h2.descricao {
+  font-size: 34px;
+}
+
+.btn-criar-documento {
+  float: right;
+  margin: 0.5rem;
+}
+
+a {
+  font-weight: bold;
+  color: #555;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #222;
+  text-decoration: underline;
+}
+
+.table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse !important;
+  color: #212529;
+
+  box-shadow: 2px 2px 5px #ccc;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  text-align: center;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table td,
+.table th {
+  background-color: #fff !important;
+}
+
+.acoes {
+  display: flex;
+  justify-content: center;
+}

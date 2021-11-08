@@ -58,17 +58,17 @@ export class PgDocumentoBaseComponent implements OnInit {
     this.criandoDocumentoBase = true;
   }
 
-  openDialog(documentoBaseID: string, nomeDocumentoBase: string) {
+  openDialogExclusaoDocumentoBase(documentoBaseID: string, nomeDocumentoBase: string) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       nomeDocumentoBase: nomeDocumentoBase,
     };
 
-    const dialogRef = this.dialog.open(ConfirmacaoExclusaoDialog, dialogConfig);
+    const dialogRef = this.dialog.open(ConfirmacaoExclusaoDocumentoBaseDialog, dialogConfig);
 
     dialogRef.afterClosed().subscribe({
-      next: (data) => {
-        if (data) {
+      next: (res) => {
+        if (res) {
           this.excluirDocumentoBase(documentoBaseID);
         }
       },
@@ -88,10 +88,10 @@ export class PgDocumentoBaseComponent implements OnInit {
 }
 
 @Component({
-  selector: 'confirmacao-exclusao-dialog',
-  templateUrl: './confirmacao-exclusao-dialog.html',
+  selector: 'confirmacao-exclusao-documento-base-dialog',
+  templateUrl: './confirmacao-exclusao-documento-base-dialog.html',
 })
-export class ConfirmacaoExclusaoDialog implements OnInit {
+export class ConfirmacaoExclusaoDocumentoBaseDialog implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<PgDocumentoBaseComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { nomeDocumentoBase: string }

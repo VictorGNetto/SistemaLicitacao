@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { SalvarDados } from 'src/app/classes/salvar-dados';
 import { environment } from 'src/environments/environment';
@@ -98,6 +98,13 @@ export class DocumentoService {
       .pipe(map((res) => res.documento));
   }
 
+  /**
+   * Recebe os dados de um documento e os envia ao backend para que eles
+   * sejam salvados.
+   *
+   * @param documento são os dados do Documento a serem salvados
+   * @returns nada!
+   */
   salvarDocumento(documento: {
     documentoID: string;
     nomeDocumento: string;
@@ -112,5 +119,28 @@ export class DocumentoService {
     return this.http
       .post<void>(url, documento, opcoesHttp)
       .pipe(map((res) => void 0));
+  }
+
+  /**
+   * Envia ao backend o ID de um Documento que deve ser excluído. O
+   * backend exclui então o Documento, assim como todos os itens que
+   * pertencem ao Documento.
+   *
+   * @param documentoID é o ID do Documento a ser excluído
+   * @returns o ID do Documento Excluído
+   */
+  excluirDocumento(documentoID: string): Observable<{ documentoID: string }> {
+    const url =
+      environment.urlBase + `excluir-documento.php?documentoID=${documentoID}`;
+
+    interface respostaExclusaoDocumento {
+      documentoID: string;
+    }
+
+    return this.http.get<respostaExclusaoDocumento>(url).pipe(
+      map((res) => {
+        return { documentoID: res.documentoID };
+      })
+    );
   }
 }
