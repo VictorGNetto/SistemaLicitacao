@@ -34,6 +34,8 @@
           <th>Código</th>
           <th>Identificacao</th>
           <th>Status</th>
+          <th>Criação</th>
+          <th>Última Edição</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -49,7 +51,9 @@
               >{{ doc.identificacao }}</a
             >
           </td>
-          <td>Aberto</td>
+          <td>{{ doc.status }}</td>
+          <td>{{ doc.criacao }}</td>
+          <td>{{ doc.edicao }}</td>
           <td>
             <div class="acoes">
               <button

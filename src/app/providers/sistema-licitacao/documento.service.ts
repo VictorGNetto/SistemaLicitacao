@@ -24,6 +24,8 @@ interface Documento {
   identificacao: string;
   nomeDocumento: string;
   secoes: Secao[];
+  criacao: string;
+  edicao: string;
 }
 
 @Injectable({

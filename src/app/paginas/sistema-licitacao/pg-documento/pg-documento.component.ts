@@ -14,6 +14,9 @@ import { DocumentoService } from 'src/app/providers/sistema-licitacao/documento.
 interface Documento {
   documentoID: string;
   identificacao: string;
+  status: string;
+  criacao: string;
+  edicao: string;
 }
 
 @Component({
@@ -22,12 +25,7 @@ interface Documento {
   styleUrls: ['./pg-documento.component.css'],
 })
 export class PgDocumentoComponent implements OnInit {
-  listaDocumentos: Documento[] = [
-    {
-      documentoID: 'taslj',
-      identificacao: 'Termo de Referência - Compra Direta [TASLJ]',
-    },
-  ];
+  listaDocumentos: Documento[] = [];
 
   usuarioNome = 'Usuário ainda não identificado';
   usuarioID = -1;
