@@ -58,14 +58,30 @@
             <div class="acoes">
               <button
                 mat-icon-button
-                title="Editar Documento Base"
+                title="Editar Documento"
                 [routerLink]="'/sistemaLicitacao/preenchimentoDocumento/' + doc.documentoID"
               >
                 <mat-icon>edit</mat-icon>
               </button>
+
               <button
                 mat-icon-button
-                title="Excluir Documento Base"
+                title="Enviar para Análise"
+              >
+                <mat-icon>done</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                title="Exportar"
+                disabled
+              >
+                <mat-icon>file_download</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                title="Excluir Documento"
                 (click)="openDialogExclusaoDocumento(doc.documentoID, doc.identificacao)"
               >
                 <mat-icon>delete</mat-icon>
