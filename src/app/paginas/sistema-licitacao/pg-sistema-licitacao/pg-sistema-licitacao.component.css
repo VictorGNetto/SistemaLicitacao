@@ -7,23 +7,18 @@
   flex: 1 1 auto;
 }
 
-.subsistemas {
+.subsistema {
   display: flex;
-  justify-content: center;
+  margin: 0.5rem 0 1rem 0.5rem;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 400px;
-  height: 400px;
+.btn-subsistema {
+  width: 200px;
+  height: 100px;
 }
 
-a {
-  border-radius: 10px;
-  margin: 5rem 2.5rem 0;
-  font-size: 50px;
-  /* margin: 0 auto; */
+span.descricao {
+  max-width: 50%;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
 }

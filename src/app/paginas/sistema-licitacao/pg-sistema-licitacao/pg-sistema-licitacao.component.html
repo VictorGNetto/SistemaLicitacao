@@ -2,20 +2,64 @@
   <mat-toolbar>
     <h1>Sistema de Licitação</h1>
     <span class="spacer"></span>
-    <button mat-stroked-button class="botao-toolbar" routerLink="#">
-      Voltar
+    <button mat-stroked-button (click)="irPortalAbc()">
+      Portal ABC
     </button>
   </mat-toolbar>
 
-  <div class="subsistemas">
-    <a mat-stroked-button (click)="irPaginaDocumento()"><div class="container">Documentos</div></a>
-
-    <a
+  <div class="subsistema">
+    <button
+      class="btn-subsistema"
       mat-stroked-button
-      *ngIf="possuiPermissaoDocBase"
-      (click)="irPaginaDocumentoBase()"
+      (click)="irPaginaDocumento()"
+      title="Ir para a página de criação e preenchimento de Documentos"
     >
-      <div class="container">Documentos<br><br>Base</div>
-    </a>
+      <mat-icon>north_east</mat-icon>
+      <div>Documentos</div>
+    </button>
+
+    <span class="descricao"
+      >Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
+      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
+      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
+      Texto Explicativo Texto Explicativo</span
+    >
+  </div>
+
+  <div class="subsistema" *ngIf="permissaoCriacaoDocumentoBase">
+    <button
+      class="btn-subsistema"
+      mat-stroked-button
+      (click)="irPaginaDocumentoBase()"
+      title="Ir para a página de criação e edição de Documentos Base"
+    >
+      <mat-icon>north_east</mat-icon>
+      <div>Documentos Base</div>
+    </button>
+
+    <span class="descricao"
+      >Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
+      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
+      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
+      Texto Explicativo Texto Explicativo</span
+    >
+  </div>
+
+  <div class="subsistema" *ngIf="permissaoRealizacaoAnalise">
+    <button
+      class="btn-subsistema"
+      mat-stroked-button
+      title="Ir para a página de análise de Documentos"
+    >
+      <mat-icon>north_east</mat-icon>
+      <div>Análise de Documentos</div>
+    </button>
+
+    <span class="descricao"
+      >Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
+      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
+      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
+      Texto Explicativo Texto Explicativo</span
+    >
   </div>
 </div>

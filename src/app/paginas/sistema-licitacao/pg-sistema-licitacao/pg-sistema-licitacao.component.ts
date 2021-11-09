@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { SessaoService } from 'src/app/providers/sistema-licitacao/sessao.service';
 import { SalvarDados } from 'src/app/classes/salvar-dados';
+import { PermissaoService } from 'src/app/providers/sistema-licitacao/permissao.service';
 
 @Component({
   selector: 'app-pg-sistema-licitacao',
@@ -10,21 +10,29 @@ import { SalvarDados } from 'src/app/classes/salvar-dados';
   styleUrls: ['./pg-sistema-licitacao.component.css'],
 })
 export class PgSistemaLicitacaoComponent implements OnInit {
-  possuiPermissaoDocBase = true;
+  permissaoCriacaoDocumentoBase = false;
+  permissaoRealizacaoAnalise = false;
 
   constructor(
+    private salvarDados: SalvarDados,
     private router: Router,
-    private sessaoProvider: SessaoService,
-    private salvarDados: SalvarDados
+    private permissao: PermissaoService
   ) {}
 
   ngOnInit(): void {
-    const sessaoID = this.salvarDados.get('sessaoID');
+    const infoSessao = this.salvarDados.get('infoSessao');
+    const usuarioID = infoSessao['id'];
 
-    this.salvarDados.remove('infoSessao');
-    this.sessaoProvider.obterInfoSessao(sessaoID).subscribe({
-      next: (res) => this.salvarDados.set('infoSessao', res.infoSessao),
+    this.permissao.obterPermissoes(usuarioID).subscribe({
+      next: res => {
+        this.permissaoCriacaoDocumentoBase = res.criacaoDocumentoBase;
+        this.permissaoRealizacaoAnalise = res.realizacaoAnalise;
+      }
     });
+  }
+
+  irPortalAbc() {
+    this.router.navigate(['/portalABC']);
   }
 
   irPaginaDocumento() {

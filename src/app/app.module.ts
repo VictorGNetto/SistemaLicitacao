@@ -37,6 +37,7 @@ import { PgDocumentoComponent } from './paginas/sistema-licitacao/pg-documento/p
 import { ListaDocumentoBaseDialog } from './paginas/sistema-licitacao/pg-documento/pg-documento.component';
 import { ConfirmacaoExclusaoDocumentoBaseDialog } from './paginas/sistema-licitacao/pg-documento-base/pg-documento-base.component';
 import { ConfirmacaoExclusaoDocumentoDialog } from './paginas/sistema-licitacao/pg-documento/pg-documento.component';
+import { PgPortalAbcComponent } from './paginas/sistema-licitacao/pg-portal-abc/pg-portal-abc.component';
 
 const appRoutes: Routes = [
   // {
@@ -74,8 +75,8 @@ const appRoutes: Routes = [
     component: PgPreenchimentoDocumentoComponent,
   },
   {
-    path: 'testeMensagens',
-    component: PgTesteComponenteMensagemComponent,
+    path: 'portalABC',
+    component: PgPortalAbcComponent,
   }
 ];
 
@@ -96,7 +97,8 @@ const appRoutes: Routes = [
     PgDocumentoComponent,
     ListaDocumentoBaseDialog,
     ConfirmacaoExclusaoDocumentoBaseDialog,
-    ConfirmacaoExclusaoDocumentoDialog
+    ConfirmacaoExclusaoDocumentoDialog,
+    PgPortalAbcComponent
   ],
   imports: [
     BrowserModule,
