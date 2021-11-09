@@ -10,8 +10,9 @@ import { PermissaoService } from 'src/app/providers/sistema-licitacao/permissao.
   styleUrls: ['./pg-sistema-licitacao.component.css'],
 })
 export class PgSistemaLicitacaoComponent implements OnInit {
-  permissaoCriacaoDocumentoBase = false;
-  permissaoRealizacaoAnalise = false;
+  usuarioID = -1;
+  permissaoCriacaoDocumentoBase = true;
+  permissaoRealizacaoAnalise = true;
 
   constructor(
     private salvarDados: SalvarDados,
@@ -21,9 +22,13 @@ export class PgSistemaLicitacaoComponent implements OnInit {
 
   ngOnInit(): void {
     const infoSessao = this.salvarDados.get('infoSessao');
-    const usuarioID = infoSessao['id'];
+    this.usuarioID = infoSessao['id'];
 
-    this.permissao.obterPermissoes(usuarioID).subscribe({
+    this.obterPermissoes();
+  }
+  
+  obterPermissoes() {
+    this.permissao.obterPermissoes(this.usuarioID.toString()).subscribe({
       next: res => {
         this.permissaoCriacaoDocumentoBase = res.criacaoDocumentoBase;
         this.permissaoRealizacaoAnalise = res.realizacaoAnalise;
