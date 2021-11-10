@@ -145,4 +145,19 @@ export class DocumentoService {
       })
     );
   }
+
+  mudarStatus(
+    documentoID: string,
+    novoStatus: 'Em Edição' | 'Em Análise' | 'Aprovado'
+  ): Observable<{ status: 'Em Edição' | 'Em Análise' | 'Aprovado' }> {
+    const url =
+      environment.urlBase +
+      `mudar-status-documento.php?documentoID=${documentoID}&status=${novoStatus}`;
+
+    interface respostaMudancaStatusDocumento {
+      status: 'Em Edição' | 'Em Análise' | 'Aprovado';
+    }
+
+    return this.http.get<respostaMudancaStatusDocumento>(url);
+  }
 }

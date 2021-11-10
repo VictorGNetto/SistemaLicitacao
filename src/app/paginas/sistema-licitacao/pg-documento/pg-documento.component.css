@@ -77,14 +77,6 @@ a:hover {
   color: blue !important;
 }
 
-.btn-estado-analise:hover {
-  color: darkblue !important;
-}
-
 .btn-estado-aprovado {
   color: green !important;
-}
-
-.btn-estado-aprovado:hover {
-  color: darkgreen !important;
 }

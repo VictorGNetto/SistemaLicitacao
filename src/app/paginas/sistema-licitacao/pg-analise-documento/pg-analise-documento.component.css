@@ -60,14 +60,18 @@ a:hover {
   justify-content: center;
 }
 
-.btn-estado-edicao {
-  color: orange !important;
-}
-
 .btn-estado-analise {
   color: blue !important;
 }
 
-.btn-estado-aprovado {
-  color: green !important;
+.btn-recusar {
+  color: darkred !important;
+}
+
+.btn-retornar-para-analise {
+  color: purple !important;
+}
+
+.btn-reabilitar-edicao {
+  color: darkred !important;
 }

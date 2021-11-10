@@ -53,18 +53,48 @@
                   '/sistemaLicitacao/visualizacaoDocumento/' + doc.documentoID
                 "
                 target="_blank"
-                [disabled]="doc.status !== 'Em Edição'"
               >
                 <mat-icon>plagiarism</mat-icon>
               </a>
 
               <button
                 mat-icon-button
-                [title]="doc.titleBotaoEstado"
-                [class]="doc.classeCssBotaoEstado"
-                [disabled]="doc.status !== 'Em Edição'"
+                title="Aprovar Documento"
+                class="btn-estado-analise"
+                *ngIf="doc.status === 'Em Análise'"
+                (click)="mudarStatus(doc.documentoID, 'Aprovado')"
               >
                 <mat-icon>task</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                title="Recusar Documento"
+                class="btn-recusar"
+                *ngIf="doc.status === 'Em Análise'"
+                (click)="mudarStatus(doc.documentoID, 'Em Edição')"
+              >
+                <mat-icon>restore_page</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                title="Retornar Documento para análise"
+                class="btn-retornar-para-analise"
+                *ngIf="doc.status === 'Aprovado'"
+                (click)="mudarStatus(doc.documentoID, 'Em Análise')"
+              >
+                <mat-icon>restore_page</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                title="Reabilitar edição do Documento"
+                class="btn-reabilitar-edicao"
+                *ngIf="doc.status === 'Aprovado'"
+                (click)="mudarStatus(doc.documentoID, 'Em Edição')"
+              >
+                <mat-icon>restore_page</mat-icon>
               </button>
             </div>
           </td>

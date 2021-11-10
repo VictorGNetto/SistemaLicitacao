@@ -39,6 +39,22 @@
           <th>Ações</th>
         </tr>
       </thead>
+
+      <div
+        style="
+          background-color: lightsalmon;
+          width: 150px;
+          padding: 0.25rem;
+          margin-top: 0.25rem;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 20px;
+          text-align: center;
+          font-weight: bolder;
+          font-size: 15px;
+        "
+      >
+        Em Edição
+      </div>
       <tbody>
         <tr *ngFor="let doc of listaDocumentos">
           <td>{{ doc.documentoID | uppercase }}</td>
@@ -74,7 +90,6 @@
                   '/sistemaLicitacao/visualizacaoDocumento/' + doc.documentoID
                 "
                 target="_blank"
-                [disabled]="doc.status !== 'Em Edição'"
               >
                 <mat-icon>plagiarism</mat-icon>
               </a>
@@ -84,6 +99,185 @@
                 [title]="doc.titleBotaoEstado"
                 [class]="doc.classeCssBotaoEstado"
                 [disabled]="doc.status !== 'Em Edição'"
+                (click)="mudarStatus(doc.documentoID, 'Em Análise')"
+              >
+                <mat-icon>task</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                title="Exportar"
+                [disabled]="doc.status !== 'Aprovado'"
+              >
+                <mat-icon>file_download</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                title="Excluir Documento"
+                (click)="
+                  openDialogExclusaoDocumento(
+                    doc.documentoID,
+                    doc.identificacao
+                  )
+                "
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+
+      <div
+        style="
+          background-color: lightskyblue;
+          width: 150px;
+          padding: 0.25rem;
+          margin-top: 0.25rem;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 20px;
+          text-align: center;
+          font-weight: bolder;
+          font-size: 15px;
+        "
+      >
+        Em Análise
+      </div>
+      <tbody>
+        <tr *ngFor="let doc of listaDocumentos">
+          <td>{{ doc.documentoID | uppercase }}</td>
+          <td>
+            <a
+              [href]="
+                './sistemaLicitacao/visualizacaoDocumento/' + doc.documentoID
+              "
+              target="_blank"
+              >{{ doc.identificacao }}</a
+            >
+          </td>
+          <td>{{ doc.status }}</td>
+          <td>{{ doc.criacao }}</td>
+          <td>{{ doc.edicao }}</td>
+          <td>
+            <div class="acoes">
+              <button
+                mat-icon-button
+                title="Editar Documento"
+                [routerLink]="
+                  '/sistemaLicitacao/preenchimentoDocumento/' + doc.documentoID
+                "
+                [disabled]="doc.status !== 'Em Edição'"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <a
+                mat-icon-button
+                title="Visualizar Documento"
+                [routerLink]="
+                  '/sistemaLicitacao/visualizacaoDocumento/' + doc.documentoID
+                "
+                target="_blank"
+              >
+                <mat-icon>plagiarism</mat-icon>
+              </a>
+
+              <button
+                mat-icon-button
+                [title]="doc.titleBotaoEstado"
+                [class]="doc.classeCssBotaoEstado"
+                [disabled]="doc.status !== 'Em Edição'"
+                (click)="mudarStatus(doc.documentoID, 'Em Análise')"
+              >
+                <mat-icon>task</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                title="Exportar"
+                [disabled]="doc.status !== 'Aprovado'"
+              >
+                <mat-icon>file_download</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                title="Excluir Documento"
+                (click)="
+                  openDialogExclusaoDocumento(
+                    doc.documentoID,
+                    doc.identificacao
+                  )
+                "
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+
+      <div
+        style="
+          background-color: lightgreen;
+          width: 150px;
+          padding: 0.25rem;
+          margin-top: 0.25rem;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 20px;
+          text-align: center;
+          font-weight: bolder;
+          font-size: 15px;
+        "
+      >
+        Aprovados
+      </div>
+      <tbody>
+        <tr *ngFor="let doc of listaDocumentos">
+          <td>{{ doc.documentoID | uppercase }}</td>
+          <td>
+            <a
+              [href]="
+                './sistemaLicitacao/visualizacaoDocumento/' + doc.documentoID
+              "
+              target="_blank"
+              >{{ doc.identificacao }}</a
+            >
+          </td>
+          <td>{{ doc.status }}</td>
+          <td>{{ doc.criacao }}</td>
+          <td>{{ doc.edicao }}</td>
+          <td>
+            <div class="acoes">
+              <button
+                mat-icon-button
+                title="Editar Documento"
+                [routerLink]="
+                  '/sistemaLicitacao/preenchimentoDocumento/' + doc.documentoID
+                "
+                [disabled]="doc.status !== 'Em Edição'"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <a
+                mat-icon-button
+                title="Visualizar Documento"
+                [routerLink]="
+                  '/sistemaLicitacao/visualizacaoDocumento/' + doc.documentoID
+                "
+                target="_blank"
+              >
+                <mat-icon>plagiarism</mat-icon>
+              </a>
+
+              <button
+                mat-icon-button
+                [title]="doc.titleBotaoEstado"
+                [class]="doc.classeCssBotaoEstado"
+                [disabled]="doc.status !== 'Em Edição'"
+                (click)="mudarStatus(doc.documentoID, 'Em Análise')"
               >
                 <mat-icon>task</mat-icon>
               </button>

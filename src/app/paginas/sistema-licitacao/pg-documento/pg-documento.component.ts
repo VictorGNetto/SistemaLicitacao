@@ -19,8 +19,14 @@ interface Documento {
   edicao: string;
 
   // informações relacionadas ao botão de estado (que altera o estado do Documento)
-  classeCssBotaoEstado?: 'btn-estado-edicao' | 'btn-estado-analise' | 'btn-estado-aprovado';
-  titleBotaoEstado?: 'Enviar Documento para análise' | 'Documento em análise' | 'Documento aprovado';
+  classeCssBotaoEstado?:
+    | 'btn-estado-edicao'
+    | 'btn-estado-analise'
+    | 'btn-estado-aprovado';
+  titleBotaoEstado?:
+    | 'Enviar Documento para análise'
+    | 'Documento em análise'
+    | 'Documento aprovado';
 }
 
 @Component({
@@ -52,19 +58,37 @@ export class PgDocumentoComponent implements OnInit {
         this.listaDocumentos = lista;
 
         for (const doc of this.listaDocumentos) {
-          if (doc.status === "Em Edição") {
-            doc.classeCssBotaoEstado = 'btn-estado-edicao';
-            doc.titleBotaoEstado = 'Enviar Documento para análise';
-          } else if (doc.status === "Em Análise") {
-            doc.classeCssBotaoEstado = 'btn-estado-analise';
-            doc.titleBotaoEstado = 'Documento em análise';
-          } else {
-            doc.classeCssBotaoEstado = 'btn-estado-aprovado';
-            doc.titleBotaoEstado = 'Documento aprovado';
-          }
+          doc.classeCssBotaoEstado = this.statusToClasseCssBotaoEstado(
+            doc.status
+          );
+          doc.titleBotaoEstado = this.statusToTitleBotaoEstado(doc.status);
         }
       },
     });
+  }
+
+  statusToClasseCssBotaoEstado(
+    status: 'Em Edição' | 'Em Análise' | 'Aprovado'
+  ) {
+    switch (status) {
+      case 'Em Edição':
+        return 'btn-estado-edicao';
+      case 'Em Análise':
+        return 'btn-estado-analise';
+      case 'Aprovado':
+        return 'btn-estado-aprovado';
+    }
+  }
+
+  statusToTitleBotaoEstado(status: 'Em Edição' | 'Em Análise' | 'Aprovado') {
+    switch (status) {
+      case 'Em Edição':
+        return 'Enviar Documento para análise';
+      case 'Em Análise':
+        return 'Documento em análise';
+      case 'Aprovado':
+        return 'Documento aprovado';
+    }
   }
 
   openDialogCriacaoDocumento() {
@@ -112,6 +136,22 @@ export class PgDocumentoComponent implements OnInit {
           (doc) => doc.documentoID === res.documentoID
         );
         this.listaDocumentos.splice(index, 1);
+      },
+    });
+  }
+
+  mudarStatus(documentoID: string, status: 'Em Edição' | 'Em Análise' | 'Aprovado') {
+    this.documentoProvider.mudarStatus(documentoID, status).subscribe({
+      next: (res) => {
+        const index = this.listaDocumentos.findIndex(
+          (doc) => doc.documentoID === documentoID
+        );
+        const status = res.status;
+        this.listaDocumentos[index].status = status;
+        this.listaDocumentos[index].classeCssBotaoEstado =
+          this.statusToClasseCssBotaoEstado(status);
+        this.listaDocumentos[index].titleBotaoEstado =
+          this.statusToTitleBotaoEstado(status);
       },
     });
   }
