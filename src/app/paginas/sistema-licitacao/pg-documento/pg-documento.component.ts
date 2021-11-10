@@ -140,7 +140,7 @@ export class ListaDocumentoBaseDialog implements OnInit {
 export class ConfirmacaoExclusaoDocumentoDialog implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<PgDocumentoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { identificao: string }
+    @Inject(MAT_DIALOG_DATA) public data: { identificacao: string }
   ) {}
 
   ngOnInit(): void {}
