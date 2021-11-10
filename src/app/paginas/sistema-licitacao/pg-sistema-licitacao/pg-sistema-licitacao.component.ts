@@ -47,4 +47,8 @@ export class PgSistemaLicitacaoComponent implements OnInit {
   irPaginaDocumentoBase() {
     this.router.navigate(['/sistemaLicitacao/documentoBase']);
   }
+
+  irPaginaAnaliseDocumento() {
+    this.router.navigate(['/sistemaLicitacao/analiseDocumento']);
+  }
 }

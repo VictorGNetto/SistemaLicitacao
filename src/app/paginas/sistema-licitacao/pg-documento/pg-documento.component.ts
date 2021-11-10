@@ -14,9 +14,13 @@ import { DocumentoService } from 'src/app/providers/sistema-licitacao/documento.
 interface Documento {
   documentoID: string;
   identificacao: string;
-  status: string;
+  status: 'Em Edição' | 'Em Análise' | 'Aprovado';
   criacao: string;
   edicao: string;
+
+  // informações relacionadas ao botão de estado (que altera o estado do Documento)
+  classeCssBotaoEstado?: 'btn-estado-edicao' | 'btn-estado-analise' | 'btn-estado-aprovado';
+  titleBotaoEstado?: 'Enviar Documento para análise' | 'Documento em análise' | 'Documento aprovado';
 }
 
 @Component({
@@ -44,7 +48,22 @@ export class PgDocumentoComponent implements OnInit {
     this.usuarioNome = infoSessao['nome'];
 
     this.documentoProvider.listaDocumentos(this.usuarioID).subscribe({
-      next: (lista: Documento[]) => (this.listaDocumentos = lista),
+      next: (lista: Documento[]) => {
+        this.listaDocumentos = lista;
+
+        for (const doc of this.listaDocumentos) {
+          if (doc.status === "Em Edição") {
+            doc.classeCssBotaoEstado = 'btn-estado-edicao';
+            doc.titleBotaoEstado = 'Enviar Documento para análise';
+          } else if (doc.status === "Em Análise") {
+            doc.classeCssBotaoEstado = 'btn-estado-analise';
+            doc.titleBotaoEstado = 'Documento em análise';
+          } else {
+            doc.classeCssBotaoEstado = 'btn-estado-aprovado';
+            doc.titleBotaoEstado = 'Documento aprovado';
+          }
+        }
+      },
     });
   }
 
@@ -72,14 +91,17 @@ export class PgDocumentoComponent implements OnInit {
       identificacao: identificacao,
     };
 
-    const dialogRef = this.dialog.open(ConfirmacaoExclusaoDocumentoDialog, dialogConfig);
+    const dialogRef = this.dialog.open(
+      ConfirmacaoExclusaoDocumentoDialog,
+      dialogConfig
+    );
 
     dialogRef.afterClosed().subscribe({
       next: (res) => {
         if (res) {
           this.excluirDocumento(documentoID);
         }
-      }
+      },
     });
   }
 

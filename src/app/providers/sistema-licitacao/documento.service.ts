@@ -20,7 +20,7 @@ interface Documento {
   documentoID: string;
   autorID: string;
   documentoBaseID: string;
-  status: string;
+  status: 'Em Edição' | 'Em Análise' | 'Aprovado';
   identificacao: string;
   nomeDocumento: string;
   secoes: Secao[];

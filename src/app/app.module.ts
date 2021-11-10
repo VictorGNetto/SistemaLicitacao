@@ -38,6 +38,8 @@ import { ListaDocumentoBaseDialog } from './paginas/sistema-licitacao/pg-documen
 import { ConfirmacaoExclusaoDocumentoBaseDialog } from './paginas/sistema-licitacao/pg-documento-base/pg-documento-base.component';
 import { ConfirmacaoExclusaoDocumentoDialog } from './paginas/sistema-licitacao/pg-documento/pg-documento.component';
 import { PgPortalAbcComponent } from './paginas/sistema-licitacao/pg-portal-abc/pg-portal-abc.component';
+import { PgAnaliseDocumentoComponent } from './paginas/sistema-licitacao/pg-analise-documento/pg-analise-documento.component';
+import { PgVisualizacaoDocumentoComponent } from './paginas/sistema-licitacao/pg-visualizacao-documento/pg-visualizacao-documento.component';
 
 const appRoutes: Routes = [
   // {
@@ -67,6 +69,10 @@ const appRoutes: Routes = [
     component: PgDocumentoBaseComponent,
   },
   {
+    path: 'sistemaLicitacao/analiseDocumento',
+    component: PgAnaliseDocumentoComponent,
+  },
+  {
     path: 'sistemaLicitacao/criacaoDocumentoBase/:documentoBaseID',
     component: PgCriacaoDocumentoBaseComponent,
   },
@@ -75,9 +81,13 @@ const appRoutes: Routes = [
     component: PgPreenchimentoDocumentoComponent,
   },
   {
+    path: 'sistemaLicitacao/visualizacaoDocumento/:documentoID',
+    component: PgVisualizacaoDocumentoComponent,
+  },
+  {
     path: 'portalABC',
     component: PgPortalAbcComponent,
-  }
+  },
 ];
 
 @NgModule({
@@ -98,7 +108,9 @@ const appRoutes: Routes = [
     ListaDocumentoBaseDialog,
     ConfirmacaoExclusaoDocumentoBaseDialog,
     ConfirmacaoExclusaoDocumentoDialog,
-    PgPortalAbcComponent
+    PgPortalAbcComponent,
+    PgAnaliseDocumentoComponent,
+    PgVisualizacaoDocumentoComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,6 +130,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

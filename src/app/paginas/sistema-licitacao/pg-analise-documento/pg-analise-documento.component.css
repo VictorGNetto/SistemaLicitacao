@@ -9,16 +9,11 @@
 
 .descricao {
   float: left;
-  margin: 1.5rem 0.5rem 0;
+  margin: 1.5rem 0.5rem 1.5rem;
 }
 
 h2.descricao {
   font-size: 34px;
-}
-
-.btn-criar-documento {
-  float: right;
-  margin: 0.5rem;
 }
 
 a {
@@ -69,22 +64,10 @@ a:hover {
   color: orange !important;
 }
 
-.btn-estado-edicao:hover {
-  color: darkorange !important;
-}
-
 .btn-estado-analise {
   color: blue !important;
 }
 
-.btn-estado-analise:hover {
-  color: darkblue !important;
-}
-
 .btn-estado-aprovado {
   color: green !important;
-}
-
-.btn-estado-aprovado:hover {
-  color: darkgreen !important;
 }

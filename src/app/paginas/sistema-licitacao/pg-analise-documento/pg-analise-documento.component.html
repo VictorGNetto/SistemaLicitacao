@@ -1,7 +1,7 @@
 <div class="content">
   <mat-toolbar>
     <div>
-      <h1>Sistema de Licitação - Documento</h1>
+      <h1>Sistema de Licitação - Análise de Documento</h1>
       <span style="font-size: 12px">{{ usuarioNome }} [{{ usuarioID }}]</span>
     </div>
     <span class="spacer"></span>
@@ -16,17 +16,7 @@
 
   <div *ngIf="listaDocumentos.length !== 0">
     <div>
-      <h2 class="descricao">Lista de Documentos</h2>
-
-      <button
-        class="btn-criar-documento"
-        mat-stroked-button
-        title="Criar novo documento"
-        (click)="openDialogCriacaoDocumento()"
-      >
-        <mat-icon>add_circle</mat-icon>
-        <div>Criar Novo Documento</div>
-      </button>
+      <h2 class="descricao">Lista de Documentos em Análise</h2>
     </div>
     <table class="table">
       <thead>
@@ -56,17 +46,6 @@
           <td>{{ doc.edicao }}</td>
           <td>
             <div class="acoes">
-              <button
-                mat-icon-button
-                title="Editar Documento"
-                [routerLink]="
-                  '/sistemaLicitacao/preenchimentoDocumento/' + doc.documentoID
-                "
-                [disabled]="doc.status !== 'Em Edição'"
-              >
-                <mat-icon>edit</mat-icon>
-              </button>
-
               <a
                 mat-icon-button
                 title="Visualizar Documento"
@@ -87,27 +66,6 @@
               >
                 <mat-icon>task</mat-icon>
               </button>
-
-              <button
-                mat-icon-button
-                title="Exportar"
-                [disabled]="doc.status !== 'Aprovado'"
-              >
-                <mat-icon>file_download</mat-icon>
-              </button>
-
-              <button
-                mat-icon-button
-                title="Excluir Documento"
-                (click)="
-                  openDialogExclusaoDocumento(
-                    doc.documentoID,
-                    doc.identificacao
-                  )
-                "
-              >
-                <mat-icon>delete</mat-icon>
-              </button>
             </div>
           </td>
         </tr>
@@ -116,21 +74,7 @@
   </div>
   <div *ngIf="listaDocumentos.length === 0">
     <div style="display: block; clear: both">
-      <h2 class="descricao">Nenhum Documento criado</h2>
-
-      <button
-        class="btn-criar-documento"
-        mat-stroked-button
-        title="Criar novo documento"
-        (click)="openDialogCriacaoDocumento()"
-      >
-        <mat-icon>add_circle</mat-icon>
-        <div>Criar Novo Documento</div>
-      </button>
+      <h2 class="descricao">Nenhum Documento em Análise no momento</h2>
     </div>
-  </div>
-
-  <div *ngIf="criandoDocumento">
-    Criando Documento. Em instantes você será redirecionado.
   </div>
 </div>
