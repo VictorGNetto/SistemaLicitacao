@@ -42,7 +42,7 @@ export class PgAnaliseDocumentoComponent implements OnInit {
     this.usuarioID = infoSessao['id'];
     this.usuarioNome = infoSessao['nome'];
 
-    this.documentoProvider.listaDocumentos(this.usuarioID).subscribe({
+    this.documentoProvider.listaDocumentosPorStatus('Em Análise').subscribe({
       next: (lista: Documento[]) => {
         this.listaDocumentos = lista;
 

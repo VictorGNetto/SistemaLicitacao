@@ -40,9 +40,28 @@ export class DocumentoService {
    * @param usuarioID é o ID do usuário dono dos Documentos
    * @returns a lista de Documentos pedida
    */
-  listaDocumentos(usuarioID: Number): Observable<Documento[]> {
+  listaDocumentosPorAutor(usuarioID: Number): Observable<Documento[]> {
     const url =
       environment.urlBase + `lista-documentos.php?autorID=${usuarioID}`;
+
+    interface respostaListagemDocumentos {
+      listaDocumentos: Documento[];
+    }
+
+    return this.http
+      .get<respostaListagemDocumentos>(url)
+      .pipe(map((res) => { console.log('imhere', res); return res.listaDocumentos; }));
+  }
+
+  /**
+   * Obtém do backend a lista de Documentos pertencentes a um usuário.
+   *
+   * @param usuarioID é o ID do usuário dono dos Documentos
+   * @returns a lista de Documentos pedida
+   */
+   listaDocumentosPorStatus(status: 'Em Edição' | 'Em Análise' | 'Aprovado'): Observable<Documento[]> {
+    const url =
+      environment.urlBase + `lista-documentos.php?status=${status}`;
 
     interface respostaListagemDocumentos {
       listaDocumentos: Documento[];

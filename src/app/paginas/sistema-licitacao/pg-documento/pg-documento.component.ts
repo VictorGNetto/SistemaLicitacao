@@ -45,7 +45,7 @@ export class PgDocumentoComponent implements OnInit {
     this.usuarioID = infoSessao['id'];
     this.usuarioNome = infoSessao['nome'];
 
-    this.documentoProvider.listaDocumentos(this.usuarioID).subscribe({
+    this.documentoProvider.listaDocumentosPorAutor(this.usuarioID).subscribe({
       next: (lista: Documento[]) => {
         this.listaDocumentosEmEdicao = lista.filter((doc) => doc.status === 'Em Edição');
         this.listaDocumentosEmAnalise = lista.filter((doc) => doc.status === 'Em Análise');
