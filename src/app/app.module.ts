@@ -42,11 +42,6 @@ import { PgAnaliseDocumentoComponent } from './paginas/sistema-licitacao/pg-anal
 import { PgVisualizacaoDocumentoComponent } from './paginas/sistema-licitacao/pg-visualizacao-documento/pg-visualizacao-documento.component';
 
 const appRoutes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/sistemaLicitacao/criacaoDocumentoBase',
-  //   pathMatch: 'full',
-  // },
   {
     path: '',
     redirectTo: '/sistemaLicitacao',

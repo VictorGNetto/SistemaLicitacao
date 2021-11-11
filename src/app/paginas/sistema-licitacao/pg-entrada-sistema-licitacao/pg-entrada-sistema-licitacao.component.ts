@@ -31,9 +31,10 @@ export class PgEntradaSistemaLicitacaoComponent implements OnInit {
     this.salvarDados.set('sessaoID', sessaoID);
 
     this.sessaoProvider.obterInfoSessao(sessaoID).subscribe({
-      next: (res) => this.salvarDados.set('infoSessao', res.infoSessao),
+      next: (res) => {
+        this.salvarDados.set('infoSessao', res.infoSessao);
+        this.router.navigate(['/sistemaLicitacao']);
+      },
     });
-
-    this.router.navigate(['/sistemaLicitacao']);
   }
 }

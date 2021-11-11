@@ -50,7 +50,7 @@ export class DocumentoService {
 
     return this.http
       .get<respostaListagemDocumentos>(url)
-      .pipe(map((res) => { console.log('imhere', res); return res.listaDocumentos; }));
+      .pipe(map((res) => res.listaDocumentos));
   }
 
   /**
