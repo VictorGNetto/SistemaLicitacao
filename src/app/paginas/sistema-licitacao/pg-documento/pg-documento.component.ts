@@ -17,16 +17,6 @@ interface Documento {
   status: 'Em Edição' | 'Em Análise' | 'Aprovado';
   criacao: string;
   edicao: string;
-
-  // informações relacionadas ao botão de estado (que altera o estado do Documento)
-  classeCssBotaoEstado?:
-    | 'btn-estado-edicao'
-    | 'btn-estado-analise'
-    | 'btn-estado-aprovado';
-  titleBotaoEstado?:
-    | 'Enviar Documento para análise'
-    | 'Documento em análise'
-    | 'Documento aprovado';
 }
 
 @Component({
@@ -35,7 +25,9 @@ interface Documento {
   styleUrls: ['./pg-documento.component.css'],
 })
 export class PgDocumentoComponent implements OnInit {
-  listaDocumentos: Documento[] = [];
+  listaDocumentosEmEdicao: Documento[] = [];
+  listaDocumentosEmAnalise: Documento[] = [];
+  listaDocumentosAprovados: Documento[] = [];
 
   usuarioNome = 'Usuário ainda não identificado';
   usuarioID = -1;
@@ -55,14 +47,9 @@ export class PgDocumentoComponent implements OnInit {
 
     this.documentoProvider.listaDocumentos(this.usuarioID).subscribe({
       next: (lista: Documento[]) => {
-        this.listaDocumentos = lista;
-
-        for (const doc of this.listaDocumentos) {
-          doc.classeCssBotaoEstado = this.statusToClasseCssBotaoEstado(
-            doc.status
-          );
-          doc.titleBotaoEstado = this.statusToTitleBotaoEstado(doc.status);
-        }
+        this.listaDocumentosEmEdicao = lista.filter((doc) => doc.status === 'Em Edição');
+        this.listaDocumentosEmAnalise = lista.filter((doc) => doc.status === 'Em Análise');
+        this.listaDocumentosAprovados = lista.filter((doc) => doc.status === 'Aprovado');
       },
     });
   }
@@ -132,27 +119,30 @@ export class PgDocumentoComponent implements OnInit {
   excluirDocumento(documentoID: string) {
     this.documentoProvider.excluirDocumento(documentoID).subscribe({
       next: (res) => {
-        const index = this.listaDocumentos.findIndex(
+        const index = this.listaDocumentosEmEdicao.findIndex(
           (doc) => doc.documentoID === res.documentoID
         );
-        this.listaDocumentos.splice(index, 1);
+        this.listaDocumentosEmEdicao.splice(index, 1);
       },
     });
   }
 
-  mudarStatus(documentoID: string, status: 'Em Edição' | 'Em Análise' | 'Aprovado') {
-    this.documentoProvider.mudarStatus(documentoID, status).subscribe({
+  enviarDocumentoParaAnalise(documentoID: string) {
+    this.documentoProvider.mudarStatus(documentoID, 'Em Análise').subscribe({
       next: (res) => {
-        const index = this.listaDocumentos.findIndex(
+        const index = this.listaDocumentosEmEdicao.findIndex(
           (doc) => doc.documentoID === documentoID
         );
-        const status = res.status;
-        this.listaDocumentos[index].status = status;
-        this.listaDocumentos[index].classeCssBotaoEstado =
-          this.statusToClasseCssBotaoEstado(status);
-        this.listaDocumentos[index].titleBotaoEstado =
-          this.statusToTitleBotaoEstado(status);
-      },
+
+        // altera o status do documento
+        this.listaDocumentosEmEdicao[index].status = res.status;
+
+        // insere o documento no início da lista de Documentos Em Análise
+        this.listaDocumentosEmAnalise.splice(0, 0, this.listaDocumentosEmEdicao[index]);
+
+        // remove o documento da lista de Documentos Em Edição
+        this.listaDocumentosEmEdicao.splice(index, 1);
+      }
     });
   }
 }

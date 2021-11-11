@@ -21,8 +21,8 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Código</th>
           <th>Identificacao</th>
+          <th>Código</th>
           <th>Status</th>
           <th>Criação</th>
           <th>Última Edição</th>
@@ -31,7 +31,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let doc of listaDocumentos">
-          <td>{{ doc.documentoID | uppercase }}</td>
           <td>
             <a
               [href]="
@@ -41,6 +40,7 @@
               >{{ doc.identificacao }}</a
             >
           </td>
+          <td>{{ doc.documentoID | uppercase }}</td>
           <td>{{ doc.status }}</td>
           <td>{{ doc.criacao }}</td>
           <td>{{ doc.edicao }}</td>

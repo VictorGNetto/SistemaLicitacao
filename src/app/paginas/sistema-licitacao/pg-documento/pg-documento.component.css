@@ -34,8 +34,8 @@ a:hover {
 }
 
 .table {
-  width: 100%;
-  margin: 0 auto;
+  width: 98%;
+  margin: 1rem auto;
   border-collapse: collapse !important;
   color: #212529;
 
@@ -63,20 +63,4 @@ a:hover {
 .acoes {
   display: flex;
   justify-content: center;
-}
-
-.btn-estado-edicao {
-  color: orange !important;
-}
-
-.btn-estado-edicao:hover {
-  color: darkorange !important;
-}
-
-.btn-estado-analise {
-  color: blue !important;
-}
-
-.btn-estado-aprovado {
-  color: green !important;
 }
