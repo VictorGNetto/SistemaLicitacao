@@ -1,0 +1,47 @@
+.content {
+  padding: 0 1rem;
+  margin-right: 5rem;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+.documento {
+  width: 90%;
+  margin: 0.5rem auto;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px #ccc;
+}
+
+/* estilos obtidos do SEI */
+p.Texto_Centralizado_Maiusculas_Negrito {
+  font-weight: bold;
+  font-size: 13pt;
+  font-family: Calibri;
+  text-align: center;
+  text-transform: uppercase;
+  word-wrap: normal;
+}
+
+p.Texto_Fundo_Cinza_Maiusculas_Negrito {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #e6e6e6;
+  font-size: 12pt;
+  font-family: Calibri;
+  text-align: justify;
+  word-wrap: normal;
+  text-indent: 0;
+  margin: 6pt;
+}
+
+p.Texto_Alinhado_Esquerda {
+  font-size: 12pt;
+  font-family: Calibri;
+  text-align: left;
+  word-wrap: normal;
+  margin: 6pt;
+}

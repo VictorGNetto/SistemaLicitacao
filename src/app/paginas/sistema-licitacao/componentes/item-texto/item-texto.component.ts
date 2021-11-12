@@ -38,6 +38,7 @@ export class ItemTextoComponent implements OnInit {
 
   modoPrevisualizacao = true;
   @Input() modoEdicao = true;
+  @Input() modoVisualizacaoSEI = false;
 
   @Output() salvado = new EventEmitter<void>();
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { DocumentoService } from 'src/app/providers/sistema-licitacao/documento.service';
 
 interface Item {

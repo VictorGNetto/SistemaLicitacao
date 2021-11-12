@@ -1,1 +1,30 @@
-<p>Visualização do Documento <b>{{ documentoID | uppercase}}</b></p>
+<div class="content">
+  <mat-toolbar>
+    <h1>Vizualização de Documento</h1>
+  </mat-toolbar>
+  <div class="documento">
+    <p class="Texto_Centralizado_Maiusculas_Negrito">{{ nomeDocumento }}</p>
+
+    <span *ngFor="let p of paragrafosSEI">
+      <!-- Nome de Seção -->
+      <br *ngIf="p.tipo === 'nomeSecao'" />
+      <p
+        *ngIf="p.tipo === 'nomeSecao'"
+        class="Texto_Fundo_Cinza_Maiusculas_Negrito"
+      >
+        {{ p.conteudo }}
+      </p>
+
+      <!-- Item Texto -->
+      <item-texto
+        *ngIf="p.tipo === 'item' && p.conteudo.tipo === 'texto'"
+        [modoVisualizacaoSEI]="true"
+      ></item-texto>
+
+      <!-- Item Opções -->
+      <item-opcoes
+        *ngIf="p.tipo === 'item' && p.conteudo.tipo === 'opcoes'"
+      ></item-opcoes>
+    </span>
+  </div>
+</div>
