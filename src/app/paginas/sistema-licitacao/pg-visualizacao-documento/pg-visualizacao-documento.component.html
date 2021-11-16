@@ -18,13 +18,15 @@
       <!-- Item Texto -->
       <item-texto
         *ngIf="p.tipo === 'item' && p.conteudo.tipo === 'texto'"
+        [itemID]="p.conteudo.itemID"
         [modoVisualizacaoSEI]="true"
       ></item-texto>
 
       <!-- Item Opções -->
-      <item-opcoes
+      <!-- <item-opcoes
         *ngIf="p.tipo === 'item' && p.conteudo.tipo === 'opcoes'"
-      ></item-opcoes>
+        [itemID]="p.conteudo.itemID"
+      ></item-opcoes> -->
     </span>
   </div>
 </div>

@@ -100,7 +100,7 @@
     </div>
   </div>
   <div class="pre-visualizacao" *ngIf="modoPrevisualizacao">
-    <span *ngFor="let subitem of subitens; index as i">
+    <span *ngFor="let subitem of subitens; index as i;">
       <!-- se subitem.tipo === 'texto-fixo' -->
       <span class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'">{{
         subitem.conteudo
@@ -120,5 +120,10 @@
   </div>
 </div>
 <div *ngIf="modoVisualizacaoSEI">
-  It works!!!
+  <p class="Texto_Justificado" [style]="'margin-left: ' + 40*nivelIndentacao + 'px'">
+    <span *ngFor="let subitem of subitens; index as i;">
+      <span *ngIf="subitem.tipo === 'texto-fixo'">{{ subitem.conteudo }}</span>
+      <span *ngIf="subitem.tipo === 'entrada-texto'">{{ entradasTexto[i] }}</span>
+    </span>
+  </p>
 </div>

@@ -103,3 +103,13 @@ button {
   grid-template-columns: 1fr;
   margin-left: 1.5rem;
 }
+
+/* estilos obtidos do SEI */
+p.Texto_Justificado {
+  font-size: 12pt;
+  font-family: Calibri;
+  text-align: justify;
+  word-wrap: normal;
+  text-indent: 0;
+  margin: 6pt;
+}
