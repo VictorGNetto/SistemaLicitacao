@@ -88,5 +88,5 @@ input:placeholder-shown.nome-secao {
 
 .item {
   display: grid;
-  grid-template-columns: 95fr 5fr;
+  grid-template-columns: 5fr 90fr 5fr;
 }

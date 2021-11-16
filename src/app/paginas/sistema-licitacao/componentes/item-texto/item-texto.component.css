@@ -1,31 +1,11 @@
-.container-edicao-0 {
+.edicao {
   display: grid;
   grid-template-columns: 5fr 1fr 94fr;
 }
 
-.container-edicao-1 {
+.edicao-preenchimento {
   display: grid;
-  grid-template-columns: 5fr 6fr 89fr;
-}
-
-.container-edicao-2 {
-  display: grid;
-  grid-template-columns: 5fr 11fr 84fr;
-}
-
-.container-0 {
-  display: grid;
-  grid-template-columns: 6fr 94fr;
-}
-
-.container-1 {
-  display: grid;
-  grid-template-columns: 11fr 89fr;
-}
-
-.container-2 {
-  display: grid;
-  grid-template-columns: 16fr 84fr;
+  grid-template-columns: 5fr 1fr 94fr;
 }
 
 .menu {
@@ -75,6 +55,10 @@ textarea.texto-fixo:focus {
   background-color: #ccc;
 }
 
+p.texto-fixo {
+  margin-bottom: 0;
+}
+
 textarea.entrada-texto {
   color: #444;
   background-color: rgb(180, 180, 0);
@@ -88,20 +72,19 @@ textarea.entrada-texto:focus {
   background-color: rgb(150, 150, 0);
 }
 
-button {
+button.clear {
   margin-top: 0.1rem;
   margin-right: 0.1rem;
 }
 
 .pre-visualizacao {
-  padding: 0.5rem;
+  padding: 0.15rem;
   margin: 0.25rem 0.5rem 0 0;
 }
 
-.pre-visualizacao span.entrada-texto {
+span.entrada-texto {
   display: grid;
   grid-template-columns: 1fr;
-  margin-left: 1.5rem;
 }
 
 /* estilos obtidos do SEI */

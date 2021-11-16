@@ -65,6 +65,7 @@
 
       <div *ngFor="let item of secoes[i].itens; index as j">
         <div class="item" [id]="item.itemID">
+          <span></span>
           <div>
             <!-- if item.tipo === nota -->
             <item-nota
@@ -81,7 +82,7 @@
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
               [salvarEntradas]="true"
-              [modoEdicao]="false"
+              [modoExibicao]="'preenchimento'"
               (salvado)="itenFoiSalvo()"
             ></item-texto>
 

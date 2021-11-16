@@ -25,8 +25,7 @@ export class ItemTextoComponent implements OnInit {
   // Se verdadeiro, quando o item é salvado o conteúdo das suas Entradas de Texto também são salvadas
   @Input() salvarEntradas = true;
 
-  nivelIndentacao = 0; // 0, 1 ou 2
-  nivelIndentacaoClass = "container-0";
+  nivelIndentacao = 0; // 0, 1, 2, ...
 
   subitens: Subitem[] = [
     // { tipo: "texto-fixo", conteudo: "Aqui vai o conteúdo do texto fixo"},
@@ -36,9 +35,9 @@ export class ItemTextoComponent implements OnInit {
   // array com o conteudo das entradas de texto
   entradasTexto: string[] = [];
 
+  @Input() modoExibicao = 'preenchimento';  // 'preenchimento', 'edicao', 'edicao-preenchimento' e 'sei'
+
   modoPrevisualizacao = true;
-  @Input() modoEdicao = true;
-  @Input() modoVisualizacaoSEI = false;
 
   @Output() salvado = new EventEmitter<void>();
 
@@ -84,11 +83,6 @@ export class ItemTextoComponent implements OnInit {
 
   mudarNivelIndentacao(novoNivelIndentacao: number) {
     this.nivelIndentacao = novoNivelIndentacao;
-    if (this.modoEdicao) {
-      this.nivelIndentacaoClass = `container-edicao-${novoNivelIndentacao}`;
-    } else {
-      this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
-    }
   }
 
   adicionarTextoFixo() {
@@ -114,5 +108,10 @@ export class ItemTextoComponent implements OnInit {
 
   togglePrevisualizacao() {
     this.modoPrevisualizacao = !this.modoPrevisualizacao;
+    if (this.modoPrevisualizacao) {
+      this.modoExibicao = 'edicao-preenchimento';
+    } else {
+      this.modoExibicao = 'edicao';
+    }
   }
 }
