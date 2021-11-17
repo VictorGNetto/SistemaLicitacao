@@ -41,6 +41,8 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
   secaoSelecionada = 0;
   itensCriados = 0;
 
+  modoExibicaoItens: 'edicao' | 'pre-visualizacao' = 'edicao';
+
   constructor(
     private route: ActivatedRoute,
     private documentoBaseProvider: DocumentoBaseService,
@@ -59,6 +61,14 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
           this.secoes = documentoBase.secoes;
         },
       });
+  }
+
+  habilitarPreVisualizacao() {
+    this.modoExibicaoItens = "pre-visualizacao";
+  }
+
+  habilitarEdicao() {
+    this.modoExibicaoItens = "edicao";
   }
 
   // @offset === 0 -> insere à esquerda; @offset === 1 -> insere à direita;

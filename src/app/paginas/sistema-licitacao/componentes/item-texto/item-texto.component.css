@@ -1,9 +1,9 @@
-.edicao {
+.modo-edicao {
   display: grid;
   grid-template-columns: 5fr 1fr 94fr;
 }
 
-.edicao-preenchimento {
+.modo-pre-visualizacao {
   display: grid;
   grid-template-columns: 5fr 1fr 94fr;
 }

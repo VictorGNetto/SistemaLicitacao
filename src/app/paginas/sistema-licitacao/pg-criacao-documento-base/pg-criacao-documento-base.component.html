@@ -2,6 +2,22 @@
   <mat-toolbar>
     <h1>Criação de Documento Base</h1>
     <span class="spacer"></span>
+    <button
+      mat-stroked-button
+      *ngIf="modoExibicaoItens === 'edicao'"
+      class="botao-toolbar"
+      (click)="habilitarPreVisualizacao()"
+    >
+      Habilitar Pré-visualização
+    </button>
+    <button
+      mat-stroked-button
+      *ngIf="modoExibicaoItens === 'pre-visualizacao'"
+      class="botao-toolbar"
+      (click)="habilitarEdicao()"
+    >
+      Habilitar Edição
+    </button>
     <button mat-stroked-button class="botao-toolbar" (click)="salvarItens()">
       Salvar
     </button>
@@ -114,11 +130,17 @@
               </aside>
               <span></span>
               <div class="botoes-pseudoitem">
-                <button mat-stroked-button (click)="transformarItem('texto', j)">
+                <button
+                  mat-stroked-button
+                  (click)="transformarItem('texto', j)"
+                >
                   <mat-icon>add_circle</mat-icon>
                   <div>Texto</div>
                 </button>
-                <button mat-stroked-button (click)="transformarItem('opcoes', j)">
+                <button
+                  mat-stroked-button
+                  (click)="transformarItem('opcoes', j)"
+                >
                   <mat-icon>add_circle</mat-icon>
                   <div>Opções</div>
                 </button>
@@ -148,7 +170,7 @@
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
               [salvarEntradas]="false"
-              [modoExibicao]="'edicao-preenchimento'"
+              [modoExibicao]="modoExibicaoItens"
               (salvado)="itenFoiSalvo()"
             ></item-texto>
 
