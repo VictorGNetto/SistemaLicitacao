@@ -51,18 +51,12 @@
         <span>Diminuir Recuo</span>
       </button>
 
-      <button
-        mat-menu-item
-        (click)="adicionarTextoFixo()"
-      >
+      <button mat-menu-item (click)="adicionarTextoFixo()">
         <mat-icon>add_circle_outline</mat-icon>
         <span>Adicionar Texto Fixo</span>
       </button>
 
-      <button
-        mat-menu-item
-        (click)="adicionarEntradaTexto()"
-      >
+      <button mat-menu-item (click)="adicionarEntradaTexto()">
         <mat-icon>add_circle_outline</mat-icon>
         <span>Adicionar Entrada Texto</span>
       </button>
@@ -125,8 +119,11 @@
 <!-- MODO DE PRÉ-VISUALIZAÇÃO - forma como o documento é visto por quem o cria enquanto ele está pre-visualizando -->
 <div *ngIf="modoExibicao === 'pre-visualizacao'" class="modo-pre-visualizacao">
   <aside class="menu">
-    <!-- Modo de Pré-visualização ativado -->
-    <button mat-icon-button (click)="habilitarEdicao()" title="Desativar Pré-visualização">
+    <button
+      mat-icon-button
+      (click)="habilitarEdicao()"
+      title="Desativar Pré-visualização"
+    >
       <mat-icon>visibility_off</mat-icon>
     </button>
   </aside>

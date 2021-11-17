@@ -1,71 +1,106 @@
-<div [class]="nivelIndentacaoClass">
-  <aside class="menu" *ngIf="modoEdicao">
+<!-- MODO DE PREENCHIMENTO - forma como o documento é visto por quem o preenche -->
+<div *ngIf="modoExibicao === 'preenchimento'">
+  <h1
+    class="pre-visualizacao-descricao"
+    [style]="'margin-left: ' + 40 * recuo + 'px'"
+  >
+    {{ descricao }}
+  </h1>
+  <div
+    class="subitens"
+    *ngFor="let subitem of subitens; index as i"
+    [style]="'margin-left: ' + 40 * recuo + 'px'"
+  >
+    <!-- se subitem.tipo === 'subdescricao' -->
+    <div *ngIf="subitem.tipo === 'subdescricao'">
+      <h2 class="pre-visualizacao-subdescricao">
+        {{ subitem.subdescricao }}
+      </h2>
+    </div>
+
+    <!-- se subitem.tipo === 'opcao' -->
+    <div *ngIf="subitem.tipo === 'opcao'">
+      <input
+        type="radio"
+        [name]="itemID"
+        [value]="i"
+        (click)="atualizarOpcao(i)"
+        [checked]="i === opcao"
+      />
+      <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
+    </div>
+
+    <!-- se subitem.tipo === 'opcao-entrada-texto' -->
+    <div *ngIf="subitem.tipo === 'opcao-entrada-texto'">
+      <input
+        type="radio"
+        [name]="itemID"
+        [value]="i"
+        (click)="atualizarOpcao(i)"
+        [checked]="i === opcao"
+      />
+      <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
+      <span class="entrada-texto">
+        <textarea
+          class="entrada-texto"
+          rows="1"
+          [placeholder]="subitem.placeholderEntradaTexto"
+          [(ngModel)]="entradasTexto[i]"
+          appTextareaAutoresize
+        ></textarea>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- MODO DE EDIÇÃO - forma como o documento é visto por quem o cria enquanto ele está editando -->
+<div *ngIf="modoExibicao === 'edicao'" class="modo-edicao">
+  <aside class="menu">
     <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu>
       <button
         mat-menu-item
-        [disabled]="nivelIndentacao === 2"
-        (click)="mudarNivelIndentacao(nivelIndentacao + 1)"
+        [disabled]="recuo === 10"
+        (click)="mudarRecuo(recuo + 1)"
       >
         <mat-icon>format_indent_increase</mat-icon>
-        <span>Aumentar Indentação</span>
+        <span>Aumentar Recuo</span>
       </button>
       <button
         mat-menu-item
-        [disabled]="nivelIndentacao === 0"
-        (click)="mudarNivelIndentacao(nivelIndentacao - 1)"
+        [disabled]="recuo === 0"
+        (click)="mudarRecuo(recuo - 1)"
       >
         <mat-icon>format_indent_decrease</mat-icon>
-        <span>Diminuir Indentação</span>
+        <span>Diminuir Recuo</span>
       </button>
 
-      <button
-        mat-menu-item
-        [disabled]="modoPrevisualizacao"
-        (click)="adicionarSubdescricao()"
-      >
+      <button mat-menu-item (click)="adicionarSubdescricao()">
         <mat-icon>add_circle_outline</mat-icon>
         <span>Adicionar Subdescrição</span>
       </button>
 
-      <button
-        mat-menu-item
-        [disabled]="modoPrevisualizacao"
-        (click)="adicionarOpcao()"
-      >
+      <button mat-menu-item (click)="adicionarOpcao()">
         <mat-icon>add_circle_outline</mat-icon>
         <span>Adicionar Opção</span>
       </button>
 
-      <button
-        mat-menu-item
-        [disabled]="modoPrevisualizacao"
-        (click)="adicionarOpcaoComEntradaTexto()"
-      >
+      <button mat-menu-item (click)="adicionarOpcaoComEntradaTexto()">
         <mat-icon>add_circle_outline</mat-icon>
         <span>Adicionar Opção + Entrada Texto</span>
       </button>
 
-      <button
-        mat-menu-item
-        (click)="togglePrevisualizacao()"
-        [disabled]="subitens.length === 0"
-      >
-        <!-- Modo de Pré-visualização desativado -->
-        <mat-icon *ngIf="!modoPrevisualizacao">visibility</mat-icon>
-        <span *ngIf="!modoPrevisualizacao">Ativar Pré-visualização</span>
-
-        <!-- Modo de Pré-visualização ativado -->
-        <mat-icon *ngIf="modoPrevisualizacao">visibility_off</mat-icon>
-        <span *ngIf="modoPrevisualizacao">Desativar Pré-visualização</span>
+      <button mat-menu-item (click)="habilitarPreVisualizacao()">
+        <mat-icon>visibility</mat-icon>
+        <span>Ativar Pré-visualização</span>
       </button>
     </mat-menu>
   </aside>
   <span></span>
-  <div *ngIf="!modoPrevisualizacao">
-    <div class="descricao">
+  <div>
+    <div class="descricao" [style]="'margin-left: ' + 40 * recuo + 'px'">
       <textarea
         class="texto-fixo"
         rows="1"
@@ -80,7 +115,11 @@
       Adicione Opções ou Subdescrições usando o menu ao lado
     </div>
 
-    <div class="subitens" *ngFor="let subitem of subitens; index as i">
+    <div
+      class="subitens"
+      *ngFor="let subitem of subitens; index as i"
+      [style]="'margin-left: ' + 40 * recuo + 'px'"
+    >
       <!-- se subitem.tipo === 'subdescricao' -->
       <div *ngIf="subitem.tipo === 'subdescricao'" class="subdescricao">
         <span></span>
@@ -145,9 +184,32 @@
       </div>
     </div>
   </div>
-  <div class="pre-visualizacao" *ngIf="modoPrevisualizacao">
-    <h1 class="pre-visualizacao-descricao">{{ descricao }}</h1>
-    <div class="subitens" *ngFor="let subitem of subitens; index as i">
+</div>
+
+<!-- MODO DE PRÉ-VISUALIZAÇÃO - forma como o documento é visto por quem o cria enquanto ele está pre-visualizando -->
+<div *ngIf="modoExibicao === 'pre-visualizacao'" class="modo-pre-visualizacao">
+  <aside class="menu">
+    <button
+      mat-icon-button
+      (click)="habilitarEdicao()"
+      title="Desativar Pré-visualização"
+    >
+      <mat-icon>visibility_off</mat-icon>
+    </button>
+  </aside>
+  <span></span>
+  <div class="pre-visualizacao">
+    <h1
+      class="pre-visualizacao-descricao"
+      [style]="'margin-left: ' + 40 * recuo + 'px'"
+    >
+      {{ descricao }}
+    </h1>
+    <div
+      class="subitens"
+      *ngFor="let subitem of subitens; index as i"
+      [style]="'margin-left: ' + 40 * recuo + 'px'"
+    >
       <!-- se subitem.tipo === 'subdescricao' -->
       <div *ngIf="subitem.tipo === 'subdescricao'">
         <h2 class="pre-visualizacao-subdescricao">

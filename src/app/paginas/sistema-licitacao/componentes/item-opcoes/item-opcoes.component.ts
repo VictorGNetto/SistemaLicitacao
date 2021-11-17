@@ -12,29 +12,27 @@ import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
 // das diversas opções criadas.
 
 interface Subitem {
-  tipo: string,                     // "subdescricao", "opcao" e "opcao-entrada-texto"
-  subdescricao?: string             // aplicável somente quando tipo="subdescricao"
-  opcao?: string                    // aplicável somente quando tipo="opcao" ou "opcao-entrada-texto"
-  placeholderEntradaTexto?: string  // aplicável somente quando tipo="opcao-entrada-texto"
+  tipo: string; // "subdescricao", "opcao" e "opcao-entrada-texto"
+  subdescricao?: string; // aplicável somente quando tipo="subdescricao"
+  opcao?: string; // aplicável somente quando tipo="opcao" ou "opcao-entrada-texto"
+  placeholderEntradaTexto?: string; // aplicável somente quando tipo="opcao-entrada-texto"
 }
 
 @Component({
   selector: 'item-opcoes',
   templateUrl: './item-opcoes.component.html',
-  styleUrls: ['./item-opcoes.component.css']
+  styleUrls: ['./item-opcoes.component.css'],
 })
 export class ItemOpcoesComponent implements OnInit {
-
-  @Input() itemID = "";
+  @Input() itemID = '';
   @Input() salvarItem = false;
   // Se verdadeiro, quando o item é salvado o conteúdo das suas Entradas de Texto e a Opção
   // escolhida também são salvados
   @Input() salvarEntradas = true;
 
-  nivelIndentacao = 0; // 0, 1 ou 2
-  nivelIndentacaoClass = "container-0";
+  recuo = 0; // 0, 1, 2, ...
 
-  descricao = "";
+  descricao = '';
   subitens: Subitem[] = [
     // { tipo: "subdescricao", subdescricao: "123" },
     // { tipo: "opcao", opcao: "456" },
@@ -45,87 +43,91 @@ export class ItemOpcoesComponent implements OnInit {
   entradasTexto: string[] = [];
   opcao: number = -1;
 
-  modoPrevisualizacao = true;
-  @Input() modoEdicao = true;
+  @Input() modoExibicao:
+    | 'preenchimento'
+    | 'edicao'
+    | 'pre-visualizacao'
+    | 'sei' = 'pre-visualizacao';
 
   @Output() salvado = new EventEmitter<void>();
 
   constructor(private itemProvider: ItemService) {}
 
   ngOnInit(): void {
-    const itemNovo = this.itemID.startsWith("item novo");
+    const itemNovo = this.itemID.startsWith('item novo');
     this.itemProvider.carregarItem(this.itemID, itemNovo).subscribe({
-      next: res => {
+      next: (res) => {
         const dados = JSON.parse(res.dados);
-        this.descricao = itemNovo ? "" : dados["descricao"];
-        this.subitens = itemNovo ? [] : dados["subitens"];
-        this.entradasTexto = itemNovo ? [] : dados["entradasTexto"];
-        this.opcao = itemNovo ? -1 : dados["opcao"];
-        this.mudarNivelIndentacao(itemNovo ? 0 : dados["nivelIndentacao"]);
-        this.modoPrevisualizacao = itemNovo ? false : true;
-      }
+        this.descricao = itemNovo ? '' : dados['descricao'];
+        this.subitens = itemNovo ? [] : dados['subitens'];
+        this.entradasTexto = itemNovo ? [] : dados['entradasTexto'];
+        this.opcao = itemNovo ? -1 : dados['opcao'];
+        this.mudarRecuo(itemNovo ? 0 : dados['recuo']);
+      },
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.salvarItem) {
       if (!this.salvarEntradas) {
-        this.entradasTexto = this.entradasTexto.map(_ => "");
+        this.entradasTexto = this.entradasTexto.map((_) => '');
         this.opcao = -1;
       }
 
       const dados = JSON.stringify({
-        "descricao": this.descricao,
-        "subitens": this.subitens,
-        "opcao": this.opcao,
-        "entradasTexto": this.entradasTexto,
-        "nivelIndentacao": this.nivelIndentacao
+        descricao: this.descricao,
+        subitens: this.subitens,
+        opcao: this.opcao,
+        entradasTexto: this.entradasTexto,
+        recuo: this.recuo,
       });
 
-      const itemNovo = this.itemID.startsWith("item novo");
+      const itemNovo = this.itemID.startsWith('item novo');
       this.itemProvider.salvarItem(this.itemID, dados, itemNovo).subscribe({
-        next: res => {
+        next: (res) => {
           if (this.itemID !== res.itemID) {
-            this.itemProvider.adicionarAtualizacaoItemID(this.itemID, res.itemID);
+            this.itemProvider.adicionarAtualizacaoItemID(
+              this.itemID,
+              res.itemID
+            );
             this.itemID = res.itemID;
           }
           this.salvado.emit();
-        }
+        },
       });
     }
   }
 
-  mudarNivelIndentacao(novoNivelIndentacao: number) {
-    this.nivelIndentacao = novoNivelIndentacao;
-    if (this.modoEdicao) {
-      this.nivelIndentacaoClass = `container-edicao-${novoNivelIndentacao}`;
-    } else {
-      this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
-    }
+  mudarRecuo(novoRecuo: number) {
+    this.recuo = novoRecuo;
   }
 
   adicionarSubdescricao() {
     this.subitens.push({
-      tipo: "subdescricao", subdescricao: ""
+      tipo: 'subdescricao',
+      subdescricao: '',
     });
 
-    this.entradasTexto.push("");
+    this.entradasTexto.push('');
   }
 
   adicionarOpcao() {
     this.subitens.push({
-      tipo: "opcao", opcao: ""
+      tipo: 'opcao',
+      opcao: '',
     });
 
-    this.entradasTexto.push("");
+    this.entradasTexto.push('');
   }
 
   adicionarOpcaoComEntradaTexto() {
     this.subitens.push({
-      tipo: "opcao-entrada-texto", opcao: "", placeholderEntradaTexto: ""
+      tipo: 'opcao-entrada-texto',
+      opcao: '',
+      placeholderEntradaTexto: '',
     });
 
-    this.entradasTexto.push("");
+    this.entradasTexto.push('');
   }
 
   removerSubitem(index: number) {
@@ -137,8 +139,11 @@ export class ItemOpcoesComponent implements OnInit {
     this.opcao = opcao;
   }
 
-  togglePrevisualizacao() {
-    this.modoPrevisualizacao = !this.modoPrevisualizacao;
+  habilitarPreVisualizacao() {
+    this.modoExibicao = 'pre-visualizacao';
   }
 
+  habilitarEdicao() {
+    this.modoExibicao = 'edicao';
+  }
 }
