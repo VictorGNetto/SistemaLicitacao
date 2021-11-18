@@ -3,29 +3,25 @@
 
 ##  Visão Geral
 O SL permite a manipulação de dois tipos de documentos:
-* Documento Base (**DocB**)
-* Documento (**Doc**)
+* Documento Base
+* Documento
 
-Um DocB possui um **Nome** e diversas **Seções**. Cada **Seção** de um DocB contém um **Nome** e múltiplos **Itens**. Existem 3 tipos de **Itens**:
-1. **Nota** - [Texto Explicativo + Nível de Indentação]
-2.  **Texto** - [Texto + Entrada de texto + Nível de Indentação]
-3.  **Opções** - [Descrição + Subdescrição + Opções + Nível de Indentação]
+Um Documento Base possui um **Nome** e diversas **Seções**. Cada **Seção** de um DocB contém um **Nome** e múltiplos **Itens**. Existem, por hora, 3 tipos de **Itens**:
+1. **Nota** - [Texto Explicativo + Recuo]
+2. **Texto** - [Texto Fixo + Entrada de texto + Recuo]
+3. **Opções** - [Descrição + Subdescrição + Opção + Opção com Entrada de texto + Recuo]
 
-O **Item Nota** tem papel explicativo e não é exportado ao final do processo de preenchimento de um Doc. Os **Itens Texto** e **Opções**, por outro lado, são exportados e podem ser manipulados durante o preenchimento de um Doc. Todos os **Itens** apresentam um Nível de Indentação, que serve para estruturar o DocB e consequentemente o Doc.
+O **Item Nota** tem papel explicativo e não é exportado ao final do processo de preenchimento de um Documento. Os **Itens Texto** e **Opções**, por outro lado, são exportados e podem ser manipulados durante o preenchimento de um Documento. Todos os **Itens** apresentam um Recuo, que serve para estruturar o Documento Base e consequentemente o Documento.
 
-Um Doc é um documento que precisa ser preenchido, avaliado e então exportado. Um Doc é criado a partir de um DocB. Além do preenchimento, é possível a inserção de novos **Itens** do tipo **Texto** em um Doc.
+Um Documento precisa ser preenchido, avaliado e então exportado. Um Documento é criado a partir de um Documento Base.
 
-Além da criação de DocB*s* e Doc*s*, o SL possui um subsistema de **Mensagens**, que serve para troca de mensagens entre **Analistas** e outros usuários.
+Além da criação de Documentos e Documentos Base, o SL possui um subsistema de **Mensagens**, que serve para troca de mensagens entre **Analistas** e outros usuários [AINDA NÃO IMPLEMENTADO], e um subsistema de **Análise de Documentos**.
 
 ## Usuários, Permissões e Responsabilidades
-Para o SL existem dois tipos de usuários:
-* **Analista**
-* **Usuário Comum**
+Existem dois subsistemas do SL que precisam de permissão para serem acessados:
+* **Documentos Base**
+* **Análise de Documentos**
 
-Segue algumas regras que define as permissões e responsabilidade de cada tipo de usuário:
-1. Apena o **Analista** pode criar e editar DocB*s*
-2. O preenchimento de Doc*s* é permitido a todos os usuários, desde que aquele usuário tenha criado o Doc
-3. Um **Analista** não pode editar um Doc criado por outro usuário (preencher itens, adicionar itens, remover itens). É permitido, porém, que ele visualize o conteúdo do Doc
-4. Um **Usuário Comum** não pode editar ou visualizar um Doc criado por outro usuário
-5. Após o preenchimento de um Doc, um **Analista** deve avaliá-lo. Se houver algum problema no preenchimento do Doc, o **Analista** deve apontar via o subsistema de **Mensagens**.
-6. Um Doc avaliado e com todas as pendências resolvidas não pode mais ser editado. Nesse ponto, é possível exportar o Doc para um formato aceito pelo **SEI - Governo GO**.
+Um usuário com permissão para manipular Documentos Base pode criá-los, editá-los ou excluí-los. Os Documentos Base criados servem de base, então, para a criação e preenchimento de Documentos. Após o preenchimento de um Documento, ele deve ser submetido à análise. Somente usuários com a devida permissão podem analisar um Documento e então aprová-lo ou recusá-lo.
+
+Seguindo a ideia do último parágrafo, um Documento pode estar em três estados distintos: Edição, Análise ou Aprovado. Enquanto um Documento estiver em Edição todo o seu conteúdo passível de preenchimento pode ser alterado; é possível ver como o Documento ficará no SEI; não é possível exportar o Documento. Enquanto um Documento estiver em Análise, sua edição ou exportação ficam bloqueadas, sendo ainda permitido visualizar como o Documento ficará no SEI. Por fim, quando um Documento estiver Aprovado, não é mais possível editá-lo, mas é possível ver como ele vai ficar no SEI e também é possível exportar o Documento no formato do SEI.
