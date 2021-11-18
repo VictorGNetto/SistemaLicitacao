@@ -1,9 +1,4 @@
-.modo-edicao {
-  display: grid;
-  grid-template-columns: 5fr 1fr 94fr;
-}
-
-.modo-pre-visualizacao {
+.grid-5-1-94 {
   display: grid;
   grid-template-columns: 5fr 1fr 94fr;
 }

@@ -7,7 +7,6 @@
     {{ descricao }}
   </h1>
   <div
-    class="subitens"
     *ngFor="let subitem of subitens; index as i"
     [style]="'margin-left: ' + 40 * recuo + 'px'"
   >
@@ -54,7 +53,7 @@
 </div>
 
 <!-- MODO DE EDIÇÃO - forma como o documento é visto por quem o cria enquanto ele está editando -->
-<div *ngIf="modoExibicao === 'edicao'" class="modo-edicao">
+<div *ngIf="modoExibicao === 'edicao'" class="grid-5-1-94">
   <aside class="menu">
     <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
       <mat-icon>more_vert</mat-icon>
@@ -187,7 +186,7 @@
 </div>
 
 <!-- MODO DE PRÉ-VISUALIZAÇÃO - forma como o documento é visto por quem o cria enquanto ele está pre-visualizando -->
-<div *ngIf="modoExibicao === 'pre-visualizacao'" class="modo-pre-visualizacao">
+<div *ngIf="modoExibicao === 'pre-visualizacao'" class="grid-5-1-94">
   <aside class="menu">
     <button
       mat-icon-button
@@ -206,7 +205,6 @@
       {{ descricao }}
     </h1>
     <div
-      class="subitens"
       *ngFor="let subitem of subitens; index as i"
       [style]="'margin-left: ' + 40 * recuo + 'px'"
     >
