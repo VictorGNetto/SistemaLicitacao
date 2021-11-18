@@ -161,10 +161,10 @@
 <div *ngIf="modoExibicao === 'sei'">
   <p class="Texto_Justificado" [style]="'margin-left: ' + 40 * recuo + 'px'">
     <span *ngFor="let subitem of subitens; index as i">
-      <span *ngIf="subitem.tipo === 'texto-fixo'">{{ subitem.conteudo }}</span>
+      <span *ngIf="subitem.tipo === 'texto-fixo'">{{ subitem.conteudo }} </span>
       <span *ngIf="subitem.tipo === 'entrada-texto'">{{
         entradasTexto[i]
-      }}</span>
+      }} </span>
     </span>
   </p>
 </div>

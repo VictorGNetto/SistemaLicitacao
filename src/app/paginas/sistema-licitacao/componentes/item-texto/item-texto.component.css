@@ -89,5 +89,5 @@ p.Texto_Justificado {
   text-align: justify;
   word-wrap: normal;
   text-indent: 0;
-  margin: 6pt;
+  margin: 6pt !important;
 }

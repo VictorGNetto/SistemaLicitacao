@@ -23,10 +23,11 @@
       ></item-texto>
 
       <!-- Item Opções -->
-      <!-- <item-opcoes
+      <item-opcoes
         *ngIf="p.tipo === 'item' && p.conteudo.tipo === 'opcoes'"
         [itemID]="p.conteudo.itemID"
-      ></item-opcoes> -->
+        [modoExibicao]="'sei'"
+      ></item-opcoes>
     </span>
   </div>
 </div>
