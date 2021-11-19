@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { DocumentoBaseService } from 'src/app/providers/sistema-licitacao/documento-base.service';
 import { SalvarDados } from 'src/app/classes/salvar-dados';
 import { DocumentoService } from 'src/app/providers/sistema-licitacao/documento.service';
+import { SeiService } from 'src/app/providers/sistema-licitacao/sei.service';
 
 interface Documento {
   documentoID: string;
@@ -37,7 +38,8 @@ export class PgDocumentoComponent implements OnInit {
   constructor(
     private salvarDados: SalvarDados,
     public dialog: MatDialog,
-    private documentoProvider: DocumentoService
+    private documentoProvider: DocumentoService,
+    private seiProvider: SeiService
   ) {}
 
   ngOnInit(): void {
@@ -47,9 +49,15 @@ export class PgDocumentoComponent implements OnInit {
 
     this.documentoProvider.listaDocumentosPorAutor(this.usuarioID).subscribe({
       next: (lista: Documento[]) => {
-        this.listaDocumentosEmEdicao = lista.filter((doc) => doc.status === 'Em Edição');
-        this.listaDocumentosEmAnalise = lista.filter((doc) => doc.status === 'Em Análise');
-        this.listaDocumentosAprovados = lista.filter((doc) => doc.status === 'Aprovado');
+        this.listaDocumentosEmEdicao = lista.filter(
+          (doc) => doc.status === 'Em Edição'
+        );
+        this.listaDocumentosEmAnalise = lista.filter(
+          (doc) => doc.status === 'Em Análise'
+        );
+        this.listaDocumentosAprovados = lista.filter(
+          (doc) => doc.status === 'Aprovado'
+        );
       },
     });
   }
@@ -138,10 +146,36 @@ export class PgDocumentoComponent implements OnInit {
         this.listaDocumentosEmEdicao[index].status = res.status;
 
         // insere o documento no início da lista de Documentos Em Análise
-        this.listaDocumentosEmAnalise.splice(0, 0, this.listaDocumentosEmEdicao[index]);
+        this.listaDocumentosEmAnalise.splice(
+          0,
+          0,
+          this.listaDocumentosEmEdicao[index]
+        );
 
         // remove o documento da lista de Documentos Em Edição
         this.listaDocumentosEmEdicao.splice(index, 1);
+      },
+    });
+  }
+
+  downloadArquivo(conteudoArquivo: string, nomeArquivo: string) {
+    const blob = new Blob([conteudoArquivo], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+
+    let a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = nomeArquivo;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  }
+
+  exportarDocumento(documentoID: string) {
+    this.seiProvider.exportarDocumento(documentoID).subscribe({
+      next: (res) => {
+        this.downloadArquivo(res.conteudo, res.nome + '.txt');
       }
     });
   }
