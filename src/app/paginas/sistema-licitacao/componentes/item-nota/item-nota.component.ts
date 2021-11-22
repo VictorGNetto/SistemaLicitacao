@@ -12,71 +12,72 @@ import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
   styleUrls: ['./item-nota.component.css'],
 })
 export class ItemNotaComponent implements OnInit {
-  @Input() itemID = "";
+  @Input() itemID = '';
   @Input() salvarItem = false;
-  conteudo = "";
-  paragrafos: string[] = [];  // usado na previsualização
-  nivelIndentacao = 0; // 0, 1 ou 2
-  nivelIndentacaoClass = "container-0";
+  conteudo = '';
+  paragrafos: string[] = []; // usado na previsualização
+  recuo = 0; // 0, 1, 2, ...
 
-  modoPrevisualizacao = true;
-  @Input() modoEdicao = true;
+  @Input() modoExibicao:
+    | 'preenchimento'
+    | 'edicao'
+    | 'pre-visualizacao'
+    | 'sei' = 'pre-visualizacao';
 
   @Output() salvado = new EventEmitter<void>();
 
   constructor(private itemProvider: ItemService) {}
 
   ngOnInit(): void {
-    const itemNovo = this.itemID.startsWith("item novo");
+    const itemNovo = this.itemID.startsWith('item novo');
     this.itemProvider.carregarItem(this.itemID, itemNovo).subscribe({
-      next: res => {
+      next: (res) => {
         const dados = JSON.parse(res.dados);
-        this.conteudo = itemNovo ? "Nota: " : dados["conteudo"];
+        this.conteudo = itemNovo ? 'Nota: ' : dados['conteudo'];
         this.atualizarParagrafos();
-        this.mudarNivelIndentacao(itemNovo ? 0 : dados["nivelIndentacao"]);
-        this.modoPrevisualizacao = itemNovo ? false : true;
-      }
+        this.mudarRecuo(itemNovo ? 0 : dados['recuo']);
+      },
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.atualizarParagrafos();
+
     if (this.salvarItem) {
       const dados = JSON.stringify({
-        "conteudo": this.conteudo,
-        "nivelIndentacao": this.nivelIndentacao
+        conteudo: this.conteudo,
+        recuo: this.recuo,
       });
 
-      const itemNovo = this.itemID.startsWith("item novo");
+      const itemNovo = this.itemID.startsWith('item novo');
       this.itemProvider.salvarItem(this.itemID, dados, itemNovo).subscribe({
-        next: res => {
+        next: (res) => {
           if (this.itemID !== res.itemID) {
-            this.itemProvider.adicionarAtualizacaoItemID(this.itemID, res.itemID);
+            this.itemProvider.adicionarAtualizacaoItemID(
+              this.itemID,
+              res.itemID
+            );
             this.itemID = res.itemID;
           }
           this.salvado.emit();
-        }
+        },
       });
     }
   }
 
-  mudarNivelIndentacao(novoNivelIndentacao: number) {
-    this.nivelIndentacao = novoNivelIndentacao;
-    if (this.modoEdicao) {
-      this.nivelIndentacaoClass = `container-edicao-${novoNivelIndentacao}`;
-    } else {
-      this.nivelIndentacaoClass = `container-${novoNivelIndentacao}`;
-    }
+  mudarRecuo(novoRecuo: number) {
+    this.recuo = novoRecuo;
   }
 
-  togglePrevisualizacao() {
-    this.modoPrevisualizacao = !this.modoPrevisualizacao;
+  habilitarPreVisualizacao() {
+    this.modoExibicao = 'pre-visualizacao';
+  }
 
-    if (this.modoPrevisualizacao) {
-      this.atualizarParagrafos();  
-    }
+  habilitarEdicao() {
+    this.modoExibicao = 'edicao';
   }
 
   atualizarParagrafos() {
-    this.paragrafos = this.conteudo.split("\n").filter(x => x !== "");
+    this.paragrafos = this.conteudo.split('\n').filter((x) => x !== '');
   }
 }

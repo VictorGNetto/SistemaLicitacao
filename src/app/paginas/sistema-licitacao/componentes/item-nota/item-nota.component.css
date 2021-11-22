@@ -1,31 +1,6 @@
-.container-edicao-0 {
+.grid-5-1-94 {
   display: grid;
   grid-template-columns: 5fr 1fr 94fr;
-}
-
-.container-edicao-1 {
-  display: grid;
-  grid-template-columns: 5fr 6fr 89fr;
-}
-
-.container-edicao-2 {
-  display: grid;
-  grid-template-columns: 5fr 11fr 84fr;
-}
-
-.container-0 {
-  display: grid;
-  grid-template-columns: 6fr 94fr;
-}
-
-.container-1 {
-  display: grid;
-  grid-template-columns: 11fr 89fr;
-}
-
-.container-2 {
-  display: grid;
-  grid-template-columns: 16fr 84fr;
 }
 
 .menu {

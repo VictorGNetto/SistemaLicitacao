@@ -122,7 +122,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatDialogModule,
     MatSelectModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   providers: [],
   bootstrap: [AppComponent],

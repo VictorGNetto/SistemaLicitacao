@@ -18,7 +18,6 @@
     >
       <textarea
         class="entrada-texto"
-        rows="1"
         [placeholder]="subitem.placeholder"
         [(ngModel)]="entradasTexto[i]"
         appTextareaAutoresize
@@ -33,6 +32,7 @@
     <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
+
     <mat-menu #menu>
       <button
         mat-menu-item
@@ -42,6 +42,7 @@
         <mat-icon>format_indent_increase</mat-icon>
         <span>Aumentar Recuo</span>
       </button>
+
       <button
         mat-menu-item
         [disabled]="recuo === 0"
@@ -76,7 +77,6 @@
       <!-- se subitem.tipo === 'texto-fixo' -->
       <textarea
         class="texto-fixo"
-        rows="1"
         *ngIf="subitem.tipo === 'texto-fixo'"
         placeholder="Insira aqui o texto fixo"
         [(ngModel)]="subitens[i].conteudo"
@@ -96,7 +96,6 @@
       <!-- se subitem.tipo === 'entrada-texto' -->
       <textarea
         class="entrada-texto"
-        rows="1"
         *ngIf="subitem.tipo === 'entrada-texto'"
         placeholder="Insira aqui uma mensagem explicativa"
         [(ngModel)]="subitens[i].placeholder"
@@ -147,7 +146,6 @@
       >
         <textarea
           class="entrada-texto"
-          rows="1"
           [placeholder]="subitem.placeholder"
           [(ngModel)]="entradasTexto[i]"
           appTextareaAutoresize
@@ -162,9 +160,9 @@
   <p class="Texto_Justificado" [style]="'margin-left: ' + 40 * recuo + 'px'">
     <span *ngFor="let subitem of subitens; index as i">
       <span *ngIf="subitem.tipo === 'texto-fixo'">{{ subitem.conteudo }} </span>
-      <span *ngIf="subitem.tipo === 'entrada-texto'">{{
-        entradasTexto[i]
-      }} </span>
+      <span *ngIf="subitem.tipo === 'entrada-texto'"
+        >{{ entradasTexto[i] }}
+      </span>
     </span>
   </p>
 </div>

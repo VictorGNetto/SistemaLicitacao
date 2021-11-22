@@ -42,7 +42,6 @@
       <span class="entrada-texto">
         <textarea
           class="entrada-texto"
-          rows="1"
           [placeholder]="subitem.placeholderEntradaTexto"
           [(ngModel)]="entradasTexto[i]"
           appTextareaAutoresize
@@ -102,7 +101,6 @@
     <div class="descricao" [style]="'margin-left: ' + 40 * recuo + 'px'">
       <textarea
         class="texto-fixo"
-        rows="1"
         placeholder="Insira aqui a descrição"
         [(ngModel)]="descricao"
         appTextareaAutoresize
@@ -124,7 +122,6 @@
         <span></span>
         <textarea
           class="texto-fixo"
-          rows="1"
           placeholder="Insira aqui a subdescrição"
           [(ngModel)]="subitens[i].subdescricao"
           appTextareaAutoresize
@@ -141,7 +138,6 @@
         <input type="radio" [name]="itemID" />
         <textarea
           class="texto-fixo"
-          rows="1"
           placeholder="Insira aqui o texto desta opção"
           [(ngModel)]="subitens[i].opcao"
           appTextareaAutoresize
@@ -161,7 +157,6 @@
         <input type="radio" [name]="itemID" />
         <textarea
           class="texto-fixo"
-          rows="1"
           placeholder="Insira aqui o texto desta opção"
           [(ngModel)]="subitens[i].opcao"
           appTextareaAutoresize
@@ -174,7 +169,6 @@
         <span></span>
         <textarea
           class="entrada-texto"
-          rows="1"
           placeholder="Insira aqui uma mensagem explicativa"
           [(ngModel)]="subitens[i].placeholderEntradaTexto"
           appTextareaAutoresize
@@ -240,7 +234,6 @@
         <span class="entrada-texto">
           <textarea
             class="entrada-texto"
-            rows="1"
             [placeholder]="subitem.placeholderEntradaTexto"
             [(ngModel)]="entradasTexto[i]"
             appTextareaAutoresize

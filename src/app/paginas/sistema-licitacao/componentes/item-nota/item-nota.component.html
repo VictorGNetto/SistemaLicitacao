@@ -1,51 +1,68 @@
-<div [class]="nivelIndentacaoClass">
-  <aside class="menu" *ngIf="modoEdicao">
+<!-- MODO DE PREENCHIMENTO - forma como o documento é visto por quem o preenche -->
+<div
+  *ngIf="modoExibicao === 'preenchimento'"
+  [style]="'margin-left: ' + 40 * recuo + 'px'"
+>
+  <div class="pre-visualizacao">
+    <p *ngFor="let paragrafo of paragrafos">{{ paragrafo }}</p>
+  </div>
+</div>
+
+<!-- MODO DE EDIÇÃO - forma como o documento é visto por quem o cria enquanto ele está editando -->
+<div *ngIf="modoExibicao === 'edicao'" class="grid-5-1-94">
+  <aside class="menu">
     <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
+
     <mat-menu #menu>
       <button
         mat-menu-item
-        [disabled]="nivelIndentacao === 2"
-        (click)="mudarNivelIndentacao(nivelIndentacao + 1)"
+        [disabled]="recuo === 10"
+        (click)="mudarRecuo(recuo + 1)"
       >
         <mat-icon>format_indent_increase</mat-icon>
         <span>Aumentar Indentação</span>
       </button>
+
       <button
         mat-menu-item
-        [disabled]="nivelIndentacao === 0"
-        (click)="mudarNivelIndentacao(nivelIndentacao - 1)"
+        [disabled]="recuo === 0"
+        (click)="mudarRecuo(recuo - 1)"
       >
         <mat-icon>format_indent_decrease</mat-icon>
         <span>Diminuir Indentação</span>
       </button>
-      <button
-        mat-menu-item
-        (click)="togglePrevisualizacao()"
-        [disabled]="conteudo.length === 0"
-      >
-        <!-- Modo de Pré-visualização desativado -->
-        <mat-icon *ngIf="!modoPrevisualizacao">visibility</mat-icon>
-        <span *ngIf="!modoPrevisualizacao">Ativar Pré-visualização</span>
 
-        <!-- Modo de Pré-visualização ativado -->
-        <mat-icon *ngIf="modoPrevisualizacao">visibility_off</mat-icon>
-        <span *ngIf="modoPrevisualizacao">Desativar Pré-visualização</span>
+      <button mat-menu-item (click)="habilitarPreVisualizacao()">
+        <mat-icon>visibility</mat-icon>
+        <span>Ativar Pré-visualização</span>
       </button>
     </mat-menu>
   </aside>
   <span></span>
   <textarea
-    *ngIf="!modoPrevisualizacao"
-    rows="1"
     title="Insira aqui o conteúdo da Nota"
     [(ngModel)]="conteudo"
     appTextareaAutoresize
+    [style]="'margin-left: ' + 40 * recuo + 'px'"
     >{{ conteudo }}</textarea
   >
+</div>
 
-  <div *ngIf="modoPrevisualizacao" class="pre-visualizacao">
+<!-- MODO DE PRÉ-VISUALIZAÇÃO - forma como o documento é visto por quem o cria enquanto ele está pre-visualizando -->
+<div *ngIf="modoExibicao === 'pre-visualizacao'" class="grid-5-1-94">
+  <aside class="menu">
+    <button
+      mat-icon-button
+      (click)="habilitarEdicao()"
+      title="Desativar Pré-visualização"
+    >
+      <mat-icon>visibility_off</mat-icon>
+    </button>
+  </aside>
+  <span></span>
+  <div class="pre-visualizacao" [style]="'margin-left: ' + 40 * recuo + 'px'">
     <p *ngFor="let paragrafo of paragrafos">{{ paragrafo }}</p>
   </div>
 </div>
