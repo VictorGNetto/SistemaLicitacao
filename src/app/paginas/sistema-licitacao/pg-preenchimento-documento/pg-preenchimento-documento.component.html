@@ -1,5 +1,5 @@
 <div class="content">
-  <mat-toolbar>
+  <mat-toolbar style="position: sticky; top: 0; z-index: 1000;">
     <h1>Preenchimento de Documento</h1>
     <span class="spacer"></span>
     <button mat-stroked-button class="botao-toolbar" (click)="salvarItens()">
@@ -21,6 +21,7 @@
     type="text"
     [(ngModel)]="nomeDocumento"
     placeholder="Insira aqui o nome do Documento"
+    disabled
   />
 
   <mat-tab-group animationDuration="0ms" #tabgroup>
@@ -30,38 +31,8 @@
       <ng-template mat-tab-label>
         <span class="tab-nome-secao">{{ secao.nome }}</span>
       </ng-template>
-      <mat-toolbar class="secao-toolbar">
-        <div class="div-secao-toolbar">
-          <button
-            mat-stroked-button
-            title="Ir para a seção anterior"
-            [disabled]="isFirst"
-            (click)="tabgroup.selectedIndex = i - 1"
-          >
-            <mat-icon>keyboard_double_arrow_left</mat-icon>
-            Seção Anterior
-          </button>
-        </div>
-        <div class="div-secao-toolbar">
-          <input
-            class="nome-secao"
-            type="text"
-            [value]="secoes[i].nome"
-            placeholder="Nome da Seção"
-          />
-        </div>
-        <div class="div-secao-toolbar">
-          <button
-            mat-stroked-button
-            title="Ir para a próxima seção"
-            [disabled]="isLast"
-            (click)="tabgroup.selectedIndex = i + 1"
-          >
-            Próxima Seção
-            <mat-icon>keyboard_double_arrow_right</mat-icon>
-          </button>
-        </div>
-      </mat-toolbar>
+
+      <div class="vertical-spacer"></div>
 
       <div *ngFor="let item of secoes[i].itens; index as j">
         <div class="item" [id]="item.itemID">
@@ -99,6 +70,32 @@
           <span></span>
         </div>
       </div>
+
+      <mat-toolbar class="secao-toolbar-rodape">
+        <div>
+          <button
+            mat-stroked-button
+            title="Ir para a seção anterior"
+            [disabled]="isFirst"
+            (click)="tabgroup.selectedIndex = i - 1"
+          >
+            <mat-icon>keyboard_double_arrow_left</mat-icon>
+            Seção Anterior
+          </button>
+        </div>
+        <span></span>
+        <div>
+          <button
+            mat-stroked-button
+            title="Ir para a próxima seção"
+            [disabled]="isLast"
+            (click)="tabgroup.selectedIndex = i + 1"
+          >
+            Próxima Seção
+            <mat-icon>keyboard_double_arrow_right</mat-icon>
+          </button>
+        </div>
+      </mat-toolbar>
     </mat-tab>
   </mat-tab-group>
 </div>
