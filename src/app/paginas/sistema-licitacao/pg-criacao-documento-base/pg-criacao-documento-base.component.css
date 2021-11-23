@@ -3,6 +3,12 @@
   margin-right: 5rem;
 }
 
+.main-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
@@ -94,7 +100,13 @@ input:placeholder-shown.nome-secao {
   font-weight: normal;
 }
 
-.secao-toolbar {
+.secao-toolbar-cabecalho {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.secao-toolbar-rodape {
+  margin-top: 2rem;
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
 }
