@@ -2,20 +2,12 @@
 <div *ngIf="modoExibicao === 'preenchimento'">
   <span *ngFor="let subitem of subitens; index as i">
     <!-- se subitem.tipo === 'texto-fixo' -->
-    <p
-      class="texto-fixo"
-      *ngIf="subitem.tipo === 'texto-fixo'"
-      [style]="'margin-left: ' + 40 * recuo + 'px'"
-    >
+    <p class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'">
       {{ subitem.conteudo }}
     </p>
 
     <!-- se subitem.tipo === 'entrada-texto' -->
-    <span
-      class="entrada-texto"
-      *ngIf="subitem.tipo === 'entrada-texto'"
-      [style]="'margin-left: ' + 40 * recuo + 'px'"
-    >
+    <span class="entrada-texto" *ngIf="subitem.tipo === 'entrada-texto'">
       <textarea
         class="entrada-texto"
         [placeholder]="subitem.placeholder"
@@ -34,24 +26,6 @@
     </button>
 
     <mat-menu #menu>
-      <button
-        mat-menu-item
-        [disabled]="recuo === 10"
-        (click)="mudarRecuo(recuo + 1)"
-      >
-        <mat-icon>format_indent_increase</mat-icon>
-        <span>Aumentar Recuo</span>
-      </button>
-
-      <button
-        mat-menu-item
-        [disabled]="recuo === 0"
-        (click)="mudarRecuo(recuo - 1)"
-      >
-        <mat-icon>format_indent_decrease</mat-icon>
-        <span>Diminuir Recuo</span>
-      </button>
-
       <button mat-menu-item (click)="adicionarTextoFixo()">
         <mat-icon>add_circle_outline</mat-icon>
         <span>Adicionar Texto Fixo</span>
@@ -80,7 +54,6 @@
         *ngIf="subitem.tipo === 'texto-fixo'"
         placeholder="Insira aqui o texto fixo"
         [(ngModel)]="subitens[i].conteudo"
-        [style]="'margin-left: ' + 40 * recuo + 'px'"
         appTextareaAutoresize
         >{{ subitem.conteudo }}</textarea
       >
@@ -99,7 +72,6 @@
         *ngIf="subitem.tipo === 'entrada-texto'"
         placeholder="Insira aqui uma mensagem explicativa"
         [(ngModel)]="subitens[i].placeholder"
-        [style]="'margin-left: ' + 40 * recuo + 'px'"
         appTextareaAutoresize
         >{{ subitem.placeholder }}</textarea
       >
@@ -130,20 +102,12 @@
   <div class="pre-visualizacao">
     <span *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'texto-fixo' -->
-      <p
-        class="texto-fixo"
-        *ngIf="subitem.tipo === 'texto-fixo'"
-        [style]="'margin-left: ' + 40 * recuo + 'px'"
-      >
+      <p class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'">
         {{ subitem.conteudo }}
       </p>
 
       <!-- se subitem.tipo === 'entrada-texto' -->
-      <span
-        class="entrada-texto"
-        *ngIf="subitem.tipo === 'entrada-texto'"
-        [style]="'margin-left: ' + 40 * recuo + 'px'"
-      >
+      <span class="entrada-texto" *ngIf="subitem.tipo === 'entrada-texto'">
         <textarea
           class="entrada-texto"
           [placeholder]="subitem.placeholder"
@@ -157,7 +121,7 @@
 
 <!-- MODO SEI - forma como o documento ficará no SEI -->
 <div *ngIf="modoExibicao === 'sei'">
-  <p class="Texto_Justificado" [style]="'margin-left: ' + 40 * recuo + 'px'">
+  <p class="Texto_Justificado">
     <span *ngFor="let subitem of subitens; index as i">
       <span *ngIf="subitem.tipo === 'texto-fixo'">{{ subitem.conteudo }} </span>
       <span *ngIf="subitem.tipo === 'entrada-texto'"

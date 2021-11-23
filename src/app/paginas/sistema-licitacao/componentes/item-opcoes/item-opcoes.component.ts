@@ -30,8 +30,6 @@ export class ItemOpcoesComponent implements OnInit {
   // escolhida também são salvados
   @Input() salvarEntradas = true;
 
-  recuo = 0; // 0, 1, 2, ...
-
   descricao = '';
   subitens: Subitem[] = [
     // { tipo: "subdescricao", subdescricao: "123" },
@@ -62,7 +60,6 @@ export class ItemOpcoesComponent implements OnInit {
         this.subitens = itemNovo ? [] : dados['subitens'];
         this.entradasTexto = itemNovo ? [] : dados['entradasTexto'];
         this.opcao = itemNovo ? -1 : dados['opcao'];
-        this.mudarRecuo(itemNovo ? 0 : dados['recuo']);
       },
     });
   }
@@ -79,7 +76,6 @@ export class ItemOpcoesComponent implements OnInit {
         subitens: this.subitens,
         opcao: this.opcao,
         entradasTexto: this.entradasTexto,
-        recuo: this.recuo,
       });
 
       const itemNovo = this.itemID.startsWith('item novo');
@@ -96,10 +92,6 @@ export class ItemOpcoesComponent implements OnInit {
         },
       });
     }
-  }
-
-  mudarRecuo(novoRecuo: number) {
-    this.recuo = novoRecuo;
   }
 
   adicionarSubdescricao() {

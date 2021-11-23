@@ -1,8 +1,5 @@
 <!-- MODO DE PREENCHIMENTO - forma como o documento é visto por quem o preenche -->
-<div
-  *ngIf="modoExibicao === 'preenchimento'"
-  [style]="'margin-left: ' + 40 * recuo + 'px'"
->
+<div *ngIf="modoExibicao === 'preenchimento'">
   <div class="pre-visualizacao">
     <p *ngFor="let paragrafo of paragrafos">{{ paragrafo }}</p>
   </div>
@@ -16,24 +13,6 @@
     </button>
 
     <mat-menu #menu>
-      <button
-        mat-menu-item
-        [disabled]="recuo === 10"
-        (click)="mudarRecuo(recuo + 1)"
-      >
-        <mat-icon>format_indent_increase</mat-icon>
-        <span>Aumentar Indentação</span>
-      </button>
-
-      <button
-        mat-menu-item
-        [disabled]="recuo === 0"
-        (click)="mudarRecuo(recuo - 1)"
-      >
-        <mat-icon>format_indent_decrease</mat-icon>
-        <span>Diminuir Indentação</span>
-      </button>
-
       <button mat-menu-item (click)="habilitarPreVisualizacao()">
         <mat-icon>visibility</mat-icon>
         <span>Ativar Pré-visualização</span>
@@ -45,7 +24,6 @@
     title="Insira aqui o conteúdo da Nota"
     [(ngModel)]="conteudo"
     appTextareaAutoresize
-    [style]="'margin-left: ' + 40 * recuo + 'px'"
     >{{ conteudo }}</textarea
   >
 </div>
@@ -62,7 +40,7 @@
     </button>
   </aside>
   <span></span>
-  <div class="pre-visualizacao" [style]="'margin-left: ' + 40 * recuo + 'px'">
+  <div class="pre-visualizacao">
     <p *ngFor="let paragrafo of paragrafos">{{ paragrafo }}</p>
   </div>
 </div>

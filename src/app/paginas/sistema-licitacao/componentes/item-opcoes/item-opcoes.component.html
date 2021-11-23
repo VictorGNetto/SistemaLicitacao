@@ -1,15 +1,9 @@
 <!-- MODO DE PREENCHIMENTO - forma como o documento é visto por quem o preenche -->
 <div *ngIf="modoExibicao === 'preenchimento'">
-  <h1
-    class="pre-visualizacao-descricao"
-    [style]="'margin-left: ' + 40 * recuo + 'px'"
-  >
+  <h1 class="pre-visualizacao-descricao">
     {{ descricao }}
   </h1>
-  <div
-    *ngFor="let subitem of subitens; index as i"
-    [style]="'margin-left: ' + 40 * recuo + 'px'"
-  >
+  <div *ngFor="let subitem of subitens; index as i">
     <!-- se subitem.tipo === 'subdescricao' -->
     <div *ngIf="subitem.tipo === 'subdescricao'">
       <h2 class="pre-visualizacao-subdescricao">
@@ -58,23 +52,6 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu>
-      <button
-        mat-menu-item
-        [disabled]="recuo === 10"
-        (click)="mudarRecuo(recuo + 1)"
-      >
-        <mat-icon>format_indent_increase</mat-icon>
-        <span>Aumentar Recuo</span>
-      </button>
-      <button
-        mat-menu-item
-        [disabled]="recuo === 0"
-        (click)="mudarRecuo(recuo - 1)"
-      >
-        <mat-icon>format_indent_decrease</mat-icon>
-        <span>Diminuir Recuo</span>
-      </button>
-
       <button mat-menu-item (click)="adicionarSubdescricao()">
         <mat-icon>add_circle_outline</mat-icon>
         <span>Adicionar Subdescrição</span>
@@ -98,7 +75,7 @@
   </aside>
   <span></span>
   <div>
-    <div class="descricao" [style]="'margin-left: ' + 40 * recuo + 'px'">
+    <div class="descricao">
       <textarea
         class="texto-fixo"
         placeholder="Insira aqui a descrição"
@@ -112,11 +89,7 @@
       Adicione Opções ou Subdescrições usando o menu ao lado
     </div>
 
-    <div
-      class="subitens"
-      *ngFor="let subitem of subitens; index as i"
-      [style]="'margin-left: ' + 40 * recuo + 'px'"
-    >
+    <div class="subitens" *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'subdescricao' -->
       <div *ngIf="subitem.tipo === 'subdescricao'" class="subdescricao">
         <span></span>
@@ -192,16 +165,10 @@
   </aside>
   <span></span>
   <div class="pre-visualizacao">
-    <h1
-      class="pre-visualizacao-descricao"
-      [style]="'margin-left: ' + 40 * recuo + 'px'"
-    >
+    <h1 class="pre-visualizacao-descricao">
       {{ descricao }}
     </h1>
-    <div
-      *ngFor="let subitem of subitens; index as i"
-      [style]="'margin-left: ' + 40 * recuo + 'px'"
-    >
+    <div *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'subdescricao' -->
       <div *ngIf="subitem.tipo === 'subdescricao'">
         <h2 class="pre-visualizacao-subdescricao">
@@ -246,35 +213,24 @@
 
 <!-- MODO SEI - forma como o documento ficará no SEI -->
 <div *ngIf="modoExibicao === 'sei'">
-  <p class="Texto_Justificado" [style]="'margin-left: ' + 40 * recuo + 'px'">
+  <p class="Texto_Justificado">
     {{ descricao }}
   </p>
   <span *ngFor="let subitem of subitens; index as i">
-    <p
-      *ngIf="subitem.tipo === 'subdescricao'"
-      class="Texto_Justificado"
-      [style]="'margin-left: ' + 40 * recuo + 'px'"
-    >
+    <p *ngIf="subitem.tipo === 'subdescricao'" class="Texto_Justificado">
       &nbsp; &nbsp; &nbsp; {{ subitem.subdescricao }}
     </p>
-    <p
-      *ngIf="subitem.tipo === 'opcao'"
-      class="Texto_Justificado"
-      [style]="'margin-left: ' + 40 * recuo + 'px'"
-    >
+    <p *ngIf="subitem.tipo === 'opcao'" class="Texto_Justificado">
       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
       <span *ngIf="opcao !== i">(&nbsp; &nbsp; )</span
       ><span *ngIf="opcao === i">( X )</span>&nbsp;
       {{ subitem.opcao }}
     </p>
-    <p
-      *ngIf="subitem.tipo === 'opcao-entrada-texto'"
-      class="Texto_Justificado"
-      [style]="'margin-left: ' + 40 * recuo + 'px'"
-    >
+    <p *ngIf="subitem.tipo === 'opcao-entrada-texto'" class="Texto_Justificado">
       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
       <span *ngIf="opcao !== i">(&nbsp; &nbsp; )</span
-      ><span *ngIf="opcao === i">( X )</span>&nbsp; {{ subitem.opcao }} <span *ngIf="opcao === i">{{ entradasTexto[i] }}</span>
+      ><span *ngIf="opcao === i">( X )</span>&nbsp; {{ subitem.opcao }}
+      <span *ngIf="opcao === i">{{ entradasTexto[i] }}</span>
     </p>
   </span>
 </div>

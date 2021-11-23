@@ -15,8 +15,7 @@ export class ItemNotaComponent implements OnInit {
   @Input() itemID = '';
   @Input() salvarItem = false;
   conteudo = '';
-  paragrafos: string[] = []; // usado na previsualização
-  recuo = 0; // 0, 1, 2, ...
+  paragrafos: string[] = []; // usado na pré-visualização e preenchimento
 
   @Input() modoExibicao:
     | 'preenchimento'
@@ -35,7 +34,6 @@ export class ItemNotaComponent implements OnInit {
         const dados = JSON.parse(res.dados);
         this.conteudo = itemNovo ? 'Nota: ' : dados['conteudo'];
         this.atualizarParagrafos();
-        this.mudarRecuo(itemNovo ? 0 : dados['recuo']);
       },
     });
   }
@@ -45,8 +43,7 @@ export class ItemNotaComponent implements OnInit {
 
     if (this.salvarItem) {
       const dados = JSON.stringify({
-        conteudo: this.conteudo,
-        recuo: this.recuo,
+        conteudo: this.conteudo
       });
 
       const itemNovo = this.itemID.startsWith('item novo');
@@ -63,10 +60,6 @@ export class ItemNotaComponent implements OnInit {
         },
       });
     }
-  }
-
-  mudarRecuo(novoRecuo: number) {
-    this.recuo = novoRecuo;
   }
 
   habilitarPreVisualizacao() {

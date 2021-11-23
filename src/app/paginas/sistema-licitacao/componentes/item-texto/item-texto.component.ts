@@ -24,8 +24,6 @@ export class ItemTextoComponent implements OnInit {
   // Se verdadeiro, quando o item é salvado o conteúdo das suas Entradas de Texto também são salvadas
   @Input() salvarEntradas = true;
 
-  recuo = 0; // 0, 1, 2, ...
-
   subitens: Subitem[] = [
     // { tipo: "texto-fixo", conteudo: "Aqui vai o conteúdo do texto fixo"},
     // { tipo: "entrada-texto", placeholder: "Aqui vai o placeholder da entrada de texto", entradaID: 1}
@@ -51,7 +49,6 @@ export class ItemTextoComponent implements OnInit {
         const dados = JSON.parse(res.dados);
         this.subitens = itemNovo ? [] : dados['subitens'];
         this.entradasTexto = itemNovo ? [] : dados['entradasTexto'];
-        this.mudarRecuo(itemNovo ? 0 : dados['recuo']);
       },
     });
   }
@@ -65,7 +62,6 @@ export class ItemTextoComponent implements OnInit {
       const dados = JSON.stringify({
         subitens: this.subitens,
         entradasTexto: this.entradasTexto,
-        recuo: this.recuo,
       });
 
       const itemNovo = this.itemID.startsWith('item novo');
@@ -82,10 +78,6 @@ export class ItemTextoComponent implements OnInit {
         },
       });
     }
-  }
-
-  mudarRecuo(novoRecuo: number) {
-    this.recuo = novoRecuo;
   }
 
   adicionarTextoFixo() {

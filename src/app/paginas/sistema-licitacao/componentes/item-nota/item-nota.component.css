@@ -45,6 +45,7 @@ textarea:focus {
 .pre-visualizacao {  
   padding: 0.5rem;
   margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
   margin-right: 0.5rem;
 
   border: 2px dashed rgb(9, 107, 107);
