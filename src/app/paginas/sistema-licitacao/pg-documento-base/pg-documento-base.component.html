@@ -54,6 +54,13 @@
               </button>
               <button
                 mat-icon-button
+                title="Clonar Documento Base"
+                (click)="clonarDocumentoBase(docb.documentoBaseID)"
+              >
+                <mat-icon>file_copy</mat-icon>
+              </button>
+              <button
+                mat-icon-button
                 title="Excluir Documento Base"
                 (click)="openDialogExclusaoDocumentoBase(docb.documentoBaseID, docb.nomeDocumentoBase)"
               >

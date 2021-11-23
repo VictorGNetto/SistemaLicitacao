@@ -65,6 +65,20 @@ export class DocumentoBaseService {
     );
   }
 
+  clonarDocumentoBase(documentoBaseID: string): Observable<{ documentoBaseID: string }> {
+    const url = environment.urlBase + `clonar-documento-base.php?documentoBaseID=${documentoBaseID}`;
+
+    interface respostaClonagemDocumentoBase {
+      documentoBaseID: string;
+    }
+
+    return this.http.get<respostaClonagemDocumentoBase>(url).pipe(
+      map((res) => {
+        return { documentoBaseID: res.documentoBaseID };
+      })
+    );
+  }
+
   /**
    * Carregas os dados de um Documento Base do backend usando o seu ID.
    *

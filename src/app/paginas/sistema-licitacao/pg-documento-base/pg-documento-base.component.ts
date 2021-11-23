@@ -85,6 +85,17 @@ export class PgDocumentoBaseComponent implements OnInit {
       },
     });
   }
+
+  clonarDocumentoBase(documentoBaseID: string) {
+    this.documentoBaseProvider.clonarDocumentoBase(documentoBaseID).subscribe({
+      next: (res) =>
+        this.router.navigate([
+          `/sistemaLicitacao/criacaoDocumentoBase/${res.documentoBaseID}`,
+        ]),
+    });
+
+    this.criandoDocumentoBase = true;
+  }
 }
 
 @Component({
