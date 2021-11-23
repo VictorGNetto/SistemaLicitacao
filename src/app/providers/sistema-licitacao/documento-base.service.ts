@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
@@ -65,6 +65,13 @@ export class DocumentoBaseService {
     );
   }
 
+  /**
+   * Cria um novo Documento Base usando outro Documento Base como modelo,
+   * isto é, clona um Documento Base.
+   * 
+   * @param documentoBaseID é o ID do Documento Base que deve ser clonado
+   * @returns o ID do novo Documento Base criado
+   */
   clonarDocumentoBase(documentoBaseID: string): Observable<{ documentoBaseID: string }> {
     const url = environment.urlBase + `clonar-documento-base.php?documentoBaseID=${documentoBaseID}`;
 
