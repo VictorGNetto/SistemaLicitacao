@@ -17,19 +17,30 @@ function construirItemTexto(dados: string) {
   const _dados = JSON.parse(dados);
   subitens = _dados['subitens'];
   entradasTexto = _dados['entradasTexto'];
-  const recuo: number = _dados['recuo'];
 
-  const style = recuo === 0 ? '' : `style="margin-left: ${40 * recuo}px;"`;
-  let conteudoItem = `<p class="Texto_Justificado" ${style}>`;
+  let conteudoParagrafo = '';
   for (let i = 0; i < subitens.length; i++) {
+    let incremento = '';
     if (subitens[i].tipo === 'texto-fixo') {
-      conteudoItem += `<span>${subitens[i].conteudo} </span>`;
+      incremento =
+        subitens[i].conteudo?.length !== 0
+          ? `<span>${subitens[i].conteudo} </span>`
+          : '';
     } else {
       // subitens[i].tipo === 'entrada-texto'
-      conteudoItem += `<span>${entradasTexto[i]} </span>`;
+      incremento =
+        entradasTexto[i].length !== 0
+          ? `<span class="destacar">${entradasTexto[i]} </span>`
+          : '';
     }
+
+    conteudoParagrafo += incremento;
   }
-  conteudoItem += `</p>\n`;
+
+  let conteudoItem = '';
+  if (conteudoParagrafo) {
+    conteudoItem = `<p class="Item_Nivel2">${conteudoParagrafo}</p>\n`;
+  }
 
   return conteudoItem;
 }
@@ -52,24 +63,29 @@ function construirItemOpcoes(dados: string) {
   subitens = _dados['subitens'];
   entradasTexto = _dados['entradasTexto'];
   opcao = _dados['opcao'];
-  const recuo: number = _dados['recuo'];
 
-  const style = recuo === 0 ? '' : `style="margin-left: ${40 * recuo}px;"`;
-  let conteudoItem = `<p class="Texto_Justificado" ${style}>${descricao}</p>\n`;
+  let conteudoItem = `<p class="Item_Nivel2">${descricao}</p>\n`;
   for (let i = 0; i < subitens.length; i++) {
     if (subitens[i].tipo === 'subdescricao') {
-      conteudoItem += `<p class="Texto_Justificado" ${style}>&nbsp; &nbsp; &nbsp; ${subitens[i].subdescricao}</p>\n`;
+      conteudoItem += `<p class="Item_Inciso_Romano">${subitens[i].subdescricao}</p>\n`;
     } else if (subitens[i].tipo === 'opcao') {
-      const marcacao = opcao === i ? " X " : "&nbsp; &nbsp; ";
-      conteudoItem += `<p class="Texto_Justificado" ${style}>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (${marcacao}) ${subitens[i].opcao}</p>\n`;
-    } else { // subitens[i].tipo === 'opcao-entrada-texto'
-      const marcacao = opcao === i ? " X " : "&nbsp; &nbsp; ";
-      const entradaTexto = opcao === i ? entradasTexto[i] : "";
-      conteudoItem += `<p class="Texto_Justificado" ${style}>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (${marcacao}) ${subitens[i].opcao} ${entradaTexto}</p>\n`;
+      const marcacao = opcao === i ? ' X ' : '&nbsp; &nbsp; ';
+      const destaque = opcao === i ? ' destacar' : '';
+      conteudoItem += `<p class="Texto_Justificado_Recuo_Primeira_Linha${destaque}">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (${marcacao}) ${subitens[i].opcao}</p>\n`;
+    } else {
+      // subitens[i].tipo === 'opcao-entrada-texto'
+      const marcacao = opcao === i ? ' X ' : '&nbsp; &nbsp; ';
+      const destaque = opcao === i ? ' destacar' : '';
+      const entradaTexto = opcao === i ? entradasTexto[i] : '';
+      conteudoItem += `<p class="Texto_Justificado_Recuo_Primeira_Linha${destaque}">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (${marcacao}) ${subitens[i].opcao} ${entradaTexto}</p>\n`;
     }
   }
 
   return conteudoItem;
+}
+
+function construirItemLista(dados: string) {
+  return "";
 }
 
 @Injectable({
@@ -132,6 +148,8 @@ export class SeiService {
                       conteudoItens[i][j] = construirItemTexto(res.dados);
                     } else if (tipo === 'opcoes') {
                       conteudoItens[i][j] = construirItemOpcoes(res.dados);
+                    } else if (tipo === 'lista') {
+                      conteudoItens[i][j] = construirItemLista(res.dados);
                     }
                     itensEmConstrucao -= 1;
                   },
@@ -146,7 +164,7 @@ export class SeiService {
             // constrói o arquivo
             let conteudoArquivo = `<p class="Texto_Centralizado_Maiusculas_Negrito">${nomeDocumento}</p>\n`;
             for (let i = 0; i < nomeSecoes.length; i++) {
-              conteudoArquivo += `<p class="Texto_Fundo_Cinza_Maiusculas_Negrito">${nomeSecoes[i]}</p>\n`;
+              conteudoArquivo += `<p class="Item_Nivel1">${nomeSecoes[i]}</p>\n`;
 
               for (let j = 0; j < conteudoItens[i].length; j++) {
                 conteudoArquivo += conteudoItens[i][j];
