@@ -17,11 +17,8 @@ export class ItemNotaComponent implements OnInit {
   conteudo = '';
   paragrafos: string[] = []; // usado na pré-visualização e preenchimento
 
-  @Input() modoExibicao:
-    | 'preenchimento'
-    | 'edicao'
-    | 'pre-visualizacao'
-    | 'sei' = 'pre-visualizacao';
+  @Input() modoExibicao: 'preenchimento' | 'edicao' | 'pre-visualizacao' =
+    'pre-visualizacao';
 
   @Output() salvado = new EventEmitter<void>();
 
@@ -43,7 +40,7 @@ export class ItemNotaComponent implements OnInit {
 
     if (this.salvarItem) {
       const dados = JSON.stringify({
-        conteudo: this.conteudo
+        conteudo: this.conteudo,
       });
 
       const itemNovo = this.itemID.startsWith('item novo');

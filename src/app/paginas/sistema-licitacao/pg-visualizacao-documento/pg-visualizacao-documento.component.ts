@@ -1,58 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { DocumentoService } from 'src/app/providers/sistema-licitacao/documento.service';
-
-interface Item {
-  tipo: string;
-  itemID: string;
-}
-
-interface Secao {
-  nome: string;
-  itens: Item[];
-}
-
-interface ParagrafoSEI {
-  tipo: string;
-  conteudo: any;
-}
+import { SeiService } from 'src/app/providers/sistema-licitacao/sei.service';
 
 @Component({
   selector: 'app-pg-visualizacao-documento',
   templateUrl: './pg-visualizacao-documento.component.html',
   styleUrls: ['./pg-visualizacao-documento.component.css'],
+
+  // Permite que o CSS definido no arquivo acima afete todos os elementos da página.
+  // Como o HTML do documento SEI é obtido já com todas as classes configuradas
+  // adequadamente, é exatamente essa opção de encapsulamento de CSS que queremos.
+  encapsulation: ViewEncapsulation.None,
 })
 export class PgVisualizacaoDocumentoComponent implements OnInit {
-  nomeDocumento = '';
-  documentoID = '';
-  paragrafosSEI: ParagrafoSEI[] = [];
+  documentoSEI = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private documentoProvider: DocumentoService
-  ) {}
+  constructor(private route: ActivatedRoute, private seiProvider: SeiService) {}
 
   ngOnInit(): void {
-    this.documentoID = this.route.snapshot.paramMap.get('documentoID') ?? '';
+    const documentoID = this.route.snapshot.paramMap.get('documentoID') ?? '';
 
-    this.documentoProvider.carregarDocumento(this.documentoID).subscribe({
-      next: (documento) => {
-        this.nomeDocumento = documento.nomeDocumento;
-        for (const secao of documento.secoes) {
-          this.paragrafosSEI.push({
-            tipo: 'nomeSecao',
-            conteudo: secao.nome,
-          });
-
-          for (const item of secao.itens) {
-            this.paragrafosSEI.push({
-              tipo: 'item',
-              conteudo: item,
-            });
-          }
-        }
-      },
+    this.seiProvider.exportarDocumento(documentoID).subscribe({
+      next: (res) => (this.documentoSEI = res.conteudo),
     });
   }
 }

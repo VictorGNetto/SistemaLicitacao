@@ -210,27 +210,3 @@
     </div>
   </div>
 </div>
-
-<!-- MODO SEI - forma como o documento ficará no SEI -->
-<div *ngIf="modoExibicao === 'sei'">
-  <p class="Texto_Justificado">
-    {{ descricao }}
-  </p>
-  <span *ngFor="let subitem of subitens; index as i">
-    <p *ngIf="subitem.tipo === 'subdescricao'" class="Texto_Justificado">
-      &nbsp; &nbsp; &nbsp; {{ subitem.subdescricao }}
-    </p>
-    <p *ngIf="subitem.tipo === 'opcao'" class="Texto_Justificado">
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      <span *ngIf="opcao !== i">(&nbsp; &nbsp; )</span
-      ><span *ngIf="opcao === i">( X )</span>&nbsp;
-      {{ subitem.opcao }}
-    </p>
-    <p *ngIf="subitem.tipo === 'opcao-entrada-texto'" class="Texto_Justificado">
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      <span *ngIf="opcao !== i">(&nbsp; &nbsp; )</span
-      ><span *ngIf="opcao === i">( X )</span>&nbsp; {{ subitem.opcao }}
-      <span *ngIf="opcao === i">{{ entradasTexto[i] }}</span>
-    </p>
-  </span>
-</div>

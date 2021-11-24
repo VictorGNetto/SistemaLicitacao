@@ -118,15 +118,3 @@
     </span>
   </div>
 </div>
-
-<!-- MODO SEI - forma como o documento ficará no SEI -->
-<div *ngIf="modoExibicao === 'sei'">
-  <p class="Texto_Justificado">
-    <span *ngFor="let subitem of subitens; index as i">
-      <span *ngIf="subitem.tipo === 'texto-fixo'">{{ subitem.conteudo }} </span>
-      <span *ngIf="subitem.tipo === 'entrada-texto'"
-        >{{ entradasTexto[i] }}
-      </span>
-    </span>
-  </p>
-</div>

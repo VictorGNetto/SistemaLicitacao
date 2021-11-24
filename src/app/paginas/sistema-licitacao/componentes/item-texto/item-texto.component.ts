@@ -32,11 +32,8 @@ export class ItemTextoComponent implements OnInit {
   // array com o conteudo das entradas de texto
   entradasTexto: string[] = [];
 
-  @Input() modoExibicao:
-    | 'preenchimento'
-    | 'edicao'
-    | 'pre-visualizacao'
-    | 'sei' = 'pre-visualizacao';
+  @Input() modoExibicao: 'preenchimento' | 'edicao' | 'pre-visualizacao' =
+    'pre-visualizacao';
 
   @Output() salvado = new EventEmitter<void>();
 

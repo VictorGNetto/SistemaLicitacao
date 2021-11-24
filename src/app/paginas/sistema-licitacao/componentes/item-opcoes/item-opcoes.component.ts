@@ -41,11 +41,8 @@ export class ItemOpcoesComponent implements OnInit {
   entradasTexto: string[] = [];
   opcao: number = -1;
 
-  @Input() modoExibicao:
-    | 'preenchimento'
-    | 'edicao'
-    | 'pre-visualizacao'
-    | 'sei' = 'pre-visualizacao';
+  @Input() modoExibicao: 'preenchimento' | 'edicao' | 'pre-visualizacao' =
+    'pre-visualizacao';
 
   @Output() salvado = new EventEmitter<void>();
 

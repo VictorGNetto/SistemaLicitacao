@@ -2,32 +2,6 @@
   <mat-toolbar>
     <h1>Visualização de Documento</h1>
   </mat-toolbar>
-  <div class="documento">
-    <p class="Texto_Centralizado_Maiusculas_Negrito">{{ nomeDocumento }}</p>
-
-    <span *ngFor="let p of paragrafosSEI">
-      <!-- Nome de Seção -->
-      <br *ngIf="p.tipo === 'nomeSecao'" />
-      <p
-        *ngIf="p.tipo === 'nomeSecao'"
-        class="Texto_Fundo_Cinza_Maiusculas_Negrito"
-      >
-        {{ p.conteudo }}
-      </p>
-
-      <!-- Item Texto -->
-      <item-texto
-        *ngIf="p.tipo === 'item' && p.conteudo.tipo === 'texto'"
-        [itemID]="p.conteudo.itemID"
-        [modoExibicao]="'sei'"
-      ></item-texto>
-
-      <!-- Item Opções -->
-      <item-opcoes
-        *ngIf="p.tipo === 'item' && p.conteudo.tipo === 'opcoes'"
-        [itemID]="p.conteudo.itemID"
-        [modoExibicao]="'sei'"
-      ></item-opcoes>
-    </span>
+  <div class="documento" [innerHtml]='documentoSEI'>
   </div>
 </div>

@@ -81,13 +81,3 @@ span.entrada-texto {
   display: grid;
   grid-template-columns: 1fr;
 }
-
-/* estilos obtidos do SEI */
-p.Texto_Justificado {
-  font-size: 12pt;
-  font-family: Calibri;
-  text-align: justify;
-  word-wrap: normal;
-  text-indent: 0;
-  margin: 6pt !important;
-}

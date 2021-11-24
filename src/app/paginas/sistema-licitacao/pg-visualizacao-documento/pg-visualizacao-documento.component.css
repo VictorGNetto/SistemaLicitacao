@@ -10,6 +10,7 @@ h1 {
 .documento {
   width: 90%;
   margin: 0.5rem auto;
+  padding: 2rem 1rem;
   background-color: white;
   border-radius: 3px;
   box-shadow: 2px 2px 2px #ccc;
@@ -35,4 +36,13 @@ p.Texto_Fundo_Cinza_Maiusculas_Negrito {
   word-wrap: normal;
   text-indent: 0;
   margin: 6pt;
+}
+
+p.Texto_Justificado {
+  font-size: 12pt;
+  font-family: Calibri;
+  text-align: justify;
+  word-wrap: normal;
+  text-indent: 0;
+  margin: 6pt !important;
 }
