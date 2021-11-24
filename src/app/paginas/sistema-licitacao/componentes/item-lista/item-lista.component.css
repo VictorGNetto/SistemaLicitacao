@@ -1,0 +1,115 @@
+.preenchimento {
+    margin: 0.25rem 0 0.25rem 5rem;
+}
+
+.grid-5-1-94 {
+  display: grid;
+  grid-template-columns: 5fr 1fr 94fr;
+}
+
+.menu {
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+
+.escolha-alfabeto {
+  text-align: center;
+}
+
+.subitens {
+  display: grid;
+  grid-template-columns: 3fr 94fr 3fr;
+}
+
+.subitens:hover {
+  background-color: #ddd;
+}
+
+.subitens-pre-visualizacao {
+  display: grid;
+  grid-template-columns: 3fr 97fr;
+}
+
+span.enumeracao {
+  font-weight: bold;
+  margin-top: 0.75rem;
+}
+
+span.enumeracao-sem-margem {
+  font-weight: bold;
+}
+
+textarea {
+  resize: none;
+  cursor: pointer;
+
+  outline: none;
+
+  padding: 0.5rem;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+
+  text-align: justify;
+  font-size: 15px;
+  font-weight: 900;
+
+  border: 1px dashed black;
+  border-radius: 5px;
+}
+
+textarea:focus {
+  border: 2px dashed black;
+}
+
+textarea.texto-fixo {
+  background-color: inherit;
+}
+
+textarea.texto-fixo:hover {
+  background-color: #ccc;
+}
+
+textarea.texto-fixo:focus {
+  background-color: #ccc;
+}
+
+p.texto-fixo {
+  margin-bottom: 0;
+}
+
+textarea.entrada-texto {
+  color: #444;
+  background-color: rgb(180, 180, 0);
+}
+
+textarea.entrada-texto:hover {
+  background-color: rgb(150, 150, 0);
+}
+
+textarea.entrada-texto:focus {
+  background-color: rgb(150, 150, 0);
+}
+
+button.clear {
+  margin-top: 0.1rem;
+  margin-right: 0.1rem;
+}
+
+.pre-visualizacao {
+  padding: 0.15rem;
+  margin: 0.25rem 0.5rem 0 5rem;
+}
+
+span.entrada-texto {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* estilos obtidos do SEI */
+p.Texto_Justificado {
+  font-size: 12pt;
+  font-family: Calibri;
+  text-align: justify;
+  word-wrap: normal;
+  text-indent: 0;
+  margin: 6pt !important;
+}

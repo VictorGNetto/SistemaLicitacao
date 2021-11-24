@@ -38,34 +38,44 @@
         <div class="item" [id]="item.itemID">
           <span></span>
           <div>
-            <!-- if item.tipo === nota -->
-            <item-nota
-              *ngIf="item.tipo === 'nota'"
-              [itemID]="item.itemID"
-              [salvarItem]="salvandoItens"
-              [modoExibicao]="'preenchimento'"
-              (salvado)="itenFoiSalvo()"
-            ></item-nota>
-
             <!-- se item.tipo === texto -->
             <item-texto
-              *ngIf="item.tipo === 'texto'"
-              [itemID]="item.itemID"
-              [salvarItem]="salvandoItens"
-              [salvarEntradas]="true"
+            *ngIf="item.tipo === 'texto'"
+            [itemID]="item.itemID"
+            [salvarItem]="salvandoItens"
+            [salvarEntradas]="true"
               [modoExibicao]="'preenchimento'"
               (salvado)="itenFoiSalvo()"
-            ></item-texto>
-
-            <!-- se item.tipo === opcoes -->
-            <item-opcoes
+              ></item-texto>
+              
+              <!-- se item.tipo === opcoes -->
+              <item-opcoes
               *ngIf="item.tipo === 'opcoes'"
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
               [salvarEntradas]="true"
               [modoExibicao]="'preenchimento'"
               (salvado)="itenFoiSalvo()"
-            ></item-opcoes>
+              ></item-opcoes>
+
+              <!-- se item.tipo === lista -->
+              <item-lista
+              *ngIf="item.tipo === 'lista'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              [salvarEntradas]="true"
+              [modoExibicao]="'preenchimento'"
+              (salvado)="itenFoiSalvo()"
+              ></item-lista>
+
+              <!-- if item.tipo === nota -->
+              <item-nota
+                *ngIf="item.tipo === 'nota'"
+                [itemID]="item.itemID"
+                [salvarItem]="salvandoItens"
+                [modoExibicao]="'preenchimento'"
+                (salvado)="itenFoiSalvo()"
+              ></item-nota>
           </div>
           <span></span>
         </div>

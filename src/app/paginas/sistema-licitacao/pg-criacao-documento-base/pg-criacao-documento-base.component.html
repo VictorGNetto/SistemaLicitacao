@@ -122,25 +122,19 @@
                   <mat-icon>add_circle</mat-icon>
                   <div>Opções</div>
                 </button>
+                <button
+                  mat-stroked-button
+                  (click)="transformarItem('lista', j)"
+                >
+                  <mat-icon>add_circle</mat-icon>
+                  <div>Lista</div>
+                </button>
                 <button mat-stroked-button (click)="transformarItem('nota', j)">
                   <mat-icon>add_circle</mat-icon>
                   <div>Nota</div>
                 </button>
-                <button mat-stroked-button>
-                  <mat-icon>add_circle</mat-icon>
-                  <div>Tabela</div>
-                </button>
               </div>
             </div>
-
-            <!-- if item.tipo === nota -->
-            <item-nota
-              *ngIf="item.tipo === 'nota'"
-              [itemID]="item.itemID"
-              [salvarItem]="salvandoItens"
-              [modoExibicao]="modoExibicaoItens"
-              (salvado)="itenFoiSalvo()"
-            ></item-nota>
 
             <!-- se item.tipo === texto -->
             <item-texto
@@ -161,6 +155,24 @@
               [modoExibicao]="modoExibicaoItens"
               (salvado)="itenFoiSalvo()"
             ></item-opcoes>
+
+            <!-- if item.tipo === nota -->
+            <item-lista
+              *ngIf="item.tipo === 'lista'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              [modoExibicao]="modoExibicaoItens"
+              (salvado)="itenFoiSalvo()"
+            ></item-lista>
+
+            <!-- if item.tipo === nota -->
+            <item-nota
+              *ngIf="item.tipo === 'nota'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              [modoExibicao]="modoExibicaoItens"
+              (salvado)="itenFoiSalvo()"
+            ></item-nota>
           </div>
           <aside class="apagar">
             <button
@@ -201,13 +213,13 @@
           <mat-icon>add_circle</mat-icon>
           <div>Opções</div>
         </button>
+        <button mat-stroked-button (click)="adicionarItem('lista')">
+          <mat-icon>add_circle</mat-icon>
+          <div>Lista</div>
+        </button>
         <button mat-stroked-button (click)="adicionarItem('nota')">
           <mat-icon>add_circle</mat-icon>
           <div>Nota</div>
-        </button>
-        <button mat-stroked-button>
-          <mat-icon>add_circle</mat-icon>
-          <div>Tabela</div>
         </button>
       </div>
 

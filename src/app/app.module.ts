@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 // Páginas do sistema
 import { PgSistemaLicitacaoComponent } from './paginas/sistema-licitacao/pg-sistema-licitacao/pg-sistema-licitacao.component';
@@ -40,6 +41,7 @@ import { ConfirmacaoExclusaoDocumentoDialog } from './paginas/sistema-licitacao/
 import { PgPortalAbcComponent } from './paginas/sistema-licitacao/pg-portal-abc/pg-portal-abc.component';
 import { PgAnaliseDocumentoComponent } from './paginas/sistema-licitacao/pg-analise-documento/pg-analise-documento.component';
 import { PgVisualizacaoDocumentoComponent } from './paginas/sistema-licitacao/pg-visualizacao-documento/pg-visualizacao-documento.component';
+import { ItemListaComponent } from './paginas/sistema-licitacao/componentes/item-lista/item-lista.component';
 
 const appRoutes: Routes = [
   {
@@ -106,6 +108,7 @@ const appRoutes: Routes = [
     PgPortalAbcComponent,
     PgAnaliseDocumentoComponent,
     PgVisualizacaoDocumentoComponent,
+    ItemListaComponent,
   ],
   imports: [
     BrowserModule,
@@ -122,6 +125,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatDialogModule,
     MatSelectModule,
+    MatButtonToggleModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   providers: [],

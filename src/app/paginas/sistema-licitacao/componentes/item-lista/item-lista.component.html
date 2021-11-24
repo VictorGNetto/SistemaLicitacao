@@ -1,0 +1,154 @@
+<!-- MODO DE PREENCHIMENTO - forma como o documento é visto por quem o preenche -->
+<div *ngIf="modoExibicao === 'preenchimento'" class="preenchimento">
+  <div
+    class="subitens-pre-visualizacao"
+    *ngFor="let subitem of subitens; index as i"
+  >
+    <!-- se subitem.tipo === 'texto-fixo' -->
+    <span class="enumeracao-sem-margem" *ngIf="subitem.tipo === 'texto-fixo'">{{
+      obterEnumeracao(i, alfabeto)
+    }}</span>
+    <span class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'">
+      {{ subitem.conteudo }}
+    </span>
+
+    <!-- se subitem.tipo === 'entrada-texto' -->
+    <span class="enumeracao" *ngIf="subitem.tipo === 'entrada-texto'">{{
+      obterEnumeracao(i, alfabeto)
+    }}</span>
+    <textarea
+      class="entrada-texto"
+      *ngIf="subitem.tipo === 'entrada-texto'"
+      placeholder="Insira aqui uma mensagem explicativa"
+      [(ngModel)]="subitens[i].placeholder"
+      appTextareaAutoresize
+      >{{ subitem.placeholder }}</textarea
+    >
+  </div>
+</div>
+
+<!-- MODO DE EDIÇÃO - forma como o documento é visto por quem o cria enquanto ele está editando -->
+<div *ngIf="modoExibicao === 'edicao'" class="grid-5-1-94">
+  <aside class="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu>
+      <div class="escolha-alfabeto">
+        <mat-button-toggle-group [(ngModel)]="alfabeto">
+          <mat-button-toggle value="latino">Latino</mat-button-toggle>
+          <mat-button-toggle value="romano">Romano</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+      <hr />
+
+      <button mat-menu-item (click)="adicionarTextoFixo()">
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Adicionar Texto Fixo</span>
+      </button>
+
+      <button mat-menu-item (click)="adicionarEntradaTexto()">
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Adicionar Entrada Texto</span>
+      </button>
+
+      <button mat-menu-item (click)="habilitarPreVisualizacao()">
+        <mat-icon>visibility</mat-icon>
+        <span>Ativar Pré-visualização</span>
+      </button>
+    </mat-menu>
+  </aside>
+  <span></span>
+  <div>
+    <div *ngIf="subitens.length === 0">
+      Adicione subitens usando o menu ao lado
+    </div>
+    <div class="subitens" *ngFor="let subitem of subitens; index as i">
+      <!-- se subitem.tipo === 'texto-fixo' -->
+      <span class="enumeracao" *ngIf="subitem.tipo === 'texto-fixo'">{{
+        obterEnumeracao(i, alfabeto)
+      }}</span>
+      <textarea
+        class="texto-fixo"
+        *ngIf="subitem.tipo === 'texto-fixo'"
+        placeholder="Insira aqui o texto fixo"
+        [(ngModel)]="subitens[i].conteudo"
+        appTextareaAutoresize
+        >{{ subitem.conteudo }}</textarea
+      >
+      <button
+        class="clear"
+        *ngIf="subitem.tipo === 'texto-fixo'"
+        mat-icon-button
+        (click)="removerSubitem(i)"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+
+      <!-- se subitem.tipo === 'entrada-texto' -->
+      <span class="enumeracao" *ngIf="subitem.tipo === 'entrada-texto'">{{
+        obterEnumeracao(i, alfabeto)
+      }}</span>
+      <textarea
+        class="entrada-texto"
+        *ngIf="subitem.tipo === 'entrada-texto'"
+        placeholder="Insira aqui uma mensagem explicativa"
+        [(ngModel)]="subitens[i].placeholder"
+        appTextareaAutoresize
+        >{{ subitem.placeholder }}</textarea
+      >
+      <button
+        class="clear"
+        *ngIf="subitem.tipo === 'entrada-texto'"
+        mat-icon-button
+        (click)="removerSubitem(i)"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODO DE PRÉ-VISUALIZAÇÃO - forma como o documento é visto por quem o cria enquanto ele está pre-visualizando -->
+<div *ngIf="modoExibicao === 'pre-visualizacao'" class="grid-5-1-94">
+  <aside class="menu">
+    <button
+      mat-icon-button
+      (click)="habilitarEdicao()"
+      title="Desativar Pré-visualização"
+    >
+      <mat-icon>visibility_off</mat-icon>
+    </button>
+  </aside>
+  <span></span>
+  <div class="pre-visualizacao">
+    <div
+      class="subitens-pre-visualizacao"
+      *ngFor="let subitem of subitens; index as i"
+    >
+      <!-- se subitem.tipo === 'texto-fixo' -->
+      <span
+        class="enumeracao-sem-margem"
+        *ngIf="subitem.tipo === 'texto-fixo'"
+        >{{ obterEnumeracao(i, alfabeto) }}</span
+      >
+      <span class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'">
+        {{ subitem.conteudo }}
+      </span>
+
+      <!-- se subitem.tipo === 'entrada-texto' -->
+      <span class="enumeracao" *ngIf="subitem.tipo === 'entrada-texto'">{{
+        obterEnumeracao(i, alfabeto)
+      }}</span>
+      <textarea
+        class="entrada-texto"
+        *ngIf="subitem.tipo === 'entrada-texto'"
+        placeholder="Insira aqui uma mensagem explicativa"
+        [(ngModel)]="subitens[i].placeholder"
+        appTextareaAutoresize
+        >{{ subitem.placeholder }}</textarea
+      >
+    </div>
+  </div>
+</div>
