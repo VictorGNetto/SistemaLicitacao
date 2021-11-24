@@ -3,6 +3,11 @@ import { EventEmitter, Input, Output } from '@angular/core';
 
 import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
 
+// Este aqui é o Item Lista, que permite a criação de lista com enumeração
+// latina ou romana. Cara item da lista pode ser um Texto Fixo, que só pode
+// ser alterada por quem cria o Documento base; ou uma Entrada de Texto, que
+// pode ser peenchida por quem preenche um Documento.
+
 interface Subitem {
   tipo: string; // "texto-fixo" ou "entrada-texto"
   conteudo?: string; // aplicável somente quando tipo="texto-fixo"
@@ -20,19 +25,8 @@ export class ItemListaComponent implements OnInit {
   // Se verdadeiro, quando o item é salvado o conteúdo das suas Entradas de Texto também são salvadas
   @Input() salvarEntradas = true;
 
-  enumeracaoLatina = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-  enumeracaoRomana = [
-    'I',
-    'II',
-    'III',
-    'IV',
-    'V',
-    'VI',
-    'VII',
-    'VIII',
-    'IX',
-    'X',
-  ];
+  enumeracaoLatina = ['a', 'b', 'c', 'd', 'e'];
+  enumeracaoRomana = ['I', 'II', 'III', 'IV', 'V'];
 
   alfabeto: 'latino' | 'romano' = 'latino';
   subitens: Subitem[] = [

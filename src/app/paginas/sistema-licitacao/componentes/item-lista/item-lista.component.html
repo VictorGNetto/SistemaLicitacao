@@ -19,11 +19,10 @@
     <textarea
       class="entrada-texto"
       *ngIf="subitem.tipo === 'entrada-texto'"
-      placeholder="Insira aqui uma mensagem explicativa"
-      [(ngModel)]="subitens[i].placeholder"
+      [placeholder]="subitem.placeholder"
+      [(ngModel)]="entradasTexto[i]"
       appTextareaAutoresize
-      >{{ subitem.placeholder }}</textarea
-    >
+    ></textarea>
   </div>
 </div>
 
@@ -144,11 +143,10 @@
       <textarea
         class="entrada-texto"
         *ngIf="subitem.tipo === 'entrada-texto'"
-        placeholder="Insira aqui uma mensagem explicativa"
-        [(ngModel)]="subitens[i].placeholder"
+        [placeholder]="subitem.placeholder"
+        [(ngModel)]="entradasTexto[i]"
         appTextareaAutoresize
-        >{{ subitem.placeholder }}</textarea
-      >
+      ></textarea>
     </div>
   </div>
 </div>
