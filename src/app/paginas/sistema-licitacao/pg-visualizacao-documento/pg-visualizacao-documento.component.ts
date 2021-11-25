@@ -16,6 +16,9 @@ import { SeiService } from 'src/app/providers/sistema-licitacao/sei.service';
 export class PgVisualizacaoDocumentoComponent implements OnInit {
   documentoSEI = '';
 
+  modoExibicaoCorrecoes: 'aberto' | 'fechado' = 'aberto';
+  classeToolbarCorrecoes = 'bordas-arredondadas';
+
   constructor(private route: ActivatedRoute, private seiProvider: SeiService) {}
 
   ngOnInit(): void {
@@ -24,5 +27,15 @@ export class PgVisualizacaoDocumentoComponent implements OnInit {
     this.seiProvider.exportarDocumento(documentoID).subscribe({
       next: (res) => (this.documentoSEI = res.conteudo),
     });
+  }
+
+  maximizarCorrecoes() {
+    this.modoExibicaoCorrecoes = 'aberto';
+    this.classeToolbarCorrecoes = 'bordas-superiores-arredondadas';
+  }
+
+  minimizarCorrecoes() {
+    this.modoExibicaoCorrecoes = 'fechado';
+    this.classeToolbarCorrecoes = 'bordas-arredondadas'
   }
 }

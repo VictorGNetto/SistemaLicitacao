@@ -1,0 +1,10 @@
+<div [class]="modoExibicao">
+  <div>
+    <div class="subitem" *ngFor="let correcao of listaCorrecoes">
+      <p>{{ correcao.conteudo }}</p>
+      <div style="text-align: center">
+        <input type="checkbox" />
+      </div>
+    </div>
+  </div>
+</div>

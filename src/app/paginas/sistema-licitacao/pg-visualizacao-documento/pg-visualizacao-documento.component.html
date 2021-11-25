@@ -2,6 +2,33 @@
   <mat-toolbar>
     <h1>Visualização de Documento</h1>
   </mat-toolbar>
-  <div class="documento" [innerHtml]='documentoSEI'>
+  <div class="documento" [innerHtml]="documentoSEI"></div>
+
+  <div class="correcao">
+    <mat-toolbar [class]="classeToolbarCorrecoes">
+      <h2>Correções</h2>
+      <span class="spacer"></span>
+      <button
+        mat-icon-button
+        class="example-icon"
+        *ngIf="modoExibicaoCorrecoes === 'fechado'"
+        title="Maximizar"
+        (click)="maximizarCorrecoes()"
+      >
+        <mat-icon>open_in_full</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        class="example-icon"
+        *ngIf="modoExibicaoCorrecoes === 'aberto'"
+        title="Minimizar"
+        (click)="minimizarCorrecoes()"
+      >
+        <mat-icon>close_fullscreen</mat-icon>
+      </button>
+      
+    </mat-toolbar>
+    <app-correcoes [modoExibicao]="modoExibicaoCorrecoes"></app-correcoes>
   </div>
 </div>

@@ -16,6 +16,28 @@ h1 {
   box-shadow: 2px 2px 2px #ccc;
 }
 
+.correcao {
+  position: fixed;
+  top: 150px;
+  right: 100px;
+  box-shadow: 1px 1px 5px #555;
+
+  border-radius: 10px;
+}
+
+.bordas-superiores-arredondadas {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.bordas-arredondadas {
+  border-radius: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
 .destacar {
   font-weight: bold;
   color: darkorange !important;

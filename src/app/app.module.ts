@@ -25,10 +25,6 @@ import { PgDocumentoBaseComponent } from './paginas/sistema-licitacao/pg-documen
 import { PgCriacaoDocumentoBaseComponent } from './paginas/sistema-licitacao/pg-criacao-documento-base/pg-criacao-documento-base.component';
 import { PgPreenchimentoDocumentoComponent } from './paginas/sistema-licitacao/pg-preenchimento-documento/pg-preenchimento-documento.component';
 
-// Páginas para testes
-import { PgTesteComponenteMensagemComponent } from './paginas/sistema-licitacao/pg-teste-componente-mensagem/pg-teste-componente-mensagem.component';
-
-import { MensagemComponent } from './paginas/sistema-licitacao/componentes/mensagem/mensagem.component';
 import { ItemNotaComponent } from './paginas/sistema-licitacao/componentes/item-nota/item-nota.component';
 import { ItemTextoComponent } from './paginas/sistema-licitacao/componentes/item-texto/item-texto.component';
 import { ItemOpcoesComponent } from './paginas/sistema-licitacao/componentes/item-opcoes/item-opcoes.component';
@@ -42,6 +38,7 @@ import { PgPortalAbcComponent } from './paginas/sistema-licitacao/pg-portal-abc/
 import { PgAnaliseDocumentoComponent } from './paginas/sistema-licitacao/pg-analise-documento/pg-analise-documento.component';
 import { PgVisualizacaoDocumentoComponent } from './paginas/sistema-licitacao/pg-visualizacao-documento/pg-visualizacao-documento.component';
 import { ItemListaComponent } from './paginas/sistema-licitacao/componentes/item-lista/item-lista.component';
+import { CorrecoesComponent } from './paginas/sistema-licitacao/componentes/correcoes/correcoes.component';
 
 const appRoutes: Routes = [
   {
@@ -92,8 +89,6 @@ const appRoutes: Routes = [
     AppComponent,
     PgCriacaoDocumentoBaseComponent,
     PgPreenchimentoDocumentoComponent,
-    PgTesteComponenteMensagemComponent,
-    MensagemComponent,
     ItemNotaComponent,
     ItemTextoComponent,
     ItemOpcoesComponent,
@@ -109,6 +104,7 @@ const appRoutes: Routes = [
     PgAnaliseDocumentoComponent,
     PgVisualizacaoDocumentoComponent,
     ItemListaComponent,
+    CorrecoesComponent,
   ],
   imports: [
     BrowserModule,
