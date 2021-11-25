@@ -85,7 +85,42 @@ function construirItemOpcoes(dados: string) {
 }
 
 function construirItemLista(dados: string) {
-  return "";
+  interface Subitem {
+    tipo: string;
+    conteudo?: string;
+    placeholder?: string;
+  }
+
+  let alfabeto: 'latino' | 'romano' = 'latino';
+  let subitens: Subitem[] = [];
+  let entradasTexto: string[] = [];
+
+  const _dados = JSON.parse(dados);
+  alfabeto = _dados['alfabeto'];
+  subitens = _dados['subitens'];
+  entradasTexto = _dados['entradasTexto'];
+
+  const classeLista = alfabeto === 'latino' ? 'Item_Alinea_Letra' : 'Item_Inciso_Romano';
+  let conteudoItem = "";
+  for (let i = 0; i < subitens.length; i++) {
+    let incremento = '';
+    if (subitens[i].tipo === 'texto-fixo') {
+      incremento =
+        subitens[i].conteudo?.length !== 0
+          ? `<p class="${classeLista}">${subitens[i].conteudo} </p>\n`
+          : '';
+    } else {
+      // subitens[i].tipo === 'entrada-texto'
+      incremento =
+        entradasTexto[i].length !== 0
+          ? `<p class="${classeLista} destacar">${entradasTexto[i]} </p>\n`
+          : '';
+    }
+    
+    conteudoItem += incremento;
+  }
+
+  return conteudoItem;
 }
 
 @Injectable({

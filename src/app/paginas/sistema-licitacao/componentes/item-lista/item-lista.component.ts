@@ -45,7 +45,6 @@ export class ItemListaComponent implements OnInit {
   constructor(private itemProvider: ItemService) {}
 
   ngOnInit(): void {
-    console.log('imhere');
     const itemNovo = this.itemID.startsWith('item novo');
     this.itemProvider.carregarItem(this.itemID, itemNovo).subscribe({
       next: (res) => {

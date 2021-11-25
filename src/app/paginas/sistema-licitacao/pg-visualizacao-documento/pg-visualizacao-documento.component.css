@@ -68,6 +68,22 @@ p.Item_Nivel2:before {
   font-weight: normal;
 }
 
+p.Item_Alinea_Letra {
+  font-size: 12pt;
+  font-family: Calibri;
+  text-indent: 0mm;
+  text-align: justify;
+  word-wrap: normal;
+  margin: 6pt 6pt 6pt 120px;
+  counter-increment: letra_minuscula;
+}
+p.Item_Alinea_Letra:before {
+  content: counter(letra_minuscula, lower-latin) ") ";
+  display: inline-block;
+  width: 5mm;
+  font-weight: normal;
+}
+
 p.Item_Inciso_Romano {
   font-size: 12pt;
   font-family: Calibri;
