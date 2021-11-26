@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Páginas do sistema
 import { PgSistemaLicitacaoComponent } from './paginas/sistema-licitacao/pg-sistema-licitacao/pg-sistema-licitacao.component';
@@ -122,6 +123,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatSelectModule,
     MatButtonToggleModule,
+    MatProgressSpinnerModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   providers: [],

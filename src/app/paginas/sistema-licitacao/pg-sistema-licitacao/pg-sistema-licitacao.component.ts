@@ -11,8 +11,8 @@ import { PermissaoService } from 'src/app/providers/sistema-licitacao/permissao.
 })
 export class PgSistemaLicitacaoComponent implements OnInit {
   usuarioID = -1;
-  permissaoCriacaoDocumentoBase = true;
-  permissaoRealizacaoAnalise = true;
+  permissaoCriacaoDocumentoBase = false;
+  permissaoRealizacaoAnalise = false;
 
   constructor(
     private salvarDados: SalvarDados,
