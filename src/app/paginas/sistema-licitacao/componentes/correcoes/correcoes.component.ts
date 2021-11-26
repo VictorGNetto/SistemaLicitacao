@@ -30,7 +30,7 @@ export class CorrecoesComponent implements OnInit {
       status: 'Corrigido',
     },
   ];
-  salvandoCorrecao = [false, false, false];
+  salvandoCorrecoes = false;
 
   permissaoRealizacaoAnalise = false;
   classeSubitem = 'subitem';
@@ -77,10 +77,20 @@ export class CorrecoesComponent implements OnInit {
       this.listaCorrecoes[index].status = "Em Correção";
     }
 
-    this.salvandoCorrecao[index] = true;
+    this.salvandoCorrecoes = true;
     setTimeout(() => {
-      this.salvandoCorrecao[index] = false;
+      this.salvandoCorrecoes = false;
     }, 1000);
+  }
+
+  excluirCorrecao(index: number) {
+    this.salvandoCorrecoes = true;
+
+    setTimeout(() => {
+      this.listaCorrecoes.splice(index, 1);
+      this.salvandoCorrecoes = false;
+    }, 2000);
+
   }
 
   mudarStatus(
@@ -89,9 +99,26 @@ export class CorrecoesComponent implements OnInit {
   ) {
     this.listaCorrecoes[index].status = status;
     
-    this.salvandoCorrecao[index] = true;
+    this.salvandoCorrecoes = true;
     setTimeout(() => {
-      this.salvandoCorrecao[index] = false;
+      this.salvandoCorrecoes = false;
     }, 1000);
   }
+
+  adicionarCorrecao(textarea: HTMLTextAreaElement) {
+    const conteudo = textarea.value;
+    textarea.value = "";
+
+    if (conteudo === "") return;
+
+    const index = this.listaCorrecoes.length;
+
+    this.listaCorrecoes.push({
+      conteudo: conteudo, status: 'Em Correção'
+    });
+    this.salvandoCorrecoes = true;
+
+    setTimeout(() => this.salvandoCorrecoes = false, 500);
+  }
+
 }
