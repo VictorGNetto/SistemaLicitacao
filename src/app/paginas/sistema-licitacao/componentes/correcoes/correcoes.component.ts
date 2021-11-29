@@ -29,6 +29,34 @@ export class CorrecoesComponent implements OnInit {
       conteudo: 'Corrigir o último parágrafo da Seção 14',
       status: 'Corrigido',
     },
+    {
+      conteudo: 'Corrigir o último parágrafo da Seção 14',
+      status: 'Corrigido',
+    },
+    {
+      conteudo: 'Corrigir o último parágrafo da Seção 14',
+      status: 'Corrigido',
+    },
+    {
+      conteudo: 'Corrigir o último parágrafo da Seção 14',
+      status: 'Corrigido',
+    },
+    {
+      conteudo: 'Corrigir o último parágrafo da Seção 14',
+      status: 'Corrigido',
+    },
+    {
+      conteudo: 'Corrigir o último parágrafo da Seção 14',
+      status: 'Corrigido',
+    },
+    {
+      conteudo: 'Corrigir o último parágrafo da Seção 14',
+      status: 'Corrigido',
+    },
+    {
+      conteudo: 'Corrigir o último parágrafo da Seção 14',
+      status: 'Em Análise',
+    },
   ];
   salvandoCorrecoes = false;
 

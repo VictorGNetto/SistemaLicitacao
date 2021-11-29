@@ -1,80 +1,77 @@
 <div [class]="modoExibicao">
-  <div>
-    <div
-      [class]="classeSubitem"
-      *ngFor="let correcao of listaCorrecoes; index as i"
-    >
-      <p>{{ correcao.conteudo }}</p>
-      <div class="conteudo-centralizado">
-        <span *ngIf="salvandoCorrecoes" class="margin-top-bottom">
-          <mat-spinner [diameter]="25" [strokeWidth]="4" title="Salvando"></mat-spinner>
-        </span>
-        <input
-          *ngIf="!salvandoCorrecoes"
-          [id]="i"
-          type="checkbox"
-          [disabled]="correcao.status === 'Corrigido'"
-          [checked]="correcao.status !== 'Em Correção'"
-        />
-        <label
-          class="margin-top-bottom"
-          for="i"
-          [title]="obterTituloCheckbox(correcao.status)"
-          (click)="salvarCorrecao(i, correcao.status)"
-        ></label>
+  <div *ngIf="salvandoCorrecoes" class="salvando">
+    <mat-spinner
+      [diameter]="35"
+      [strokeWidth]="5"
+      title="Salvando"
+    ></mat-spinner>
+  </div>
+  <div
+    [class]="classeSubitem"
+    *ngFor="let correcao of listaCorrecoes; index as i"
+  >
+    <p>{{ correcao.conteudo }}</p>
+    <div class="conteudo-centralizado">
+      <input
+        *ngIf="!salvandoCorrecoes"
+        [id]="i"
+        type="checkbox"
+        [disabled]="correcao.status === 'Corrigido'"
+        [checked]="correcao.status !== 'Em Correção'"
+      />
+      <label
+        class="margin-top-bottom"
+        for="i"
+        [title]="obterTituloCheckbox(correcao.status)"
+        (click)="salvarCorrecao(i, correcao.status)"
+      ></label>
 
-        <button
-          mat-icon-button
-          [matMenuTriggerFor]="menu"
-          *ngIf="!salvandoCorrecoes && permissaoRealizacaoAnalise"
-          class="margin-left"
-        >
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu>
-          <button mat-menu-item (click)="excluirCorrecao(i)">
-            <mat-icon>delete</mat-icon>
-            <span>Excluir Correção</span>
-          </button>
-
-          <button mat-menu-item [matMenuTriggerFor]="submenu">
-            <mat-icon>settings</mat-icon>
-            <span>Mudar Status</span>
-          </button>
-          <mat-menu #submenu>
-            <button
-              mat-menu-item
-              (click)="mudarStatus(i, 'Em Correção')"
-            >
-              <b *ngIf="correcao.status === 'Em Correção'">Em Correção</b>
-              <span *ngIf="correcao.status !== 'Em Correção'">Em Correção</span>
-            </button>
-            <button
-              mat-menu-item
-              (click)="mudarStatus(i, 'Em Análise')"
-            >
-              <b *ngIf="correcao.status === 'Em Análise'">Em Análise</b>
-              <span *ngIf="correcao.status !== 'Em Análise'">Em Análise</span>
-            </button>
-            <button
-              mat-menu-item
-              (click)="mudarStatus(i, 'Corrigido')"
-            >
-              <b *ngIf="correcao.status === 'Corrigido'">Corrigido</b>
-              <span *ngIf="correcao.status !== 'Corrigido'">Corrigido</span>
-            </button>
-          </mat-menu>
-        </mat-menu>
-      </div>
-    </div>
-
-    <hr *ngIf="permissaoRealizacaoAnalise" />
-    <div *ngIf="permissaoRealizacaoAnalise" class="abc">
-      <textarea class="enviar" appTextareaAutoresize #textarea></textarea>
-      <button mat-stroked-button class="btn-enviar" (click)='adicionarCorrecao(textarea)'>
-        Enviar
-        <mat-icon>keyboard_double_arrow_right</mat-icon>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        *ngIf="!salvandoCorrecoes && permissaoRealizacaoAnalise"
+        class="margin-left"
+      >
+        <mat-icon>more_vert</mat-icon>
       </button>
+      <mat-menu #menu>
+        <button mat-menu-item (click)="excluirCorrecao(i)">
+          <mat-icon>delete</mat-icon>
+          <span>Excluir Correção</span>
+        </button>
+
+        <button mat-menu-item [matMenuTriggerFor]="submenu">
+          <mat-icon>settings</mat-icon>
+          <span>Mudar Status</span>
+        </button>
+        <mat-menu #submenu>
+          <button mat-menu-item (click)="mudarStatus(i, 'Em Correção')">
+            <b *ngIf="correcao.status === 'Em Correção'">Em Correção</b>
+            <span *ngIf="correcao.status !== 'Em Correção'">Em Correção</span>
+          </button>
+          <button mat-menu-item (click)="mudarStatus(i, 'Em Análise')">
+            <b *ngIf="correcao.status === 'Em Análise'">Em Análise</b>
+            <span *ngIf="correcao.status !== 'Em Análise'">Em Análise</span>
+          </button>
+          <button mat-menu-item (click)="mudarStatus(i, 'Corrigido')">
+            <b *ngIf="correcao.status === 'Corrigido'">Corrigido</b>
+            <span *ngIf="correcao.status !== 'Corrigido'">Corrigido</span>
+          </button>
+        </mat-menu>
+      </mat-menu>
     </div>
+  </div>
+
+  <hr *ngIf="permissaoRealizacaoAnalise" />
+  <div *ngIf="permissaoRealizacaoAnalise" class="abc">
+    <textarea class="enviar" appTextareaAutoresize #textarea></textarea>
+    <button
+      mat-stroked-button
+      class="btn-enviar"
+      (click)="adicionarCorrecao(textarea)"
+    >
+      Enviar
+      <mat-icon>keyboard_double_arrow_right</mat-icon>
+    </button>
   </div>
 </div>
