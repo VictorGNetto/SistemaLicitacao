@@ -14,6 +14,7 @@ import { SeiService } from 'src/app/providers/sistema-licitacao/sei.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class PgVisualizacaoDocumentoComponent implements OnInit {
+  documentoID = "";
   documentoSEI = '';
 
   modoExibicaoCorrecoes: 'aberto' | 'fechado' = 'aberto';
@@ -22,9 +23,9 @@ export class PgVisualizacaoDocumentoComponent implements OnInit {
   constructor(private route: ActivatedRoute, private seiProvider: SeiService) {}
 
   ngOnInit(): void {
-    const documentoID = this.route.snapshot.paramMap.get('documentoID') ?? '';
+    this.documentoID = this.route.snapshot.paramMap.get('documentoID') ?? '';
 
-    this.seiProvider.exportarDocumento(documentoID).subscribe({
+    this.seiProvider.exportarDocumento(this.documentoID).subscribe({
       next: (res) => (this.documentoSEI = res.conteudo),
     });
   }

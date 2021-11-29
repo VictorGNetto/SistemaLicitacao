@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { SalvarDados } from 'src/app/classes/salvar-dados';
 import { PermissaoService } from 'src/app/providers/sistema-licitacao/permissao.service';
+import { CorrecoesService } from 'src/app/providers/sistema-licitacao/correcoes.service';
 
 interface Correcao {
   conteudo: string;
@@ -13,50 +15,14 @@ interface Correcao {
   styleUrls: ['./correcoes.component.css'],
 })
 export class CorrecoesComponent implements OnInit {
+  @Input() documentoID = '';
   @Input() modoExibicao: 'aberto' | 'fechado' = 'fechado';
 
   listaCorrecoes: Correcao[] = [
-    {
-      conteudo:
-        'Corrigir o último parágrafo da Seção 14 Corrigir o último parágrafo da Seção 14 Corrigir o último parágrafo da Seção 14 Corrigir o último parágrafo da Seção 14 Corrigir o último parágrafo da Seção 14 Corrigir o último parágrafo da Seção 14',
-      status: 'Em Correção',
-    },
-    {
-      conteudo: 'Corrigir o último parágrafo da Seção 14',
-      status: 'Em Análise',
-    },
-    {
-      conteudo: 'Corrigir o último parágrafo da Seção 14',
-      status: 'Corrigido',
-    },
-    {
-      conteudo: 'Corrigir o último parágrafo da Seção 14',
-      status: 'Corrigido',
-    },
-    {
-      conteudo: 'Corrigir o último parágrafo da Seção 14',
-      status: 'Corrigido',
-    },
-    {
-      conteudo: 'Corrigir o último parágrafo da Seção 14',
-      status: 'Corrigido',
-    },
-    {
-      conteudo: 'Corrigir o último parágrafo da Seção 14',
-      status: 'Corrigido',
-    },
-    {
-      conteudo: 'Corrigir o último parágrafo da Seção 14',
-      status: 'Corrigido',
-    },
-    {
-      conteudo: 'Corrigir o último parágrafo da Seção 14',
-      status: 'Corrigido',
-    },
-    {
-      conteudo: 'Corrigir o último parágrafo da Seção 14',
-      status: 'Em Análise',
-    },
+    // {
+    //   conteudo: 'Corrigir o último parágrafo da Seção 14',
+    //   status: 'Em Correção',
+    // },
   ];
   salvandoCorrecoes = false;
 
@@ -65,20 +31,38 @@ export class CorrecoesComponent implements OnInit {
 
   constructor(
     private salvarDados: SalvarDados,
-    private permissao: PermissaoService
+    private permissaoProvider: PermissaoService,
+    private correcoesProvider: CorrecoesService
   ) {}
 
   ngOnInit(): void {
     const infoSessao = this.salvarDados.get('infoSessao');
     const usuarioID = infoSessao['id'];
 
-    this.permissao.obterPermissoes(usuarioID).subscribe({
+    this.permissaoProvider.obterPermissoes(usuarioID).subscribe({
       next: (res) => {
         this.permissaoRealizacaoAnalise = res.realizacaoAnalise;
         if (res.realizacaoAnalise) {
           this.classeSubitem = 'subitemAnalista';
         }
       },
+    });
+
+    this.correcoesProvider.carregarCorrecoes(this.documentoID).subscribe({
+      next: (res) => {
+        const dados = JSON.parse(res.dados);
+        this.listaCorrecoes = dados['listaCorrecoes'];
+      },
+    });
+  }
+
+  salvarListaCorrecoes() {
+    const dados = JSON.stringify({
+      listaCorrecoes: this.listaCorrecoes,
+    });
+
+    this.correcoesProvider.salvarCorrecoes(this.documentoID, dados).subscribe({
+      next: (res) => (this.salvandoCorrecoes = false),
     });
   }
 
@@ -100,25 +84,20 @@ export class CorrecoesComponent implements OnInit {
     if (status === 'Corrigido') return;
 
     if (status === 'Em Correção') {
-      this.listaCorrecoes[index].status = "Em Análise";
+      this.listaCorrecoes[index].status = 'Em Análise';
     } else {
-      this.listaCorrecoes[index].status = "Em Correção";
+      this.listaCorrecoes[index].status = 'Em Correção';
     }
 
     this.salvandoCorrecoes = true;
-    setTimeout(() => {
-      this.salvandoCorrecoes = false;
-    }, 1000);
+    this.salvarListaCorrecoes();
   }
 
   excluirCorrecao(index: number) {
+    this.listaCorrecoes.splice(index, 1);
+
     this.salvandoCorrecoes = true;
-
-    setTimeout(() => {
-      this.listaCorrecoes.splice(index, 1);
-      this.salvandoCorrecoes = false;
-    }, 2000);
-
+    this.salvarListaCorrecoes();
   }
 
   mudarStatus(
@@ -126,27 +105,22 @@ export class CorrecoesComponent implements OnInit {
     status: 'Em Correção' | 'Em Análise' | 'Corrigido'
   ) {
     this.listaCorrecoes[index].status = status;
-    
+
     this.salvandoCorrecoes = true;
-    setTimeout(() => {
-      this.salvandoCorrecoes = false;
-    }, 1000);
+    this.salvarListaCorrecoes();
   }
 
   adicionarCorrecao(textarea: HTMLTextAreaElement) {
     const conteudo = textarea.value;
-    textarea.value = "";
-
-    if (conteudo === "") return;
-
-    const index = this.listaCorrecoes.length;
+    textarea.value = '';
+    if (conteudo === '') return;
 
     this.listaCorrecoes.push({
-      conteudo: conteudo, status: 'Em Correção'
+      conteudo: conteudo,
+      status: 'Em Correção',
     });
+
     this.salvandoCorrecoes = true;
-
-    setTimeout(() => this.salvandoCorrecoes = false, 500);
+    this.salvarListaCorrecoes();
   }
-
 }

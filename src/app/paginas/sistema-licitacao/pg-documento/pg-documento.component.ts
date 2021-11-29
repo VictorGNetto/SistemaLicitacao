@@ -11,6 +11,7 @@ import { DocumentoBaseService } from 'src/app/providers/sistema-licitacao/docume
 import { SalvarDados } from 'src/app/classes/salvar-dados';
 import { DocumentoService } from 'src/app/providers/sistema-licitacao/documento.service';
 import { SeiService } from 'src/app/providers/sistema-licitacao/sei.service';
+import { CorrecoesService } from 'src/app/providers/sistema-licitacao/correcoes.service';
 
 interface Documento {
   documentoID: string;
@@ -176,7 +177,7 @@ export class PgDocumentoComponent implements OnInit {
     this.seiProvider.exportarDocumento(documentoID).subscribe({
       next: (res) => {
         this.downloadArquivo(res.conteudo, res.nome + '.txt');
-      }
+      },
     });
   }
 }
@@ -196,6 +197,7 @@ export class ListaDocumentoBaseDialog implements OnInit {
     private dialogRef: MatDialogRef<PgDocumentoComponent>,
     private documentoBaseProvider: DocumentoBaseService,
     private documentoProvider: DocumentoService,
+    private correcoesProvider: CorrecoesService,
     private router: Router
   ) {}
 
@@ -209,10 +211,15 @@ export class ListaDocumentoBaseDialog implements OnInit {
     this.documentoProvider
       .criarDocumento(this.documentoBaseEscolhido)
       .subscribe({
-        next: (res) =>
+        next: (res) => {
+          this.correcoesProvider.criarCorrecoes(res.documentoID).subscribe({
+            next: (res) => {},
+          });
+          
           this.router.navigate([
             `/sistemaLicitacao/preenchimentoDocumento/${res.documentoID}`,
-          ]),
+          ]);
+        },
       });
 
     this.dialogRef.close({ criandoDocumento: true });
