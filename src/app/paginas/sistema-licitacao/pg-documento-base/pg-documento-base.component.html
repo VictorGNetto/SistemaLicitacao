@@ -18,7 +18,12 @@
     <div>
       <h2 class="descricao">Lista de Documentos Base</h2>
 
-      <button class="btn-criar-documento-base" mat-stroked-button (click)="criarDocumentoBase()">
+      <button
+        class="btn-criar-documento-base"
+        mat-stroked-button
+        (click)="criarDocumentoBase()"
+        [disabled]="criandoDocumentoBase"
+      >
         <mat-icon>add</mat-icon>
         <div>Criar Documento Base</div>
       </button>
@@ -48,7 +53,10 @@
               <button
                 mat-icon-button
                 title="Editar Documento Base"
-                [routerLink]="'/sistemaLicitacao/criacaoDocumentoBase/' + docb.documentoBaseID"
+                [routerLink]="
+                  '/sistemaLicitacao/criacaoDocumentoBase/' +
+                  docb.documentoBaseID
+                "
               >
                 <mat-icon>edit</mat-icon>
               </button>
@@ -56,13 +64,19 @@
                 mat-icon-button
                 title="Clonar Documento Base"
                 (click)="clonarDocumentoBase(docb.documentoBaseID)"
+                [disabled]="criandoDocumentoBase"
               >
                 <mat-icon>file_copy</mat-icon>
               </button>
               <button
                 mat-icon-button
                 title="Excluir Documento Base"
-                (click)="openDialogExclusaoDocumentoBase(docb.documentoBaseID, docb.nomeDocumentoBase)"
+                (click)="
+                  openDialogExclusaoDocumentoBase(
+                    docb.documentoBaseID,
+                    docb.nomeDocumentoBase
+                  )
+                "
               >
                 <mat-icon>delete</mat-icon>
               </button>
@@ -73,17 +87,17 @@
     </table>
   </div>
   <div *ngIf="listaDocumentosBase.length === 0">
-    <div style="display: block; clear: both;">
+    <div style="display: block; clear: both">
       <h2 class="descricao">Nenhum Documento Base criado</h2>
 
-      <button class="btn-criar-documento-base" mat-stroked-button (click)="criarDocumentoBase()">
+      <button
+        class="btn-criar-documento-base"
+        mat-stroked-button
+        (click)="criarDocumentoBase()"
+      >
         <mat-icon>add</mat-icon>
         <div>Criar Documento Base</div>
       </button>
     </div>
-  </div>
-
-  <div *ngIf="criandoDocumentoBase">
-    Criando Documento. Em instantes você será redirecionado.
   </div>
 </div>

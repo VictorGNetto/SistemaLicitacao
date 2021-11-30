@@ -2,20 +2,31 @@
   <mat-toolbar class="main-toolbar">
     <h1>Preenchimento de Documento</h1>
     <span class="spacer"></span>
-    <button mat-stroked-button class="botao-toolbar" (click)="salvarItens()">
-      Salvar
+    <button
+      mat-stroked-button
+      class="botao-toolbar"
+      (click)="salvarItens()"
+      [disabled]="salvandoItens || salvandoDocumento"
+    >
+      <span *ngIf="!salvandoItens && !salvandoDocumento">Salvar</span>
+      <span *ngIf="salvandoItens || salvandoDocumento" class="display-flex">
+        Salvando
+        <mat-spinner
+          [diameter]="25"
+          [strokeWidth]="4"
+          class="margin-left"
+        ></mat-spinner>
+      </span>
     </button>
     <button
       mat-stroked-button
       class="botao-toolbar"
+      [disabled]="salvandoItens || salvandoDocumento"
       routerLink="/sistemaLicitacao/documento"
     >
       Voltar
     </button>
   </mat-toolbar>
-
-  <div *ngIf="salvandoItens">Salvando Itens</div>
-
   <input
     class="nome-documento"
     type="text"
@@ -40,42 +51,42 @@
           <div>
             <!-- se item.tipo === texto -->
             <item-texto
-            *ngIf="item.tipo === 'texto'"
-            [itemID]="item.itemID"
-            [salvarItem]="salvandoItens"
-            [salvarEntradas]="true"
+              *ngIf="item.tipo === 'texto'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              [salvarEntradas]="true"
               [modoExibicao]="'preenchimento'"
               (salvado)="itenFoiSalvo()"
-              ></item-texto>
-              
-              <!-- se item.tipo === opcoes -->
-              <item-opcoes
+            ></item-texto>
+
+            <!-- se item.tipo === opcoes -->
+            <item-opcoes
               *ngIf="item.tipo === 'opcoes'"
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
               [salvarEntradas]="true"
               [modoExibicao]="'preenchimento'"
               (salvado)="itenFoiSalvo()"
-              ></item-opcoes>
+            ></item-opcoes>
 
-              <!-- se item.tipo === lista -->
-              <item-lista
+            <!-- se item.tipo === lista -->
+            <item-lista
               *ngIf="item.tipo === 'lista'"
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
               [salvarEntradas]="true"
               [modoExibicao]="'preenchimento'"
               (salvado)="itenFoiSalvo()"
-              ></item-lista>
+            ></item-lista>
 
-              <!-- if item.tipo === nota -->
-              <item-nota
-                *ngIf="item.tipo === 'nota'"
-                [itemID]="item.itemID"
-                [salvarItem]="salvandoItens"
-                [modoExibicao]="'preenchimento'"
-                (salvado)="itenFoiSalvo()"
-              ></item-nota>
+            <!-- if item.tipo === nota -->
+            <item-nota
+              *ngIf="item.tipo === 'nota'"
+              [itemID]="item.itemID"
+              [salvarItem]="salvandoItens"
+              [modoExibicao]="'preenchimento'"
+              (salvado)="itenFoiSalvo()"
+            ></item-nota>
           </div>
           <span></span>
         </div>

@@ -18,19 +18,31 @@
     >
       Habilitar Edição
     </button>
-    <button mat-stroked-button class="botao-toolbar" (click)="salvarItens()">
-      Salvar
+    <button
+      mat-stroked-button
+      class="botao-toolbar"
+      (click)="salvarItens()"
+      [disabled]="salvandoItens || salvandoDocumentoBase"
+    >
+      <span *ngIf="!salvandoItens && !salvandoDocumentoBase">Salvar</span>
+      <span *ngIf="salvandoItens || salvandoDocumentoBase" class="display-flex">
+        Salvando
+        <mat-spinner
+          [diameter]="25"
+          [strokeWidth]="4"
+          class="margin-left"
+        ></mat-spinner>
+      </span>
     </button>
     <button
       mat-stroked-button
       class="botao-toolbar"
+      [disabled]="salvandoItens || salvandoDocumentoBase"
       routerLink="/sistemaLicitacao/documentoBase"
     >
       Voltar
     </button>
   </mat-toolbar>
-
-  <div *ngIf="salvandoItens">Salvando Itens</div>
 
   <h2>Nome do Documento Base</h2>
   <input

@@ -12,6 +12,7 @@ import { SalvarDados } from 'src/app/classes/salvar-dados';
 import { DocumentoService } from 'src/app/providers/sistema-licitacao/documento.service';
 import { SeiService } from 'src/app/providers/sistema-licitacao/sei.service';
 import { CorrecoesService } from 'src/app/providers/sistema-licitacao/correcoes.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Documento {
   documentoID: string;
@@ -198,7 +199,8 @@ export class ListaDocumentoBaseDialog implements OnInit {
     private documentoBaseProvider: DocumentoBaseService,
     private documentoProvider: DocumentoService,
     private correcoesProvider: CorrecoesService,
-    private router: Router
+    private router: Router,
+    private _snackBarCriacaoDocumento: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -208,6 +210,7 @@ export class ListaDocumentoBaseDialog implements OnInit {
   }
 
   criarDocumento() {
+    this._snackBarCriacaoDocumento.open("Criando Documento");
     this.documentoProvider
       .criarDocumento(this.documentoBaseEscolhido)
       .subscribe({
@@ -216,6 +219,7 @@ export class ListaDocumentoBaseDialog implements OnInit {
             next: (res) => {},
           });
           
+          this._snackBarCriacaoDocumento.dismiss();
           this.router.navigate([
             `/sistemaLicitacao/preenchimentoDocumento/${res.documentoID}`,
           ]);

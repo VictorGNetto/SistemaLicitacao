@@ -17,6 +17,15 @@
   margin-left: 0.5rem;
 }
 
+.display-flex {
+  display: flex;
+  align-items: center;
+}
+
+.margin-left {
+  margin-left: 0.75rem;
+}
+
 h1 {
   font-size: 28px;
 }

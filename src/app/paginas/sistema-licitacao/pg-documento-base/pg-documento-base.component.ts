@@ -9,6 +9,7 @@ import {
 
 import { DocumentoBaseService } from 'src/app/providers/sistema-licitacao/documento-base.service';
 import { SalvarDados } from 'src/app/classes/salvar-dados';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface DocumentoBase {
   documentoBaseID: string;
@@ -32,7 +33,8 @@ export class PgDocumentoBaseComponent implements OnInit {
     private documentoBaseProvider: DocumentoBaseService,
     private router: Router,
     private salvarDados: SalvarDados,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackBarCriacaoDocumentoBase: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -48,11 +50,15 @@ export class PgDocumentoBaseComponent implements OnInit {
   // - Pede ao DocumentoBaseService que seja criado um Documento Base
   // - Acessa a página de criação de Documento Base utilizando o ID devolvido pelo DocumentoBaseService
   criarDocumentoBase() {
+    this._snackBarCriacaoDocumentoBase.open("Criando Documento Base");
     this.documentoBaseProvider.criarDocumentoBase().subscribe({
       next: (res) =>
+      {
+        this._snackBarCriacaoDocumentoBase.dismiss();
         this.router.navigate([
           `/sistemaLicitacao/criacaoDocumentoBase/${res.documentoBaseID}`,
-        ]),
+        ]);
+      },
     });
 
     this.criandoDocumentoBase = true;
@@ -87,11 +93,15 @@ export class PgDocumentoBaseComponent implements OnInit {
   }
 
   clonarDocumentoBase(documentoBaseID: string) {
+    this._snackBarCriacaoDocumentoBase.open("Clonando Documento Base");
     this.documentoBaseProvider.clonarDocumentoBase(documentoBaseID).subscribe({
       next: (res) =>
+      {
+        this._snackBarCriacaoDocumentoBase.dismiss();
         this.router.navigate([
           `/sistemaLicitacao/criacaoDocumentoBase/${res.documentoBaseID}`,
-        ]),
+        ]);
+      },
     });
 
     this.criandoDocumentoBase = true;
