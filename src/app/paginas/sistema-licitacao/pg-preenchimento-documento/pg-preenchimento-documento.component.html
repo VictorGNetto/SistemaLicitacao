@@ -11,11 +11,6 @@
       <span *ngIf="!salvandoItens && !salvandoDocumento">Salvar</span>
       <span *ngIf="salvandoItens || salvandoDocumento" class="display-flex">
         Salvando
-        <mat-spinner
-          [diameter]="25"
-          [strokeWidth]="4"
-          class="margin-left"
-        ></mat-spinner>
       </span>
     </button>
     <button

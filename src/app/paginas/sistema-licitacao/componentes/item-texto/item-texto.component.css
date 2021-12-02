@@ -17,6 +17,12 @@
   background-color: #ddd;
 }
 
+p.texto-fixo {
+  padding: 0.5rem;
+  
+  text-align: justify;
+}
+
 textarea {
   resize: none;
   cursor: pointer;

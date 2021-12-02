@@ -18,7 +18,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Páginas do sistema
@@ -124,7 +123,6 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatSelectModule,
     MatButtonToggleModule,
-    MatProgressSpinnerModule,
     MatSnackBarModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],

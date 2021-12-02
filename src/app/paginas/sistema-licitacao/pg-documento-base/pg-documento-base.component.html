@@ -31,23 +31,23 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Código</th>
           <th>Nome</th>
+          <th>Código</th>
           <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let docb of listaDocumentosBase">
-          <td>{{ docb.documentoBaseID | uppercase }}</td>
           <td>
             <a
-              [href]="
-                './sistemaLicitacao/criacaoDocumentoBase/' +
-                docb.documentoBaseID
-              "
-              >{{ docb.nomeDocumentoBase }}</a
+            [href]="
+            './sistemaLicitacao/criacaoDocumentoBase/' +
+            docb.documentoBaseID
+            "
+            >{{ docb.nomeDocumentoBase }}</a
             >
           </td>
+          <td>{{ docb.documentoBaseID | uppercase }}</td>
           <td>
             <div class="acoes">
               <button
