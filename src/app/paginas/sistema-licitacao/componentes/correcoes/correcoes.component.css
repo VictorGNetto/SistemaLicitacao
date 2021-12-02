@@ -1,7 +1,7 @@
 .aberto {
   width: 400px;
   min-height: 20px;
-  max-height: 400px !important;
+  max-height: 300px;
   overflow-y: auto;
 
   border-bottom-left-radius: 10px;

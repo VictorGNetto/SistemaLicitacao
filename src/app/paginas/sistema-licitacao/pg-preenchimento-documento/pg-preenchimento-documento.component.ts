@@ -23,6 +23,9 @@ export class PgPreenchimentoDocumentoComponent implements OnInit {
   documentoID = "";
   secoes: Secao[] = [];
 
+  modoExibicaoCorrecoes: 'aberto' | 'fechado' = 'fechado';
+  classeToolbarCorrecoes = 'bordas-arredondadas';
+
   constructor(private route: ActivatedRoute, private documentoProvider: DocumentoService) { }
 
   ngOnInit(): void {
@@ -36,6 +39,16 @@ export class PgPreenchimentoDocumentoComponent implements OnInit {
           this.secoes = documento.secoes;
         }
       });
+  }
+
+  maximizarCorrecoes() {
+    this.modoExibicaoCorrecoes = 'aberto';
+    this.classeToolbarCorrecoes = 'bordas-superiores-arredondadas';
+  }
+
+  minimizarCorrecoes() {
+    this.modoExibicaoCorrecoes = 'fechado';
+    this.classeToolbarCorrecoes = 'bordas-arredondadas'
   }
 
   obterTotalItens() {

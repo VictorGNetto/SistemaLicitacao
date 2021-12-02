@@ -171,3 +171,7 @@ div.botoes-pseudoitem {
   border-left: 1px solid #ccc;
   text-align: center;
 }
+
+.rodape-vazio {
+  height: 10rem;
+}

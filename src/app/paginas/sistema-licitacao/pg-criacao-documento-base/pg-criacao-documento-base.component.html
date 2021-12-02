@@ -168,11 +168,12 @@
               (salvado)="itenFoiSalvo()"
             ></item-opcoes>
 
-            <!-- if item.tipo === nota -->
+            <!-- if item.tipo === lista -->
             <item-lista
               *ngIf="item.tipo === 'lista'"
               [itemID]="item.itemID"
               [salvarItem]="salvandoItens"
+              [salvarEntradas]="false"
               [modoExibicao]="modoExibicaoItens"
               (salvado)="itenFoiSalvo()"
             ></item-lista>
@@ -262,4 +263,5 @@
       </mat-toolbar>
     </mat-tab>
   </mat-tab-group>
+  <div class="rodape-vazio"></div>
 </div>

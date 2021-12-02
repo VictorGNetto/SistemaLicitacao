@@ -17,7 +17,7 @@ export class PgVisualizacaoDocumentoComponent implements OnInit {
   documentoID = "";
   documentoSEI = '';
 
-  modoExibicaoCorrecoes: 'aberto' | 'fechado' = 'aberto';
+  modoExibicaoCorrecoes: 'aberto' | 'fechado' = 'fechado';
   classeToolbarCorrecoes = 'bordas-arredondadas';
 
   constructor(private route: ActivatedRoute, private seiProvider: SeiService) {}

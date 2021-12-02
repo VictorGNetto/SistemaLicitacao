@@ -69,3 +69,26 @@ input.nome-documento {
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
 }
+
+.rodape-vazio {
+  height: 10rem;
+}
+
+.correcao {
+  z-index: 1000;
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+  box-shadow: 1px 1px 5px #555;
+
+  border-radius: 10px;
+}
+
+.bordas-superiores-arredondadas {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.bordas-arredondadas {
+  border-radius: 10px;
+}
