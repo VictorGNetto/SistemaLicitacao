@@ -111,7 +111,7 @@
         </table>
       </div>
       <div *ngIf="listaDocumentosEmEdicao.length === 0">
-        <h2>Nenhum Documento <b>Em Edição</b> encontrado</h2>
+        <h2 class="lista-documentos-vazia">Nenhum Documento <b>Em Edição</b> encontrado</h2>
       </div>
     </mat-tab>
 
@@ -157,6 +157,14 @@
                   >
                     <mat-icon>plagiarism</mat-icon>
                   </a>
+
+                  <button
+                    mat-icon-button
+                    title="Reabilitar edição do Documento"
+                    (click)="enviarDocumentoParaEdicao(doc.documentoID)"
+                  >
+                    <mat-icon>restore_page</mat-icon>
+                  </button>
                 </div>
               </td>
             </tr>
@@ -164,7 +172,7 @@
         </table>
       </div>
       <div *ngIf="listaDocumentosEmAnalise.length === 0">
-        <h2>Nenhum Documento <b>Em Análise</b> encontrado</h2>
+        <h2 class="lista-documentos-vazia">Nenhum Documento <b>Em Análise</b> encontrado</h2>
       </div>
     </mat-tab>
 
@@ -213,7 +221,7 @@
 
                   <button
                     mat-icon-button
-                    title="Exportar"
+                    title="Exportar Documento"
                     (click)="exportarDocumento(doc.documentoID)"
                   >
                     <mat-icon>file_download</mat-icon>
@@ -225,7 +233,7 @@
         </table>
       </div>
       <div *ngIf="listaDocumentosAprovados.length === 0">
-        <h2>Nenhum Documento <b>Aprovado</b> encontrado</h2>
+        <h2 class="lista-documentos-vazia">Nenhum Documento <b>Aprovado</b> encontrado</h2>
       </div>
     </mat-tab>
   </mat-tab-group>

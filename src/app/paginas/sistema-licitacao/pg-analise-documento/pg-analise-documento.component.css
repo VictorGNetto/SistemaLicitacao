@@ -59,19 +59,3 @@ a:hover {
   display: flex;
   justify-content: center;
 }
-
-.btn-estado-analise {
-  color: blue !important;
-}
-
-.btn-recusar {
-  color: darkred !important;
-}
-
-.btn-retornar-para-analise {
-  color: purple !important;
-}
-
-.btn-reabilitar-edicao {
-  color: darkred !important;
-}

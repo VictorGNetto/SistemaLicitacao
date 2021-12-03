@@ -160,6 +160,29 @@ export class PgDocumentoComponent implements OnInit {
     });
   }
 
+  enviarDocumentoParaEdicao(documentoID: string) {
+    this.documentoProvider.mudarStatus(documentoID, 'Em Edição').subscribe({
+      next: (res) => {
+        const index = this.listaDocumentosEmAnalise.findIndex(
+          (doc) => doc.documentoID === documentoID
+        );
+
+        // altera o status do documento
+        this.listaDocumentosEmAnalise[index].status = res.status;
+
+        // insere o documento no início da lista de Documentos Em Edição
+        this.listaDocumentosEmEdicao.splice(
+          0,
+          0,
+          this.listaDocumentosEmAnalise[index]
+        );
+
+        // remove o documento da lista de Documentos Em Análise
+        this.listaDocumentosEmAnalise.splice(index, 1);
+      },
+    });
+  }
+
   downloadArquivo(conteudoArquivo: string, nomeArquivo: string) {
     const blob = new Blob([conteudoArquivo], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);

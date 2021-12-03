@@ -7,9 +7,15 @@
   flex: 1 1 auto;
 }
 
+.cabecalho-vazio {
+  height: 5rem;
+}
+
 .subsistema {
-  display: flex;
-  margin: 0.5rem 0 1rem 0.5rem;
+  display: grid;
+  grid-template-columns: 12fr 10fr 1fr 65fr 12fr;
+
+  margin-bottom: 1rem;
 }
 
 .btn-subsistema {
@@ -17,8 +23,25 @@
   height: 100px;
 }
 
-span.descricao {
-  max-width: 50%;
+p {
   margin-top: 0.5rem;
-  margin-left: 1rem;
+
+  font-size: 20px;
+  font-weight: 500;
+}
+
+a {
+  display: block;
+  margin-top: 0.25rem;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #555;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #222;
+  text-decoration: underline;
 }

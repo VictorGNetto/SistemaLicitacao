@@ -40,6 +40,9 @@ import { PgAnaliseDocumentoComponent } from './paginas/sistema-licitacao/pg-anal
 import { PgVisualizacaoDocumentoComponent } from './paginas/sistema-licitacao/pg-visualizacao-documento/pg-visualizacao-documento.component';
 import { ItemListaComponent } from './paginas/sistema-licitacao/componentes/item-lista/item-lista.component';
 import { CorrecoesComponent } from './paginas/sistema-licitacao/componentes/correcoes/correcoes.component';
+import { PgDocumentacaoDocumentosComponent } from './paginas/sistema-licitacao/pg-documentacao-documentos/pg-documentacao-documentos.component';
+import { PgDocumentacaoDocumentosBaseComponent } from './paginas/sistema-licitacao/pg-documentacao-documentos-base/pg-documentacao-documentos-base.component';
+import { PgDocumentacaoAnaliseDocumentosComponent } from './paginas/sistema-licitacao/pg-documentacao-analise-documentos/pg-documentacao-analise-documentos.component';
 
 const appRoutes: Routes = [
   {
@@ -83,6 +86,18 @@ const appRoutes: Routes = [
     path: 'portalABC',
     component: PgPortalAbcComponent,
   },
+  {
+    path: 'sistemaLicitacao/documentacao/documentos',
+    component: PgDocumentacaoDocumentosComponent,
+  },
+  {
+    path: 'sistemaLicitacao/documentacao/documentosBase',
+    component: PgDocumentacaoDocumentosBaseComponent,
+  },
+  {
+    path: 'sistemaLicitacao/documentacao/analiseDocumentos',
+    component: PgDocumentacaoAnaliseDocumentosComponent,
+  },
 ];
 
 @NgModule({
@@ -106,6 +121,9 @@ const appRoutes: Routes = [
     PgVisualizacaoDocumentoComponent,
     ItemListaComponent,
     CorrecoesComponent,
+    PgDocumentacaoDocumentosComponent,
+    PgDocumentacaoDocumentosBaseComponent,
+    PgDocumentacaoAnaliseDocumentosComponent,
   ],
   imports: [
     BrowserModule,

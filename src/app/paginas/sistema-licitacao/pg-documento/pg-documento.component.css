@@ -16,6 +16,10 @@ h2.descricao {
   font-size: 34px;
 }
 
+h2.lista-documentos-vazia {
+  margin: 1rem;
+}
+
 .btn-criar-documento {
   float: right;
   margin: 0.5rem;

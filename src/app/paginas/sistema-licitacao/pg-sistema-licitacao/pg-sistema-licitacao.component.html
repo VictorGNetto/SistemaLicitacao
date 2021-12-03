@@ -2,12 +2,12 @@
   <mat-toolbar>
     <h1>Sistema de Licitação</h1>
     <span class="spacer"></span>
-    <button mat-stroked-button (click)="irPortalAbc()">
-      Portal ABC
-    </button>
+    <button mat-stroked-button (click)="irPortalAbc()">Portal ABC</button>
   </mat-toolbar>
 
+  <div class="cabecalho-vazio"></div>
   <div class="subsistema">
+    <span></span>
     <button
       class="btn-subsistema"
       mat-stroked-button
@@ -17,16 +17,21 @@
       <mat-icon>north_east</mat-icon>
       <div>Documentos</div>
     </button>
-
-    <span class="descricao"
-      >Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
-      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
-      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
-      Texto Explicativo Texto Explicativo</span
-    >
+    <span></span>
+    <p>
+      Criação, preenchimento e exportação de Documentos usados no processo de
+      licitação.
+      <a
+        href="sistemaLicitacao/documentacao/documentos"
+        title="ir para página de documentação do subsistema Documentos"
+        >[Saiba mais]</a
+      >
+    </p>
+    <span></span>
   </div>
 
   <div class="subsistema" *ngIf="permissaoCriacaoDocumentoBase">
+    <span></span>
     <button
       class="btn-subsistema"
       mat-stroked-button
@@ -36,16 +41,20 @@
       <mat-icon>north_east</mat-icon>
       <div>Documentos Base</div>
     </button>
-
-    <span class="descricao"
-      >Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
-      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
-      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
-      Texto Explicativo Texto Explicativo</span
-    >
+    <span></span>
+    <p>
+      AQUI VAI A DESCRIÇÃO DE DOCUMENTOS BASE
+      <a
+        href="sistemaLicitacao/documentacao/documentosBase"
+        title="ir para página de documentação do subsistema Documentos Base"
+        >[Saiba mais]</a
+      >
+    </p>
+    <span></span>
   </div>
 
   <div class="subsistema" *ngIf="permissaoRealizacaoAnalise">
+    <span></span>
     <button
       class="btn-subsistema"
       mat-stroked-button
@@ -55,12 +64,15 @@
       <mat-icon>north_east</mat-icon>
       <div>Análise de Documentos</div>
     </button>
-
-    <span class="descricao"
-      >Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
-      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
-      Texto Explicativo Texto Explicativo Texto Explicativo Texto Explicativo
-      Texto Explicativo Texto Explicativo</span
-    >
+    <span></span>
+    <p>
+      AQUI VAI A DESCRIÇÃO DE ANÁLISE DE DOCUMENTOS
+      <a
+        href="sistemaLicitacao/documentacao/analiseDocumentos"
+        title="ir para página de documentação do subsistema Análise de Documentos"
+        >[Saiba mais]</a
+      >
+    </p>
+    <span></span>
   </div>
 </div>
