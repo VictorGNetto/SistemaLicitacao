@@ -1,0 +1,63 @@
+.content {
+  padding: 0 1rem;
+  margin-right: 5rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+section {
+  border-left: 10px solid #eee;
+  border-bottom: 4px dashed #eee;
+  box-shadow: 2px 0 2px #eee;
+
+  margin: 1rem 0;
+  padding: 0.5rem 3rem 1.5rem 1rem;
+}
+
+section h1 {
+  font-size: 28px;
+  font-weight: 500;
+
+  color: #222;
+}
+
+section h1::before {
+  content: '# ';
+  font-weight: bold;
+}
+
+p {
+  font-size: 18px;
+  font-weight: 500;
+
+  text-align: justify;
+  text-indent: 2rem;
+
+  color: #555;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: #555;
+  text-decoration: none;
+
+  border-bottom: 2px dotted #555;
+}
+
+a:hover {
+  color: #222;
+  border-bottom: 2px dashed #222;
+}
+
+.destaque {
+  color: #222;
+}
+
+.bold {
+  font-weight: 600;;
+}

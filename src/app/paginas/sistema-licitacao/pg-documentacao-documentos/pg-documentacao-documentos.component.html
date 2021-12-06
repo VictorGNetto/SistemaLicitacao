@@ -1,1 +1,72 @@
-<p>pg-documentacao-documentos works!</p>
+<div class="content">
+  <mat-toolbar>
+    <div>
+      <h1>Sistema de Licitação - Documentação subsistema Documentos</h1>
+    </div>
+    <span class="spacer"></span>
+    <button
+      mat-stroked-button
+      class="botao-toolbar"
+      routerLink="/sistemaLicitacao"
+    >
+      Voltar
+    </button>
+  </mat-toolbar>
+
+  <section id="secao1">
+    <h1>Página de Documentos</h1>
+    <p>
+      Na <span class="destaque bold">Página de Documentos</span> é possível
+      acessar todos todos os Documentos criados por um usuário, além de
+      <a href="sistemaLicitacao/documentacao/documentos/#secao2"
+        >criar novos Documentos</a
+      >.
+    </p>
+
+    <p>
+      Os <span class="destaque bold">Documentos</span> criados por um usuário
+      ficam divididos em três categorias:
+      <span class="destaque bold">Documentos em Edição</span>,
+      <span class="destaque bold">Documentos em Análise</span> e
+      <span class="destaque bold">Documentos Aprovados</span>, e podem ser
+      acessados através de abas de mesmo nome.
+    </p>
+    <p style="text-align: center">[FIGURA]</p>
+
+    <P
+      >Em cada uma dessas categorias é apresentado, para cada
+      <span class="destaque bold">Documento</span>,
+      sua <span class="destaque" title="Nome que identifica o documento">Identificação</span>,
+      seu <span class="destaque" title="Identificação única dodocumento">Código</span>,
+      seu <span class="destaque" title="Status que o documento se encontra: Em Edição, Em Análise ou Aprovado">Status</span>,
+      sua <span class="destaque" title="Data que o documento foi criado">Criação</span>,
+      e sua <span class="destaque" title="Data e hora que o documento foi criado ou salvado por último">Última Edição</span>.
+      Além disso, cada <span class="destaque bold">Documento</span> possui um conjunto de <span class="destaque bold">Ações</span> de acordo com sua categoria.</P
+    >
+
+    <p>Para <span class="destaque bold">Documentos</span> na categoria <span class="destaque">Documentos em Edição</span> estão disponíveis as <span class="destaque bold">Ações</span>:</p>
+    <ul>
+      <li><mat-icon>edit</mat-icon><p><span class="destaque bold">Editar Documento</span> - redireciona o usuário para a Página de Preenchimento de Documento, permitindo que o usuário preencha o <span class="destaque bold">Documento</span>.</p></li>
+    </ul>
+  </section>
+
+  <section id="secao2">
+    <h1>Criando Documentos</h1>
+  </section>
+
+  <section>
+    <h1>Preenchendo Documentos</h1>
+  </section>
+
+  <section>
+    <h1>Visualizando Documentos</h1>
+  </section>
+
+  <section>
+    <h1>Enviando Documentos para Análise</h1>
+  </section>
+
+  <section>
+    <h1>Exportando Documentos para o SEI</h1>
+  </section>
+</div>

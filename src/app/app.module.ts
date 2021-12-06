@@ -142,7 +142,7 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatButtonToggleModule,
     MatSnackBarModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    RouterModule.forRoot(appRoutes, { enableTracing: true, anchorScrolling: 'enabled' })
   ],
   providers: [],
   bootstrap: [AppComponent],

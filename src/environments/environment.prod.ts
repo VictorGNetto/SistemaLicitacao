@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  urlBase: "/SL-backend/",
+  urlBase: "/sistema-licitacao/SL-backend/",
 };
