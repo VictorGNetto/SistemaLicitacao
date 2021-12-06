@@ -13,7 +13,7 @@ section {
   box-shadow: 2px 0 2px #eee;
 
   margin: 1rem 0;
-  padding: 0.5rem 3rem 1.5rem 1rem;
+  padding: 0.5rem 10rem 1.5rem 3rem;
 }
 
 section h1 {
@@ -38,8 +38,15 @@ p {
   color: #555;
 }
 
+li p {
+  text-indent: 0;
+}
+
 ul {
   list-style-type: none;
+
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 a {
@@ -60,4 +67,14 @@ a:hover {
 
 .bold {
   font-weight: 600;;
+}
+
+.icone {
+  border: 1px dashed #222;
+  border-radius: 25%;
+
+  padding: 0.25rem;
+  margin-right: 0.5rem;
+
+  vertical-align: middle;
 }

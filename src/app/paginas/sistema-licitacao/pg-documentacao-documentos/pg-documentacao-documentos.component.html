@@ -13,14 +13,12 @@
     </button>
   </mat-toolbar>
 
-  <section id="secao1">
+  <section>
     <h1>Página de Documentos</h1>
     <p>
       Na <span class="destaque bold">Página de Documentos</span> é possível
       acessar todos todos os Documentos criados por um usuário, além de
-      <a href="sistemaLicitacao/documentacao/documentos/#secao2"
-        >criar novos Documentos</a
-      >.
+      criar novos Documentos
     </p>
 
     <p>
@@ -46,11 +44,28 @@
 
     <p>Para <span class="destaque bold">Documentos</span> na categoria <span class="destaque">Documentos em Edição</span> estão disponíveis as <span class="destaque bold">Ações</span>:</p>
     <ul>
-      <li><mat-icon>edit</mat-icon><p><span class="destaque bold">Editar Documento</span> - redireciona o usuário para a Página de Preenchimento de Documento, permitindo que o usuário preencha o <span class="destaque bold">Documento</span>.</p></li>
+      <li><p><mat-icon class="icone">edit</mat-icon><span class="destaque bold">Editar Documento</span> - redireciona o usuário para a Página de Preenchimento de Documento, permitindo que o usuário preencha o <span class="destaque bold">Documento</span>.</p></li>
+      <li><p><mat-icon class="icone">plagiarism</mat-icon><span class="destaque bold">Visualizar Documento</span> - redireciona o usuário para a Página de Visualização de Documentos, permitindo a visualização do <span class="destaque bold">Documento</span>.</p></li>
+      <li><p><mat-icon class="icone">task</mat-icon><span class="destaque bold">Enviar Documento para análise</span> - envia o <span class="destaque bold">Documento</span> para análise, onde ele será avaliado quanto sua corretude e completude.</p></li>
+      <li><p><mat-icon class="icone">delete</mat-icon><span class="destaque bold">Excluir Documento</span> - exclui o <span class="destaque bold">Documento</span>. Como esta operação não pode ser desfeita, um pop-up pede que a ação de exclusão seja confirmada.</p></li>
     </ul>
+
+    <p>Para <span class="destaque bold">Documentos</span> na categoria <span class="destaque">Documentos em Análise</span> estão disponíveis as <span class="destaque bold">Ações</span>:</p>
+    <ul>
+      <li><p><mat-icon class="icone">plagiarism</mat-icon><span class="destaque bold">Visualizar Documento</span> - redireciona o usuário para a Página de Visualização de Documentos, permitindo a visualização do <span class="destaque bold">Documento</span>.</p></li>
+      <li><p><mat-icon class="icone">restore_page</mat-icon><span class="destaque bold">Reabilitar edição do Documento</span> - envia o <span class="destaque bold">Documento</span> para edição, permitindo que sejam feitas novas alterações nele.</p></li>
+    </ul>
+
+    <p>E para <span class="destaque bold">Documentos</span> na categoria <span class="destaque">Documentos Aprovados</span> estão disponíveis as <span class="destaque bold">Ações</span>:</p>
+    <ul>
+      <li><p><mat-icon class="icone">plagiarism</mat-icon><span class="destaque bold">Visualizar Documento</span> - redireciona o usuário para a Página de Visualização de Documentos, permitindo a visualização do <span class="destaque bold">Documento</span>.</p></li>
+      <li><p><mat-icon class="icone">file_download</mat-icon><span class="destaque bold">Exportar Documento</span> - faz o download de um arquivo de texto (.txt) com o conteúdo do <span class="destaque bold">Documento</span> já pronto para ser inserido no SEI.</p></li>
+    </ul>
+
+    <p>A <span class="destaque">Identificação</span> de um <span class="destaque bold">Documento</span> também é um link para a sua Página de Visualização. Dessa forma, é possível acessar a página de visualização de um <span class="destaque bold">Documento</span> ao clicar na sua <span class="destaque">Identificação</span>.</p>
   </section>
 
-  <section id="secao2">
+  <section>
     <h1>Criando Documentos</h1>
   </section>
 
