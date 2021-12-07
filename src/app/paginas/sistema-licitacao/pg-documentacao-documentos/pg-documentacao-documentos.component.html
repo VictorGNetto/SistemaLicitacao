@@ -15,13 +15,13 @@
 
   <section>
     <h1>Página de Documentos</h1>
-    <p>
+    <p class="indentado">
       Na <span class="destaque bold">Página de Documentos</span> é possível
-      acessar todos todos os Documentos criados por um usuário, além de
-      criar novos Documentos
+      acessar todos todos os Documentos criados por um usuário, além de criar
+      novos Documentos
     </p>
 
-    <p>
+    <p class="indentado">
       Os <span class="destaque bold">Documentos</span> criados por um usuário
       ficam divididos em três categorias:
       <span class="destaque bold">Documentos em Edição</span>,
@@ -29,48 +29,230 @@
       <span class="destaque bold">Documentos Aprovados</span>, e podem ser
       acessados através de abas de mesmo nome.
     </p>
-    <p style="text-align: center">[FIGURA]</p>
+    <img src="../../../../assets/abas-documentos.png" />
 
     <P
       >Em cada uma dessas categorias é apresentado, para cada
-      <span class="destaque bold">Documento</span>,
-      sua <span class="destaque" title="Nome que identifica o documento">Identificação</span>,
-      seu <span class="destaque" title="Identificação única dodocumento">Código</span>,
-      seu <span class="destaque" title="Status que o documento se encontra: Em Edição, Em Análise ou Aprovado">Status</span>,
-      sua <span class="destaque" title="Data que o documento foi criado">Criação</span>,
-      e sua <span class="destaque" title="Data e hora que o documento foi criado ou salvado por último">Última Edição</span>.
-      Além disso, cada <span class="destaque bold">Documento</span> possui um conjunto de <span class="destaque bold">Ações</span> de acordo com sua categoria.</P
+      <span class="destaque bold">Documento</span>, sua
+      <span class="destaque" title="Nome que identifica o documento"
+        >Identificação</span
+      >, seu
+      <span class="destaque" title="Identificação única dodocumento"
+        >Código</span
+      >, seu
+      <span
+        class="destaque"
+        title="Status que o documento se encontra: Em Edição, Em Análise ou Aprovado"
+        >Status</span
+      >, sua
+      <span class="destaque" title="Data que o documento foi criado"
+        >Criação</span
+      >, e sua
+      <span
+        class="destaque"
+        title="Data e hora que o documento foi criado ou salvado por último"
+        >Última Edição</span
+      >. Além disso, cada <span class="destaque bold">Documento</span> possui um
+      conjunto de <span class="destaque bold">Ações</span> de acordo com sua
+      categoria.</P
     >
 
-    <p>Para <span class="destaque bold">Documentos</span> na categoria <span class="destaque">Documentos em Edição</span> estão disponíveis as <span class="destaque bold">Ações</span>:</p>
+    <p class="indentado">
+      Para <span class="destaque bold">Documentos</span> na categoria
+      <span class="destaque">Documentos em Edição</span> estão disponíveis as
+      <span class="destaque bold">Ações</span>:
+    </p>
     <ul>
-      <li><p><mat-icon class="icone">edit</mat-icon><span class="destaque bold">Editar Documento</span> - redireciona o usuário para a Página de Preenchimento de Documento, permitindo que o usuário preencha o <span class="destaque bold">Documento</span>.</p></li>
-      <li><p><mat-icon class="icone">plagiarism</mat-icon><span class="destaque bold">Visualizar Documento</span> - redireciona o usuário para a Página de Visualização de Documentos, permitindo a visualização do <span class="destaque bold">Documento</span>.</p></li>
-      <li><p><mat-icon class="icone">task</mat-icon><span class="destaque bold">Enviar Documento para análise</span> - envia o <span class="destaque bold">Documento</span> para análise, onde ele será avaliado quanto sua corretude e completude.</p></li>
-      <li><p><mat-icon class="icone">delete</mat-icon><span class="destaque bold">Excluir Documento</span> - exclui o <span class="destaque bold">Documento</span>. Como esta operação não pode ser desfeita, um pop-up pede que a ação de exclusão seja confirmada.</p></li>
+      <li>
+        <p>
+          <mat-icon class="icone">edit</mat-icon
+          ><span class="destaque bold">Editar Documento</span> - redireciona o
+          usuário para a Página de Preenchimento de Documento, permitindo que o
+          usuário preencha o <span class="destaque bold">Documento</span>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <mat-icon class="icone">plagiarism</mat-icon
+          ><span class="destaque bold">Visualizar Documento</span> - redireciona
+          o usuário para a Página de Visualização de Documentos, permitindo a
+          visualização do <span class="destaque bold">Documento</span>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <mat-icon class="icone">task</mat-icon
+          ><span class="destaque bold">Enviar Documento para análise</span> -
+          envia o <span class="destaque bold">Documento</span> para análise,
+          onde ele será avaliado quanto sua corretude e completude.
+        </p>
+      </li>
+      <li>
+        <p>
+          <mat-icon class="icone">delete</mat-icon
+          ><span class="destaque bold">Excluir Documento</span> - exclui o
+          <span class="destaque bold">Documento</span>. Como esta operação não
+          pode ser desfeita, um pop-up pede que a ação de exclusão seja
+          confirmada.
+        </p>
+      </li>
     </ul>
 
-    <p>Para <span class="destaque bold">Documentos</span> na categoria <span class="destaque">Documentos em Análise</span> estão disponíveis as <span class="destaque bold">Ações</span>:</p>
+    <p>
+      Para <span class="destaque bold">Documentos</span> na categoria
+      <span class="destaque">Documentos em Análise</span> estão disponíveis as
+      <span class="destaque bold">Ações</span>:
+    </p>
     <ul>
-      <li><p><mat-icon class="icone">plagiarism</mat-icon><span class="destaque bold">Visualizar Documento</span> - redireciona o usuário para a Página de Visualização de Documentos, permitindo a visualização do <span class="destaque bold">Documento</span>.</p></li>
-      <li><p><mat-icon class="icone">restore_page</mat-icon><span class="destaque bold">Reabilitar edição do Documento</span> - envia o <span class="destaque bold">Documento</span> para edição, permitindo que sejam feitas novas alterações nele.</p></li>
+      <li>
+        <p>
+          <mat-icon class="icone">plagiarism</mat-icon
+          ><span class="destaque bold">Visualizar Documento</span> - redireciona
+          o usuário para a Página de Visualização de Documentos, permitindo a
+          visualização do <span class="destaque bold">Documento</span>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <mat-icon class="icone">restore_page</mat-icon
+          ><span class="destaque bold">Reabilitar edição do Documento</span> -
+          envia o <span class="destaque bold">Documento</span> para edição,
+          permitindo que sejam feitas novas alterações nele.
+        </p>
+      </li>
     </ul>
 
-    <p>E para <span class="destaque bold">Documentos</span> na categoria <span class="destaque">Documentos Aprovados</span> estão disponíveis as <span class="destaque bold">Ações</span>:</p>
+    <p>
+      E para <span class="destaque bold">Documentos</span> na categoria
+      <span class="destaque">Documentos Aprovados</span> estão disponíveis as
+      <span class="destaque bold">Ações</span>:
+    </p>
     <ul>
-      <li><p><mat-icon class="icone">plagiarism</mat-icon><span class="destaque bold">Visualizar Documento</span> - redireciona o usuário para a Página de Visualização de Documentos, permitindo a visualização do <span class="destaque bold">Documento</span>.</p></li>
-      <li><p><mat-icon class="icone">file_download</mat-icon><span class="destaque bold">Exportar Documento</span> - faz o download de um arquivo de texto (.txt) com o conteúdo do <span class="destaque bold">Documento</span> já pronto para ser inserido no SEI.</p></li>
+      <li>
+        <p>
+          <mat-icon class="icone">plagiarism</mat-icon
+          ><span class="destaque bold">Visualizar Documento</span> - redireciona
+          o usuário para a Página de Visualização de Documentos, permitindo a
+          visualização do <span class="destaque bold">Documento</span>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <mat-icon class="icone">file_download</mat-icon
+          ><span class="destaque bold">Exportar Documento</span> - faz o
+          download de um arquivo de texto (.txt) com o conteúdo do
+          <span class="destaque bold">Documento</span> já pronto para ser
+          inserido no SEI.
+        </p>
+      </li>
     </ul>
 
-    <p>A <span class="destaque">Identificação</span> de um <span class="destaque bold">Documento</span> também é um link para a sua Página de Visualização. Dessa forma, é possível acessar a página de visualização de um <span class="destaque bold">Documento</span> ao clicar na sua <span class="destaque">Identificação</span>.</p>
+    <p class="indentado">
+      A <span class="destaque">Identificação</span> de um
+      <span class="destaque bold">Documento</span> também é um link para a sua
+      Página de Visualização. Dessa forma, é possível acessar a página de
+      visualização de um <span class="destaque bold">Documento</span> ao clicar
+      na sua <span class="destaque">Identificação</span>.
+    </p>
   </section>
 
   <section>
     <h1>Criando Documentos</h1>
+    <p class="indentado">
+      Para criar um <span class="destaque bold">Novo Documento</span> clique no
+      botão <span class="destaque bold">Criar Novo Documento</span>.
+    </p>
+    <img src="../../../../assets/btn-criar-documento.png" />
+
+    <p>
+      Após clicar no botão <span class="destaque">Criar Novo Documento</span>,
+      irá aparecer um pop-up pedindo que seja selecionado um
+      <span class="destaque bold">Documento Base</span> que, como o próprio nome
+      diz, irá servir de base para o
+      <span class="destaque bold">Documento</span> que será criado.
+    </p>
+    <img src="../../../../assets/popup-criar-documento-1.png" />
+
+    <p>
+      Com um <span class="destaque bold">Documento Base</span> selecionado,
+      clique no botão <span class="destaque">Criar</span> para criar o
+      <span class="destaque bold">Documento</span>. Depois disso, você será
+      redirecionado para uma nova página onde será possível preencher o
+      <span class="destaque bold">Documento</span> criado. A operação de criar
+      um novo <span class="destaque bold">Documento</span> pode ser cancelada a
+      qualquer momento usando o botão <span class="destaque">Cancelar</span>.
+    </p>
+    <img src="../../../../assets/popup-criar-documento-2.png" />
   </section>
 
   <section>
     <h1>Preenchendo Documentos</h1>
+    <p class="indentado">
+      Um <span class="destaque bold">Documento</span> é composto de diversas
+      <span class="destaque">Seções</span> e cada
+      <span class="destaque">Seção</span> é formado por vários
+      <span class="destaque">Itens</span>. Na
+      <span class="destaque bold">Página de Preenchimento de Documento</span> é
+      possível navegar por todas essas seções usando as abas que ficam próximas
+      ao topo da página e que têm os nomes dessas seções,
+    </p>
+    <img src="../../../../assets/abas-secoes.png" />
+    <p>
+      ou usando os botões <span class="destaque">Seção Anterior</span> e
+      <span class="destaque">Próxima Seção</span> que ficam próximos ao fim da
+      página.
+    </p>
+    <img src="../../../../assets/btns-mudar-secao.png" />
+
+    <p class="indentado">
+      Existem quatro tipos de <span class="destaque">Itens</span>:
+      <span class="destaque">Texto</span>, <span class="destaque">Opções</span>,
+      <span class="destaque">Lista</span> e <span class="destaque">Nota</span>.
+      O <span class="destaque">Item Nota</span> é usado para guardar trechos de
+      <span class="destaque">texto fixo</span>, que é o mesmo para todas as
+      licitações; e é usado para a inserção de
+      <span class="destaque">texto variável</span>, que muda de licitação para
+      licitação. Para preencher o texto variável, basta clicar na caixa de
+      texto, que tem uma <span class="cor-textarea">cor destacada</span>, e
+      digitar o texto desejado.
+    </p>
+    <img src="../../../../assets/item-texto.png" />
+
+    <p class="indentado">
+      O <span class="destaque">Item Opções</span> é usado para preencher trechos
+      de documentos de licitação em que alguma opção deve ser escolhida. Por
+      exemplo, se o produto a ser contratado é um
+      <span class="destaque">serviço</span> ou um
+      <span class="destaque">bem/material</span>. Quem estiver preenchendo o
+      <span class="destaque bold">Documento</span> deve escolher a opção
+      apropriada e marcá-la. A escolha de uma opção em particular pode, em
+      alguns casos, exigir que um texto adicional seja inserido, por exemplo uma
+      justificativa da escolha daquela opção. Nesses casos, uma caixa de texto
+      de <span class="cor-textarea">cor destacada</span>, como aquela usada no
+      <span class="destaque">Item Texto</span>, sevirá para que esse conteúdo
+      adicional seja inserido.
+    </p>
+    <img src="../../../../assets/item-opcoes.png" />
+
+    <p class="indentado">
+      O <span class="destaque">Item Lista</span> tem basicamente a mesma função
+      do <span class="destaque">Item Texto</span>, com a diferença que este item
+      dispõe seus <span class="destaque">textos fixos</span> e
+      <span class="destaque">entradas de texto</span> na forma de uma lista,
+      enumerados com letras romanas maiúsculas ou letras latinas minúsculas.
+    </p>
+    <img src="../../../../assets/item-lista.png" />
+
+    <p class="indentado">
+      Por último, o <span class="destaque">Item Nota</span> tem o papel de
+      orientar no preenchimento do <span class="destaque bold">Documento</span>.
+      Dessa maneira, o <span class="destaque">Item Nota</span> aparece na
+      <span class="destaque bold">Página de Visualização de Documento</span> ou
+      no arquivo de texto (.txt) exportado para o SEI. As orientaçãoes contidas
+      neste item podem ter um caráter geral ou podem especificar de forma detalhada
+      como os outros itens devem ser preenchidos.
+    </p>
+    <img src="../../../../assets/item-nota.png" />
   </section>
 
   <section>

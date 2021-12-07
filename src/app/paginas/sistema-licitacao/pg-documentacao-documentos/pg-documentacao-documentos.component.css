@@ -33,18 +33,27 @@ p {
   font-weight: 500;
 
   text-align: justify;
-  text-indent: 2rem;
 
   color: #555;
 }
 
-li p {
-  text-indent: 0;
+p.indentado {
+  text-indent: 2rem;
 }
+
+img {
+  display: block;
+  margin: 0.5rem auto 1.5rem;
+  padding: 0.5rem;
+
+  box-shadow: 0 0 2px #222;
+  border-radius: 5px;
+}
+
 
 ul {
   list-style-type: none;
-
+  
   margin-left: 2rem;
   margin-bottom: 1.5rem;
 }
@@ -77,4 +86,8 @@ a:hover {
   margin-right: 0.5rem;
 
   vertical-align: middle;
+}
+
+.cor-textarea {
+  color: rgb(150, 150, 0);
 }
