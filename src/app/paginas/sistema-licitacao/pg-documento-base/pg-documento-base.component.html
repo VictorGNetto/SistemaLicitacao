@@ -1,9 +1,6 @@
 <div class="content">
   <mat-toolbar>
-    <div>
-      <h1>Sistema de Licitação - Documento Base</h1>
-      <span style="font-size: 12px">{{ usuarioNome }} [{{ usuarioID }}]</span>
-    </div>
+    <h1>Sistema de Licitação - Documento Base</h1>
     <span class="spacer"></span>
     <button
       mat-stroked-button
@@ -86,8 +83,9 @@
       </tbody>
     </table>
   </div>
+
   <div *ngIf="listaDocumentosBase.length === 0">
-    <div style="display: block; clear: both">
+    <div>
       <h2 class="descricao">Nenhum Documento Base criado</h2>
 
       <button

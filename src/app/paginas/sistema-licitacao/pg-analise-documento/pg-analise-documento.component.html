@@ -1,9 +1,6 @@
 <div class="content">
   <mat-toolbar>
-    <div>
-      <h1>Sistema de Licitação - Análise de Documento</h1>
-      <span style="font-size: 12px">{{ usuarioNome }} [{{ usuarioID }}]</span>
-    </div>
+    <h1>Sistema de Licitação - Análise de Documento</h1>
     <span class="spacer"></span>
     <button
       mat-stroked-button
@@ -21,7 +18,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Identificacao</th>
+          <th>Identificação</th>
           <th>Código</th>
           <th>Status</th>
           <th>Criação</th>
@@ -99,8 +96,6 @@
     </table>
   </div>
   <div *ngIf="listaDocumentos.length === 0">
-    <div style="display: block; clear: both">
-      <h2 class="descricao">Nenhum Documento em Análise no momento</h2>
-    </div>
+    <h2 class="descricao">Nenhum Documento em Análise no momento</h2>
   </div>
 </div>

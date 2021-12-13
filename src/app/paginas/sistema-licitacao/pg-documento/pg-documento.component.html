@@ -1,9 +1,6 @@
 <div class="content">
   <mat-toolbar>
-    <div>
-      <h1>Sistema de Licitação - Documento</h1>
-      <span style="font-size: 12px">{{ usuarioNome }} [{{ usuarioID }}]</span>
-    </div>
+    <h1>Sistema de Licitação - Documento</h1>
     <span class="spacer"></span>
     <button
       mat-stroked-button
@@ -29,13 +26,13 @@
     </button>
   </div>
 
-  <mat-tab-group style="clear: both">
+  <mat-tab-group class="clear-both">
     <mat-tab label="Documentos em Edição">
       <div *ngIf="listaDocumentosEmEdicao.length !== 0">
         <table class="table">
           <thead>
             <tr>
-              <th>Identificacao</th>
+              <th>Identificação</th>
               <th>Código</th>
               <th>Status</th>
               <th>Criação</th>
@@ -120,7 +117,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Identificacao</th>
+              <th>Identificação</th>
               <th>Código</th>
               <th>Status</th>
               <th>Criação</th>
@@ -181,7 +178,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Identificacao</th>
+              <th>Identificação</th>
               <th>Código</th>
               <th>Status</th>
               <th>Criação</th>
