@@ -9,7 +9,7 @@ export class PgPortalAbcComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    window.location.href = "http://10.6.56.199/portal";
+    window.location.href = "http://10.6.56.203/portal";
   }
 
 }

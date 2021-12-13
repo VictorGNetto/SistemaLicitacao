@@ -56,7 +56,7 @@ export class PgDocumentoBaseComponent implements OnInit {
       {
         this._snackBarCriacaoDocumentoBase.dismiss();
         this.router.navigate([
-          `/sistemaLicitacao/criacaoDocumentoBase/${res.documentoBaseID}`,
+          `/criacaoDocumentoBase/${res.documentoBaseID}`,
         ]);
       },
     });
@@ -99,7 +99,7 @@ export class PgDocumentoBaseComponent implements OnInit {
       {
         this._snackBarCriacaoDocumentoBase.dismiss();
         this.router.navigate([
-          `/sistemaLicitacao/criacaoDocumentoBase/${res.documentoBaseID}`,
+          `/criacaoDocumentoBase/${res.documentoBaseID}`,
         ]);
       },
     });

@@ -8,7 +8,7 @@
     <button
       mat-stroked-button
       class="botao-toolbar"
-      routerLink="/sistemaLicitacao"
+      routerLink="/"
     >
       Voltar
     </button>
@@ -41,7 +41,7 @@
           <td>
             <a
             [href]="
-            './sistemaLicitacao/criacaoDocumentoBase/' +
+            './criacaoDocumentoBase/' +
             docb.documentoBaseID
             "
             >{{ docb.nomeDocumentoBase }}</a
@@ -54,7 +54,7 @@
                 mat-icon-button
                 title="Editar Documento Base"
                 [routerLink]="
-                  '/sistemaLicitacao/criacaoDocumentoBase/' +
+                  '/criacaoDocumentoBase/' +
                   docb.documentoBaseID
                 "
               >

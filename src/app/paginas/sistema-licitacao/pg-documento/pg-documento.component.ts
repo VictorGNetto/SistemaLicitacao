@@ -244,7 +244,7 @@ export class ListaDocumentoBaseDialog implements OnInit {
           
           this._snackBarCriacaoDocumento.dismiss();
           this.router.navigate([
-            `/sistemaLicitacao/preenchimentoDocumento/${res.documentoID}`,
+            `/preenchimentoDocumento/${res.documentoID}`,
           ]);
         },
       });

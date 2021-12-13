@@ -45,41 +45,41 @@ import { PgDocumentacaoDocumentosBaseComponent } from './paginas/sistema-licitac
 import { PgDocumentacaoAnaliseDocumentosComponent } from './paginas/sistema-licitacao/pg-documentacao-analise-documentos/pg-documentacao-analise-documentos.component';
 
 const appRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: '/sistemaLicitacao',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '',
+  //   redirectTo: '/',
+  //   pathMatch: 'full',
+  // },
   {
     path: 'entradaSistemaLicitacao',
     component: PgEntradaSistemaLicitacaoComponent,
   },
   {
-    path: 'sistemaLicitacao',
+    path: '',
     component: PgSistemaLicitacaoComponent,
   },
   {
-    path: 'sistemaLicitacao/documento',
+    path: 'documento',
     component: PgDocumentoComponent,
   },
   {
-    path: 'sistemaLicitacao/documentoBase',
+    path: 'documentoBase',
     component: PgDocumentoBaseComponent,
   },
   {
-    path: 'sistemaLicitacao/analiseDocumento',
+    path: 'analiseDocumento',
     component: PgAnaliseDocumentoComponent,
   },
   {
-    path: 'sistemaLicitacao/criacaoDocumentoBase/:documentoBaseID',
+    path: 'criacaoDocumentoBase/:documentoBaseID',
     component: PgCriacaoDocumentoBaseComponent,
   },
   {
-    path: 'sistemaLicitacao/preenchimentoDocumento/:documentoID',
+    path: 'preenchimentoDocumento/:documentoID',
     component: PgPreenchimentoDocumentoComponent,
   },
   {
-    path: 'sistemaLicitacao/visualizacaoDocumento/:documentoID',
+    path: 'visualizacaoDocumento/:documentoID',
     component: PgVisualizacaoDocumentoComponent,
   },
   {
@@ -87,15 +87,15 @@ const appRoutes: Routes = [
     component: PgPortalAbcComponent,
   },
   {
-    path: 'sistemaLicitacao/documentacao/documentos',
+    path: 'documentacao/documentos',
     component: PgDocumentacaoDocumentosComponent,
   },
   {
-    path: 'sistemaLicitacao/documentacao/documentosBase',
+    path: 'documentacao/documentosBase',
     component: PgDocumentacaoDocumentosBaseComponent,
   },
   {
-    path: 'sistemaLicitacao/documentacao/analiseDocumentos',
+    path: 'documentacao/analiseDocumentos',
     component: PgDocumentacaoAnaliseDocumentosComponent,
   },
 ];

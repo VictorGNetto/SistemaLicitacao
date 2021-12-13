@@ -8,7 +8,7 @@
     <button
       mat-stroked-button
       class="botao-toolbar"
-      routerLink="/sistemaLicitacao"
+      routerLink="/"
     >
       Voltar
     </button>
@@ -34,7 +34,7 @@
           <td>
             <a
               [href]="
-                './sistemaLicitacao/visualizacaoDocumento/' + doc.documentoID
+                './visualizacaoDocumento/' + doc.documentoID
               "
               target="_blank"
               >{{ doc.identificacao }}</a
@@ -50,7 +50,7 @@
                 mat-icon-button
                 title="Visualizar Documento"
                 [routerLink]="
-                  '/sistemaLicitacao/visualizacaoDocumento/' + doc.documentoID
+                  '/visualizacaoDocumento/' + doc.documentoID
                 "
                 target="_blank"
               >
