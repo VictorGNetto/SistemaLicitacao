@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
 
 // Páginas do sistema
 import { PgSistemaLicitacaoComponent } from './paginas/sistema-licitacao/pg-sistema-licitacao/pg-sistema-licitacao.component';
@@ -142,7 +143,11 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatButtonToggleModule,
     MatSnackBarModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true, anchorScrolling: 'enabled' })
+    MatInputModule,
+    RouterModule.forRoot(appRoutes, {
+      enableTracing: true,
+      anchorScrolling: 'enabled',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

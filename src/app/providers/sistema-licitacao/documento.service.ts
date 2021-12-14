@@ -179,4 +179,18 @@ export class DocumentoService {
 
     return this.http.get<respostaMudancaStatusDocumento>(url);
   }
+
+  buscarDocumento(documentoID: string): Observable<Documento> {
+    return of({
+      documentoID: documentoID,
+      autorID: '368',
+      documentoBaseID: 'ABC',
+      status: 'Em Edição',
+      identificacao: 'Identificacao',
+      nomeDocumento: '',
+      secoes: [],
+      criacao: '',
+      edicao: '',
+    });
+  }
 }

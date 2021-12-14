@@ -32,6 +32,10 @@ export class PgAnaliseDocumentoComponent implements OnInit {
   usuarioNome = 'Usuário ainda não identificado';
   usuarioID = -1;
 
+  // Variáveis usadas na busca de um Documento pelo seu código
+  codigo = "";
+  documentoBuscado?: Documento;
+
   constructor(
     private salvarDados: SalvarDados,
     private documentoProvider: DocumentoService
@@ -93,6 +97,14 @@ export class PgAnaliseDocumentoComponent implements OnInit {
         this.listaDocumentos[index].titleBotaoEstado =
           this.statusToTitleBotaoEstado(status);
       },
+    });
+  }
+
+  buscarDocumento(documentoID: string) {
+    this.documentoProvider.buscarDocumento(documentoID).subscribe({
+      next: (res) => {
+        this.documentoBuscado = res;
+      }
     });
   }
 }

@@ -2,100 +2,143 @@
   <mat-toolbar>
     <h1>Sistema de Licitação - Análise de Documento</h1>
     <span class="spacer"></span>
-    <button
-      mat-stroked-button
-      class="botao-toolbar"
-      routerLink="/"
-    >
+    <button mat-stroked-button class="botao-toolbar" routerLink="/">
       Voltar
     </button>
   </mat-toolbar>
 
-  <div *ngIf="listaDocumentos.length !== 0">
-    <div>
-      <h2 class="descricao">Lista de Documentos em Análise</h2>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Identificação</th>
-          <th>Código</th>
-          <th>Status</th>
-          <th>Criação</th>
-          <th>Última Edição</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let doc of listaDocumentos">
-          <td>
-            <a
-              [href]="
-                './visualizacaoDocumento/' + doc.documentoID
-              "
-              target="_blank"
-              >{{ doc.identificacao }}</a
-            >
-          </td>
-          <td>{{ doc.documentoID | uppercase }}</td>
-          <td>{{ doc.status }}</td>
-          <td>{{ doc.criacao }}</td>
-          <td>{{ doc.edicao }}</td>
-          <td>
-            <div class="acoes">
-              <a
-                mat-icon-button
-                title="Visualizar Documento"
-                [routerLink]="
-                  '/visualizacaoDocumento/' + doc.documentoID
-                "
-                target="_blank"
-              >
-                <mat-icon>plagiarism</mat-icon>
-              </a>
+  <mat-tab-group>
+    <mat-tab label="Documentos em Análise">
+      <div *ngIf="listaDocumentos.length !== 0">
+        <div>
+          <h2 class="descricao">Lista de Documentos em Análise</h2>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Identificação</th>
+              <th>Código</th>
+              <th>Status</th>
+              <th>Criação</th>
+              <th>Última Edição</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let doc of listaDocumentos">
+              <td>
+                <a
+                  [href]="'./visualizacaoDocumento/' + doc.documentoID"
+                  target="_blank"
+                  >{{ doc.identificacao }}</a
+                >
+              </td>
+              <td>{{ doc.documentoID | uppercase }}</td>
+              <td>{{ doc.status }}</td>
+              <td>{{ doc.criacao }}</td>
+              <td>{{ doc.edicao }}</td>
+              <td>
+                <div class="acoes">
+                  <a
+                    mat-icon-button
+                    title="Visualizar Documento"
+                    [routerLink]="'/visualizacaoDocumento/' + doc.documentoID"
+                    target="_blank"
+                  >
+                    <mat-icon>plagiarism</mat-icon>
+                  </a>
 
-              <button
-                mat-icon-button
-                title="Aprovar Documento"
-                *ngIf="doc.status === 'Em Análise'"
-                (click)="mudarStatus(doc.documentoID, 'Aprovado')"
-              >
-                <mat-icon>task</mat-icon>
-              </button>
+                  <button
+                    mat-icon-button
+                    title="Aprovar Documento"
+                    *ngIf="doc.status === 'Em Análise'"
+                    (click)="mudarStatus(doc.documentoID, 'Aprovado')"
+                  >
+                    <mat-icon>task</mat-icon>
+                  </button>
 
-              <button
-                mat-icon-button
-                title="Recusar Documento"
-                *ngIf="doc.status === 'Em Análise'"
-                (click)="mudarStatus(doc.documentoID, 'Em Edição')"
-              >
-                <mat-icon>restore_page</mat-icon>
-              </button>
+                  <button
+                    mat-icon-button
+                    title="Recusar Documento"
+                    *ngIf="doc.status === 'Em Análise'"
+                    (click)="mudarStatus(doc.documentoID, 'Em Edição')"
+                  >
+                    <mat-icon>restore_page</mat-icon>
+                  </button>
 
-              <button
-                mat-icon-button
-                title="Retornar Documento para análise"
-                *ngIf="doc.status === 'Aprovado'"
-                (click)="mudarStatus(doc.documentoID, 'Em Análise')"
-              >
-                <mat-icon>file_open</mat-icon>
-              </button>
+                  <button
+                    mat-icon-button
+                    title="Retornar Documento para análise"
+                    *ngIf="doc.status === 'Aprovado'"
+                    (click)="mudarStatus(doc.documentoID, 'Em Análise')"
+                  >
+                    <mat-icon>file_open</mat-icon>
+                  </button>
 
-              <button
-                mat-icon-button
-                title="Reabilitar edição do Documento"
-                *ngIf="doc.status === 'Aprovado'"
-                (click)="mudarStatus(doc.documentoID, 'Em Edição')"
-              >
-                <mat-icon>restore_page</mat-icon>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div *ngIf="listaDocumentos.length === 0">
-    <h2 class="descricao">Nenhum Documento em Análise no momento</h2>
-  </div>
+                  <button
+                    mat-icon-button
+                    title="Reabilitar edição do Documento"
+                    *ngIf="doc.status === 'Aprovado'"
+                    (click)="mudarStatus(doc.documentoID, 'Em Edição')"
+                  >
+                    <mat-icon>restore_page</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="listaDocumentos.length === 0">
+        <h2 class="descricao">Nenhum Documento em Análise no momento</h2>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Buscar Documento">
+      <h2 class="codigo">Buscar Documento</h2>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Código do Documento</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="codigo"
+          maxlength="5"
+          class="codigo"
+          #input
+        />
+        <button
+          matSuffix
+          mat-icon-button
+          (click)="buscarDocumento(input.value)"
+          [disabled]="codigo.length !== 5"
+          title="Buscar Documento"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <table class="table" *ngIf="documentoBuscado">
+        <thead>
+          <tr>
+            <th>Identificação</th>
+            <th>Código</th>
+            <th>Status</th>
+            <th>Criação</th>
+            <th>Última Edição</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
 </div>
