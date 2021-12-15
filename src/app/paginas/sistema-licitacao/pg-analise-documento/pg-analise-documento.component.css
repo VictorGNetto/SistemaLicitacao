@@ -84,3 +84,7 @@ input.codigo {
   text-transform: uppercase;
   text-align: center;
 }
+
+.documento-buscado-nao-encontrado {
+  margin-left: 0.5rem;
+}

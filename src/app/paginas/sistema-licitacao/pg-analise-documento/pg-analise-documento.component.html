@@ -130,15 +130,71 @@
         </thead>
         <tbody>
           <tr>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td>
+              <a
+                [href]="'./visualizacaoDocumento/' + documentoBuscado.documentoID"
+                target="_blank"
+                >{{ documentoBuscado.identificacao }}</a
+              >
+            </td>
+            <td>{{ documentoBuscado.documentoID | uppercase }}</td>
+            <td>{{ documentoBuscado.status }}</td>
+            <td>{{ documentoBuscado.criacao }}</td>
+            <td>{{ documentoBuscado.edicao }}</td>
+            <td>
+              <div class="acoes">
+                <a
+                  mat-icon-button
+                  title="Visualizar Documento"
+                  [routerLink]="'/visualizacaoDocumento/' + documentoBuscado.documentoID"
+                  target="_blank"
+                >
+                  <mat-icon>plagiarism</mat-icon>
+                </a>
+
+                <button
+                  mat-icon-button
+                  title="Aprovar Documento"
+                  *ngIf="documentoBuscado.status === 'Em Análise'"
+                  (click)="mudarStatusDocumentoBuscado('Aprovado')"
+                >
+                  <mat-icon>task</mat-icon>
+                </button>
+
+                <button
+                  mat-icon-button
+                  title="Recusar Documento"
+                  *ngIf="documentoBuscado.status === 'Em Análise'"
+                  (click)="mudarStatusDocumentoBuscado('Em Edição')"
+                >
+                  <mat-icon>restore_page</mat-icon>
+                </button>
+
+                <button
+                  mat-icon-button
+                  title="Retornar Documento para análise"
+                  *ngIf="documentoBuscado.status === 'Aprovado'"
+                  (click)="mudarStatusDocumentoBuscado('Em Análise')"
+                >
+                  <mat-icon>file_open</mat-icon>
+                </button>
+
+                <button
+                  mat-icon-button
+                  title="Reabilitar edição do Documento"
+                  *ngIf="documentoBuscado.status === 'Aprovado'"
+                  (click)="mudarStatusDocumentoBuscado('Em Edição')"
+                >
+                  <mat-icon>restore_page</mat-icon>
+                </button>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
+      <div *ngIf="documentoBuscadoNaoEncontrado">
+        <h2 class="documento-buscado-nao-encontrado">Documento com código {{ codigo | uppercase }} não foi encontrado</h2>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>

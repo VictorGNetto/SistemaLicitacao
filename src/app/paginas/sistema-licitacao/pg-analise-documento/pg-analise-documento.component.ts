@@ -33,8 +33,9 @@ export class PgAnaliseDocumentoComponent implements OnInit {
   usuarioID = -1;
 
   // Variáveis usadas na busca de um Documento pelo seu código
-  codigo = "";
+  codigo = '';
   documentoBuscado?: Documento;
+  documentoBuscadoNaoEncontrado = false;
 
   constructor(
     private salvarDados: SalvarDados,
@@ -84,7 +85,10 @@ export class PgAnaliseDocumentoComponent implements OnInit {
     }
   }
 
-  mudarStatus(documentoID: string, status: 'Em Edição' | 'Em Análise' | 'Aprovado') {
+  mudarStatus(
+    documentoID: string,
+    status: 'Em Edição' | 'Em Análise' | 'Aprovado'
+  ) {
     this.documentoProvider.mudarStatus(documentoID, status).subscribe({
       next: (res) => {
         const index = this.listaDocumentos.findIndex(
@@ -100,11 +104,30 @@ export class PgAnaliseDocumentoComponent implements OnInit {
     });
   }
 
+  mudarStatusDocumentoBuscado(status: 'Em Edição' | 'Em Análise' | 'Aprovado') {
+    const documentoID = this.documentoBuscado
+      ? this.documentoBuscado.documentoID
+      : '';
+    this.documentoProvider.mudarStatus(documentoID, status).subscribe({
+      next: (res) => {
+        if (this.documentoBuscado) {
+          this.documentoBuscado.status = res.status;
+        }
+      },
+    });
+  }
+
   buscarDocumento(documentoID: string) {
     this.documentoProvider.buscarDocumento(documentoID).subscribe({
       next: (res) => {
-        this.documentoBuscado = res;
-      }
+        if (res.status) {
+          this.documentoBuscado = res;
+          this.documentoBuscadoNaoEncontrado = false;
+        } else {
+          this.documentoBuscado = undefined;
+          this.documentoBuscadoNaoEncontrado = true;
+        }
+      },
     });
   }
 }

@@ -59,9 +59,10 @@ export class DocumentoService {
    * @param usuarioID é o ID do usuário dono dos Documentos
    * @returns a lista de Documentos pedida
    */
-   listaDocumentosPorStatus(status: 'Em Edição' | 'Em Análise' | 'Aprovado'): Observable<Documento[]> {
-    const url =
-      environment.urlBase + `lista-documentos.php?status=${status}`;
+  listaDocumentosPorStatus(
+    status: 'Em Edição' | 'Em Análise' | 'Aprovado'
+  ): Observable<Documento[]> {
+    const url = environment.urlBase + `lista-documentos.php?status=${status}`;
 
     interface respostaListagemDocumentos {
       listaDocumentos: Documento[];
@@ -181,16 +182,15 @@ export class DocumentoService {
   }
 
   buscarDocumento(documentoID: string): Observable<Documento> {
-    return of({
-      documentoID: documentoID,
-      autorID: '368',
-      documentoBaseID: 'ABC',
-      status: 'Em Edição',
-      identificacao: 'Identificacao',
-      nomeDocumento: '',
-      secoes: [],
-      criacao: '',
-      edicao: '',
-    });
+    const url =
+      environment.urlBase + `buscar-documento.php?documentoID=${documentoID}`;
+
+    interface respostaBuscaDocumento {
+      documento: Documento;
+    }
+
+    return this.http
+      .get<respostaBuscaDocumento>(url)
+      .pipe(map((res) => res.documento));
   }
 }
