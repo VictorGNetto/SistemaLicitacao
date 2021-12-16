@@ -1,13 +1,15 @@
 <!-- MODO DE PREENCHIMENTO - forma como o documento é visto por quem o preenche -->
-<div *ngIf="modoExibicao === 'preenchimento'">
+<div *ngIf="modoExibicao === 'preenchimento'" class="preenchimento">
   <span *ngFor="let subitem of subitens; index as i">
     <!-- se subitem.tipo === 'texto-fixo' -->
-    <p class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'">
-      {{ subitem.conteudo }}
-    </p>
+    <span
+      *ngIf="subitem.tipo === 'texto-fixo'"
+      [innerHtml]="comoParagrafos(subitem.conteudo)"
+    >
+    </span>
 
     <!-- se subitem.tipo === 'entrada-texto' -->
-    <span class="entrada-texto" *ngIf="subitem.tipo === 'entrada-texto'">
+    <span *ngIf="subitem.tipo === 'entrada-texto'" class="display-grid">
       <textarea
         class="entrada-texto"
         [placeholder]="subitem.placeholder"
@@ -19,9 +21,9 @@
 </div>
 
 <!-- MODO DE EDIÇÃO - forma como o documento é visto por quem o cria enquanto ele está editando -->
-<div *ngIf="modoExibicao === 'edicao'" class="grid-5-1-94">
+<div *ngIf="modoExibicao === 'edicao'" class="edicao">
   <aside class="menu">
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
 
@@ -47,7 +49,7 @@
     <div *ngIf="subitens.length === 0">
       Adicione subitens usando o menu ao lado
     </div>
-    <div class="subitens" *ngFor="let subitem of subitens; index as i">
+    <div *ngFor="let subitem of subitens; index as i" class="subitens">
       <!-- se subitem.tipo === 'texto-fixo' -->
       <textarea
         class="texto-fixo"
@@ -88,7 +90,7 @@
 </div>
 
 <!-- MODO DE PRÉ-VISUALIZAÇÃO - forma como o documento é visto por quem o cria enquanto ele está pre-visualizando -->
-<div *ngIf="modoExibicao === 'pre-visualizacao'" class="grid-5-1-94">
+<div *ngIf="modoExibicao === 'pre-visualizacao'" class="pre-visualizacao">
   <aside class="menu">
     <button
       mat-icon-button
@@ -99,15 +101,17 @@
     </button>
   </aside>
   <span></span>
-  <div class="pre-visualizacao">
+  <div class="paragrafos">
     <span *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'texto-fixo' -->
-      <p class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'">
-        {{ subitem.conteudo }}
-      </p>
+      <span
+        *ngIf="subitem.tipo === 'texto-fixo'"
+        [innerHtml]="comoParagrafos(subitem.conteudo)"
+      >
+      </span>
 
       <!-- se subitem.tipo === 'entrada-texto' -->
-      <span class="entrada-texto" *ngIf="subitem.tipo === 'entrada-texto'">
+      <span *ngIf="subitem.tipo === 'entrada-texto'" class="display-grid">
         <textarea
           class="entrada-texto"
           [placeholder]="subitem.placeholder"
