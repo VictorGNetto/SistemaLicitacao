@@ -42,8 +42,7 @@ textarea:focus {
   border: 2px dashed rgb(9, 107, 107);
 }
 
-.pre-visualizacao {  
-  padding: 0.5rem;
+.pre-visualizacao {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   margin-right: 0.5rem;
@@ -59,11 +58,8 @@ textarea:focus {
   font-weight: 600;
 }
 
-p {
-  text-indent: 2rem;
-  margin: 0;
-}
-
-p + p {
-  margin-top: 0.5rem;
+.padding-p {
+  /* padding definido para balancear o margin-bottom padrão do elemento <p> */
+  padding: 12px;
+  padding-bottom: 0;
 }

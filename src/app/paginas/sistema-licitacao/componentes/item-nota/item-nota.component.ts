@@ -15,7 +15,6 @@ export class ItemNotaComponent implements OnInit {
   @Input() itemID = '';
   @Input() salvarItem = false;
   conteudo = '';
-  paragrafos: string[] = []; // usado na pré-visualização e preenchimento
 
   @Input() modoExibicao: 'preenchimento' | 'edicao' | 'pre-visualizacao' =
     'pre-visualizacao';
@@ -30,14 +29,11 @@ export class ItemNotaComponent implements OnInit {
       next: (res) => {
         const dados = JSON.parse(res.dados);
         this.conteudo = itemNovo ? 'Nota: ' : dados['conteudo'];
-        this.atualizarParagrafos();
       },
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.atualizarParagrafos();
-
     if (this.salvarItem) {
       const dados = JSON.stringify({
         conteudo: this.conteudo,
@@ -67,7 +63,22 @@ export class ItemNotaComponent implements OnInit {
     this.modoExibicao = 'edicao';
   }
 
-  atualizarParagrafos() {
-    this.paragrafos = this.conteudo.split('\n').filter((x) => x !== '');
+  comoParagrafos(conteudo: string) {
+    // remove espaços em branco do início e fim de conteudo
+    conteudo = conteudo.trim();
+
+    // divide conteudo em trechos, cada um deles separados por duas quebras de linhas
+    // esses trechos serão os, após serem devidamente tratados, parágrafos
+    let paragrafos = conteudo.split('\n\n');
+
+    // remove espaços em brancos do início e fim de cada parágrafo; insere as tags <p> e </p>
+    const abreParagrafo = '<p>';
+    const fechaParagrafo = '</p>';
+    paragrafos = paragrafos.map(
+      (e) => abreParagrafo + e.trim() + fechaParagrafo
+    );
+
+    // reagrupa os parágrafos e retorna o resultado
+    return paragrafos.join('');
   }
 }
