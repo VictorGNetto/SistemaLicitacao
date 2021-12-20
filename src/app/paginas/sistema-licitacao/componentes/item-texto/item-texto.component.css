@@ -70,6 +70,10 @@ textarea.entrada-texto:focus {
   font-weight: 500;
 }
 
+.sem-subitens {
+  margin-top: 0.5rem;
+}
+
 .subitens {
   display: grid;
   grid-template-columns: 97fr 3fr;
@@ -97,7 +101,7 @@ button.clear {
   font-weight: 500;
 }
 
-.paragrafos {
+.subitens-pre-visualizacao {
   margin: 0.5rem 0.5rem 0 0;
 }
 
@@ -107,3 +111,6 @@ button.clear {
   border-right: 1px solid #ccc;
 }
 
+.botaoMenu {
+  margin-top: 0.25rem;
+}

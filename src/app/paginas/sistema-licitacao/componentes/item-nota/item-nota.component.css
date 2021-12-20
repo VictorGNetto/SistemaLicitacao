@@ -1,36 +1,24 @@
-.grid-5-1-94 {
-  display: grid;
-  grid-template-columns: 5fr 1fr 94fr;
-}
-
-.menu {
-  text-align: center;
-  border-right: 1px solid #ccc;
-}
-
-.botaoMenu {
-  margin-top: 0.5rem;
-}
-
+/* geral */
 textarea {
   resize: none;
   cursor: pointer;
 
-  /* width: 95%; */
+  outline: none;
+
   padding: 0.5rem;
   margin-top: 0.25rem;
   margin-right: 0.5rem;
 
-  outline: none;
+  text-align: justify;
+  font-size: 16px;
+  font-weight: 900;
+
   border: 1px dashed rgb(9, 107, 107);
-  border-radius: 10px;
+  border-radius: 5px;
 
   background-color: rgb(178, 209, 209);
   color: rgb(9, 107, 107);
 
-  text-align: justify;
-  font-size: 15px;
-  font-weight: 900;
 }
 
 textarea:hover {
@@ -42,7 +30,39 @@ textarea:focus {
   border: 2px dashed rgb(9, 107, 107);
 }
 
+/* Modo de Preenchimento */
+.preenchimento {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Modo de Edição */
+.edicao {
+  display: grid;
+  grid-template-columns: 5fr 1fr 94fr;
+}
+
+/* Modo de Pré-visualizacao */
 .pre-visualizacao {
+  display: grid;
+  grid-template-columns: 5fr 1fr 94fr;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* menu (Modo de Edição e Pré-visualização) */
+.menu {
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+
+.botaoMenu {
+  margin-top: 0.25rem;
+}
+
+/* paragrafos (Modo de Preenchimento e Pré-visualização) */
+.paragrafos {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   margin-right: 0.5rem;
@@ -54,8 +74,6 @@ textarea:focus {
   color: rgb(9, 107, 107);
 
   text-align: justify;
-  font-size: 15px;
-  font-weight: 600;
 }
 
 .padding-p {

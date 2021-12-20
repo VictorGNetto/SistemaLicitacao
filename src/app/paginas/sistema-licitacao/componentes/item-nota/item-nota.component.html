@@ -1,11 +1,11 @@
 <!-- MODO DE PREENCHIMENTO - forma como o documento é visto por quem o preenche -->
-<div *ngIf="modoExibicao === 'preenchimento'">
-  <div class="pre-visualizacao  padding-p" [innerHtml]="comoParagrafos(conteudo)">
+<div *ngIf="modoExibicao === 'preenchimento'" class="preenchimento">
+  <div class="paragrafos padding-p" [innerHtml]="comoParagrafos(conteudo)">
   </div>
 </div>
 
 <!-- MODO DE EDIÇÃO - forma como o documento é visto por quem o cria enquanto ele está editando -->
-<div *ngIf="modoExibicao === 'edicao'" class="grid-5-1-94">
+<div *ngIf="modoExibicao === 'edicao'" class="edicao">
   <aside class="menu">
     <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
       <mat-icon>more_vert</mat-icon>
@@ -28,17 +28,18 @@
 </div>
 
 <!-- MODO DE PRÉ-VISUALIZAÇÃO - forma como o documento é visto por quem o cria enquanto ele está pre-visualizando -->
-<div *ngIf="modoExibicao === 'pre-visualizacao'" class="grid-5-1-94">
+<div *ngIf="modoExibicao === 'pre-visualizacao'" class="pre-visualizacao">
   <aside class="menu">
     <button
       mat-icon-button
       (click)="habilitarEdicao()"
       title="Desativar Pré-visualização"
+      class="botaoMenu"
     >
       <mat-icon>visibility_off</mat-icon>
     </button>
   </aside>
   <span></span>
-  <div class="pre-visualizacao padding-p" [innerHtml]="comoParagrafos(conteudo)">
+  <div class="paragrafos padding-p" [innerHtml]="comoParagrafos(conteudo)">
   </div>
 </div>

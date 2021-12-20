@@ -23,7 +23,7 @@
 <!-- MODO DE EDIÇÃO - forma como o documento é visto por quem o cria enquanto ele está editando -->
 <div *ngIf="modoExibicao === 'edicao'" class="edicao">
   <aside class="menu">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
 
@@ -46,7 +46,7 @@
   </aside>
   <span></span>
   <div>
-    <div *ngIf="subitens.length === 0">
+    <div *ngIf="subitens.length === 0" class="sem-subitens">
       Adicione subitens usando o menu ao lado
     </div>
     <div *ngFor="let subitem of subitens; index as i" class="subitens">
@@ -96,12 +96,13 @@
       mat-icon-button
       (click)="habilitarEdicao()"
       title="Desativar Pré-visualização"
+      class="botaoMenu"
     >
       <mat-icon>visibility_off</mat-icon>
     </button>
   </aside>
   <span></span>
-  <div class="paragrafos">
+  <div class="subitens-pre-visualizacao">
     <span *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'texto-fixo' -->
       <span
