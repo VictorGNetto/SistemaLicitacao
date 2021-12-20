@@ -1,6 +1,7 @@
 <!-- MODO DE PREENCHIMENTO - forma como o documento é visto por quem o preenche -->
 <div *ngIf="modoExibicao === 'preenchimento'" class="preenchimento">
-  <div class="paragrafos padding-p" [innerHtml]="comoParagrafos(conteudo)">
+  <div class="paragrafos">
+    <p *ngFor="let p of obterParagrafos(conteudo)">{{ p }}</p>
   </div>
 </div>
 
@@ -40,6 +41,7 @@
     </button>
   </aside>
   <span></span>
-  <div class="paragrafos padding-p" [innerHtml]="comoParagrafos(conteudo)">
+  <div class="paragrafos">
+    <p *ngFor="let p of obterParagrafos(conteudo)">{{ p }}</p>
   </div>
 </div>

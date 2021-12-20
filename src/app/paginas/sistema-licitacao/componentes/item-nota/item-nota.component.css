@@ -33,7 +33,7 @@ textarea:focus {
 /* Modo de Preenchimento */
 .preenchimento {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Modo de Edição */
@@ -63,6 +63,7 @@ textarea:focus {
 
 /* paragrafos (Modo de Preenchimento e Pré-visualização) */
 .paragrafos {
+  padding: 0.5rem 0.75rem;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   margin-right: 0.5rem;
@@ -76,8 +77,10 @@ textarea:focus {
   text-align: justify;
 }
 
-.padding-p {
-  /* padding definido para balancear o margin-bottom padrão do elemento <p> */
-  padding: 12px;
-  padding-bottom: 0;
+p {
+  margin-bottom: 0;
+}
+
+p + p {
+  margin-top: 0.75rem;
 }
