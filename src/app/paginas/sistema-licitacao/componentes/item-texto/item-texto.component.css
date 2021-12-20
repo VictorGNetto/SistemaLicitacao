@@ -49,6 +49,10 @@ textarea.entrada-texto:focus {
   grid-template-columns: 1fr;
 }
 
+.margin-top {
+  margin-top: 0.5rem;
+}
+
 /* Modo de Preenchimento */
 .preenchimento {
   padding: 0.25rem;
@@ -113,4 +117,13 @@ button.clear {
 
 .botaoMenu {
   margin-top: 0.25rem;
+}
+
+/* paragrafos (Modo de Preenchimento e Pré-visualização) */
+p {
+  margin-bottom: 0;
+}
+
+p + p {
+  margin-top: 0.75rem;
 }

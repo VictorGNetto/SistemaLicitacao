@@ -108,24 +108,23 @@ export class ItemTextoComponent implements OnInit {
     this.modoExibicao = 'edicao';
   }
 
-  comoParagrafos(conteudo: string | undefined) {
-    if (!conteudo) return '';
-
+  obterParagrafos(conteudo: string | undefined) {
+    if (!conteudo) return [];
+    
     // remove espaços em branco do início e fim de conteudo
     conteudo = conteudo.trim();
 
-    // divide conteudo em trechos, cada um deles separados por duas quebras de linhas
-    // esses trechos serão os, após serem devidamente tratados, parágrafos
+    // divide conteudo em trechos separados por pelo menos duas quebras de linhas
     let paragrafos = conteudo.split('\n\n');
 
-    // remove espaços em brancos do início e fim de cada parágrafo; insere as tags <p> e </p>
-    const abreParagrafo = '<p>';
-    const fechaParagrafo = '</p>';
-    paragrafos = paragrafos.map(
-      (e) => abreParagrafo + e.trim() + fechaParagrafo
-    );
+    paragrafos = paragrafos
+      // remove paragrafos vazios
+      .filter((e) => e !== '')
+      // remove espaços em branco do início e fim de cada parágrafo
+      .map((e) => e.trim())
+      // transforma '\n' em ' '
+      .map((e) => e.replace(/\n/g, ' '));
 
-    // reagrupa os parágrafos e retorna o resultado
-    return paragrafos.join('');
+    return paragrafos;
   }
 }

@@ -2,14 +2,12 @@
 <div *ngIf="modoExibicao === 'preenchimento'" class="preenchimento">
   <span *ngFor="let subitem of subitens; index as i">
     <!-- se subitem.tipo === 'texto-fixo' -->
-    <span
-      *ngIf="subitem.tipo === 'texto-fixo'"
-      [innerHtml]="comoParagrafos(subitem.conteudo)"
-    >
+    <span *ngIf="subitem.tipo === 'texto-fixo'">
+      <p *ngFor="let p of obterParagrafos(subitem.conteudo)">{{ p }}</p>
     </span>
 
     <!-- se subitem.tipo === 'entrada-texto' -->
-    <span *ngIf="subitem.tipo === 'entrada-texto'" class="display-grid">
+    <span *ngIf="subitem.tipo === 'entrada-texto'" class="display-grid margin-top">
       <textarea
         class="entrada-texto"
         [placeholder]="subitem.placeholder"
@@ -105,14 +103,12 @@
   <div class="subitens-pre-visualizacao">
     <span *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'texto-fixo' -->
-      <span
-        *ngIf="subitem.tipo === 'texto-fixo'"
-        [innerHtml]="comoParagrafos(subitem.conteudo)"
-      >
+      <span *ngIf="subitem.tipo === 'texto-fixo'">
+        <p *ngFor="let p of obterParagrafos(subitem.conteudo)">{{ p }}</p>
       </span>
 
       <!-- se subitem.tipo === 'entrada-texto' -->
-      <span *ngIf="subitem.tipo === 'entrada-texto'" class="display-grid">
+      <span *ngIf="subitem.tipo === 'entrada-texto'" class="display-grid margin-top">
         <textarea
           class="entrada-texto"
           [placeholder]="subitem.placeholder"
