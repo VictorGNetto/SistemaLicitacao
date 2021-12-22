@@ -68,16 +68,10 @@ export class ItemNotaComponent implements OnInit {
     // remove espaços em branco do início e fim de conteudo
     conteudo = conteudo.trim();
 
-    // divide conteudo em trechos separados por pelo menos duas quebras de linhas
-    let paragrafos = conteudo.split('\n\n');
-
-    paragrafos = paragrafos
-      // remove paragrafos vazios
-      .filter((e) => e !== '')
-      // remove espaços em branco do início e fim de cada parágrafo
-      .map((e) => e.trim())
-      // transforma '\n' em ' '
-      .map((e) => e.replace(/\n/g, ' '));
+    // divide conteudo em trechos separados por pelo menos uma quebra de linha
+    let paragrafos = conteudo
+      .split('\n')
+      .filter((e) => e !== '');
 
     return paragrafos;
   }

@@ -4,6 +4,16 @@ import { Observable } from 'rxjs';
 import { DocumentoService } from './documento.service';
 import { ItemService } from './item.service';
 
+// Ttransforma whitespace do inicio e fim de @str em um único ' '.
+// Para lidar com entradas possivemente indefinidas, undefined é transformado em ''
+function customTrim(str: string | undefined): string {
+  // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/trim
+  const re = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+
+  const strNova = str ? str.replace(re, ' ') : '';
+  return strNova;
+}
+
 function construirItemTexto(dados: string) {
   interface Subitem {
     tipo: string;
@@ -19,13 +29,10 @@ function construirItemTexto(dados: string) {
   entradasTexto = _dados['entradasTexto'];
 
   let paragrafos: string[] = [];
+
   for (let i = 0; i < subitens.length; i++) {
     if (subitens[i].tipo === 'texto-fixo') {
-      const conteudo = subitens[i].conteudo?.trim();
-
-      // trata casos em que conteudo === '' ou conteudo === undefined
-      if (!conteudo) continue;
-
+      const conteudo = customTrim(subitens[i].conteudo);
       let paragrafosNovos = conteudo.split('\n').filter((e) => e !== '');
 
       if (paragrafosNovos.length === 0) continue;
@@ -39,7 +46,7 @@ function construirItemTexto(dados: string) {
     } else {
       // subitens[i].tipo === 'entrada-texto'
 
-      const conteudo = entradasTexto[i].trim();
+      const conteudo = customTrim(entradasTexto[i]);
       let paragrafosNovos = conteudo
         .split('\n')
         .filter((e) => e !== '')
