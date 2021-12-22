@@ -1,44 +1,4 @@
-.preenchimento {
-    margin: 0.25rem 0 0.25rem 5rem;
-}
-
-.grid-5-1-94 {
-  display: grid;
-  grid-template-columns: 5fr 1fr 94fr;
-}
-
-.menu {
-  text-align: center;
-  border-right: 1px solid #ccc;
-}
-
-.escolha-alfabeto {
-  text-align: center;
-}
-
-.subitens {
-  display: grid;
-  grid-template-columns: 3fr 94fr 3fr;
-}
-
-.subitens:hover {
-  background-color: #ddd;
-}
-
-.subitens-pre-visualizacao {
-  display: grid;
-  grid-template-columns: 3fr 97fr;
-}
-
-span.enumeracao {
-  font-weight: bold;
-  margin-top: 0.75rem;
-}
-
-span.enumeracao-sem-margem {
-  font-weight: bold;
-}
-
+/* geral */
 textarea {
   resize: none;
   cursor: pointer;
@@ -72,10 +32,6 @@ textarea.texto-fixo:focus {
   background-color: #ccc;
 }
 
-p.texto-fixo {
-  margin-bottom: 0;
-}
-
 textarea.entrada-texto {
   color: #444;
   background-color: rgb(180, 180, 0);
@@ -89,9 +45,55 @@ textarea.entrada-texto:focus {
   background-color: rgb(150, 150, 0);
 }
 
+span.enumeracao {
+  font-weight: bold;
+  margin-top: 0.75rem;
+}
+
+span.enumeracao-sem-margem {
+  font-weight: bold;
+}
+
+/* Modo de Preenchimento */
+.preenchimento {
+  margin: 0.25rem 0 0.25rem 5rem;
+}
+
+/* Modo de Edição */
+.edicao {
+  display: grid;
+  grid-template-columns: 5fr 1fr 94fr;
+
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.escolha-alfabeto {
+  text-align: center;
+}
+
+.subitens {
+  display: grid;
+  grid-template-columns: 3fr 94fr 3fr;
+}
+
+.subitens:hover {
+  background-color: #ddd;
+}
+
+.subitens-pre-visualizacao {
+  display: grid;
+  grid-template-columns: 3fr 97fr;
+}
+
 button.clear {
   margin-top: 0.1rem;
   margin-right: 0.1rem;
+}
+
+.grid-5-1-94 {
+  display: grid;
+  grid-template-columns: 5fr 1fr 94fr;
 }
 
 .pre-visualizacao {
@@ -99,7 +101,12 @@ button.clear {
   margin: 0.25rem 0.5rem 0 5rem;
 }
 
-span.entrada-texto {
-  display: grid;
-  grid-template-columns: 1fr;
+/* menu (Modo de Edição e Pré-visualização) */
+.menu {
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+
+.botaoMenu {
+  margin-top: 0.25rem;
 }

@@ -4,7 +4,7 @@ import { EventEmitter, Input, Output } from '@angular/core';
 import { ItemService } from 'src/app/providers/sistema-licitacao/item.service';
 
 // Este aqui é o Item Lista, que permite a criação de lista com enumeração
-// latina ou romana. Cara item da lista pode ser um Texto Fixo, que só pode
+// latina ou romana. Cada item da lista pode ser um Texto Fixo, que só pode
 // ser alterada por quem cria o Documento base; ou uma Entrada de Texto, que
 // pode ser peenchida por quem preenche um Documento.
 
@@ -82,6 +82,15 @@ export class ItemListaComponent implements OnInit {
         },
       });
     }
+  }
+
+  obterSimboloEnumeracao(alfabeto: 'latino' | 'romano') {
+    if (alfabeto === 'latino') return 'L';
+    return 'R';
+  }
+
+  obterItensLista(conteudo: string | undefined) {
+    return ['abc', 'def'];
   }
 
   obterEnumeracao(index: number, alfabeto: 'latino' | 'romano') {

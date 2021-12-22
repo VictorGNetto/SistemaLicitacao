@@ -27,7 +27,7 @@
 </div>
 
 <!-- MODO DE EDIÇÃO - forma como o documento é visto por quem o cria enquanto ele está editando -->
-<div *ngIf="modoExibicao === 'edicao'" class="grid-5-1-94">
+<div *ngIf="modoExibicao === 'edicao'" class="edicao">
   <aside class="menu">
     <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
       <mat-icon>more_vert</mat-icon>
@@ -116,37 +116,38 @@
       mat-icon-button
       (click)="habilitarEdicao()"
       title="Desativar Pré-visualização"
+      class="botaoMenu"
     >
       <mat-icon>visibility_off</mat-icon>
     </button>
   </aside>
   <span></span>
   <div class="pre-visualizacao">
-    <div
-      class="subitens-pre-visualizacao"
-      *ngFor="let subitem of subitens; index as i"
-    >
+    <div *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'texto-fixo' -->
-      <span
-        class="enumeracao-sem-margem"
-        *ngIf="subitem.tipo === 'texto-fixo'"
-        >{{ obterEnumeracao(i, alfabeto) }}</span
-      >
-      <span class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'">
-        {{ subitem.conteudo }}
+      <span *ngIf="subitem.tipo === 'texto-fixo'">
+        <span
+          *ngFor="let l of obterItensLista(subitem.conteudo)"
+          style="display: grid; grid-template-columns: 3fr 97fr"
+        >
+          <span class="enumeracao-sem-margem">{{ obterSimboloEnumeracao(alfabeto) }}</span>
+          <span>{{ l }}</span>
+        </span>
       </span>
 
       <!-- se subitem.tipo === 'entrada-texto' -->
-      <span class="enumeracao" *ngIf="subitem.tipo === 'entrada-texto'">{{
-        obterEnumeracao(i, alfabeto)
-      }}</span>
-      <textarea
-        class="entrada-texto"
+      <span
         *ngIf="subitem.tipo === 'entrada-texto'"
-        [placeholder]="subitem.placeholder"
-        [(ngModel)]="entradasTexto[i]"
-        appTextareaAutoresize
-      ></textarea>
+        style="display: grid; grid-template-columns: 3fr 97fr;"
+      >
+        <span class="enumeracao">{{ obterSimboloEnumeracao(alfabeto) }}</span>
+        <textarea
+          class="entrada-texto"
+          [placeholder]="subitem.placeholder"
+          [(ngModel)]="entradasTexto[i]"
+          appTextareaAutoresize
+        ></textarea>
+      </span>
     </div>
   </div>
 </div>
