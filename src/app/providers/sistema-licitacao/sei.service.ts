@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { DocumentoService } from './documento.service';
 import { ItemService } from './item.service';
@@ -18,31 +18,49 @@ function construirItemTexto(dados: string) {
   subitens = _dados['subitens'];
   entradasTexto = _dados['entradasTexto'];
 
-  let conteudoParagrafo = '';
+  let paragrafos: string[] = [];
   for (let i = 0; i < subitens.length; i++) {
-    let incremento = '';
     if (subitens[i].tipo === 'texto-fixo') {
-      incremento =
-        subitens[i].conteudo?.length !== 0
-          ? `<span>${subitens[i].conteudo} </span>`
-          : '';
+      const conteudo = subitens[i].conteudo?.trim();
+
+      // trata casos em que conteudo === '' ou conteudo === undefined
+      if (!conteudo) continue;
+
+      let paragrafosNovos = conteudo.split('\n').filter((e) => e !== '');
+
+      if (paragrafosNovos.length === 0) continue;
+
+      const ultimoParagrafo = paragrafos.pop();
+      if (ultimoParagrafo) {
+        paragrafosNovos[0] = ultimoParagrafo + paragrafosNovos[0];
+      }
+
+      paragrafos = paragrafos.concat(paragrafosNovos);
     } else {
       // subitens[i].tipo === 'entrada-texto'
-      incremento =
-        entradasTexto[i].length !== 0
-          ? `<span class="destacar">${entradasTexto[i]} </span>`
-          : '';
+
+      const conteudo = entradasTexto[i].trim();
+      let paragrafosNovos = conteudo
+        .split('\n')
+        .filter((e) => e !== '')
+        .map((e) => '<span class="destacar">' + e + '</span>');
+
+      if (paragrafosNovos.length === 0) continue;
+
+      const ultimoParagrafo = paragrafos.pop();
+      if (ultimoParagrafo) {
+        paragrafosNovos[0] = ultimoParagrafo + paragrafosNovos[0];
+      }
+
+      paragrafos = paragrafos.concat(paragrafosNovos);
     }
-
-    conteudoParagrafo += incremento;
   }
 
-  let conteudoItem = '';
-  if (conteudoParagrafo) {
-    conteudoItem = `<p class="Item_Nivel2">${conteudoParagrafo}</p>\n`;
-  }
+  if (paragrafos.length === 0) return '';
 
-  return conteudoItem;
+  paragrafos = paragrafos.map((e) => '<p class="Item_Nivel2">' + e + '</p>');
+
+  return paragrafos.join('\n') + '\n';
 }
 
 function construirItemOpcoes(dados: string) {
@@ -100,8 +118,9 @@ function construirItemLista(dados: string) {
   subitens = _dados['subitens'];
   entradasTexto = _dados['entradasTexto'];
 
-  const classeLista = alfabeto === 'latino' ? 'Item_Alinea_Letra' : 'Item_Inciso_Romano';
-  let conteudoItem = "";
+  const classeLista =
+    alfabeto === 'latino' ? 'Item_Alinea_Letra' : 'Item_Inciso_Romano';
+  let conteudoItem = '';
   for (let i = 0; i < subitens.length; i++) {
     let incremento = '';
     if (subitens[i].tipo === 'texto-fixo') {
@@ -116,7 +135,7 @@ function construirItemLista(dados: string) {
           ? `<p class="${classeLista} destacar">${entradasTexto[i]} </p>\n`
           : '';
     }
-    
+
     conteudoItem += incremento;
   }
 
