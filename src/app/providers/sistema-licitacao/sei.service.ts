@@ -125,28 +125,33 @@ function construirItemLista(dados: string) {
   subitens = _dados['subitens'];
   entradasTexto = _dados['entradasTexto'];
 
-  const classeLista =
-    alfabeto === 'latino' ? 'Item_Alinea_Letra' : 'Item_Inciso_Romano';
-  let conteudoItem = '';
+  let itens: string[] = [];
+
   for (let i = 0; i < subitens.length; i++) {
-    let incremento = '';
     if (subitens[i].tipo === 'texto-fixo') {
-      incremento =
-        subitens[i].conteudo?.length !== 0
-          ? `<p class="${classeLista}">${subitens[i].conteudo} </p>\n`
-          : '';
+      let conteudo = subitens[i].conteudo?.trim();
+      conteudo = conteudo ? conteudo : '';
+      const itensNovos = conteudo.split('\n').filter((e) => e !== '');
+      itens = itens.concat(itensNovos);
     } else {
       // subitens[i].tipo === 'entrada-texto'
-      incremento =
-        entradasTexto[i].length !== 0
-          ? `<p class="${classeLista} destacar">${entradasTexto[i]} </p>\n`
-          : '';
-    }
 
-    conteudoItem += incremento;
+      const conteudo = entradasTexto[i].trim();
+      const itensNovos = conteudo
+        .split('\n')
+        .filter((e) => e !== '')
+        .map((e) => '<span class="destacar">' + e + '</span>');
+      itens = itens.concat(itensNovos);
+    }
   }
 
-  return conteudoItem;
+  if (itens.length === 0) return '';
+
+  const classeLista =
+    alfabeto === 'latino' ? 'Item_Alinea_Letra' : 'Item_Inciso_Romano';
+  itens = itens.map((e) => `<p class="${classeLista}">` + e + `</p>`);
+
+  return itens.join('\n') + '\n';
 }
 
 @Injectable({
