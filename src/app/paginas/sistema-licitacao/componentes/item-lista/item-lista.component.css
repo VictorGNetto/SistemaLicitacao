@@ -72,6 +72,10 @@ span.enumeracao-sem-margem {
   text-align: center;
 }
 
+.sem-subitens {
+  margin-top: 0.5rem;
+}
+
 .subitens {
   display: grid;
   grid-template-columns: 3fr 94fr 3fr;
@@ -81,22 +85,18 @@ span.enumeracao-sem-margem {
   background-color: #ddd;
 }
 
-.subitens-pre-visualizacao {
-  display: grid;
-  grid-template-columns: 3fr 97fr;
-}
-
 button.clear {
   margin-top: 0.1rem;
   margin-right: 0.1rem;
 }
 
-.grid-5-1-94 {
+/* Modo de Pré-visualização*/
+.pre-visualizacao {
   display: grid;
   grid-template-columns: 5fr 1fr 94fr;
 }
 
-.pre-visualizacao {
+.subitens-pre-visualizacao {
   padding: 0.15rem;
   margin: 0.25rem 0.5rem 0 5rem;
 }
@@ -109,4 +109,10 @@ button.clear {
 
 .botaoMenu {
   margin-top: 0.25rem;
+}
+
+/* paragrafos (Modo de Preenchimento e Pré-visualização) */
+.subitem-lista {
+  display: grid;
+  grid-template-columns: 3fr 97fr;
 }

@@ -90,20 +90,17 @@ export class ItemListaComponent implements OnInit {
   }
 
   obterItensLista(conteudo: string | undefined) {
-    return ['abc', 'def'];
-  }
+    if (!conteudo) return [];
 
-  obterEnumeracao(index: number, alfabeto: 'latino' | 'romano') {
-    if (alfabeto === 'latino') {
-      if (index < this.enumeracaoLatina.length)
-        return this.enumeracaoLatina[index] + ')';
-      return '...';
-    } else {
-      // alfabeto === 'romano'
-      if (index < this.enumeracaoRomana.length)
-        return this.enumeracaoRomana[index] + ' -';
-      return '...';
-    }
+    // remove espaços em branco do início e fim de conteudo
+    conteudo = conteudo.trim();
+
+    // divide conteudo em trechos separados por pelo menos uma qubra de linha
+    let itens = conteudo
+      .split('\n')
+      .filter((e) => e !== '');
+    
+    return itens;
   }
 
   adicionarTextoFixo() {

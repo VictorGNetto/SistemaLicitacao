@@ -1,28 +1,32 @@
 <!-- MODO DE PREENCHIMENTO - forma como o documento é visto por quem o preenche -->
 <div *ngIf="modoExibicao === 'preenchimento'" class="preenchimento">
-  <div
-    class="subitens-pre-visualizacao"
-    *ngFor="let subitem of subitens; index as i"
-  >
+  <div *ngFor="let subitem of subitens; index as i">
     <!-- se subitem.tipo === 'texto-fixo' -->
-    <span class="enumeracao-sem-margem" *ngIf="subitem.tipo === 'texto-fixo'">{{
-      obterEnumeracao(i, alfabeto)
-    }}</span>
-    <span class="texto-fixo" *ngIf="subitem.tipo === 'texto-fixo'">
-      {{ subitem.conteudo }}
+    <span *ngIf="subitem.tipo === 'texto-fixo'">
+      <span
+        *ngFor="let l of obterItensLista(subitem.conteudo)"
+        class="subitem-lista"
+      >
+        <span class="enumeracao-sem-margem">{{
+          obterSimboloEnumeracao(alfabeto)
+        }}</span>
+        <span>{{ l }}</span>
+      </span>
     </span>
 
     <!-- se subitem.tipo === 'entrada-texto' -->
-    <span class="enumeracao" *ngIf="subitem.tipo === 'entrada-texto'">{{
-      obterEnumeracao(i, alfabeto)
-    }}</span>
-    <textarea
-      class="entrada-texto"
+    <span
       *ngIf="subitem.tipo === 'entrada-texto'"
-      [placeholder]="subitem.placeholder"
-      [(ngModel)]="entradasTexto[i]"
-      appTextareaAutoresize
-    ></textarea>
+      class="subitem-lista"
+    >
+      <span class="enumeracao">{{ obterSimboloEnumeracao(alfabeto) }}</span>
+      <textarea
+        class="entrada-texto"
+        [placeholder]="subitem.placeholder"
+        [(ngModel)]="entradasTexto[i]"
+        appTextareaAutoresize
+      ></textarea>
+    </span>
   </div>
 </div>
 
@@ -60,57 +64,43 @@
   </aside>
   <span></span>
   <div>
-    <div *ngIf="subitens.length === 0">
+    <div *ngIf="subitens.length === 0" class="sem-subitens">
       Adicione subitens usando o menu ao lado
     </div>
-    <div class="subitens" *ngFor="let subitem of subitens; index as i">
+    <div *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'texto-fixo' -->
-      <span class="enumeracao" *ngIf="subitem.tipo === 'texto-fixo'">{{
-        obterEnumeracao(i, alfabeto)
-      }}</span>
-      <textarea
-        class="texto-fixo"
-        *ngIf="subitem.tipo === 'texto-fixo'"
-        placeholder="Insira aqui o texto fixo"
-        [(ngModel)]="subitens[i].conteudo"
-        appTextareaAutoresize
-        >{{ subitem.conteudo }}</textarea
-      >
-      <button
-        class="clear"
-        *ngIf="subitem.tipo === 'texto-fixo'"
-        mat-icon-button
-        (click)="removerSubitem(i)"
-      >
-        <mat-icon>clear</mat-icon>
-      </button>
+      <span *ngIf="subitem.tipo === 'texto-fixo'" class="subitens">
+        <span class="enumeracao">{{ obterSimboloEnumeracao(alfabeto) }}</span>
+        <textarea
+          class="texto-fixo"
+          placeholder="Insira aqui o texto fixo"
+          [(ngModel)]="subitens[i].conteudo"
+          appTextareaAutoresize
+        ></textarea>
+        <button class="clear" mat-icon-button (click)="removerSubitem(i)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </span>
 
       <!-- se subitem.tipo === 'entrada-texto' -->
-      <span class="enumeracao" *ngIf="subitem.tipo === 'entrada-texto'">{{
-        obterEnumeracao(i, alfabeto)
-      }}</span>
-      <textarea
-        class="entrada-texto"
-        *ngIf="subitem.tipo === 'entrada-texto'"
-        placeholder="Insira aqui uma mensagem explicativa"
-        [(ngModel)]="subitens[i].placeholder"
-        appTextareaAutoresize
-        >{{ subitem.placeholder }}</textarea
-      >
-      <button
-        class="clear"
-        *ngIf="subitem.tipo === 'entrada-texto'"
-        mat-icon-button
-        (click)="removerSubitem(i)"
-      >
-        <mat-icon>clear</mat-icon>
-      </button>
+      <span *ngIf="subitem.tipo === 'entrada-texto'" class="subitens">
+        <span class="enumeracao">{{ obterSimboloEnumeracao(alfabeto) }}</span>
+        <textarea
+          class="entrada-texto"
+          placeholder="Insira aqui uma mensagem explicativa"
+          [(ngModel)]="subitens[i].placeholder"
+          appTextareaAutoresize
+        ></textarea>
+        <button class="clear" mat-icon-button (click)="removerSubitem(i)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </span>
     </div>
   </div>
 </div>
 
 <!-- MODO DE PRÉ-VISUALIZAÇÃO - forma como o documento é visto por quem o cria enquanto ele está pre-visualizando -->
-<div *ngIf="modoExibicao === 'pre-visualizacao'" class="grid-5-1-94">
+<div *ngIf="modoExibicao === 'pre-visualizacao'" class="pre-visualizacao">
   <aside class="menu">
     <button
       mat-icon-button
@@ -122,15 +112,17 @@
     </button>
   </aside>
   <span></span>
-  <div class="pre-visualizacao">
+  <div class="subitens-pre-visualizacao">
     <div *ngFor="let subitem of subitens; index as i">
       <!-- se subitem.tipo === 'texto-fixo' -->
       <span *ngIf="subitem.tipo === 'texto-fixo'">
         <span
           *ngFor="let l of obterItensLista(subitem.conteudo)"
-          style="display: grid; grid-template-columns: 3fr 97fr"
+          class="subitem-lista"
         >
-          <span class="enumeracao-sem-margem">{{ obterSimboloEnumeracao(alfabeto) }}</span>
+          <span class="enumeracao-sem-margem">{{
+            obterSimboloEnumeracao(alfabeto)
+          }}</span>
           <span>{{ l }}</span>
         </span>
       </span>
@@ -138,7 +130,7 @@
       <!-- se subitem.tipo === 'entrada-texto' -->
       <span
         *ngIf="subitem.tipo === 'entrada-texto'"
-        style="display: grid; grid-template-columns: 3fr 97fr;"
+        class="subitem-lista"
       >
         <span class="enumeracao">{{ obterSimboloEnumeracao(alfabeto) }}</span>
         <textarea
