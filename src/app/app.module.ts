@@ -32,6 +32,7 @@ import { ItemTextoComponent } from './paginas/sistema-licitacao/componentes/item
 import { ItemOpcoesComponent } from './paginas/sistema-licitacao/componentes/item-opcoes/item-opcoes.component';
 import { TextareaAutoresizeDirective } from './diretivas/textarea-autoresize.directive';
 import { PgEntradaSistemaLicitacaoComponent } from './paginas/sistema-licitacao/pg-entrada-sistema-licitacao/pg-entrada-sistema-licitacao.component';
+import { PgEntradaSistemaLicitacaoAdminComponent } from './paginas/sistema-licitacao/pg-entrada-sistema-licitacao-admin/pg-entrada-sistema-licitacao-admin.component';
 import { PgDocumentoComponent } from './paginas/sistema-licitacao/pg-documento/pg-documento.component';
 import { ListaDocumentoBaseDialog } from './paginas/sistema-licitacao/pg-documento/pg-documento.component';
 import { ConfirmacaoExclusaoDocumentoBaseDialog } from './paginas/sistema-licitacao/pg-documento-base/pg-documento-base.component';
@@ -46,14 +47,13 @@ import { PgDocumentacaoDocumentosBaseComponent } from './paginas/sistema-licitac
 import { PgDocumentacaoAnaliseDocumentosComponent } from './paginas/sistema-licitacao/pg-documentacao-analise-documentos/pg-documentacao-analise-documentos.component';
 
 const appRoutes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/',
-  //   pathMatch: 'full',
-  // },
   {
     path: 'entradaSistemaLicitacao',
     component: PgEntradaSistemaLicitacaoComponent,
+  },
+  {
+    path: 'entradaSistemaLicitacaoAdmin',
+    component: PgEntradaSistemaLicitacaoAdminComponent,
   },
   {
     path: '',
@@ -125,6 +125,7 @@ const appRoutes: Routes = [
     PgDocumentacaoDocumentosComponent,
     PgDocumentacaoDocumentosBaseComponent,
     PgDocumentacaoAnaliseDocumentosComponent,
+    PgEntradaSistemaLicitacaoAdminComponent,
   ],
   imports: [
     BrowserModule,

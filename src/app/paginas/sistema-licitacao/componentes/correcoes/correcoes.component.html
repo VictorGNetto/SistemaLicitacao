@@ -22,7 +22,7 @@
       <button
         mat-icon-button
         [matMenuTriggerFor]="menu"
-        *ngIf="!salvandoCorrecoes && permissaoRealizacaoAnalise"
+        *ngIf="!salvandoCorrecoes && permissaoAdmin"
         class="margin-left"
       >
         <mat-icon>more_vert</mat-icon>
@@ -55,8 +55,8 @@
     </div>
   </div>
 
-  <hr *ngIf="permissaoRealizacaoAnalise" />
-  <div *ngIf="permissaoRealizacaoAnalise" class="abc">
+  <hr *ngIf="permissaoAdmin" />
+  <div *ngIf="permissaoAdmin" class="abc">
     <textarea class="enviar" appTextareaAutoresize #textarea></textarea>
     <button
       mat-stroked-button

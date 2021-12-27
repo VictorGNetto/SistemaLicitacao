@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { SalvarDados } from 'src/app/classes/salvar-dados';
-import { PermissaoService } from 'src/app/providers/sistema-licitacao/permissao.service';
 import { CorrecoesService } from 'src/app/providers/sistema-licitacao/correcoes.service';
 
 interface Correcao {
@@ -26,27 +25,16 @@ export class CorrecoesComponent implements OnInit {
   ];
   salvandoCorrecoes = false;
 
-  permissaoRealizacaoAnalise = false;
+  permissaoAdmin = false;
   classeSubitem = 'subitem';
 
   constructor(
     private salvarDados: SalvarDados,
-    private permissaoProvider: PermissaoService,
     private correcoesProvider: CorrecoesService
   ) {}
 
   ngOnInit(): void {
-    const infoSessao = this.salvarDados.get('infoSessao');
-    const usuarioID = infoSessao['id'];
-
-    this.permissaoProvider.obterPermissoes(usuarioID).subscribe({
-      next: (res) => {
-        this.permissaoRealizacaoAnalise = res.realizacaoAnalise;
-        if (res.realizacaoAnalise) {
-          this.classeSubitem = 'subitemAnalista';
-        }
-      },
-    });
+    this.permissaoAdmin = this.salvarDados.get('permissaoAdmin');
 
     this.correcoesProvider.carregarCorrecoes(this.documentoID).subscribe({
       next: (res) => {
