@@ -23,11 +23,10 @@ interface DocumentoBase {
 })
 export class PgDocumentoBaseComponent implements OnInit {
   listaDocumentosBase: DocumentoBase[] = [];
+  listaDocumentosBaseFiltrados: DocumentoBase[] = [];
+  filtro: string = '';
 
   criandoDocumentoBase = false;
-
-  usuarioNome = 'Usuário ainda não identificado';
-  usuarioID = -1;
 
   constructor(
     private documentoBaseProvider: DocumentoBaseService,
@@ -38,39 +37,48 @@ export class PgDocumentoBaseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const infoSessao = this.salvarDados.get('infoSessao');
-    this.usuarioID = infoSessao['id'];
-    this.usuarioNome = infoSessao['nome'];
-
     this.documentoBaseProvider.listaDocumentosBase().subscribe({
-      next: (lista: DocumentoBase[]) => (this.listaDocumentosBase = lista),
+      next: (lista: DocumentoBase[]) => {
+        this.listaDocumentosBase = lista;
+        this.listaDocumentosBaseFiltrados = lista;
+      },
     });
   }
 
   // - Pede ao DocumentoBaseService que seja criado um Documento Base
   // - Acessa a página de criação de Documento Base utilizando o ID devolvido pelo DocumentoBaseService
   criarDocumentoBase() {
-    this._snackBarCriacaoDocumentoBase.open("Criando Documento Base");
+    this._snackBarCriacaoDocumentoBase.open('Criando Documento Base');
     this.documentoBaseProvider.criarDocumentoBase().subscribe({
-      next: (res) =>
-      {
+      next: (res) => {
         this._snackBarCriacaoDocumentoBase.dismiss();
-        this.router.navigate([
-          `/criacaoDocumentoBase/${res.documentoBaseID}`,
-        ]);
+        this.router.navigate([`/criacaoDocumentoBase/${res.documentoBaseID}`]);
       },
     });
 
     this.criandoDocumentoBase = true;
   }
 
-  openDialogExclusaoDocumentoBase(documentoBaseID: string, nomeDocumentoBase: string) {
+  filtrarListaDocumentosBase() {
+    const filtro = this.filtro.trim().toLowerCase();
+    this.listaDocumentosBaseFiltrados = this.listaDocumentosBase.filter(
+      (e) => e.nomeDocumentoBase.toLowerCase().indexOf(filtro) >= 0
+    );
+  }
+
+  openDialogExclusaoDocumentoBase(
+    documentoBaseID: string,
+    nomeDocumentoBase: string
+  ) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       nomeDocumentoBase: nomeDocumentoBase,
     };
 
-    const dialogRef = this.dialog.open(ConfirmacaoExclusaoDocumentoBaseDialog, dialogConfig);
+    const dialogRef = this.dialog.open(
+      ConfirmacaoExclusaoDocumentoBaseDialog,
+      dialogConfig
+    );
 
     dialogRef.afterClosed().subscribe({
       next: (res) => {
@@ -93,14 +101,11 @@ export class PgDocumentoBaseComponent implements OnInit {
   }
 
   clonarDocumentoBase(documentoBaseID: string) {
-    this._snackBarCriacaoDocumentoBase.open("Clonando Documento Base");
+    this._snackBarCriacaoDocumentoBase.open('Clonando Documento Base');
     this.documentoBaseProvider.clonarDocumentoBase(documentoBaseID).subscribe({
-      next: (res) =>
-      {
+      next: (res) => {
         this._snackBarCriacaoDocumentoBase.dismiss();
-        this.router.navigate([
-          `/criacaoDocumentoBase/${res.documentoBaseID}`,
-        ]);
+        this.router.navigate([`/criacaoDocumentoBase/${res.documentoBaseID}`]);
       },
     });
 

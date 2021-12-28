@@ -2,11 +2,7 @@
   <mat-toolbar>
     <h1>Sistema de Licitação - Documento Base</h1>
     <span class="spacer"></span>
-    <button
-      mat-stroked-button
-      class="botao-toolbar"
-      routerLink="/"
-    >
+    <button mat-stroked-button class="botao-toolbar" routerLink="/">
       Voltar
     </button>
   </mat-toolbar>
@@ -14,7 +10,6 @@
   <div *ngIf="listaDocumentosBase.length !== 0">
     <div>
       <h2 class="descricao">Lista de Documentos Base</h2>
-
       <button
         class="btn-criar-documento-base"
         mat-stroked-button
@@ -25,7 +20,16 @@
         <div>Criar Documento Base</div>
       </button>
     </div>
-    <table class="table">
+    <mat-form-field>
+      <mat-label>Filtro</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="filtro"
+        (input)="filtrarListaDocumentosBase()"
+      />
+    </mat-form-field>
+    <table class="table" *ngIf="listaDocumentosBaseFiltrados.length !== 0">
       <thead>
         <tr>
           <th>Nome</th>
@@ -34,15 +38,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let docb of listaDocumentosBase">
+        <tr *ngFor="let docb of listaDocumentosBaseFiltrados">
           <td>
-            <a
-            [href]="
-            './criacaoDocumentoBase/' +
-            docb.documentoBaseID
-            "
-            >{{ docb.nomeDocumentoBase }}</a
-            >
+            <a [href]="'./criacaoDocumentoBase/' + docb.documentoBaseID">{{
+              docb.nomeDocumentoBase
+            }}</a>
           </td>
           <td>{{ docb.documentoBaseID | uppercase }}</td>
           <td>
@@ -50,10 +50,7 @@
               <button
                 mat-icon-button
                 title="Editar Documento Base"
-                [routerLink]="
-                  '/criacaoDocumentoBase/' +
-                  docb.documentoBaseID
-                "
+                [routerLink]="'/criacaoDocumentoBase/' + docb.documentoBaseID"
               >
                 <mat-icon>edit</mat-icon>
               </button>
@@ -82,6 +79,9 @@
         </tr>
       </tbody>
     </table>
+    <div *ngIf="listaDocumentosBaseFiltrados.length === 0" class="lista-filtrada-vazia">
+      Nenhum Documento Base encontrado com o filtro <b>{{ filtro }}</b>
+    </div>
   </div>
 
   <div *ngIf="listaDocumentosBase.length === 0">
