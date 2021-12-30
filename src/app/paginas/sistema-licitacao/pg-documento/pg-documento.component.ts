@@ -92,7 +92,7 @@ export class PgDocumentoComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
-    dialogConfig.width = '400px';
+    dialogConfig.width = '550px';
     dialogConfig.closeOnNavigation = true;
 
     const dialogRef = this.dialog.open(ListaDocumentoBaseDialog, dialogConfig);
@@ -206,16 +206,21 @@ export class PgDocumentoComponent implements OnInit {
   }
 }
 
+interface DocumentoBase {
+  documentoBaseID: string;
+  nomeDocumentoBase: string;
+}
+
 @Component({
   selector: 'lista-documento-base-dialog',
   templateUrl: './lista-documento-base-dialog.html',
+  styleUrls: ['./lista-documento-base-dialog.css'],
 })
 export class ListaDocumentoBaseDialog implements OnInit {
-  documentoBaseEscolhido = '';
-  listaDocumentosBase: {
-    documentoBaseID: string;
-    nomeDocumentoBase: string;
-  }[] = [];
+  documentoBaseEscolhido = ['', ''];  // [id, nome]
+  listaDocumentosBase: DocumentoBase[] = [];
+  listaDocumentosBaseFiltrados: DocumentoBase[] = [];
+  filtro: string = '';
 
   constructor(
     private dialogRef: MatDialogRef<PgDocumentoComponent>,
@@ -228,24 +233,32 @@ export class ListaDocumentoBaseDialog implements OnInit {
 
   ngOnInit(): void {
     this.documentoBaseProvider.listaDocumentosBase().subscribe({
-      next: (lista) => (this.listaDocumentosBase = lista),
+      next: (lista) => {
+        this.listaDocumentosBase = lista;
+        this.listaDocumentosBaseFiltrados = lista;
+      },
     });
   }
 
+  filtrarListaDocumentosBase() {
+    const filtro = this.filtro.trim().toLowerCase();
+    this.listaDocumentosBaseFiltrados = this.listaDocumentosBase.filter(
+      (e) => e.nomeDocumentoBase.toLowerCase().indexOf(filtro) >= 0
+    );
+  }
+
   criarDocumento() {
-    this._snackBarCriacaoDocumento.open("Criando Documento");
+    this._snackBarCriacaoDocumento.open('Criando Documento');
     this.documentoProvider
-      .criarDocumento(this.documentoBaseEscolhido)
+      .criarDocumento(this.documentoBaseEscolhido[0])
       .subscribe({
         next: (res) => {
           this.correcoesProvider.criarCorrecoes(res.documentoID).subscribe({
             next: (res) => {},
           });
-          
+
           this._snackBarCriacaoDocumento.dismiss();
-          this.router.navigate([
-            `/preenchimentoDocumento/${res.documentoID}`,
-          ]);
+          this.router.navigate([`/preenchimentoDocumento/${res.documentoID}`]);
         },
       });
 

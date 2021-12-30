@@ -1,0 +1,21 @@
+.mat-form-field {
+  display: block;
+
+  margin-bottom: 1rem;
+
+  font-size: 16px;
+}
+
+.documento-base-escolhido h1 {
+  font-size: 13px;
+  line-height: 20px;
+
+  color: #999;
+
+  margin: 0;
+}
+
+.documento-base-escolhido h2 {
+    font-size: 18px;
+    font-weight: 600;
+}

@@ -1,17 +1,45 @@
 <h2 mat-dialog-title>Criar Novo Documento</h2>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content>
   <mat-form-field>
-    <mat-label>Escolha um Documento</mat-label>
-    <mat-select [(ngModel)]="documentoBaseEscolhido" style="width: 350px">
+    <mat-label>Filtro</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="filtro"
+      (input)="filtrarListaDocumentosBase()"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label *ngIf="listaDocumentosBaseFiltrados.length !== 0"
+      >Escolha um Documento Base</mat-label
+    >
+    <mat-label *ngIf="listaDocumentosBaseFiltrados.length === 0"
+      >Nenhum Documento Base encontrado com o filtro
+      <b>{{ filtro }}</b></mat-label
+    >
+    <mat-select
+      [(ngModel)]="documentoBaseEscolhido"
+      [disabled]="listaDocumentosBaseFiltrados.length === 0"
+    >
       <mat-option
-        *ngFor="let documentoBase of listaDocumentosBase; index as i"
-        [value]="documentoBase.documentoBaseID"
+        *ngFor="let documentoBase of listaDocumentosBaseFiltrados; index as i"
+        [value]="[documentoBase.documentoBaseID, documentoBase.nomeDocumentoBase]"
         >{{ documentoBase.nomeDocumentoBase }}</mat-option
       >
     </mat-select>
   </mat-form-field>
 </mat-dialog-content>
+<div *ngIf="documentoBaseEscolhido[1] !== ''" class="documento-base-escolhido">
+  <h1>Documento Base selecionado</h1>
+  <h2>{{ documentoBaseEscolhido[1] }}</h2>
+</div>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button [disabled]="documentoBaseEscolhido === ''" (click)="criarDocumento()">Criar</button>
+  <button
+    mat-button
+    [disabled]="documentoBaseEscolhido[0] === ''"
+    (click)="criarDocumento()"
+  >
+    Criar
+  </button>
 </mat-dialog-actions>
