@@ -1,5 +1,5 @@
 <!-- MODO DE PREENCHIMENTO - forma como o documento é visto por quem o preenche -->
-<div *ngIf="modoExibicao === 'preenchimento'">
+<div *ngIf="modoExibicao === 'preenchimento'" class="preenchimento">
   <h1 class="pre-visualizacao-descricao">
     {{ descricao }}
   </h1>
@@ -21,6 +21,9 @@
         [checked]="i === opcao"
       />
       <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
+      <div *ngIf="subitem.textoFinal && i === opcao" class="texto-final">
+        {{ subitem.textoFinal }}
+      </div>
     </div>
 
     <!-- se subitem.tipo === 'opcao-entrada-texto' -->
@@ -33,6 +36,9 @@
         [checked]="i === opcao"
       />
       <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
+      <div *ngIf="subitem.textoFinal && i === opcao" class="texto-final">
+        {{ subitem.textoFinal }}
+      </div>
       <span class="entrada-texto">
         <textarea
           class="entrada-texto"
@@ -46,7 +52,7 @@
 </div>
 
 <!-- MODO DE EDIÇÃO - forma como o documento é visto por quem o cria enquanto ele está editando -->
-<div *ngIf="modoExibicao === 'edicao'" class="grid-5-1-94">
+<div *ngIf="modoExibicao === 'edicao'" class="edicao">
   <aside class="menu">
     <button mat-icon-button [matMenuTriggerFor]="menu" class="botaoMenu">
       <mat-icon>more_vert</mat-icon>
@@ -100,7 +106,7 @@
           appTextareaAutoresize
           >{{ subitem.subdescricao }}</textarea
         >
-        <button mat-icon-button (click)="removerSubitem(i)">
+        <button class="clear" mat-icon-button (click)="removerSubitem(i)">
           <mat-icon>clear</mat-icon>
         </button>
       </div>
@@ -116,9 +122,20 @@
           appTextareaAutoresize
           >{{ subitem.opcao }}</textarea
         >
-        <button mat-icon-button (click)="removerSubitem(i)">
+        <button class="clear" mat-icon-button (click)="removerSubitem(i)">
           <mat-icon>clear</mat-icon>
         </button>
+
+        <span></span>
+        <span></span>
+        <textarea
+          class="texto-fixo"
+          placeholder="Insira aqui o texto final desta opção"
+          [(ngModel)]="subitens[i].textoFinal"
+          appTextareaAutoresize
+          >{{ subitem.opcao }}</textarea
+        >
+        <span></span>
       </div>
 
       <!-- se subitem.tipo === 'opcao-entrada-texto' -->
@@ -135,9 +152,21 @@
           appTextareaAutoresize
           >{{ subitem.opcao }}</textarea
         >
-        <button mat-icon-button (click)="removerSubitem(i)">
+        <button class="clear" mat-icon-button (click)="removerSubitem(i)">
           <mat-icon>clear</mat-icon>
         </button>
+
+        <span></span>
+        <span></span>
+        <textarea
+          class="texto-fixo"
+          placeholder="Insira aqui o texto final desta opção"
+          [(ngModel)]="subitens[i].textoFinal"
+          appTextareaAutoresize
+          >{{ subitem.opcao }}</textarea
+        >
+        <span></span>
+
         <span></span>
         <span></span>
         <textarea
@@ -153,18 +182,19 @@
 </div>
 
 <!-- MODO DE PRÉ-VISUALIZAÇÃO - forma como o documento é visto por quem o cria enquanto ele está pre-visualizando -->
-<div *ngIf="modoExibicao === 'pre-visualizacao'" class="grid-5-1-94">
+<div *ngIf="modoExibicao === 'pre-visualizacao'" class="pre-visualizacao">
   <aside class="menu">
     <button
       mat-icon-button
       (click)="habilitarEdicao()"
       title="Desativar Pré-visualização"
+      class="botaoMenu"
     >
       <mat-icon>visibility_off</mat-icon>
     </button>
   </aside>
   <span></span>
-  <div class="pre-visualizacao">
+  <div class="subitens-pre-visualizacao">
     <h1 class="pre-visualizacao-descricao">
       {{ descricao }}
     </h1>
@@ -186,6 +216,10 @@
           [checked]="i === opcao"
         />
         <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
+
+        <div *ngIf="subitem.textoFinal && i === opcao" class="texto-final">
+          {{ subitem.textoFinal }}
+        </div>
       </div>
 
       <!-- se subitem.tipo === 'opcao-entrada-texto' -->
@@ -198,6 +232,9 @@
           [checked]="i === opcao"
         />
         <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
+        <div *ngIf="subitem.textoFinal && i === opcao" class="texto-final">
+          {{ subitem.textoFinal }}
+        </div>
         <span class="entrada-texto">
           <textarea
             class="entrada-texto"

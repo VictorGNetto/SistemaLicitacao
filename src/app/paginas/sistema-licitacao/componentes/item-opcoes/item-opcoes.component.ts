@@ -15,6 +15,7 @@ interface Subitem {
   tipo: string; // "subdescricao", "opcao" e "opcao-entrada-texto"
   subdescricao?: string; // aplicável somente quando tipo="subdescricao"
   opcao?: string; // aplicável somente quando tipo="opcao" ou "opcao-entrada-texto"
+  textoFinal?: string;  // aplicável somente quando tipo="opcao" ou "opcao-entrada-texto"
   placeholderEntradaTexto?: string; // aplicável somente quando tipo="opcao-entrada-texto"
 }
 
