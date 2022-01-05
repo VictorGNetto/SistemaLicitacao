@@ -32,7 +32,7 @@
     <table class="table" *ngIf="listaDocumentosBaseFiltrados.length !== 0">
       <thead>
         <tr>
-          <th>Nome</th>
+          <th>Identificação</th>
           <th>Código</th>
           <th>Ações</th>
         </tr>
@@ -41,7 +41,7 @@
         <tr *ngFor="let docb of listaDocumentosBaseFiltrados">
           <td>
             <a [href]="'./criacaoDocumentoBase/' + docb.documentoBaseID">{{
-              docb.nomeDocumentoBase
+              docb.identificacaoDocumentoBase
             }}</a>
           </td>
           <td>{{ docb.documentoBaseID | uppercase }}</td>
@@ -68,7 +68,7 @@
                 (click)="
                   openDialogExclusaoDocumentoBase(
                     docb.documentoBaseID,
-                    docb.nomeDocumentoBase
+                    docb.identificacaoDocumentoBase
                   )
                 "
               >

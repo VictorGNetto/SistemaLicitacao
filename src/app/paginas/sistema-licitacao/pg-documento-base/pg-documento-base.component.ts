@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface DocumentoBase {
   documentoBaseID: string;
-  nomeDocumentoBase: string;
+  identificacaoDocumentoBase: string;
 }
 
 @Component({
@@ -62,7 +62,7 @@ export class PgDocumentoBaseComponent implements OnInit {
   filtrarListaDocumentosBase() {
     const filtro = this.filtro.trim().toLowerCase();
     this.listaDocumentosBaseFiltrados = this.listaDocumentosBase.filter(
-      (e) => e.nomeDocumentoBase.toLowerCase().indexOf(filtro) >= 0
+      (e) => e.identificacaoDocumentoBase.toLowerCase().indexOf(filtro) >= 0
     );
   }
 

@@ -208,7 +208,7 @@ export class PgDocumentoComponent implements OnInit {
 
 interface DocumentoBase {
   documentoBaseID: string;
-  nomeDocumentoBase: string;
+  identificacaoDocumentoBase: string;
 }
 
 @Component({
@@ -243,7 +243,7 @@ export class ListaDocumentoBaseDialog implements OnInit {
   filtrarListaDocumentosBase() {
     const filtro = this.filtro.trim().toLowerCase();
     this.listaDocumentosBaseFiltrados = this.listaDocumentosBase.filter(
-      (e) => e.nomeDocumentoBase.toLowerCase().indexOf(filtro) >= 0
+      (e) => e.identificacaoDocumentoBase.toLowerCase().indexOf(filtro) >= 0
     );
   }
 

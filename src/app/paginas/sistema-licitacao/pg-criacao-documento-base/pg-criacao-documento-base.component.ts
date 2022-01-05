@@ -16,7 +16,8 @@ interface Secao {
 
 interface DocumentoBase {
   documentoBaseID: string;
-  nomeDocumentoBase: string;
+  identificacaoDocumentoBase: string;
+  tituloDocumento: string;
   secoes: Secao[];
 }
 
@@ -26,7 +27,8 @@ interface DocumentoBase {
   styleUrls: ['./pg-criacao-documento-base.component.css'],
 })
 export class PgCriacaoDocumentoBaseComponent implements OnInit {
-  nomeDocumentoBase: string = '';
+  identificacaoDocumentoBase: string = '';
+  tituloDocumento: string = '';
   documentoBaseID: string = '';
   secoes: Secao[] = [
     {
@@ -57,7 +59,8 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
       .carregarDocumentoBase(this.documentoBaseID)
       .subscribe({
         next: (documentoBase: DocumentoBase) => {
-          this.nomeDocumentoBase = documentoBase.nomeDocumentoBase;
+          this.identificacaoDocumentoBase = documentoBase.identificacaoDocumentoBase;
+          this.tituloDocumento = documentoBase.tituloDocumento;
           this.secoes = documentoBase.secoes;
         },
       });
@@ -256,7 +259,8 @@ export class PgCriacaoDocumentoBaseComponent implements OnInit {
     this.documentoBaseProvider
       .salvarDocumentoBase({
         documentoBaseID: this.documentoBaseID,
-        nomeDocumentoBase: this.nomeDocumentoBase,
+        identificacaoDocumentoBase: this.identificacaoDocumentoBase,
+        tituloDocumento: this.tituloDocumento,
         secoes: secoes,
       })
       .subscribe({

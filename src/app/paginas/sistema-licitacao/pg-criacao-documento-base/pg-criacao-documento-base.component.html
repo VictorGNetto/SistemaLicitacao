@@ -39,11 +39,19 @@
     </button>
   </mat-toolbar>
 
-  <h2>Nome do Documento Base</h2>
+  <h2>Identificação do Documento Base</h2>
   <input
     class="identificacao"
     type="text"
-    [(ngModel)]="nomeDocumentoBase"
+    [(ngModel)]="identificacaoDocumentoBase"
+    placeholder="Insira aqui o nome do Documento Base"
+  />
+
+  <h2>Título do Documento</h2>
+  <input
+    class="identificacao"
+    type="text"
+    [(ngModel)]="tituloDocumento"
     placeholder="Insira aqui o nome do Documento Base"
   />
 

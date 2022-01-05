@@ -17,7 +17,8 @@ interface Secao {
 
 interface DocumentoBase {
   documentoBaseID: string;
-  nomeDocumentoBase: string;
+  identificacaoDocumentoBase: string;
+  tituloDocumento: string;
   secoes: Secao[];
 }
 

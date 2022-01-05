@@ -23,8 +23,8 @@
     >
       <mat-option
         *ngFor="let documentoBase of listaDocumentosBaseFiltrados; index as i"
-        [value]="[documentoBase.documentoBaseID, documentoBase.nomeDocumentoBase]"
-        >{{ documentoBase.nomeDocumentoBase }}</mat-option
+        [value]="[documentoBase.documentoBaseID, documentoBase.identificacaoDocumentoBase]"
+        >{{ documentoBase.identificacaoDocumentoBase }}</mat-option
       >
     </mat-select>
   </mat-form-field>
