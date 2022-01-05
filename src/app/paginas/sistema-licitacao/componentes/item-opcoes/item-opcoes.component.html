@@ -37,7 +37,8 @@
       />
       <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
       <div *ngIf="subitem.textoFinal && i === opcao" class="texto-final">
-        {{ subitem.textoFinal }}
+        <span *ngIf="entradasTexto[i] === ''">{{ subitem.textoFinal }}</span>
+        <span *ngIf="entradasTexto[i] !== ''">{{ entradasTexto[i] }}</span>
       </div>
       <span class="entrada-texto">
         <textarea
@@ -233,7 +234,8 @@
         />
         <p class="pre-visualizacao-opcao">{{ subitem.opcao }}</p>
         <div *ngIf="subitem.textoFinal && i === opcao" class="texto-final">
-          {{ subitem.textoFinal }}
+          <span *ngIf="entradasTexto[i] === ''">{{ subitem.textoFinal }}</span>
+          <span *ngIf="entradasTexto[i] !== ''">{{ entradasTexto[i] }}</span>
         </div>
         <span class="entrada-texto">
           <textarea

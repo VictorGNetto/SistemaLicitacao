@@ -68,10 +68,6 @@ input[type="radio"] {
   vertical-align: middle;
 }
 
-.modo-edicao input[type="radio"] {
-  margin-top: 0.75rem;
-}
-
 input[type="radio"]:checked {
   border: 7px solid black;
 }
@@ -123,6 +119,10 @@ span.entrada-texto {
 button.clear {
   margin-top: 0.1rem;
   margin-right: 0.1rem;
+}
+
+.edicao input[type="radio"] {
+  margin-top: 0.75rem;
 }
 
 /* Modo de Pré-visualizacao */
