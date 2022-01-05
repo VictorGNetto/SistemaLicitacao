@@ -85,10 +85,27 @@ p.Item_Nivel2 {
   word-wrap: normal;
   margin: 6pt;
   counter-increment: item-n2;
-  counter-reset: romano_maiusculo letra_minuscula;
+  counter-reset: item-n3 romano_maiusculo letra_minuscula;
 }
 p.Item_Nivel2:before {
   content: counter(item-n1) "." counter(item-n2) ".";
+  display: inline-block;
+  width: 25mm;
+  font-weight: normal;
+}
+
+p.Item_Nivel3 {
+  font-size: 12pt;
+  font-family: Calibri;
+  text-indent: 0mm;
+  text-align: justify;
+  word-wrap: normal;
+  margin: 6pt;
+  counter-increment: item-n3;
+  counter-reset: romano_maiusculo letra_minuscula;
+}
+p.Item_Nivel3:before {
+  content: counter(item-n1) "." counter(item-n2) "." counter(item-n3) ".";
   display: inline-block;
   width: 25mm;
   font-weight: normal;

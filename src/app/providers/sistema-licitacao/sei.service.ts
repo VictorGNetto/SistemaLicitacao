@@ -75,6 +75,7 @@ function construirItemOpcoes(dados: string) {
     tipo: string;
     subdescricao?: string;
     opcao?: string;
+    textoFinal?: string;
     placeholderEntradaTexto?: string;
   }
 
@@ -91,18 +92,12 @@ function construirItemOpcoes(dados: string) {
 
   let conteudoItem = `<p class="Item_Nivel2">${descricao}</p>\n`;
   for (let i = 0; i < subitens.length; i++) {
-    if (subitens[i].tipo === 'subdescricao') {
-      conteudoItem += `<p class="Item_Inciso_Romano">${subitens[i].subdescricao}</p>\n`;
-    } else if (subitens[i].tipo === 'opcao') {
-      const marcacao = opcao === i ? ' X ' : '&nbsp; &nbsp; ';
-      const destaque = opcao === i ? ' destacar' : '';
-      conteudoItem += `<p class="Texto_Justificado_Recuo_Primeira_Linha${destaque}">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (${marcacao}) ${subitens[i].opcao}</p>\n`;
-    } else {
-      // subitens[i].tipo === 'opcao-entrada-texto'
-      const marcacao = opcao === i ? ' X ' : '&nbsp; &nbsp; ';
-      const destaque = opcao === i ? ' destacar' : '';
-      const entradaTexto = opcao === i ? entradasTexto[i] : '';
-      conteudoItem += `<p class="Texto_Justificado_Recuo_Primeira_Linha${destaque}">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (${marcacao}) ${subitens[i].opcao} ${entradaTexto}</p>\n`;
+    if (opcao === i) {
+      let textoFinal = subitens[i].textoFinal;
+      if (subitens[i].tipo === 'opcao-entrada-texto' && entradasTexto[i]) {
+        textoFinal = entradasTexto[i];
+      }
+      conteudoItem += `<p class="Item_Nivel3"><span class="destacar">${textoFinal}</span></p>\n`;
     }
   }
 
