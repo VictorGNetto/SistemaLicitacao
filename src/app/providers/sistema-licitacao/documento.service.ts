@@ -22,7 +22,7 @@ interface Documento {
   documentoBaseID: string;
   status: 'Em Edição' | 'Em Análise' | 'Aprovado';
   identificacao: string;
-  nomeDocumento: string;
+  tituloDocumento: string;
   secoes: Secao[];
   criacao: string;
   edicao: string;
@@ -129,7 +129,7 @@ export class DocumentoService {
    */
   salvarDocumento(documento: {
     documentoID: string;
-    nomeDocumento: string;
+    tituloDocumento: string;
     secoes: Secao[];
   }): Observable<void> {
     const url = environment.urlBase + 'salvar-documento.php';

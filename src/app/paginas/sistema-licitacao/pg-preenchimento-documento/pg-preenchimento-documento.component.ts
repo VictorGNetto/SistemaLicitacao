@@ -19,7 +19,7 @@ interface Secao {
   styleUrls: ['./pg-preenchimento-documento.component.css']
 })
 export class PgPreenchimentoDocumentoComponent implements OnInit {
-  nomeDocumento = "";
+  tituloDocumento = "";
   documentoID = "";
   secoes: Secao[] = [];
 
@@ -35,7 +35,7 @@ export class PgPreenchimentoDocumentoComponent implements OnInit {
       .carregarDocumento(this.documentoID)
       .subscribe({
         next: documento => {
-          this.nomeDocumento = documento.nomeDocumento;
+          this.tituloDocumento = documento.tituloDocumento;
           this.secoes = documento.secoes;
         }
       });
@@ -103,7 +103,7 @@ export class PgPreenchimentoDocumentoComponent implements OnInit {
     this.documentoProvider
       .salvarDocumento({
         documentoID: this.documentoID,
-        nomeDocumento: this.nomeDocumento,
+        tituloDocumento: this.tituloDocumento,
         secoes: this.secoes
       })
       .subscribe({

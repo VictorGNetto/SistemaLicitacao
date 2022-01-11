@@ -163,7 +163,7 @@ export class SeiService {
   ): Observable<{ nome: string; conteudo: string }> {
     const observable = new Observable<{ nome: string; conteudo: string }>(
       (observer) => {
-        let nomeDocumento = '';
+        let tituloDocumento = '';
         let nomeSecoes: string[] = [];
         let conteudoItens: string[][] = [];
 
@@ -174,7 +174,7 @@ export class SeiService {
             itensEmConstrucao = 0;
 
             // atribui o nome do documento
-            nomeDocumento = res.nomeDocumento;
+            tituloDocumento = res.tituloDocumento;
 
             for (let i = 0; i < res.secoes.length; i++) {
               // atribui o nome da seção
@@ -223,7 +223,7 @@ export class SeiService {
         function publicaDocumento() {
           if (itensEmConstrucao === 0) {
             // constrói o arquivo
-            let conteudoArquivo = `<p class="Texto_Centralizado_Maiusculas_Negrito">${nomeDocumento}</p>\n`;
+            let conteudoArquivo = `<p class="Texto_Centralizado_Maiusculas_Negrito">${tituloDocumento}</p>\n`;
             for (let i = 0; i < nomeSecoes.length; i++) {
               conteudoArquivo += `<p class="Item_Nivel1">${nomeSecoes[i]}</p>\n`;
 
@@ -233,7 +233,7 @@ export class SeiService {
             }
 
             // envia para o observer
-            observer.next({ nome: nomeDocumento, conteudo: conteudoArquivo });
+            observer.next({ nome: tituloDocumento, conteudo: conteudoArquivo });
           } else {
             setTimeout(publicaDocumento, 100);
           }
